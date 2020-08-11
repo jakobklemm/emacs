@@ -1,0 +1,3 @@
+# Ignore library files
+auto-save-list/
+elpa/
