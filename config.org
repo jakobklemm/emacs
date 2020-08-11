@@ -3,6 +3,12 @@
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
 
+* TODO 
+
+** Add Projectile and set frame title
+
+** 
+
 * Setup
   Verify the =use-package= installation and ensures the packages.
   #+begin_src emacs-lisp
@@ -31,3 +37,31 @@
   (sensible-defaults/use-all-settings)
   (sensible-defaults/use-all-keybindings)
   #+end_src
+
+  Add =resources= to the path
+  #+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/resources/")
+  #+end_src
+
+* Interface
+** Scrollbar
+   Disable the scrollbar in the entire window and minibuffers.
+   #+begin_src emacs-lisp
+   ;; Menu bar
+   (tool-bar-mode 0)
+   (menu-bar-mode 0)
+   (scroll-bar-mode -1)
+   ;; Minibuffer
+   (set-window-scroll-bars (minibuffer-window) nil nil)
+   #+end_src
+** Improvements
+   Use prettify symbols -> fancy lambdas
+   #+begin_src emacs-lisp
+   (global-prettify-symbols-mode t)
+   #+end_src
+** Theme
+   Load the =elixify= theme. Credit to /AstonJ/.
+   #+begin_src emacs-lisp
+   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+   (load-theme `elixify t)
+   #+end_src
