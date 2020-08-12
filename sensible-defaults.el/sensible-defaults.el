@@ -84,10 +84,6 @@ buffer."
   "Don't ask `yes/no?', ask `y/n?'."
   (fset 'yes-or-no-p 'y-or-n-p))
 
-(defun sensible-defaults/always-highlight-code ()
-  "Turn on syntax highlighting whenever possible."
-  (global-font-lock-mode t))
-
 (defun sensible-defaults/refresh-buffers-when-files-change ()
   "When something changes a file, automatically refresh the
 buffer containing that file so they can't get out of sync."
@@ -121,11 +117,10 @@ instead of ringing the terminal bell."
   (sensible-defaults/confirm-closing-emacs)
   (sensible-defaults/quiet-startup)
   (sensible-defaults/shorten-yes-or-no)
-  (sensible-defaults/always-highlight-code)
   (sensible-defaults/refresh-buffers-when-files-change)
   (sensible-defaults/show-matching-parens)
   (sensible-defaults/flash-screen-instead-of-ringing-bell)
-  (sensible-defaults/set-default-line-length-to 80)
+  (sensible-defaults/set-default-line-length-to 80))
 
 (defun sensible-defaults/bind-commenting-and-uncommenting ()
   "Comment or uncomment a region by hitting M-;."
@@ -141,5 +136,4 @@ the line, respectively."
 (defun sensible-defaults/use-all-keybindings ()
   "Use all of the sensible-defaults keybindings."
   (sensible-defaults/bind-commenting-and-uncommenting)
-  (sensible-defaults/bind-home-and-end-keys)
-
+  (sensible-defaults/bind-home-and-end-keys))

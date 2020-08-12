@@ -2,28 +2,21 @@
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
-
-* TODO 
-
-** Add Projectile and set frame title
-
-** 
-
 * Setup
+** =use-package=
   Verify the =use-package= installation and ensures the packages.
   #+begin_src emacs-lisp
   (require 'use-package-ensure)
   (setq use-package-always-ensure t)
   #+end_src
-  
+** Update and compile
   Update and compile all packages.
   #+begin_src emacs-lisp
   (use-package auto-compile
     :config (auto-compile-on-load-mode))
-
   (setq load-prefer-newer t)
   #+end_src
-
+** Defaults
   Default settings cloned from [[https://github.com/hrs/sensible-defaults.el][Harry R. Schwartz]].
   Functions:
   - Ensuring that files end with newlines,
@@ -31,18 +24,16 @@
   - Increasing the garbage collection threshold,
   - Defaulting line-length to 80 characters,
   - Creating parent directories after saving a deeply nested file.
-
   #+begin_src emacs-lisp
   (load-file "~/.emacs.d/sensible-defaults.el/sensible-defaults.el")
   (sensible-defaults/use-all-settings)
   (sensible-defaults/use-all-keybindings)
   #+end_src
-
+** Ressources
   Add =resources= to the path
   #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/resources/")
   #+end_src
-
 * Interface
 ** Scrollbar
    Disable the scrollbar in the entire window and minibuffers.
@@ -55,13 +46,108 @@
    (set-window-scroll-bars (minibuffer-window) nil nil)
    #+end_src
 ** Improvements
+*** Symbols
    Use prettify symbols -> fancy lambdas
    #+begin_src emacs-lisp
    (global-prettify-symbols-mode t)
    #+end_src
+*** Bottom line
+   Use =moody= for a better bottom line.
+   #+begin_src emacs-lisp
+   (use-package moody
+   :config
+   (setq x-underline-at-descent-line t
+        moody-mode-line-height 30)
+	(moody-replace-mode-line-buffer-identification)
+	(moody-replace-vc-mode))
+   #+end_src
+*** Minor modes
+   Hide all minor modes with =minions=.
+   #+begin_src emacs-lisp
+   (use-package minions
+   :config
+   (setq minions-mode-line-lighter ""
+   minions-mode-line-delimiters '("" . ""))
+   (minions-mode 1))
+   #+end_src
+*** Scrolling
+   Don't skip to center of page when at bottom / top, /normal/ smooth scrolling.
+   #+begin_src emacs-lisp
+   (setq scroll-conservatively 100)
+   #+end_src
+*** Fullscreen:
+   #+begin_src emacs-lisp
+   (add-to-list 'default-frame-alist '(fullscreen . maximized))
+   #+end_src
+*** Current line
+    Hightlight the current line.
+    #+begin_src emacs-lisp
+    (global-hl-line-mode)
+    #+end_src
 ** Theme
-   Load the =elixify= theme. Credit to /AstonJ/.
+   Load the elixify theme from Astonj with some modifications.
    #+begin_src emacs-lisp
    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
    (load-theme `elixify t)
    #+end_src
+** Dashboard
+   Setup the dashboard with come modifications and configs.
+   "Every time I see this package I think to myself "People exit Emacs?""
+*** Dependancies
+   Page-break-lines
+   #+begin_src emacs-lisp
+   (turn-on-page-break-lines-mode)
+   #+end_src
+   Icons
+   #+begin_src emacs-lisp
+   (require 'all-the-icons)
+   #+end_src
+*** Setup
+    Setup the dashboard.
+    #+begin_src emacs-lisp
+    (require 'dashboard)
+    (dashboard-setup-startup-hook)
+    ;; Or if you use use-package
+    (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
+    #+end_src
+*** Config
+    Options and configuration for dashboard following the readme.
+    #+begin_src emacs-lisp
+    ;; Set the banner
+    (setq dashboard-startup-banner 1)
+    ;; Content is not centered by default. To center, set
+    (setq dashboard-center-content t)
+    ;; Icons
+    (setq dashboard-set-heading-icons t)
+    (setq dashboard-set-file-icons t)
+    ;; Navigator
+    (setq dashboard-set-navigator t)
+    ;; Init info
+    (setq dashboard-set-init-info t)
+    ;; Message
+    (setq dashboard-footer-messages '("Every time I see this package I think to myself \"People exit Emacs?\""))
+    #+end_src
+* Projects
+** Management
+  Projectile for project management.
+  #+begin_src emacs-lisp
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  #+end_src
+** Completion
+   Enable company mode globally for autocompletion.
+   #+begin_src emacs-lisp
+   (use-package company)
+   ;; (setq company-backends '((company-files company-keywords company-go company-erlang company-ghc)))
+   (add-hook 'after-init-hook 'global-company-mode)
+   #+end_src
+*** Frontend
+    Company dropdowwn frontend.
+    #+begin_src emacs-lisp
+    (use-package company-box
+    :hook (company-mode . company-box-mode))
+    #+end_src
