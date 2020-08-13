@@ -118,7 +118,7 @@
     Options and configuration for dashboard following the readme.
     #+begin_src emacs-lisp
     ;; Set the banner
-    (setq dashboard-startup-banner 1)
+    (setq dashboard-startup-banner 2)
     ;; Content is not centered by default. To center, set
     (setq dashboard-center-content t)
     ;; Icons
@@ -139,15 +139,40 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   #+end_src
 ** Completion
-   Enable company mode globally for autocompletion.
    #+begin_src emacs-lisp
-   (use-package company)
-   ;; (setq company-backends '((company-files company-keywords company-go company-erlang company-ghc)))
-   (add-hook 'after-init-hook 'global-company-mode)
+   (use-package company
+   :diminish company-mode
+  :ensure t
+  :init (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (setq company-idle-delay              0.1
+        company-minimum-prefix-length   2
+        company-show-numbers            t
+        company-tooltip-limit           20
+        company-dabbrev-downcase        nil
+        company-backends                '((company-gtags))
+	)
+      :bind ("s-;" . company-complete-common)
+  )
+
+
+   (use-package company-box
+   :hook (company-mode . company-box-mode))
+
+   (with-eval-after-load 'company
+   (define-key company-active-map (kbd "M-n") nil)
+   (define-key company-active-map (kbd "M-p") nil)
+   (define-key company-active-map (kbd "C-n") #'company-select-next)
+   (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+   (global-set-key (kbd "C-ö") 'company-complete)
+
+   (use-package lsp-mode
+   :commands lsp
+   :ensure t
+   :diminish lsp-mode
+   :hook
+   (elixir-mode . lsp)
+   :init
+   (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
    #+end_src
-*** Frontend
-    Company dropdowwn frontend.
-    #+begin_src emacs-lisp
-    (use-package company-box
-    :hook (company-mode . company-box-mode))
-    #+end_src
