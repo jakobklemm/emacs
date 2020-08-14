@@ -145,6 +145,92 @@
 	 :width 'normal
 	 )
 	 #+end_src
+** New window
+	 Directly switch to new window after opening.
+	 (Credit: hrs)
+	 #+begin_src emacs-lisp
+	 (defun hrs/split-window-below-and-switch ()
+   "Split the window horizontally, then switch to the new pane."
+   (interactive)
+   (split-window-below)
+   (balance-windows)
+   (other-window 1))
+
+	 (defun hrs/split-window-right-and-switch ()
+   "Split the window vertically, then switch to the new pane."
+   (interactive)
+   (split-window-right)
+   (balance-windows)
+   (other-window 1))
+
+	 ;; Keys
+	 (global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
+	 (global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
+	 #+end_src
+** Beacon
+	 Beacon for highlighting the cursor when switching buffers.
+	 #+begin_src emacs-lisp
+	 (use-package beacon
+   :custom
+   (beacon-color "#c678dd")
+   :hook (after-init . beacon-mode))
+	 #+end_src
+** Title
+	 Set the window title to the current file.
+	 #+begin_src emacs-lisp
+	 (setq-default frame-title-format
+   '(:eval
+   (format "%s@%s: %s %s"
+   (or (file-remote-p default-directory 'user)
+   user-real-login-name)
+   (or (file-remote-p default-directory 'host)
+   system-name)
+   (buffer-name)
+   (cond
+   (buffer-file-truename
+   (concat "(" buffer-file-truename ")"))
+   (dired-directory
+   (concat "{" dired-directory "}"))
+   (t
+   "[no file]")))))
+	 #+end_src
+** Tabs
+	 List buffers like tabs.
+	 #+begin_src emacs-lisp
+	 (require 'centaur-tabs)
+	 (centaur-tabs-mode t)
+	 (global-set-key (kbd "C-x x")  'centaur-tabs-backward)
+	 (global-set-key (kbd "C-x c") 'centaur-tabs-forward)
+	 (global-set-key (kbd "C-x y") 'centaur-tabs-toggle-groups)
+
+	 (setq centaur-tabs-style "bar")
+	 (setq centaur-tabs-set-icons t)
+	 (setq centaur-tabs-height 32)
+	 (setq centaur-tabs-set-bar 'left)
+
+	 (setq centaur-tabs-set-icons t)
+	 (setq centaur-tabs-plain-icons t)
+   #+end_src
+	 Exclude certain buffers from centaur.
+	 #+begin_src emacs-lisp
+	 (defun centaur-tabs-hide-tab (x)
+   (let ((name (format "%s" x)))
+	 (or
+	 (string-prefix-p "*dashboard*" name)
+	 (string-prefix-p "*scratch*" name)
+	 (string-prefix-p "*Messages*" name)
+	 (string-prefix-p "*Completions*" name)
+	 (string-prefix-p "*Org PDF LaTeX Output*" name)
+	 (and (string-prefix-p "magit" name)
+	 (not (file-name-extension name)))
+	 )))
+	#+end_src
+	 Tab Grouping
+ 	#+begin_src emacs-lisp
+	;; Show groups
+	(setq centaur-tabs--buffer-show-groups t)
+	(centaur-tabs-group-by-projectile-project)
+	#+end_src
 * Projects
 ** Management
   Projectile for project management.
@@ -228,6 +314,52 @@
 		(transient-mark-mode 1)
 		(delete-selection-mode 1)
     #+end_src
+*** Kill current
+		Kill the current buffer instead of asking.
+		#+begin_src emacs-lisp
+		(defun kill-current-buffer ()
+    (interactive)
+    (kill-buffer (current-buffer)))
+
+		;; Keybind
+		(global-set-key (kbd "C-x k") 'kill-current-buffer)
+		#+end_src
+*** Save
+		Save the location within a file.
+		#+begin_src emacs-lisp
+		(save-place-mode t)
+		#+end_src
+*** Which key
+		Helpful with long keybinds.
+		#+begin_src emacs-lisp
+		(use-package which-key
+		:config (which-key-mode))
+		#+end_src
+*** Jump
+		Jump to function definitions.
+		(Works with elixir)
+		#+begin_src emacs-lisp
+		(use-package dumb-jump
+		:bind (("M-g o" . dumb-jump-go-other-window)
+    ("M-g j" . dumb-jump-go)
+    ("M-g b" . dumb-jump-back)
+    ("M-g i" . dumb-jump-go-prompt)
+    ("M-g x" . dumb-jump-go-prefer-external)
+    ("M-g z" . dumb-jump-go-prefer-external-other-window))
+		:config (setq dumb-jump-selector 'ivy)
+		:ensure)
+	#+end_src
+*** google-this
+		Automaticly google something.
+		#+begin_src emacs-lisp
+		(google-this-mode 1)
+		(global-set-key (kbd "C-x g") 'google-this-mode-submap)
+		#+end_src
+*** Terminal
+		Bind =C-x t= to =eshell=.
+		#+begin_src
+		(global-set-key (kbd "C-x t") 'eshell)
+		#+end_src
 ** Ido
 	 Globaly enable IDO mode
 	 #+begin_src emacs-lisp
@@ -427,3 +559,9 @@
 		(LaTeX-math-mode)
 		(setq TeX-master t)))
     #+end_src
+** Templates
+	 #+begin_src emacs-lisp
+	 (setq org-reveal-note-key-char nil)
+	 ;; Easy templates <s
+	 ;; TODO: insert (require 'org-tempo)
+   #+end_src

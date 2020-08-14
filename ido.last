@@ -1,0 +1,46 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "andoird/")
+ ("c:/users/jakob/Desktop/Programming/" . "BibleTalks/")
+ ("c:/users/jakob/Desktop/" . "Programming/")
+ ("c:/users/jakob/" . "Desktop/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "c:/users/jakob/owncloud/"
+ "c:/users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/"
+ "c:/users/jakob/owncloud/.emacs.d/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "Desktop.ini"
+ "README.md"
+ "init.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/users/jakob/owncloud/.emacs.d/" (24374 29055 0 0) "url/" "transient/" "themes/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last" "icons/" "eshell/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/" (24055 30877 0 0) "test/" "README.md" "pubspec.yaml" "pubspec.lock" "lib/" "ios/" "flutter_02.png" "flutter_01.png" "assets/" "android/" ".metadata" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" (24055 30861 0 0) "bibletalks/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/" (24075 51383 0 0) "postbackend/" "demo/" "bibletalks_admin/" "bibletalks/" "andoird/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/" (24370 27797 0 0) "warrick/" "tetrisjs/" "tetris/" "taras/" "skribble/" "scans/" "pytube/" "project romba/" "processing-3.4/" "p5-multi/" "jakobklemm/" "ICDM06.metaclust.caruana.pdf" "gruppen.html" "gitclone/" "exBankID/" "Erebos/" "emacsfiles/" "condacode/" "codenames/" "card.txt" "C-Programming/" "btadmin/" "bibletalksweb/" "bibletalksjoin/" "BibleTalks/" "ash.tex" "ash.pdf" "ash.org" "arthurpac/" "../" "./")
+
+ ("c:/users/jakob/Desktop/" (24371 45136 0 0) "Schule/" "Programming/" "Private Internet Access.lnk" "Microsoft Teams.lnk" "HTTrack Website Copier.lnk" "HandBrake.lnk" "Google Drive.lnk" "Git Bash.lnk" "Eclipse Java 2018-12.lnk" "desktop.ini" "beook.lnk" "../" "./")
+
+ ("c:/users/jakob/" (24370 56226 0 0) "Videos/" "TMPDIR/" "tensor/" "Templates/" "Startup.cs" "Start Menu/" "source/" "SendTo/" "Searches/" "SciTE.session" "SciTE.recent" "Saved Games/" "Roaming/" "Recent/" "PSY - GANGNAM STYLE(강남스타일) MV.mp4" "Properties/" "Programs/" "Program.cs" "PrintHood/" "Postman/" "Pictures/" "package-lock.json" "ownCloud/" "OpenVPN/" "OneDrive - Kantonsschule Baden/" "OneDrive/" "obj/" "nvvp_workspace/" "ntuser.ini" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "node_modules/" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "logs/" "Local Settings/" "Links/" "Kantonsschule Baden/" "jakob.klemm@swissonline.ch Creative Cloud Files/" "jakob.csproj" "IntelGraphicsProfiles/" "IdeaProjects/" "Google Drive/" "go/" "flutterprojects/" "Favorites/" "eclipse-workspace/" "eclipse/" "Downloads/" "Documents/" "Desktop/" "Creative Cloud Files/" "Cookies/" "Controllers/" "Contacts/" "chemaxon/" "appsettings.json" "appsettings.Development.json" "Application Data/" "AppData/" "AndroidStudioProjects/" "advanced_port_scanner_MAC.bin" "advanced_port_scanner_Comments.bin" "advanced_port_scanner_Aliases.bin" "3D Objects/" ".vuerc" ".vue-cli-ui/" ".vscode/" ".tooling/" ".thumbnails/" ".templateengine/" ".swt/" ".ssh/" ".phet/" ".pgAdmin4.startup.log" ".pgAdmin4.427924103.log" ".pgAdmin4.427924103.addr" ".p2/" ".omnisharp/" ".nuget/" ".mume/" ".mix/" ".minttyrc" ".MakeMKV/" ".julia/" ".jssc/" ".IdeaIC2018.3/" ".hex/" ".gradle/" ".gitconfig" ".emulator_console_auth_token" ".eclipse/" ".dotnet/" ".config/" ".conda/" ".cache/" ".bash_history" ".atom/" ".artofillusion/" ".AndroidStudio3.5/" ".AndroidStudio3.3/" "../" "./")
+
+ ("c:/users/jakob/owncloud/" (24374 26686 0 0) "static/" "QGisProjekt.pdf" "laptop_working/" "Images/" "emacs/" "documents/" "Desktop.ini" "config.org_archive" "calendar 2019/" "bg-elon.tif" ".viminfo" ".sync_6171c3cb1d97.db-wal" ".sync_6171c3cb1d97.db-shm" ".sync_6171c3cb1d97.db" ".ssh/" ".pylint.d/" ".proselintrc" ".pacmacs-score" ".owncloudsync.log.1" ".owncloudsync.log" ".matplotlib/" ".keras/" ".insert-shebang.log" ".gitconfig" ".git-credentials" ".emacs.d/" ".bash_history" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

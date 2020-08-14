@@ -1,1 +1,1 @@
-("~/.emacs.d/" "c:/Users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/")
+("~/.emacs.d/" "c:/Users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/" "c:/Users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/")
