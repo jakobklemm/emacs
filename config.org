@@ -105,12 +105,12 @@
    #+end_src
    Icons
    #+begin_src emacs-lisp
-   (require 'all-the-icons)
+   (use-package all-the-icons)
    #+end_src
 *** Setup
     Setup the dashboard.
     #+begin_src emacs-lisp
-    (require 'dashboard)
+    (use-package dashboard)
     (dashboard-setup-startup-hook)
     ;; Or if you use use-package
     (use-package dashboard
@@ -197,7 +197,7 @@
 ** Tabs
 	 List buffers like tabs.
 	 #+begin_src emacs-lisp
-	 (require 'centaur-tabs)
+	 (use-package centaur-tabs)
 	 (centaur-tabs-mode t)
 	 (global-set-key (kbd "C-x x")  'centaur-tabs-backward)
 	 (global-set-key (kbd "C-x c") 'centaur-tabs-forward)
@@ -543,8 +543,8 @@
 ** Export
 	 Allow export to markdown and beamer (for presentations).
    #+begin_src emacs-lisp
-   (require 'ox-md)
-   (require 'ox-beamer)
+   (use-package ox-md)
+   (use-package ox-beamer)
    #+end_src
 *** Code
 		Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
@@ -600,11 +600,11 @@
 *** Abstract
 		Allows usage of =#+BEGIN_ABSTRACT= and =#+END_ABSTRACT=
 		#+begin_src emacs-lisp
-		(require 'org-special-blocks)
+		(use-package org-special-blocks)
 		#+end_src
 ** Templates
 	 #+begin_src emacs-lisp
 	 (setq org-reveal-note-key-char nil)
 	 ;; Easy templates <s
-	 ;; TODO: insert (require 'org-tempo)
+	 ;; TODO: insert (use-package org-tempo)
    #+end_src

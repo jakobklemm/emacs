@@ -17,13 +17,13 @@
  ;; basic theming.
 
 ;; Dark
-'(default ((t (:foreground "#F0F0F0" :background "#302C3A" ))))
+'(default ((t (:foreground "#F0F0F0" :background "#302CA1" ))))
 '(highlight ((t (:background "#2C2934"                     ))))
 
 ;; Light
 ;; '(default ((t (:foreground "#F0F0F0" :background "#3B3749" ))))
 ;; '(highlight ((t (:background "#302C3A"                     ))))
- 
+
  '(region  ((t (:foreground "#ADA5A9" :background "#534A53"))))
  '(cursor  ((t (:background "#9EA7A6"))))
 
@@ -80,7 +80,7 @@
  '(git-gutter:added                    ((t (:foreground "#609f60" :bold t))))
  '(git-gutter:modified                 ((t (:foreground "#3388cc" :bold t))))
  '(git-gutter:deleted                  ((t (:foreground "#cc3333" :bold t))))
-  
+
  '(diff-added                          ((t (:background "#305030"))))
  '(diff-removed                        ((t (:background "#903010"))))
  '(diff-file-header                    ((t (:background "#362145"))))
