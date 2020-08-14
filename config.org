@@ -230,6 +230,44 @@
 	;; Show groups
 	(setq centaur-tabs--buffer-show-groups t)
 	(centaur-tabs-group-by-projectile-project)
+
+	(defun centaur-tabs-buffer-groups ()
+	"`centaur-tabs-buffer-groups' control buffers' group rules.
+	Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+	All buffer name start with * will group to \"Emacs\".
+	Other buffer group by `centaur-tabs-get-group-name' with project name."
+	(list
+	(cond
+	((or (string-equal "*" (substring (buffer-name) 0 1))
+				(memq major-mode '(magit-process-mode
+				 magit-status-mode
+				 magit-diff-mode
+				 magit-log-mode
+				 magit-file-mode
+				 magit-blob-mode
+				 magit-blame-mode
+				 )))
+				 "Emacs")
+	 ((derived-mode-p 'prog-mode)
+	 "Editing")
+	 ((derived-mode-p 'dired-mode)
+	 "Dired")
+	 ((memq major-mode '(helpful-mode
+					 help-mode))
+					 "Help")
+	 ((memq major-mode '(org-mode
+					 org-agenda-clockreport-mode
+					 org-src-mode
+					 org-agenda-mode
+					 org-beamer-mode
+					 org-indent-mode
+					 org-bullets-mode
+					 org-cdlatex-mode
+					 org-agenda-log-mode
+					 diary-mode))
+					 "OrgMode")
+	 (t
+	 (centaur-tabs-get-group-name (current-buffer))))))
 	#+end_src
 * Projects
 ** Management
@@ -353,11 +391,11 @@
 		Automaticly google something.
 		#+begin_src emacs-lisp
 		(google-this-mode 1)
-		(global-set-key (kbd "C-x g") 'google-this-mode-submap)
+		(global-set-key (kbd "C-c t") 'google-this)
 		#+end_src
 *** Terminal
 		Bind =C-x t= to =eshell=.
-		#+begin_src
+		#+begin_src emacs-lisp
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
 ** Ido
@@ -531,7 +569,7 @@
 *** =htmlize=
 		Use =htmlize= to ensure that exported code blocks use syntax highlighting.
     #+begin_src emacs-lisp
-		(use-package htmlize)
+;;		(use-package htmlize)
     #+end_src
 		Translate quoates into correct style.
     #+begin_src emacs-lisp
@@ -552,13 +590,18 @@
     #+begin_src emacs-lisp
 		(setq TeX-PDF-mode t)
     #+end_src
-*** Math mode.
+*** Math mode
     #+begin_src emacs-lisp
 		(add-hook 'LaTeX-mode-hook
 		(lambda ()
 		(LaTeX-math-mode)
 		(setq TeX-master t)))
     #+end_src
+*** Abstract
+		Allows usage of =#+BEGIN_ABSTRACT= and =#+END_ABSTRACT=
+		#+begin_src emacs-lisp
+		(require 'org-special-blocks)
+		#+end_src
 ** Templates
 	 #+begin_src emacs-lisp
 	 (setq org-reveal-note-key-char nil)

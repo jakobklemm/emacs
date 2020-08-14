@@ -1,0 +1,703 @@
+% Created 2020-08-14 Fri 13:44
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Jakob Klemm}
+\date{\today}
+\title{Emacs Config - Jakob Klemm}
+\hypersetup{
+ pdfauthor={Jakob Klemm},
+ pdftitle={Emacs Config - Jakob Klemm},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.2 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\section*{Setup}
+\label{sec:org167863c}
+\subsection*{\texttt{use-package}}
+\label{sec:org5b32dc4}
+Verify the \texttt{use-package} installation and ensures the packages.
+\begin{verbatim}
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+\end{verbatim}
+\subsection*{Update and compile}
+\label{sec:orgdb09945}
+Update and compile all packages.
+\begin{verbatim}
+(use-package auto-compile
+	:config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
+\end{verbatim}
+\subsection*{Defaults}
+\label{sec:org723e27a}
+Default settings cloned from \href{https://github.com/hrs/sensible-defaults.el}{Harry R. Schwartz}.
+Functions:
+\begin{itemize}
+\item Ensuring that files end with newlines,
+\item Always enabling syntax highlighting,
+\item Increasing the garbage collection threshold,
+\item Defaulting line-length to 80 characters,
+\item Creating parent directories after saving a deeply nested file.
+\end{itemize}
+\begin{verbatim}
+(load-file "~/.emacs.d/sensible-defaults.el/sensible-defaults.el")
+(sensible-defaults/use-all-settings)
+(sensible-defaults/use-all-keybindings)
+\end{verbatim}
+\subsection*{Ressources}
+\label{sec:orge1cc021}
+Add \texttt{resources} to the path
+\begin{verbatim}
+(add-to-list 'load-path "~/.emacs.d/resources/")
+\end{verbatim}
+\section*{Interface}
+\label{sec:org6c8a8b3}
+\subsection*{Scrollbar}
+\label{sec:org9cc1473}
+Disable the scrollbar in the entire window and minibuffers.
+\begin{verbatim}
+;; Menu bar
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode -1)
+;; Minibuffer
+(set-window-scroll-bars (minibuffer-window) nil nil)
+\end{verbatim}
+\subsection*{Improvements}
+\label{sec:org6fc3843}
+\subsubsection*{Symbols}
+\label{sec:orgb9ee2a1}
+Use prettify symbols -> fancy lambdas
+\begin{verbatim}
+(global-prettify-symbols-mode t)
+\end{verbatim}
+\subsubsection*{Bottom line}
+\label{sec:org7bc65aa}
+Use \texttt{moody} for a better bottom line.
+\begin{verbatim}
+ (use-package moody
+ :config
+ (setq x-underline-at-descent-line t
+			moody-mode-line-height 30)
+(moody-replace-mode-line-buffer-identification)
+(moody-replace-vc-mode))
+\end{verbatim}
+\subsubsection*{Minor modes}
+\label{sec:org6577f31}
+Hide all minor modes with \texttt{minions}.
+\begin{verbatim}
+(use-package minions
+:config
+(setq minions-mode-line-lighter ""
+minions-mode-line-delimiters '("" . ""))
+(minions-mode 1))
+\end{verbatim}
+\subsubsection*{Scrolling}
+\label{sec:org026202d}
+Don't skip to center of page when at bottom / top, \emph{normal} smooth scrolling.
+\begin{verbatim}
+(setq scroll-conservatively 100)
+\end{verbatim}
+\subsubsection*{Fullscreen:}
+\label{sec:org589ede9}
+\begin{verbatim}
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+\end{verbatim}
+\subsubsection*{Current line}
+\label{sec:org974b3e4}
+Hightlight the current line.
+\begin{verbatim}
+(global-hl-line-mode)
+\end{verbatim}
+\subsubsection*{Line numbers}
+\label{sec:org646568c}
+\begin{verbatim}
+(global-display-line-numbers-mode)
+\end{verbatim}
+\subsection*{Theme}
+\label{sec:org3016e83}
+Load the elixify theme from Astonj with some modifications.
+\begin{verbatim}
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+(load-theme `elixify t)
+\end{verbatim}
+\subsection*{Dashboard}
+\label{sec:orgc195a66}
+Setup the dashboard with come modifications and configs.
+``Every time I see this package I think to myself ''People exit Emacs?``''
+\subsubsection*{Dependancies}
+\label{sec:org8ddd19c}
+Page-break-lines
+\begin{verbatim}
+(turn-on-page-break-lines-mode)
+\end{verbatim}
+Icons
+\begin{verbatim}
+(require 'all-the-icons)
+\end{verbatim}
+\subsubsection*{Setup}
+\label{sec:org8e81352}
+Setup the dashboard.
+\begin{verbatim}
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+;; Or if you use use-package
+(use-package dashboard
+:ensure t
+:config
+(dashboard-setup-startup-hook))
+\end{verbatim}
+\subsubsection*{Config}
+\label{sec:org2f2dfb5}
+Options and configuration for dashboard following the readme.
+\begin{verbatim}
+;; Set the banner
+(setq dashboard-startup-banner 2)
+;; Content is not centered by default. To center, set
+(setq dashboard-center-content t)
+;; Icons
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+;; Navigator
+(setq dashboard-set-navigator t)
+;; Init info
+(setq dashboard-set-init-info t)
+;; Message
+(setq dashboard-footer-messages '("Every time I see this package I think to myself \"People exit Emacs?\""))
+\end{verbatim}
+\subsection*{Font}
+\label{sec:org9bb52fb}
+Use Fira Code as default font.
+\begin{verbatim}
+(set-face-attribute
+'default nil
+:font "Fira Code"
+:weight 'normal
+:width 'normal
+)
+\end{verbatim}
+\subsection*{New window}
+\label{sec:org2b6c3e3}
+Directly switch to new window after opening.
+(Credit: hrs)
+\begin{verbatim}
+(defun hrs/split-window-below-and-switch ()
+"Split the window horizontally, then switch to the new pane."
+(interactive)
+(split-window-below)
+(balance-windows)
+(other-window 1))
+
+(defun hrs/split-window-right-and-switch ()
+"Split the window vertically, then switch to the new pane."
+(interactive)
+(split-window-right)
+(balance-windows)
+(other-window 1))
+
+;; Keys
+(global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
+(global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
+\end{verbatim}
+\subsection*{Beacon}
+\label{sec:orgc2ccd30}
+Beacon for highlighting the cursor when switching buffers.
+\begin{verbatim}
+(use-package beacon
+:custom
+(beacon-color "#c678dd")
+:hook (after-init . beacon-mode))
+\end{verbatim}
+\subsection*{Title}
+\label{sec:org68bd069}
+Set the window title to the current file.
+\begin{verbatim}
+(setq-default frame-title-format
+'(:eval
+(format "%s@%s: %s %s"
+(or (file-remote-p default-directory 'user)
+user-real-login-name)
+(or (file-remote-p default-directory 'host)
+system-name)
+(buffer-name)
+(cond
+(buffer-file-truename
+(concat "(" buffer-file-truename ")"))
+(dired-directory
+(concat "{" dired-directory "}"))
+(t
+"[no file]")))))
+\end{verbatim}
+\subsection*{Tabs}
+\label{sec:org144461a}
+List buffers like tabs.
+\begin{verbatim}
+(require 'centaur-tabs)
+(centaur-tabs-mode t)
+(global-set-key (kbd "C-x x")  'centaur-tabs-backward)
+(global-set-key (kbd "C-x c") 'centaur-tabs-forward)
+(global-set-key (kbd "C-x y") 'centaur-tabs-toggle-groups)
+
+(setq centaur-tabs-style "bar")
+(setq centaur-tabs-set-icons t)
+(setq centaur-tabs-height 32)
+(setq centaur-tabs-set-bar 'left)
+
+(setq centaur-tabs-set-icons t)
+(setq centaur-tabs-plain-icons t)
+\end{verbatim}
+Exclude certain buffers from centaur.
+\begin{verbatim}
+(defun centaur-tabs-hide-tab (x)
+(let ((name (format "%s" x)))
+(or
+(string-prefix-p "*dashboard*" name)
+(string-prefix-p "*scratch*" name)
+(string-prefix-p "*Messages*" name)
+(string-prefix-p "*Completions*" name)
+(string-prefix-p "*Org PDF LaTeX Output*" name)
+(and (string-prefix-p "magit" name)
+(not (file-name-extension name)))
+)))
+\end{verbatim}
+Tab Grouping
+\begin{verbatim}
+;; Show groups
+(setq centaur-tabs--buffer-show-groups t)
+(centaur-tabs-group-by-projectile-project)
+
+(defun centaur-tabs-buffer-groups ()
+"`centaur-tabs-buffer-groups' control buffers' group rules.
+Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+All buffer name start with * will group to \"Emacs\".
+Other buffer group by `centaur-tabs-get-group-name' with project name."
+(list
+(cond
+((or (string-equal "*" (substring (buffer-name) 0 1))
+			(memq major-mode '(magit-process-mode
+			 magit-status-mode
+			 magit-diff-mode
+			 magit-log-mode
+			 magit-file-mode
+			 magit-blob-mode
+			 magit-blame-mode
+			 )))
+			 "Emacs")
+ ((derived-mode-p 'prog-mode)
+ "Editing")
+ ((derived-mode-p 'dired-mode)
+ "Dired")
+ ((memq major-mode '(helpful-mode
+				 help-mode))
+				 "Help")
+ ((memq major-mode '(org-mode
+				 org-agenda-clockreport-mode
+				 org-src-mode
+				 org-agenda-mode
+				 org-beamer-mode
+				 org-indent-mode
+				 org-bullets-mode
+				 org-cdlatex-mode
+				 org-agenda-log-mode
+				 diary-mode))
+				 "OrgMode")
+ (t
+ (centaur-tabs-get-group-name (current-buffer))))))
+\end{verbatim}
+\section*{Projects}
+\label{sec:orgd2fe2e9}
+\subsection*{Management}
+\label{sec:org9b58a2f}
+Projectile for project management.
+\begin{verbatim}
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+\end{verbatim}
+\subsection*{Completion}
+\label{sec:org719d32a}
+\begin{verbatim}
+ (use-package company
+ :diminish company-mode
+:ensure t
+:init (add-hook 'after-init-hook 'global-company-mode)
+:config
+(setq company-idle-delay              0.1
+			company-minimum-prefix-length   2
+			company-show-numbers            t
+			company-tooltip-limit           20
+			company-dabbrev-downcase        nil
+			company-backends                '((company-gtags))
+)
+		:bind ("s-;" . company-complete-common)
+)
+
+
+ (use-package company-box
+ :hook (company-mode . company-box-mode))
+
+ (with-eval-after-load 'company
+ (define-key company-active-map (kbd "M-n") nil)
+ (define-key company-active-map (kbd "M-p") nil)
+ (define-key company-active-map (kbd "C-n") #'company-select-next)
+ (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+ (global-set-key (kbd "C-ö") 'company-complete)
+
+ (use-package lsp-mode
+ :commands lsp
+ :ensure t
+ :diminish lsp-mode
+ :hook
+ (elixir-mode . lsp)
+ :init
+ (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
+\end{verbatim}
+\subsection*{General}
+\label{sec:org0ec71f3}
+\subsubsection*{Indentation}
+\label{sec:orgc6f0712}
+Show tabs as 2 wide.
+\begin{verbatim}
+(setq-default tab-width 2)
+\end{verbatim}
+\subsubsection*{CamelCase}
+\label{sec:org1ede3ec}
+Treat camel casing (the best and only right variable naming system) as multiple words.
+\begin{verbatim}
+(use-package subword
+:config (global-subword-mode 1))
+\end{verbatim}
+\subsubsection*{UTF-8}
+\label{sec:orgc4a29b3}
+Treat every file as UTF-8 by default.
+\begin{verbatim}
+(set-language-environment "UTF-8")
+\end{verbatim}
+\subsubsection*{Wrap}
+\label{sec:orga04c809}
+Auto wrap paragraphs. Or use \texttt{M-q}.
+\begin{verbatim}
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'gfm-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook 'auto-fill-mode)
+\end{verbatim}
+\subsubsection*{Spacing}
+\label{sec:org7cf4df6}
+Cycle spacing options.
+\begin{verbatim}
+(global-set-key (kbd "M-SPC") 'cycle-spacing)
+\end{verbatim}
+\subsubsection*{Modes}
+\label{sec:org5220623}
+Other \emph{cool} default modes.
+\begin{verbatim}
+(show-paren-mode 1)
+(column-number-mode 1)
+(size-indication-mode 1)
+(transient-mark-mode 1)
+(delete-selection-mode 1)
+\end{verbatim}
+\subsubsection*{Kill current}
+\label{sec:org4fee383}
+Kill the current buffer instead of asking.
+\begin{verbatim}
+(defun kill-current-buffer ()
+(interactive)
+(kill-buffer (current-buffer)))
+
+;; Keybind
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
+\end{verbatim}
+\subsubsection*{Save}
+\label{sec:org3a6ac94}
+Save the location within a file.
+\begin{verbatim}
+(save-place-mode t)
+\end{verbatim}
+\subsubsection*{Which key}
+\label{sec:org7201a9e}
+Helpful with long keybinds.
+\begin{verbatim}
+(use-package which-key
+:config (which-key-mode))
+\end{verbatim}
+\subsubsection*{Jump}
+\label{sec:org24a5a58}
+Jump to function definitions.
+(Works with elixir)
+\begin{verbatim}
+(use-package dumb-jump
+:bind (("M-g o" . dumb-jump-go-other-window)
+("M-g j" . dumb-jump-go)
+("M-g b" . dumb-jump-back)
+("M-g i" . dumb-jump-go-prompt)
+("M-g x" . dumb-jump-go-prefer-external)
+("M-g z" . dumb-jump-go-prefer-external-other-window))
+:config (setq dumb-jump-selector 'ivy)
+:ensure)
+\end{verbatim}
+\subsubsection*{google-this}
+\label{sec:orgecbe185}
+Automaticly google something.
+\begin{verbatim}
+(google-this-mode 1)
+(global-set-key (kbd "C-c t") 'google-this)
+\end{verbatim}
+\subsubsection*{Terminal}
+\label{sec:org7729baf}
+Bind \texttt{C-x t} to \texttt{eshell}.
+\begin{verbatim}
+(global-set-key (kbd "C-x t") 'eshell)
+\end{verbatim}
+\subsection*{Ido}
+\label{sec:org87e741d}
+Globaly enable IDO mode
+\begin{verbatim}
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
+(setq ido-file-extensions-order '(".ex" ".exs" ".org" ".md" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+\end{verbatim}
+\subsection*{Git}
+\label{sec:orgac1ef4e}
+Magit keybinds.
+\begin{verbatim}
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x p") 'magit-init)
+\end{verbatim}
+\section*{Programming}
+\label{sec:org9fc3ccc}
+\subsection*{Elixir}
+\label{sec:orge3c2cfd}
+Elixir major mode with synatx highlighting etc.
+\begin{verbatim}
+(unless (package-installed-p 'elixir-mode)
+(package-install 'elixir-mode))
+
+;; Start smartpares for "do" "end" with elixir mode
+(add-hook 'elixir-mode-hook #'smartparens-mode)
+\end{verbatim}
+
+Commands:\\
+Use
+\[M-x elixir-format\]
+to format the document following mix styleguide.
+\subsection*{Webmode}
+\label{sec:org97c63fd}
+Web mode and enable rainbow mode for hex colors.
+\begin{verbatim}
+(use-package web-mode)
+(add-hook 'web-mode-hook
+(lambda ()
+(rainbow-mode)
+(rspec-mode)
+(setq web-mode-markup-indent-offset 2)))
+\end{verbatim}
+\subsection*{Golang}
+\label{sec:org0b3c402}
+Golang major mode.
+\begin{verbatim}
+(use-package go-mode)
+(use-package go-errcheck)
+\end{verbatim}
+\subsection*{JavaScript}
+\label{sec:orge5a6ec5}
+JavaScript major mode.
+\begin{verbatim}
+(use-package coffee-mode)
+\end{verbatim}
+\subsection*{Rust}
+\label{sec:org087f1fb}
+Rust major mode.
+\begin{verbatim}
+(use-package rust-mode)
+\end{verbatim}
+\subsection*{Scala}
+\label{sec:orga261279}
+Scala major mode.
+\begin{verbatim}
+(use-package scala-mode
+:interpreter
+("scala" . scala-mode))
+(use-package sbt-mode)
+\end{verbatim}
+\subsection*{Markdown}
+\label{sec:org3759148}
+Github markdown.
+\begin{verbatim}
+(use-package markdown-mode
+:commands gfm-mode
+:mode (("\\.md$" . gfm-mode))
+:config
+(setq markdown-command "pandoc --standalone --mathjax --from=markdown")
+(custom-set-faces
+'(markdown-code-face ((t nil)))))
+\end{verbatim}
+\section*{Org-mode}
+\label{sec:org77f3fe0}
+\subsection*{Bullets}
+\label{sec:orgdd0fbfb}
+Use org-bulltes whenever possible.
+\begin{verbatim}
+(use-package org-bullets
+:init
+(add-hook 'org-mode-hook 'org-bullets-mode))
+\end{verbatim}
+\subsection*{Folded}
+\label{sec:orgd3e32f4}
+Instead of ``\ldots{}'' show a downward pointing arrow at the end of title.
+TODO Change symbol or something.
+\begin{verbatim}
+(setq org-ellipsis "☭")
+\end{verbatim}
+\subsection*{Codeblock}
+\label{sec:orga8dd3a4}
+Higlight the entire code block when editing.
+\begin{verbatim}
+(setq org-src-fontify-natively t)
+\end{verbatim}
+\subsection*{Todos}
+\label{sec:orga7aebbb}
+(copied from hrs/config)
+\subsubsection*{Location}
+\label{sec:org293950a}
+Org document storage location for archive and other documents.
+\begin{verbatim}
+(setq org-directory "~/documents/org")
+
+(defun org-file-path (filename)
+"Return the absolute address of an org file, given its relative name."
+(concat (file-name-as-directory org-directory) filename))
+
+(setq org-index-file (org-file-path "~/emacs/main.org"))
+(setq org-archive-location
+(concat (org-file-path "archive.org") "::* From %s"))
+\end{verbatim}
+\subsubsection*{Archive}
+\label{sec:orgddfc9f4}
+Hitting \texttt{C-c C-x C-s} will mark a todo as done and move it to an appropriate
+place in the archive.
+\begin{verbatim}
+(defun hrs/mark-done-and-archive ()
+"Mark the state of an org-mode item as DONE and archive it."
+(interactive)
+(org-todo 'done)
+(org-archive-subtree))
+;; Shortcut to archive
+(define-key org-mode-map (kbd "C-c C-x C-s") 'hrs/mark-done-and-archive)
+\end{verbatim}
+\subsubsection*{Time}
+\label{sec:orgfd78390}
+Record the time that a todo was archived.
+\begin{verbatim}
+(setq org-log-done 'time)
+\end{verbatim}
+\subsubsection*{Check}
+\label{sec:org56321a8}
+Ensure that a task can't be marked as done if it contains unfinished subtasks
+or checklist items. This is handy for organizing ``blocking'' tasks
+hierarchically.
+\begin{verbatim}
+(setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t)
+\end{verbatim}
+\subsubsection*{Stats}
+\label{sec:orgae98f50}
+Add new states to the todo cycle to extend the basic TODO and DONE states that
+org mode normally provides.
+\begin{verbatim}
+(setq org-todo-keywords
+'((sequence "TODO" "SEARCH" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
+\end{verbatim}
+\subsection*{Export}
+\label{sec:orgafcd10a}
+Allow export to markdown and beamer (for presentations).
+\begin{verbatim}
+(require 'ox-md)
+(require 'ox-beamer)
+\end{verbatim}
+\subsubsection*{Code}
+\label{sec:orga4eff57}
+Allow \texttt{babel} to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
+\begin{verbatim}
+(use-package gnuplot)
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((emacs-lisp . t)
+(ruby . t)
+(dot . t)
+(gnuplot . t)
+(python . t)
+(go . t)
+(sql . t)
+(elixir . t)
+))
+\end{verbatim}
+Don't ask before evaluating code blocks.
+\begin{verbatim}
+(setq org-confirm-babel-evaluate nil)
+\end{verbatim}
+\subsubsection*{\texttt{htmlize}}
+\label{sec:org78409ce}
+Use \texttt{htmlize} to ensure that exported code blocks use syntax highlighting.
+\begin{verbatim}
+(use-package htmlize)
+\end{verbatim}
+Translate quoates into correct style.
+\begin{verbatim}
+(setq org-export-with-smart-quotes t)
+\end{verbatim}
+\subsubsection*{HTML}
+\label{sec:org496fce7}
+Disable footer.
+\begin{verbatim}
+(setq org-html-postamble nil)
+\end{verbatim}
+\subsection*{Tex}
+\label{sec:org29c5712}
+\subsubsection*{Parse}
+\label{sec:org64042d3}
+Parse file after loading it.
+\begin{verbatim}
+(setq TeX-parse-self t)
+\end{verbatim}
+\subsubsection*{PDF-Latex}
+\label{sec:org7452502}
+\begin{verbatim}
+(setq TeX-PDF-mode t)
+\end{verbatim}
+\subsubsection*{Math mode.}
+\label{sec:org3fdedce}
+\begin{verbatim}
+(add-hook 'LaTeX-mode-hook
+(lambda ()
+(LaTeX-math-mode)
+(setq TeX-master t)))
+\end{verbatim}
+\subsection*{Templates}
+\label{sec:org30d4277}
+\begin{verbatim}
+(setq org-reveal-note-key-char nil)
+;; Easy templates <s
+;; TODO: insert (require 'org-tempo)
+\end{verbatim}
+\end{document}

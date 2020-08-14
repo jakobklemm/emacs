@@ -2,15 +2,17 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("c:/users/jakob/Documents/" . "Adobe/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "andoird/")
  ("c:/users/jakob/Desktop/Programming/" . "BibleTalks/")
  ("c:/users/jakob/Desktop/" . "Programming/")
- ("c:/users/jakob/" . "Desktop/")
+ ("c:/users/jakob/" . "Documents/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/users/jakob/Documents/Adobe/"
  "c:/users/jakob/owncloud/"
  "c:/users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/"
  "c:/users/jakob/owncloud/.emacs.d/"
@@ -18,6 +20,7 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "PhotoshopPrefsManager-20190319-092552.log"
  "Desktop.ini"
  "README.md"
  "init.el"
@@ -25,7 +28,11 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("c:/users/jakob/owncloud/.emacs.d/" (24374 29055 0 0) "url/" "transient/" "themes/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last" "icons/" "eshell/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+ ("c:/users/jakob/owncloud/.emacs.d/" (24374 30348 0 0) "url/" "transient/" "themes/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "eshell/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/Documents/Adobe/" (24368 6906 0 0) "Premiere Pro/" "PhotoshopPrefsManager-20190814-123733.log" "PhotoshopPrefsManager-20190319-092552.log" "dynamiclinkmediaserver/" "../" "./")
+
+ ("c:/users/jakob/Documents/" (24368 11822 0 0) "wunderkammer/" "Wirtschaft/" "WindowsPowerShell/" "Visual Studio 2017/" "TI-Nspire/" "Sitzordnung/" "Robotiks/" "Python Scripts/" "Processing/" "PDF/" "NaroCAD/" "Nap/" "My Videos/" "My Pictures/" "My Music/" "lua/" "KrunkerResourceSwapper/" "Informatik/" "HiSuite/" "Geschichte/" "Geographie/" "Fonts/" "English/" "Downloads/" "dominiks_website/" "Deutsch/" "desktop.ini" "Code/" "Chemie/" "Blackmagic Design/" "Biologie/" "bg/" "Benutzerdefinierte Office-Vorlagen/" "Audacity/" "AssaultCube_v1.2/" "ArduinoData/" "Arduino/" "aps/" "Amat/" "AirDroid/" "aircrack-ng-1.5.2-win/" "Adobe/" ".tmp.drivedownload/" "../" "./")
 
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/" (24055 30877 0 0) "test/" "README.md" "pubspec.yaml" "pubspec.lock" "lib/" "ios/" "flutter_02.png" "flutter_01.png" "assets/" "android/" ".metadata" ".gitignore" ".git/" "../" "./")
 
