@@ -17,15 +17,17 @@
  ;; basic theming.
 
 ;; Dark
-'(default ((t (:foreground "#F0F0F0" :background "#302CA1" ))))
-'(highlight ((t (:background "#2C2934"                     ))))
+'(default ((t (:foreground "#F4F0F0" :background "#1C0D0D" ))))
+'(highlight ((t (:background "#6591A3"                     ))))
 
 ;; Light
 ;; '(default ((t (:foreground "#F0F0F0" :background "#3B3749" ))))
 ;; '(highlight ((t (:background "#302C3A"                     ))))
 
- '(region  ((t (:foreground "#ADA5A9" :background "#534A53"))))
- '(cursor  ((t (:background "#9EA7A6"))))
+;; #591490
+
+ '(region  ((t (:foreground "#ADA5A9" :background "#76388D"))))
+ '(cursor  ((t (:background "#C678DD"))))
 
  ;; Temporary defaults
  '(linum                               ((t (:foreground "#4c4a53"  :background "#383540" ))))

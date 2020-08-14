@@ -90,6 +90,8 @@
     Hightlight the current line.
     #+begin_src emacs-lisp
     (global-hl-line-mode)
+		;; Marked number
+		(set-face-background hl-line-face "#090405")
     #+end_src
 *** Line numbers
    #+begin_src emacs-lisp

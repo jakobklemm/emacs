@@ -1,8 +1,8 @@
 
 ;; ----- smex-history -----
 (
- all-the-icons-install-fonts
  load-file
+ all-the-icons-install-fonts
  package-install
  cd
  5x5
@@ -13,6 +13,6 @@
 ;; ----- smex-data -----
 (
  (package-install . 5)
- (load-file . 1)
+ (load-file . 2)
  (all-the-icons-install-fonts . 1)
 )

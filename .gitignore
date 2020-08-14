@@ -49,3 +49,14 @@ flycheck_*.el
 
 # Ignore config.el file since it is auto generated.
 config.el
+
+# Temporary files
+
+ido.last
+ido.last~
+recentf
+recentf~
+smex-items
+projectile-bookmarks.eld
+*.pdf
+*.tex

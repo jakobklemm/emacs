@@ -2,7 +2,7 @@
 
 ;; ----- ido-last-directory-list -----
 (
- ("c:/Users/Jeykey/.emacs.d/" . "icons/")
+ ("c:/Users/Jeykey/.emacs.d/" . "themes/")
  ("c:/Users/Jeykey/.emacs.d/icons/" . "fonts/")
  ("c:/Users/Jeykey/" . ".emacs.d/")
  ("c:/users/jakob/Documents/" . "Adobe/")
@@ -15,6 +15,7 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/Users/Jeykey/.emacs.d/themes/"
  "c:/Users/Jeykey/.emacs.d/"
  "c:/users/jakob/Documents/Adobe/"
  "c:/users/jakob/owncloud/"
@@ -24,6 +25,8 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "elixify-theme.el"
+ ".gitignore"
  "config.org"
  "init.el"
  "PhotoshopPrefsManager-20190319-092552.log"
@@ -33,9 +36,13 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("c:/Users/Jeykey/.emacs.d/icons/fonts/" (24375 6541 0 0) "../" "./")
+ ("c:/Users/Jeykey/.emacs.d/themes/" (24375 8939 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
 
- ("c:/Users/Jeykey/.emacs.d/" (24375 6548 0 0) "transient/" "themes/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.tex" "config.pdf" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+ ("c:/Users/Jeykey/.emacs.d/" (24375 8968 0 0) "transient/" "themes/" "smex-items" "server/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.tex" "config.pdf" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+
+ ("c:/Users/Jeykey/3D Objects/" (24311 24991 0 0) "desktop.ini" "../" "./")
+
+ ("c:/Users/Jeykey/.emacs.d/icons/fonts/" (24375 6541 0 0) "../" "./")
 
  ("c:/Users/Jeykey/.emacs.d/icons/" (24375 4947 0 0) "fonts/" "all-the-icons.el/" "../" "./")
 
