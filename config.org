@@ -2,12 +2,19 @@
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
+* Installation
+	1. Download fonts with =M-x all-the-icons-install-fonts=
+	2. Install the fonts
 * Setup
 ** =use-package=
   Verify the =use-package= installation and ensures the packages.
   #+begin_src emacs-lisp
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
+	(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+	(require 'use-package)
+	(setq use-package-always-ensure t)
   #+end_src
 ** Update and compile
   Update and compile all packages.
@@ -101,6 +108,7 @@
 *** Dependancies
    Page-break-lines
    #+begin_src emacs-lisp
+	 (use-package page-break-lines)
    (turn-on-page-break-lines-mode)
    #+end_src
    Icons
@@ -273,6 +281,7 @@
 ** Management
   Projectile for project management.
   #+begin_src emacs-lisp
+	(use-package projectile)
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   #+end_src
@@ -390,6 +399,7 @@
 *** google-this
 		Automaticly google something.
 		#+begin_src emacs-lisp
+		(use-package google-this)
 		(google-this-mode 1)
 		(global-set-key (kbd "C-c t") 'google-this)
 		#+end_src
@@ -408,9 +418,20 @@
 	 (setq ido-create-new-buffer 'always)
 	 (setq ido-file-extensions-order '(".ex" ".exs" ".org" ".md" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
 	 #+end_src
+*** Smex
+		Ido for Mx
+		#+begin_src emacs-lisp
+		(use-package smex)
+		(smex-initialize)
+
+		(global-set-key (kbd "M-x") 'smex)
+		(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+		(global-set-key (kbd "C-c C-x m") 'execute-extended-command)
+		#+end_src
 ** Git
 	 Magit keybinds.
 	 #+begin_src emacs-lisp
+	 (use-package magit)
 	 (global-set-key (kbd "C-x g") 'magit-status)
 	 (global-set-key (kbd "C-x p") 'magit-init)
 	 #+end_src
@@ -543,12 +564,16 @@
 ** Export
 	 Allow export to markdown and beamer (for presentations).
    #+begin_src emacs-lisp
-   (use-package ox-md)
-   (use-package ox-beamer)
+   ;; (use-package ox-md)
+   ;; (use-package ox-beamer)
    #+end_src
 *** Code
 		Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
     #+begin_src emacs-lisp
+		;; Install fonts
+		(use-package ob-go)
+		(use-package ob-elixir)
+
 		(use-package gnuplot)
 		(org-babel-do-load-languages
 		'org-babel-load-languages
@@ -565,15 +590,6 @@
 		Don't ask before evaluating code blocks.
     #+BEGIN_src emacs-lisp
 		(setq org-confirm-babel-evaluate nil)
-    #+end_src
-*** =htmlize=
-		Use =htmlize= to ensure that exported code blocks use syntax highlighting.
-    #+begin_src emacs-lisp
-;;		(use-package htmlize)
-    #+end_src
-		Translate quoates into correct style.
-    #+begin_src emacs-lisp
-		(setq org-export-with-smart-quotes t)
     #+end_src
 *** HTML
 		Disable footer.
@@ -597,14 +613,3 @@
 		(LaTeX-math-mode)
 		(setq TeX-master t)))
     #+end_src
-*** Abstract
-		Allows usage of =#+BEGIN_ABSTRACT= and =#+END_ABSTRACT=
-		#+begin_src emacs-lisp
-		(use-package org-special-blocks)
-		#+end_src
-** Templates
-	 #+begin_src emacs-lisp
-	 (setq org-reveal-note-key-char nil)
-	 ;; Easy templates <s
-	 ;; TODO: insert (use-package org-tempo)
-   #+end_src

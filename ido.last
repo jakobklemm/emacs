@@ -2,6 +2,9 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("c:/Users/Jeykey/.emacs.d/" . "icons/")
+ ("c:/Users/Jeykey/.emacs.d/icons/" . "fonts/")
+ ("c:/Users/Jeykey/" . ".emacs.d/")
  ("c:/users/jakob/Documents/" . "Adobe/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "andoird/")
@@ -12,6 +15,7 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/Users/Jeykey/.emacs.d/"
  "c:/users/jakob/Documents/Adobe/"
  "c:/users/jakob/owncloud/"
  "c:/users/jakob/Desktop/Programming/BibleTalks/andoird/bibletalks/"
@@ -20,14 +24,23 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "config.org"
+ "init.el"
  "PhotoshopPrefsManager-20190319-092552.log"
  "Desktop.ini"
  "README.md"
- "init.el"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("c:/Users/Jeykey/.emacs.d/icons/fonts/" (24375 6541 0 0) "../" "./")
+
+ ("c:/Users/Jeykey/.emacs.d/" (24375 6548 0 0) "transient/" "themes/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.tex" "config.pdf" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+
+ ("c:/Users/Jeykey/.emacs.d/icons/" (24375 4947 0 0) "fonts/" "all-the-icons.el/" "../" "./")
+
+ ("c:/Users/Jeykey/" (24375 4945 0 0) "youtube/" "Videos/" "Templates/" "Start Menu/" "SendTo/" "Searches/" "Saved Games/" "Recent/" "PrintHood/" "Postman/" "Pictures/" "ownCloud/" "OneDrive/" "ntuser.ini" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "Local Settings/" "Links/" "games/" "Favorites/" "emacs/" "Downloads/" "Documents/" "Desktop/" "Cookies/" "convert/" "Contacts/" "Application Data/" "AppData/" "ansel/" "3D Objects/" ".vscode/" ".rnd" ".mix/" ".hex/" ".gitconfig" ".emacs.d/" ".eclipse/" ".docker/" ".cache/" ".bash_history" "../" "./")
+
  ("c:/users/jakob/owncloud/.emacs.d/" (24374 30348 0 0) "url/" "transient/" "themes/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "eshell/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
 
  ("c:/users/jakob/Documents/Adobe/" (24368 6906 0 0) "Premiere Pro/" "PhotoshopPrefsManager-20190814-123733.log" "PhotoshopPrefsManager-20190319-092552.log" "dynamiclinkmediaserver/" "../" "./")
