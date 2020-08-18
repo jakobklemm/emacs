@@ -1,11 +1,11 @@
 
 ;; ----- smex-history -----
 (
+ customize-themes
  describe-variable
  lsp-ui-mode
  describe-function
  package-install
- elixir-mode
  snippet-mode
  package-delete
 )
@@ -30,5 +30,6 @@
  (elixir-mode . 1)
  (describe-function . 2)
  (lsp-ui-mode . 2)
- (describe-variable . 2)
+ (describe-variable . 3)
+ (customize-themes . 4)
 )

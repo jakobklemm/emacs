@@ -71,8 +71,8 @@
 ;; ----- ido-work-file-list -----
 (
  "secret_controller.ex"
- "page_controller.ex"
  "chat_controller.ex"
+ "page_controller.ex"
  "accounts.ex"
  "LICENSE.md"
  "general_web.ex"
@@ -84,19 +84,19 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("c:/Users/Jeykey/.emacs.d/" (24379 62929 0 0) "transient/" "themes/" "snippets/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/" (24380 11869 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "chat_controller.ex" "api_controller.ex" "../" "./")
 
- ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/" (24379 61222 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "chat_controller.ex" "api_controller.ex" "../" "./")
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/" (24379 61149 0 0) "test/" "README.org" "priv/" "mix.lock" "mix.exs" "LICENSE.md" "lib/" "deps/" "config/" "CHANGELOG.md" "bibletalks.iml" "assets/" ".idea/" ".gitignore" ".git/" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/" (24379 62407 0 0) "wunderkammer/" "udpdemo/" "server/" "sen/" "rodian/" "multicast/" "membrane/" "jakobklemm/" "general/" "cal/" "bibletalks/" "../" "./")
+
+ ("c:/Users/Jeykey/.emacs.d/" (24379 62929 0 0) "transient/" "themes/" "snippets/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
 
  ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/" (24379 61124 0 0) "views/" "templates/" "router.ex" "plugs/" "gettext.ex" "endpoint.ex" "controllers/" "channels/" "../" "./")
 
  ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks/" (24379 61124 0 0) "repo.ex" "color.ex" "chat.ex" "chat/" "authentication.ex" "authentication/" "application.ex" "accounts.ex" "accounts/" "../" "./")
 
  ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/" (24379 61124 0 0) "bibletalks_web.ex" "bibletalks_web/" "bibletalks.ex" "bibletalks/" "../" "./")
-
- ("c:/Users/Jeykey/Desktop/Programming/bibletalks/" (24379 61124 0 0) "test/" "README.org" "priv/" "mix.lock" "mix.exs" "LICENSE.md" "lib/" "config/" "CHANGELOG.md" "bibletalks.iml" "assets/" ".idea/" ".gitignore" ".git/" ".formatter.exs" ".elixir_ls/" "../" "./")
-
- ("c:/Users/Jeykey/Desktop/Programming/" (24379 61120 0 0) "wunderkammer/" "udpdemo/" "server/" "sen/" "rodian/" "multicast/" "membrane/" "jakobklemm/" "general/" "cal/" "bibletalks/" "../" "./")
 
  ("c:/Users/Jeykey/Desktop/Programming/general/" (24379 61076 0 0) "_build/" "test/" "README.md" "priv/" "mix.lock" "mix.exs" "lib/" "deps/" "config/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
 

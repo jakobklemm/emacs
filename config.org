@@ -98,11 +98,13 @@
     (global-display-line-numbers-mode)
    #+end_src
 ** Theme
-   Load the elixify theme from Astonj with some modifications.
+	 Used themes:
+	 - Elixify - AstonJ (elixirforum)
+	 - Doom-nord
+	 - Doom-material
    #+begin_src emacs-lisp
-   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-   (load-theme `elixify t)
+	 ;; (load-theme `doom-nord t)
+	 (load-theme `doom-material t)
    #+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
@@ -204,81 +206,6 @@
    (t
    "[no file]")))))
 	 #+end_src
-** Tabs
-	 List buffers like tabs.
-	 #+begin_src emacs-lisp
-	 (use-package centaur-tabs)
-	 (centaur-tabs-mode t)
-	 (global-set-key (kbd "C-x x")  'centaur-tabs-backward)
-	 (global-set-key (kbd "C-x c") 'centaur-tabs-forward)
-	 (global-set-key (kbd "C-x y") 'centaur-tabs-toggle-groups)
-
-	 (setq centaur-tabs-style "bar")
-	 (setq centaur-tabs-set-icons t)
-	 (setq centaur-tabs-height 32)
-	 (setq centaur-tabs-set-bar 'left)
-
-	 (setq centaur-tabs-set-icons t)
-	 (setq centaur-tabs-plain-icons t)
-   #+end_src
-	 Exclude certain buffers from centaur.
-	 #+begin_src emacs-lisp
-	 (defun centaur-tabs-hide-tab (x)
-   (let ((name (format "%s" x)))
-	 (or
-	 (string-prefix-p "*dashboard*" name)
-	 (string-prefix-p "*scratch*" name)
-	 (string-prefix-p "*Messages*" name)
-	 (string-prefix-p "*Completions*" name)
-	 (string-prefix-p "*Org PDF LaTeX Output*" name)
-	 (and (string-prefix-p "magit" name)
-	 (not (file-name-extension name)))
-	 )))
-	#+end_src
-	 Tab Grouping
- 	#+begin_src emacs-lisp
-	;; Show groups
-	(setq centaur-tabs--buffer-show-groups t)
-	(centaur-tabs-group-by-projectile-project)
-
-	(defun centaur-tabs-buffer-groups ()
-	"`centaur-tabs-buffer-groups' control buffers' group rules.
-	Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
-	All buffer name start with * will group to \"Emacs\".
-	Other buffer group by `centaur-tabs-get-group-name' with project name."
-	(list
-	(cond
-	((or (string-equal "*" (substring (buffer-name) 0 1))
-				(memq major-mode '(magit-process-mode
-				 magit-status-mode
-				 magit-diff-mode
-				 magit-log-mode
-				 magit-file-mode
-				 magit-blob-mode
-				 magit-blame-mode
-				 )))
-				 "Emacs")
-	 ((derived-mode-p 'prog-mode)
-	 "Editing")
-	 ((derived-mode-p 'dired-mode)
-	 "Dired")
-	 ((memq major-mode '(helpful-mode
-					 help-mode))
-					 "Help")
-	 ((memq major-mode '(org-mode
-					 org-agenda-clockreport-mode
-					 org-src-mode
-					 org-agenda-mode
-					 org-beamer-mode
-					 org-indent-mode
-					 org-bullets-mode
-					 org-cdlatex-mode
-					 org-agenda-log-mode
-					 diary-mode))
-					 "OrgMode")
-	 (t
-	 (centaur-tabs-get-group-name (current-buffer))))))
-	#+end_src
 * Projects
 ** General
 *** Indentation
@@ -344,12 +271,11 @@
 		(Works with elixir)
 		#+begin_src emacs-lisp
 		(use-package dumb-jump
+		:ensure t
 		:bind (("M-g o" . dumb-jump-go-other-window)
-    ("M-g j" . dumb-jump-go)
-    ("M-g b" . dumb-jump-back)
-		:config (setq dumb-jump-selector 'ivy)
-		:ensure))
-	#+end_src
+    ("M-g j" . dumb-jump-go))
+		:config (setq dumb-jump-selector 'ivy))
+	  #+end_src
 *** google-this
 		Automaticly google something.
 		#+begin_src emacs-lisp
@@ -383,11 +309,8 @@
 	 #+end_src
 	 Configure =lsp-mode=
 	 #+begin_src emacs-lisp
-	 (use-package lsp-ui)
-	 ;; (lsp-ui-sideline-show-hover t)
-	 ;; (lsp-ui-peek-enable t)
-	 ;; (lsp-ui-peek-show-directory nil)
-	 (lsp-ui-doc-enable t)
+	 (use-package lsp-ui :commands lsp-ui-mode)
+	 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 	 #+end_src
 ** Ivy - Swiper
 	 #+begin_src emacs-lisp
