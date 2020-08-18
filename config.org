@@ -2,6 +2,12 @@
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
+* TODO
+** TODO GCAL & Agenda
+** TODO Email
+** TODO Language correction
+** TODO Malyon
+** TODO README
 * Installation
 	1. Download fonts with =M-x all-the-icons-install-fonts=
 	2. Install the fonts
@@ -82,7 +88,7 @@
    #+begin_src emacs-lisp
    (setq scroll-conservatively 100)
    #+end_src
-*** Fullscreen:
+*** Fullscreen
    #+begin_src emacs-lisp
    (add-to-list 'default-frame-alist '(fullscreen . maximized))
    #+end_src
@@ -97,6 +103,11 @@
    #+begin_src emacs-lisp
     (global-display-line-numbers-mode)
    #+end_src
+*** Kill and close
+		Kill the current buffer and close the window in one command.
+		#+begin_src emacs-lisp
+		(global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+		#+end_src
 ** Theme
 	 Used themes:
 	 - Elixify - AstonJ (elixirforum)

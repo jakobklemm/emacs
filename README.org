@@ -1,0 +1,14 @@
+#+TITLE: Emacs - Jakob Klemm
+#+AUTHOR: Jakob Klemm
+
+Current emacs config written by Jakob Klemm.
+
+Config is located in =config.org= and loaded in evaluated by =init.el=.
+=config.org= contains basic install instructions.
+
+Inspiration and partial credits:
+- github.com/hrs
+- github.com/domse007
+
+Free to use for any reason, no guarantee that it will work.
+(Use at own risk, this is not techsupport. Most issues should be easy to fix.)
