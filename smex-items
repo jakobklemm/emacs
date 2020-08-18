@@ -1,23 +1,26 @@
 
 ;; ----- smex-history -----
 (
- check-parens
- rainbow-delimiters-mode
- package-refresh-contents
- load-file
  package-install
- org-agenda
- 5x5
+ ivy-mode
+ load-file
+ rainbow-delimiters-mode
+ emacs-init-time
+ check-parens
+ package-refresh-contents
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 9)
- (load-file . 5)
+ (package-install . 13)
+ (load-file . 6)
  (all-the-icons-install-fonts . 1)
  (5x5 . 1)
  (package-refresh-contents . 3)
  (org-agenda . 1)
- (rainbow-delimiters-mode . 3)
+ (rainbow-delimiters-mode . 4)
  (check-parens . 1)
+ (lsp-mode . 2)
+ (emacs-init-time . 1)
+ (ivy-mode . 2)
 )

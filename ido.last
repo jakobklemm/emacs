@@ -2,6 +2,9 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("c:/users/jakob/Desktop/Programming/taras/apps/storage/" . "lib/")
+ ("c:/users/jakob/Desktop/Programming/taras/apps/" . "storage/")
+ ("c:/users/jakob/Desktop/Programming/taras/" . "apps/")
  ("c:/users/jakob/.emacs.d/" . "themes/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/" . "controllers/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/" . "bibletalks_web/")
@@ -18,13 +21,14 @@
  ("c:/users/jakob/Documents/" . "Adobe/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "bibletalks/")
- ("c:/users/jakob/Desktop/Programming/" . "BibleTalks/")
+ ("c:/users/jakob/Desktop/Programming/" . "taras/")
  ("c:/users/jakob/Desktop/" . "Programming/")
  ("c:/users/jakob/" . "Desktop/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/"
  "c:/users/jakob/.emacs.d/"
  "c:/users/jakob/.emacs.d/themes/"
  "c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/controllers/"
@@ -43,6 +47,8 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "authentication.ex"
+ "accounts.ex"
  "config.el"
  "elixify-theme.el"
  "page_controller.ex"
@@ -51,13 +57,27 @@
  "politik.org"
  "config.org"
  "main.org"
- "archive.org"
- ".gitignore"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("c:/users/jakob/.emacs.d/" (24379 45324 0 0) "transient/" "themes/" "smex-items" "sensible-defaults.el/" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el~" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
+ ("c:/users/jakob/.emacs.d/" (24379 49917 0 0) "transient/" "themes/" "smex-items" "server/" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el~" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/" (24110 54849 0 0) "storage/" "posts.ex" "getToken.ex" "content/" "authentication.ex" "authentication/" "accounts.ex" "accounts/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/taras/apps/storage/" (24110 54849 0 0) "test/" "README.org" "priv/" "mix.exs" "lib/" "config/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/taras/apps/handler/" (24110 54849 0 0) "test/" "priv/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/taras/apps/" (24112 11835 0 0) "storage/" "handler/" "converter/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/taras/" (24110 54849 0 0) "_build/" "VERSION.txt" "README.org" "mix.lock" "mix.exs" "deps/" "config/" "apps/" ".gitignore" ".git/" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/project romba/" (23983 4151 0 0) "main.py" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/codenames/" (23985 57300 0 0) "__pycache__/" "main.spec" "main.py" "icon.ico" "dist/" "build/" ".idea/" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/Erebos/" (23931 18477 0 0) "colors/" "../" "./")
 
  ("c:/users/jakob/.emacs.d/themes/" (24378 22596 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
 

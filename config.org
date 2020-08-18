@@ -280,24 +280,6 @@
 	 (centaur-tabs-get-group-name (current-buffer))))))
 	#+end_src
 * Projects
-** Management
-  Projectile for project management.
-  #+begin_src emacs-lisp
-	(use-package projectile)
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  #+end_src
-** Completion
-   #+begin_src emacs-lisp
-   (use-package lsp-mode
-   :commands lsp
-   :ensure t
-   :diminish lsp-mode
-   :hook
-   (elixir-mode . lsp)
-   :init
-   (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
-   #+end_src
 ** General
 *** Indentation
     Show tabs as 2 wide.
@@ -383,6 +365,38 @@
 		#+begin_src emacs-lisp
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
+** Completion
+   #+begin_src emacs-lisp
+   (use-package lsp-mode
+   :commands lsp
+   :ensure t
+   :diminish lsp-mode
+   :hook
+   (elixir-mode . lsp)
+   :init
+   (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
+   #+end_src
+	 Flycheck mode.
+	 #+begin_src emacs-lisp
+	 (global-flycheck-mode)
+	 #+end_src
+** Ivy - Swiper
+	 #+begin_src emacs-lisp
+	 (use-package ivy)
+	 (ivy-mode 1)
+	 (setq ivy-use-virtual-buffers t)
+	 (setq enable-recursive-minibuffers t)
+	 ;; enable this if you want `swiper' to use it
+	 (setq search-default-mode #'char-fold-to-regexp)
+	 (global-set-key "\C-s" 'swiper)
+	 #+end_src
+** Management
+   Projectile for project management.
+   #+begin_src emacs-lisp
+	 (use-package projectile)
+   (projectile-mode +1)
+   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+   #+end_src
 ** Ido
 	 Globaly enable IDO mode
 	 #+begin_src emacs-lisp
