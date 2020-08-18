@@ -17,14 +17,8 @@
  ;; basic theming.
 
 ;; Dark
-'(default ((t (:foreground "#F4F0F0" :background "#1C0D0D" ))))
-'(highlight ((t (:background "#6591A3"                     ))))
-
-;; Light
-;; '(default ((t (:foreground "#F0F0F0" :background "#3B3749" ))))
-;; '(highlight ((t (:background "#302C3A"                     ))))
-
-;; #591490
+'(default ((t (:foreground "#F0F0F0" :background "#302C32" ))))
+'(highlight ((t (:background "#2C2934"                     ))))
 
  '(region  ((t (:foreground "#ADA5A9" :background "#76388D"))))
  '(cursor  ((t (:background "#C678DD"))))

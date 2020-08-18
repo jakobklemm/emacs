@@ -1,1 +1,1 @@
-("~/Desktop/Programming/taras/" "~/.emacs.d/" "~/Desktop/Programming/BibleTalks/bibletalks/bibletalks/")
+("~/Desktop/Programming/bibletalks/" "~/.emacs.d/" "~/Desktop/Programming/general/" "~/Desktop/Programming/udpdemo/" "~/Desktop/Programming/sen/" "~/Desktop/Programming/membrane/initial/" "~/Desktop/Programming/membrane/membrane-demo/")

@@ -2,6 +2,21 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/" . "controllers/")
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/" . "bibletalks_web/")
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/general/lib/general_web/" . "controllers/")
+ ("c:/Users/Jeykey/Desktop/Programming/general/lib/" . "general_web/")
+ ("c:/Users/Jeykey/Desktop/Programming/general/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/udpdemo/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/sen/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/initial/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/lib/" . "membrane_demo_rtp_to_hls/")
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/" . "lib/")
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/" . "rtp_to_hls/")
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/" . "initial/")
+ ("c:/Users/Jeykey/Desktop/Programming/" . "bibletalks/")
+ ("c:/Users/Jeykey/Desktop/" . "Programming/")
  ("c:/users/jakob/Desktop/Programming/taras/apps/storage/" . "lib/")
  ("c:/users/jakob/Desktop/Programming/taras/apps/" . "storage/")
  ("c:/users/jakob/Desktop/Programming/taras/" . "apps/")
@@ -17,7 +32,7 @@
  ("c:/users/jakob/ownCloud/" . "emacs/")
  ("c:/Users/Jeykey/.emacs.d/" . "themes/")
  ("c:/Users/Jeykey/.emacs.d/icons/" . "fonts/")
- ("c:/Users/Jeykey/" . ".emacs.d/")
+ ("c:/Users/Jeykey/" . "Desktop/")
  ("c:/users/jakob/Documents/" . "Adobe/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "bibletalks/")
@@ -28,6 +43,15 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/"
+ "c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks/"
+ "c:/Users/Jeykey/Desktop/Programming/bibletalks/"
+ "c:/Users/Jeykey/Desktop/Programming/general/lib/"
+ "c:/Users/Jeykey/Desktop/Programming/udpdemo/lib/"
+ "c:/Users/Jeykey/Desktop/Programming/sen/lib/"
+ "c:/Users/Jeykey/Desktop/Programming/membrane/initial/lib/"
+ "c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/lib/membrane_demo_rtp_to_hls/"
+ "c:/Users/Jeykey/.emacs.d/themes/"
  "c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/"
  "c:/users/jakob/.emacs.d/"
  "c:/users/jakob/.emacs.d/themes/"
@@ -37,7 +61,6 @@
  "c:/users/jakob/ownCloud/emacs/Schule/Franz/"
  "c:/users/jakob/ownCloud/documents/emacs/"
  "c:/users/jakob/ownCloud/documents/org/"
- "c:/Users/Jeykey/.emacs.d/themes/"
  "c:/Users/Jeykey/.emacs.d/"
  "c:/users/jakob/Documents/Adobe/"
  "c:/users/jakob/owncloud/"
@@ -47,20 +70,70 @@
 
 ;; ----- ido-work-file-list -----
 (
- "authentication.ex"
- "accounts.ex"
- "config.el"
- "elixify-theme.el"
+ "secret_controller.ex"
  "page_controller.ex"
- "bibletalks.ex"
- "Aufgaben zu komplexen Zahlen Spam 3.1.20.pdf"
- "politik.org"
- "config.org"
- "main.org"
+ "chat_controller.ex"
+ "accounts.ex"
+ "LICENSE.md"
+ "general_web.ex"
+ "general.ex"
+ "udpdemo.ex"
+ "sen.ex"
+ "initial.ex"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("c:/Users/Jeykey/.emacs.d/" (24379 62929 0 0) "transient/" "themes/" "snippets/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/" (24379 61222 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "chat_controller.ex" "api_controller.ex" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/" (24379 61124 0 0) "views/" "templates/" "router.ex" "plugs/" "gettext.ex" "endpoint.ex" "controllers/" "channels/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks/" (24379 61124 0 0) "repo.ex" "color.ex" "chat.ex" "chat/" "authentication.ex" "authentication/" "application.ex" "accounts.ex" "accounts/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/" (24379 61124 0 0) "bibletalks_web.ex" "bibletalks_web/" "bibletalks.ex" "bibletalks/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/bibletalks/" (24379 61124 0 0) "test/" "README.org" "priv/" "mix.lock" "mix.exs" "LICENSE.md" "lib/" "config/" "CHANGELOG.md" "bibletalks.iml" "assets/" ".idea/" ".gitignore" ".git/" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/" (24379 61120 0 0) "wunderkammer/" "udpdemo/" "server/" "sen/" "rodian/" "multicast/" "membrane/" "jakobklemm/" "general/" "cal/" "bibletalks/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/general/" (24379 61076 0 0) "_build/" "test/" "README.md" "priv/" "mix.lock" "mix.exs" "lib/" "deps/" "config/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/general/lib/general_web/controllers/" (24329 59156 0 0) "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/general/lib/general_web/" (24329 59156 0 0) "views/" "telemetry.ex" "router.ex" "gettext.ex" "endpoint.ex" "controllers/" "channels/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/general/lib/" (24329 59156 0 0) "general_web.ex" "general_web/" "general.ex" "general/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/udpdemo/" (24379 61053 0 0) "_build/" "test/" "README.md" "mix.lock" "mix.exs" "lib/" "deps/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/udpdemo/lib/" (24339 1795 0 0) "udpdemo.ex" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/sen/" (24379 61036 0 0) "_build/" "test/" "README.md" "mix.lock" "mix.exs" "lib/" "deps/" "config/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/sen/lib/" (24329 58337 0 0) "sen.ex" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/initial/" (24379 60863 0 0) "_build/" "test/" "README.md" "mix.lock" "mix.exs" "lib/" "deps/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/initial/lib/" (24379 61007 0 0) "initial.ex~" "initial.ex" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/" (24379 60755 0 0) "webrtc/" "rtp_to_hls/" "rtp/" "README.md" "LICENSE" "basic/" ".git/" ".elixir_ls/" ".circleci/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/lib/membrane_demo_rtp_to_hls/" (24379 60775 0 0) "pipeline.ex" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/lib/" (24355 9066 0 0) "membrane_demo_rtp_to_hls.ex" "membrane_demo_rtp_to_hls/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/membrane-demo/rtp_to_hls/" (24355 9100 0 0) "_build/" "test/" "README.md" "mix.lock" "mix.exs" "lib/" "deps/" ".iex.exs" ".gitignore" ".formatter.exs" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/Programming/membrane/" (24355 9064 0 0) "membrane-demo/" "initial/" "../" "./")
+
+ ("c:/Users/Jeykey/Desktop/" (24378 39749 0 0) "WhatsApp.lnk" "Wallpaper Engine.url" "Uplay.lnk" "Tor Browser/" "ShellShock Live.url" "Resolve.lnk" "Programming/" "Postman.lnk" "PLAYERUNKNOWN'S BATTLEGROUNDS.url" "ownCloud.lnk" "OpenOffice 4.1.7 (de) Installation Files/" "Notion.lnk" "MSI Afterburner.lnk" "Insurgency Sandstorm.url" "Docker Desktop.lnk" "DiskInternals Research.lnk" "Discord.lnk" "desktop.ini" "Dead Cells.url" "DaVinci Resolve Project Server.lnk" "Dashlane.lnk" "Altair GraphQL Client.lnk" "../" "./")
+
+ ("c:/Users/Jeykey/" (24379 60213 0 0) "youtube/" "Videos/" "Templates/" "Start Menu/" "SendTo/" "Searches/" "Saved Games/" "Recent/" "PrintHood/" "Postman/" "Pictures/" "ownCloud/" "OneDrive/" "ntuser.ini" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "Local Settings/" "Links/" "games/" "Favorites/" "emacs/" "Downloads/" "Documents/" "Desktop/" "Cookies/" "convert/" "Contacts/" "Application Data/" "AppData/" "ansel/" "3D Objects/" ".vscode/" ".rnd" ".mix/" ".hex/" ".gitconfig" ".emacs.d/" ".eclipse/" ".docker/" ".cache/" ".bash_history" "../" "./")
+
+ ("c:/Users/Jeykey/.emacs.d/themes/" (24379 60445 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
+
  ("c:/users/jakob/.emacs.d/" (24379 49917 0 0) "transient/" "themes/" "smex-items" "server/" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el~" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
 
  ("c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/" (24110 54849 0 0) "storage/" "posts.ex" "getToken.ex" "content/" "authentication.ex" "authentication/" "accounts.ex" "accounts/" "../" "./")
@@ -123,17 +196,11 @@
 
  ("c:/users/jakob/ownCloud/" (24378 22533 0 0) "jeykey/" "getter.rar" "emacs/" "documents/" "Desktop.ini" ".sync_6171c3cb1d97.db-wal" ".sync_6171c3cb1d97.db" ".owncloudsync.log" ".gitconfig" ".emacs.d/" ".bash_history" "../" "./")
 
- ("c:/Users/Jeykey/.emacs.d/themes/" (24375 8939 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
-
- ("c:/Users/Jeykey/.emacs.d/" (24375 8968 0 0) "transient/" "themes/" "smex-items" "server/" "sensible-defaults.el/" "recentf~" "recentf" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.tex" "config.pdf" "config.org" "config.el" "auto-save-list/" ".gitignore" ".git/" "../" "./")
-
  ("c:/Users/Jeykey/3D Objects/" (24311 24991 0 0) "desktop.ini" "../" "./")
 
  ("c:/Users/Jeykey/.emacs.d/icons/fonts/" (24375 6541 0 0) "../" "./")
 
  ("c:/Users/Jeykey/.emacs.d/icons/" (24375 4947 0 0) "fonts/" "all-the-icons.el/" "../" "./")
-
- ("c:/Users/Jeykey/" (24375 4945 0 0) "youtube/" "Videos/" "Templates/" "Start Menu/" "SendTo/" "Searches/" "Saved Games/" "Recent/" "PrintHood/" "Postman/" "Pictures/" "ownCloud/" "OneDrive/" "ntuser.ini" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "Local Settings/" "Links/" "games/" "Favorites/" "emacs/" "Downloads/" "Documents/" "Desktop/" "Cookies/" "convert/" "Contacts/" "Application Data/" "AppData/" "ansel/" "3D Objects/" ".vscode/" ".rnd" ".mix/" ".hex/" ".gitconfig" ".emacs.d/" ".eclipse/" ".docker/" ".cache/" ".bash_history" "../" "./")
 
  ("c:/users/jakob/Documents/Adobe/" (24368 6906 0 0) "Premiere Pro/" "PhotoshopPrefsManager-20190814-123733.log" "PhotoshopPrefsManager-20190319-092552.log" "dynamiclinkmediaserver/" "../" "./")
 

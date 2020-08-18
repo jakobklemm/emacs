@@ -347,11 +347,8 @@
 		:bind (("M-g o" . dumb-jump-go-other-window)
     ("M-g j" . dumb-jump-go)
     ("M-g b" . dumb-jump-back)
-    ("M-g i" . dumb-jump-go-prompt)
-    ("M-g x" . dumb-jump-go-prefer-external)
-    ("M-g z" . dumb-jump-go-prefer-external-other-window))
 		:config (setq dumb-jump-selector 'ivy)
-		:ensure)
+		:ensure))
 	#+end_src
 *** google-this
 		Automaticly google something.
@@ -366,7 +363,10 @@
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
 ** Completion
+	 Use package =company= as a dependancy of lsp-mode.
    #+begin_src emacs-lisp
+	 (use-package company)
+	 (add-hook 'after-init-hook 'global-company-mode)
    (use-package lsp-mode
    :commands lsp
    :ensure t
@@ -378,10 +378,20 @@
    #+end_src
 	 Flycheck mode.
 	 #+begin_src emacs-lisp
+	 (use-package flycheck)
 	 (global-flycheck-mode)
+	 #+end_src
+	 Configure =lsp-mode=
+	 #+begin_src emacs-lisp
+	 (use-package lsp-ui)
+	 ;; (lsp-ui-sideline-show-hover t)
+	 ;; (lsp-ui-peek-enable t)
+	 ;; (lsp-ui-peek-show-directory nil)
+	 (lsp-ui-doc-enable t)
 	 #+end_src
 ** Ivy - Swiper
 	 #+begin_src emacs-lisp
+	 (use-package swiper)
 	 (use-package ivy)
 	 (ivy-mode 1)
 	 (setq ivy-use-virtual-buffers t)
@@ -390,6 +400,21 @@
 	 (setq search-default-mode #'char-fold-to-regexp)
 	 (global-set-key "\C-s" 'swiper)
 	 #+end_src
+** Snippets
+	 Use yasnippets and the snippets from github.com/hrs/dotfiles
+	 #+begin_src emacs-lisp
+	 (use-package yasnippet)
+
+	 (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
+	 (yas-global-mode 1)
+
+	 (setq yas-indent-line 'auto)
+
+	 ;; Keys
+	 (define-key yas-minor-mode-map (kbd "<tab>") nil)
+	 (define-key yas-minor-mode-map (kbd "TAB") nil)
+	 (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
+    #+end_src
 ** Management
    Projectile for project management.
    #+begin_src emacs-lisp
