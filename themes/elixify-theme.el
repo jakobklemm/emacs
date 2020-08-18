@@ -124,7 +124,7 @@
 
 ;;New Custom stuff
 ;; "#E0E0E0"
-`(show-paren-mismatch ((t (:background "#9FCCFF" :foreground "#333"))))
+`(show-paren-mismatch ((t (:background "#9FCCFF" :foreground "#A43333"))))
 `(show-paren-match ((t (:background "#9FCCFF" :foreground "#333"))))
 `(sp-show-pair-mismatch-face ((t (:background "#9FCCFF" :foreground "#333"))))
 `(sp-show-pair-match-face ((t (:background "#9FCCFF" :foreground "#333"))))

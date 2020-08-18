@@ -289,33 +289,6 @@
   #+end_src
 ** Completion
    #+begin_src emacs-lisp
-   (use-package company
-   :diminish company-mode
-  :ensure t
-  :init (add-hook 'after-init-hook 'global-company-mode)
-  :config
-  (setq company-idle-delay              0.1
-        company-minimum-prefix-length   2
-        company-show-numbers            t
-        company-tooltip-limit           20
-        company-dabbrev-downcase        nil
-        company-backends                '((company-gtags))
-	)
-      :bind ("s-;" . company-complete-common)
-  )
-
-
-   (use-package company-box
-   :hook (company-mode . company-box-mode))
-
-   (with-eval-after-load 'company
-   (define-key company-active-map (kbd "M-n") nil)
-   (define-key company-active-map (kbd "M-p") nil)
-   (define-key company-active-map (kbd "C-n") #'company-select-next)
-   (define-key company-active-map (kbd "C-p") #'company-select-previous))
-
-   (global-set-key (kbd "C-ö") 'company-complete)
-
    (use-package lsp-mode
    :commands lsp
    :ensure t
@@ -430,7 +403,7 @@
 		(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 		(global-set-key (kbd "C-c C-x m") 'execute-extended-command)
 		#+end_src
-** Git
+** Magit
 	 Magit keybinds.
 	 #+begin_src emacs-lisp
 	 (use-package magit)
@@ -443,11 +416,7 @@
    #+begin_src emacs-lisp
    (unless (package-installed-p 'elixir-mode)
    (package-install 'elixir-mode))
-
-   ;; Start smartpares for "do" "end" with elixir mode
-   (add-hook 'elixir-mode-hook #'smartparens-mode)
   #+end_src
-
   Commands:\\
   Use
   \[M-x elixir-format\]
@@ -568,11 +537,12 @@
    #+begin_src emacs-lisp
    ;; (use-package ox-md)
    ;; (use-package ox-beamer)
+	 ;; Add odt
+	 (eval-after-load "org" '(require 'ox-odt nil t))
    #+end_src
 *** Code
 		Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
     #+begin_src emacs-lisp
-		;; Install fonts
 		(use-package ob-go)
 		(use-package ob-elixir)
 

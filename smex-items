@@ -1,18 +1,23 @@
 
 ;; ----- smex-history -----
 (
+ check-parens
+ rainbow-delimiters-mode
+ package-refresh-contents
  load-file
- all-the-icons-install-fonts
  package-install
- cd
+ org-agenda
  5x5
- arp
- dbx
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 5)
- (load-file . 2)
+ (package-install . 9)
+ (load-file . 5)
  (all-the-icons-install-fonts . 1)
+ (5x5 . 1)
+ (package-refresh-contents . 3)
+ (org-agenda . 1)
+ (rainbow-delimiters-mode . 3)
+ (check-parens . 1)
 )
