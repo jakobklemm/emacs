@@ -3,7 +3,7 @@
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
 * TODO
-** TODO GCAL & Agenda
+** SEARCH GCAL & Agenda
 ** TODO File Structure
 ** TODO Email
 ** TODO Language correction
@@ -14,7 +14,7 @@
 	2. Install the fonts
 	3. Setup or delete gcal, under Org/Agenda.
 		 =secret.el= should have the following structure:
-		 #+begin_src emacs-lisp
+		 #+begin_quote
 		 (defun secret/id ()
 		 "748741424858-1i8cfm6j0c1kfka5kjfufnnk833gir.apps.googleusercontent.com"
 		 )
@@ -27,7 +27,7 @@
 		 (defun secret/file ()
 		 "~/todo.org"
 		 )
-		 #+end_src
+		 #+end_quote
 		 The config should then follow the example from [[https:github.com/misohena/gcal][gcal]].
 	Binds
 	All used keybinds
@@ -636,13 +636,26 @@
 	 #+begin_src emacs-lisp
 	 (load-file "~/.emacs.d/secret.el")
 	 (require 'org-gcal)
-	 (setq org-gcal-client-id secret/id()
-   org-gcal-client-secret secret/secret()
-   org-gcal-file-alist '((secret/cal() .  secret/file())))
+
+	 ;; Custom
+	 (setq id '(secret/id))
+	 (setq secret '(secret/id))
+	 (setq cal '(secret/cal))
+	 (setq file '(secret/file))
+
+	 ;; GCAL
+	 (setq org-gcal-client-id (secret/id)
+   org-gcal-client-secret secret
+   org-gcal-file-alist '((cal . file)))
+
+   (defun todo/done ()
+   (interactive)
+   (org-todo 'done))
 
 	 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 	 (define-key org-mode-map (kbd "C-c d") 'org-deadline)
 	 (define-key org-mode-map (kbd "C-c t") 'org-todo)
 	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
 	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
+	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
