@@ -1,18 +1,18 @@
 
 ;; ----- smex-history -----
 (
- customize-themes
- describe-variable
- lsp-ui-mode
- describe-function
+ describe-key
+ org-gcal-post-at-point
+ org-gcal-sync
+ org-gcal-fetch
  package-install
- snippet-mode
- package-delete
+ minimap-mode
+ customize-themes
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 21)
+ (package-install . 23)
  (load-file . 6)
  (all-the-icons-install-fonts . 1)
  (5x5 . 1)
@@ -32,4 +32,9 @@
  (lsp-ui-mode . 2)
  (describe-variable . 3)
  (customize-themes . 4)
+ (minimap-mode . 3)
+ (describe-key . 2)
+ (org-gcal-fetch . 1)
+ (org-gcal-sync . 4)
+ (org-gcal-post-at-point . 1)
 )

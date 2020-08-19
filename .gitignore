@@ -50,6 +50,11 @@ flycheck_*.el
 # Ignore config.el file since it is auto generated.
 config.el
 
+# Secrets file for gcal
+secret.el
+
+org-gcal/
+
 # Temporary files
 
 ido.last
