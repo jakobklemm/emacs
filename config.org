@@ -6,8 +6,6 @@
 ** TODO File Structure
 ** TODO Email
 ** TODO Language correction
-** TODO Malyon
-** TODO README
 * Installation
 ** Fonts
 	1. Download fonts with =M-x all-the-icons-install-fonts=
@@ -19,58 +17,64 @@
 	 there. Set all the three variables in there.
 ** Binds
 	All used keybinds
-	 | Key           | Executes                    |
-	 |---------------+-----------------------------|
-	 | C-f           | move-right                  |
-	 | C-b           | move-left                   |
-	 | C-n           | move-down                   |
-	 | C-p           | move-up                     |
-	 | C-a           | line-begin                  |
-	 | C-e           | line-end                    |
-	 | <TAB>         | org-table, org-navigation   |
-	 | C-<TAB>       | yas-expand                  |
-	 | C-x g         | magit-status                |
-	 | C-x p         | magit-init                  |
-	 | C-s           | swipe                       |
-	 | C-x C-f       | ido-file                    |
-	 | C-x C-f C-f   | dired-file                  |
-	 | C-c p         | projectile-map              |
-	 | C-c p				 | projectile-command-map      |
-	 | C-x o         | other window                |
-	 | C-x j         | close buffer & window       |
-	 | C-x 3         | right-open-window           |
-	 | C-x 2         | down-open-window            |
-	 | C-x 4 f       | right-open-file             |
-	 | C-x 4 b       | right-open-buffer           |
-	 | C-x t         | terminal-emulator           |
-	 | C-x u         | undo (& redo)               |
-	 | C-c t         | google-search               |
-	 | C-c a         | org-agenda                  |
-	 | C-c C-x C-s   | mark as done and archive    |
-	 | C-c C-a			 | org-attach                  |
-	 | C-c C-d	     | org-deadline                |
-	 | C-c C-j	     | org-goto                    |
-	 | C-c C-l	     | org-insert-link             |
-	 | C-c C-o	     | org-open-at-point           |
-	 | C-c C-q	     | org-set-tags-command        |
-	 | C-c C-r	     | org-reveal                  |
-	 | C-c C-s	     | org-schedule                |
-	 | C-c C-t	     | org-todo                    |
-	 | C-c C-z	     | org-add-note                |
-	 | C-c SPC	     | org-table-blank-field       |
-	 | C-c +		     | org-table-sum               |
-	 | C-c ,		     | org-priority                |
-	 | C-c .		     | org-time-stamp              |
-	 | C-c =		     | org-table-eval-formula      |
-	 | C-c ?		     | org-table-field-info        |
-	 | C-c ^		     | org-sort                    |
-	 | M-<LEFT>      | org-table-move-column-left  |
-	 | M-S-<LEFT>    | org-table-delete-column     |
-	 | M-S-<RIGHT>   | org-table-move-column-right |
-	 | M-S-<RIGHT>   | org-table-insert-column     |
-	 | M-<UP>        | org-table-move-row-up       |
-	 | M-<DOWN>      | org-table-move-row-down     |
-	 | M-S-<UP>      | org-table-kill-row          |
+	 | Key           | Executes                       |
+	 |---------------+--------------------------------|
+	 | C-f           | move-right                     |
+	 | C-b           | move-left                      |
+	 | C-n           | move-down                      |
+	 | C-p           | move-up                        |
+	 | C-a           | line-begin                     |
+	 | C-e           | line-end                       |
+	 | <TAB>         | org-table, org-navigation      |
+	 | C-<TAB>       | yas-expand                     |
+	 | C-x g         | magit-status                   |
+	 | C-x p         | magit-init                     |
+	 | C-s           | swipe                          |
+	 | C-x C-f       | ido-file                       |
+	 | C-x C-f C-f   | dired-file                     |
+	 | C-c p         | projectile-map                 |
+	 | C-c p				 | projectile-command-map         |
+	 | C-x o         | other window                   |
+	 | C-x j         | close buffer & window          |
+	 | C-x 3         | right-open-window              |
+	 | C-x 2         | down-open-window               |
+	 | C-x 4 f       | right-open-file                |
+	 | C-x 4 b       | right-open-buffer              |
+	 | C-x t         | terminal-emulator              |
+	 | C-x u         | undo (& redo)                  |
+	 | C-c t         | org-todo                       |
+	 | C-c a         | org-agenda                     |
+	 | C-c d         | org-deadline                   |
+	 | C-c g         | gcal-post                      |
+	 | C-c f         | gcal-fetch                     |
+	 | C-c x         | todo-done                      |
+	 | C-c s         | google-this                    |
+	 | C-c n         | deft-mode                      |
+	 | C-<RETURN>    | (deft only) new note with name |
+	 | C-c C-x C-s   | mark as done and archive       |
+	 | C-c C-a			 | org-attach                     |
+	 | C-c C-j	     | org-goto                       |
+	 | C-c C-l	     | org-insert-link                |
+	 | C-c C-o	     | org-open-at-point              |
+	 | C-c C-q	     | org-set-tags-command           |
+	 | C-c C-r	     | org-reveal                     |
+	 | C-c C-s	     | org-schedule                   |
+	 | C-c C-t	     | org-todo                       |
+	 | C-c C-z	     | org-add-note                   |
+	 | C-c SPC	     | org-table-blank-field          |
+	 | C-c +		     | org-table-sum                  |
+	 | C-c ,		     | org-priority                   |
+	 | C-c .		     | org-time-stamp                 |
+	 | C-c =		     | org-table-eval-formula         |
+	 | C-c ?		     | org-table-field-info           |
+	 | C-c ^		     | org-sort                       |
+	 | M-<LEFT>      | org-table-move-column-left     |
+	 | M-S-<LEFT>    | org-table-delete-column        |
+	 | M-S-<RIGHT>   | org-table-move-column-right    |
+	 | M-S-<RIGHT>   | org-table-insert-column        |
+	 | M-<UP>        | org-table-move-row-up          |
+	 | M-<DOWN>      | org-table-move-row-down        |
+	 | M-S-<UP>      | org-table-kill-row             |
 * Setup
 ** =use-package=
   Verify the =use-package= installation and ensures the packages.
@@ -353,7 +357,7 @@
 		#+begin_src emacs-lisp
 		(use-package google-this)
 		(google-this-mode 1)
-		(global-set-key (kbd "C-c t") 'google-this)
+		(global-set-key (kbd "C-c s") 'google-this)
 		#+end_src
 *** Terminal
 		Bind =C-x t= to =eshell=.
@@ -524,13 +528,12 @@
 *** Location
 		Org document storage location for archive and other documents.
 		#+begin_src emacs-lisp
-		(setq org-directory "~/documents/org")
+		(setq org-directory "~/private/documents")
 
 		(defun org-file-path (filename)
 		"Return the absolute address of an org file, given its relative name."
 		(concat (file-name-as-directory org-directory) filename))
 
-		(setq org-index-file (org-file-path "~/emacs/main.org"))
 		(setq org-archive-location
     (concat (org-file-path "archive.org") "::* From %s"))
 		#+end_src
@@ -619,6 +622,15 @@
 		(LaTeX-math-mode)
 		(setq TeX-master t)))
     #+end_src
+** Notes
+	 Deft for taking quick notes and storing them in plain text.
+	 #+begin_src emacs-lisp
+	 (use-package deft)
+	 (setq deft-recursive t)
+	 (setq deft-extensions '("txt" "tex" "org"))
+	 (setq deft-directory "~/private/documents/notes")
+	 (define-key org-mode-map (kbd "C-c n") 'deft)
+	 #+end_src
 ** Agenda
 	 Adding gcal for google calendar sync.
 	 #+begin_src emacs-lisp
