@@ -55,6 +55,15 @@ secret.el
 secret.el~
 org-gcal/
 
+ido.last
+ido.last~
+places
+projectile.cache
+projectile-bookmarks.eld
+recentf
+recentf~
+smex-items
+
 # Temporary files
 
 ido.last
