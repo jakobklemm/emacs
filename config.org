@@ -4,6 +4,7 @@
 #+OPTIONS: toc:nil num:nil
 * TODO
 ** TODO GCAL & Agenda
+** TODO File Structure
 ** TODO Email
 ** TODO Language correction
 ** TODO Malyon
@@ -11,6 +12,77 @@
 * Installation
 	1. Download fonts with =M-x all-the-icons-install-fonts=
 	2. Install the fonts
+	3. Setup or delete gcal, under Org/Agenda.
+		 =secret.el= should have the following structure:
+		 #+begin_src emacs-lisp
+		 (defun secret/id ()
+		 "748741424858-1i8cfm6j0c1kfka5kjfufnnk833gir.apps.googleusercontent.com"
+		 )
+		 (defun secret/secret ()
+		 "jkfas88JNAFKfndjfksG"
+		 )
+		 (defun secret/cal ()
+		 "ljffe8kfdksajfksjadkfnskfuu9@import.calendar.google.com"
+		 )
+		 (defun secret/file ()
+		 "~/todo.org"
+		 )
+		 #+end_src
+		 The config should then follow the example from [[https:github.com/misohena/gcal][gcal]].
+	Binds
+	All used keybinds
+	 | Key           | Executes                    |
+	 |---------------+-----------------------------|
+	 | C-f           | move-right                  |
+	 | C-b           | move-left                   |
+	 | C-n           | move-down                   |
+	 | C-p           | move-up                     |
+	 | C-a           | line-begin                  |
+	 | C-e           | line-end                    |
+	 | <TAB>         | org-table, org-navigation   |
+	 | C-<TAB>       | yas-expand                  |
+	 | C-x g         | magit-status                |
+	 | C-x p         | magit-init                  |
+	 | C-s           | swipe                       |
+	 | C-x C-f       | ido-file                    |
+	 | C-x C-f C-f   | dired-file                  |
+	 | C-c p         | projectile-map              |
+	 | C-c p				 | projectile-command-map      |
+	 | C-x o         | other window                |
+	 | C-x j         | close buffer & window       |
+	 | C-x 3         | right-open-window           |
+	 | C-x 2         | down-open-window            |
+	 | C-x 4 f       | right-open-file             |
+	 | C-x 4 b       | right-open-buffer           |
+	 | C-x t         | terminal-emulator           |
+	 | C-x u         | undo (& redo)               |
+	 | C-c t         | google-search               |
+	 | C-c a         | org-agenda                  |
+	 | C-c C-x C-s   | mark as done and archive    |
+	 | C-c C-a			 | org-attach                  |
+	 | C-c C-d	     | org-deadline                |
+	 | C-c C-j	     | org-goto                    |
+	 | C-c C-l	     | org-insert-link             |
+	 | C-c C-o	     | org-open-at-point           |
+	 | C-c C-q	     | org-set-tags-command        |
+	 | C-c C-r	     | org-reveal                  |
+	 | C-c C-s	     | org-schedule                |
+	 | C-c C-t	     | org-todo                    |
+	 | C-c C-z	     | org-add-note                |
+	 | C-c SPC	     | org-table-blank-field       |
+	 | C-c +		     | org-table-sum               |
+	 | C-c ,		     | org-priority                |
+	 | C-c .		     | org-time-stamp              |
+	 | C-c =		     | org-table-eval-formula      |
+	 | C-c ?		     | org-table-field-info        |
+	 | C-c ^		     | org-sort                    |
+	 | M-<LEFT>      | org-table-move-column-left  |
+	 | M-S-<LEFT>    | org-table-delete-column     |
+	 | M-S-<RIGHT>   | org-table-move-column-right |
+	 | M-S-<RIGHT>   | org-table-insert-column     |
+	 | M-<UP>        | org-table-move-row-up       |
+	 | M-<DOWN>      | org-table-move-row-down     |
+	 | M-S-<UP>      | org-table-kill-row          |
 * Setup
 ** =use-package=
   Verify the =use-package= installation and ensures the packages.
@@ -114,6 +186,7 @@
 	 - Doom-nord
 	 - Doom-material
    #+begin_src emacs-lisp
+   (use-package doom-themes)
 	 ;; (load-theme `doom-nord t)
 	 (load-theme `doom-material t)
    #+end_src
@@ -558,3 +631,18 @@
 		(LaTeX-math-mode)
 		(setq TeX-master t)))
     #+end_src
+** Agenda
+	 Adding gcal for google calendar sync.
+	 #+begin_src emacs-lisp
+	 (load-file "~/.emacs.d/secret.el")
+	 (require 'org-gcal)
+	 (setq org-gcal-client-id secret/id()
+   org-gcal-client-secret secret/secret()
+   org-gcal-file-alist '((secret/cal() .  secret/file())))
+
+	 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+	 (define-key org-mode-map (kbd "C-c d") 'org-deadline)
+	 (define-key org-mode-map (kbd "C-c t") 'org-todo)
+	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
+	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
+	 #+end_src

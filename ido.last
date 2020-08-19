@@ -28,21 +28,25 @@
  ("c:/users/jakob/ownCloud/emacs/Schule/" . "Spam/")
  ("c:/users/jakob/ownCloud/emacs/" . "Schule/")
  ("c:/users/" . "jakob/")
- ("c:/users/jakob/ownCloud/documents/" . "emacs/")
- ("c:/users/jakob/ownCloud/" . "emacs/")
+ ("c:/users/jakob/ownCloud/documents/" . "org/")
+ ("c:/users/jakob/ownCloud/" . "documents/")
  ("c:/Users/Jeykey/.emacs.d/" . "themes/")
  ("c:/Users/Jeykey/.emacs.d/icons/" . "fonts/")
  ("c:/Users/Jeykey/" . "Desktop/")
  ("c:/users/jakob/Documents/" . "Adobe/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/andoird/" . "bibletalks/")
  ("c:/users/jakob/Desktop/Programming/BibleTalks/" . "bibletalks/")
- ("c:/users/jakob/Desktop/Programming/" . "taras/")
+ ("c:/users/jakob/Desktop/Programming/" . "BibleTalks/")
  ("c:/users/jakob/Desktop/" . "Programming/")
  ("c:/users/jakob/" . "Desktop/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "c:/users/jakob/Desktop/Programming/"
+ "c:/users/jakob/ownCloud/documents/"
+ "c:/users/jakob/ownCloud/documents/org/"
+ "c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/controllers/"
  "c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/"
  "c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks/"
  "c:/Users/Jeykey/Desktop/Programming/bibletalks/"
@@ -55,12 +59,10 @@
  "c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/"
  "c:/users/jakob/.emacs.d/"
  "c:/users/jakob/.emacs.d/themes/"
- "c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/controllers/"
  "c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/"
  "c:/users/jakob/ownCloud/emacs/Schule/Spam/"
  "c:/users/jakob/ownCloud/emacs/Schule/Franz/"
  "c:/users/jakob/ownCloud/documents/emacs/"
- "c:/users/jakob/ownCloud/documents/org/"
  "c:/Users/Jeykey/.emacs.d/"
  "c:/users/jakob/Documents/Adobe/"
  "c:/users/jakob/owncloud/"
@@ -70,20 +72,34 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "gmacs.txt"
+ "todo.org"
+ "archive.org"
+ "sessions_controller.ex"
  "secret_controller.ex"
  "chat_controller.ex"
  "page_controller.ex"
  "accounts.ex"
  "LICENSE.md"
  "general_web.ex"
- "general.ex"
- "udpdemo.ex"
- "sen.ex"
- "initial.ex"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("c:/users/jakob/Desktop/Programming/" (24381 2065 0 0) "warrick/" "tetrisjs/" "tetris/" "taras/" "skribble/" "scans/" "pytube/" "project romba/" "processing-3.4/" "p5-multi/" "jakobklemm/" "ICDM06.metaclust.caruana.pdf" "gruppen.html" "gmacs.txt" "gmacs/" "gitclone/" "exBankID/" "Erebos/" "emacsfiles/" "condacode/" "codenames/" "card.txt" "C-Programming/" "btadmin/" "bibletalksweb/" "bibletalksjoin/" "BibleTalks/" "ash.tex" "ash.pdf" "ash.org" "arthurpac/" "../" "./")
+
+ ("c:/users/jakob/.emacs.d/" (24381 2720 0 0) "transient/" "snippets/" "smex-items" "sensible-defaults.el/" "recentf~" "recentf" "README.org" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
+
+ ("c:/users/jakob/ownCloud/documents/org/" (24380 61001 0 0) "archive.org~" "archive.org" "../" "./")
+
+ ("c:/users/jakob/ownCloud/documents/" (24380 59069 0 0) "org/" "../" "./")
+
+ ("c:/users/jakob/ownCloud/" (24380 58972 0 0) "personal/" "getter.rar" "documents/" "Desktop.ini" ".sync_6171c3cb1d97.db-wal" ".sync_6171c3cb1d97.db" ".owncloudsync.log" ".gitconfig" ".bash_history" "../" "./")
+
+ ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/controllers/" (24380 57743 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "../" "./")
+
+ ("c:/users/jakob/" (24380 57304 0 0) "Videos/" "TMPDIR/" "tensor/" "Templates/" "Startup.cs" "Start Menu/" "source/" "SendTo/" "Searches/" "SciTE.session" "SciTE.recent" "Saved Games/" "Roaming/" "Recent/" "PSY - GANGNAM STYLE(강남스타일) MV.mp4" "Properties/" "Programs/" "Program.cs" "PrintHood/" "Postman/" "Pictures/" "package-lock.json" "ownCloud/" "OpenVPN/" "OneDrive - Kantonsschule Baden/" "OneDrive/" "obj/" "nvvp_workspace/" "ntuser.ini" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "node_modules/" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "logs/" "Local Settings/" "Links/" "Kantonsschule Baden/" "jakob.klemm@swissonline.ch Creative Cloud Files/" "jakob.csproj" "IntelGraphicsProfiles/" "IdeaProjects/" "Google Drive/" "go/" "flutterprojects/" "Favorites/" "eclipse-workspace/" "eclipse/" "Downloads/" "Documents/" "Desktop/" "Creative Cloud Files/" "Cookies/" "Controllers/" "Contacts/" "chemaxon/" "appsettings.json" "appsettings.Development.json" "Application Data/" "AppData/" "AndroidStudioProjects/" "advanced_port_scanner_MAC.bin" "advanced_port_scanner_Comments.bin" "advanced_port_scanner_Aliases.bin" "3D Objects/" ".vuerc" ".vue-cli-ui/" ".vscode/" ".tooling/" ".thumbnails/" ".templateengine/" ".swt/" ".ssh/" ".phet/" ".pgAdmin4.startup.log" ".pgAdmin4.427924103.log" ".pgAdmin4.427924103.addr" ".p2/" ".omnisharp/" ".nuget/" ".mume/" ".mix/" ".minttyrc" ".MakeMKV/" ".julia/" ".jssc/" ".IdeaIC2018.3/" ".hex/" ".gradle/" ".gitconfig" ".emulator_console_auth_token" ".emacs.d/" ".eclipse/" ".dotnet/" ".config/" ".conda/" ".cache/" ".bash_history" ".atom/" ".artofillusion/" ".AndroidStudio3.5/" ".AndroidStudio3.3/" "../" "./")
+
  ("c:/Users/Jeykey/Desktop/Programming/bibletalks/lib/bibletalks_web/controllers/" (24380 11869 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "chat_controller.ex" "api_controller.ex" "../" "./")
 
  ("c:/Users/Jeykey/Desktop/Programming/bibletalks/" (24379 61149 0 0) "test/" "README.org" "priv/" "mix.lock" "mix.exs" "LICENSE.md" "lib/" "deps/" "config/" "CHANGELOG.md" "bibletalks.iml" "assets/" ".idea/" ".gitignore" ".git/" ".formatter.exs" ".elixir_ls/" "../" "./")
@@ -134,8 +150,6 @@
 
  ("c:/Users/Jeykey/.emacs.d/themes/" (24379 60445 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
 
- ("c:/users/jakob/.emacs.d/" (24379 49917 0 0) "transient/" "themes/" "smex-items" "server/" "sensible-defaults.el/" "recentf~" "recentf" "projectile.cache" "projectile-bookmarks.eld" "places" "init.el" "ido.last~" "ido.last" "icons/" "elpa/" "elixir-ls/" "config.org" "config.el~" "config.el" "auto-save-list/" ".lsp-session-v1" ".gitignore" ".git/" "../" "./")
-
  ("c:/users/jakob/Desktop/Programming/taras/apps/storage/lib/" (24110 54849 0 0) "storage/" "posts.ex" "getToken.ex" "content/" "authentication.ex" "authentication/" "accounts.ex" "accounts/" "../" "./")
 
  ("c:/users/jakob/Desktop/Programming/taras/apps/storage/" (24110 54849 0 0) "test/" "README.org" "priv/" "mix.exs" "lib/" "config/" ".gitignore" ".formatter.exs" ".elixir_ls/" "../" "./")
@@ -154,8 +168,6 @@
 
  ("c:/users/jakob/.emacs.d/themes/" (24378 22596 0 0) "logo.jpg" "elixify-theme.el" "../" "./")
 
- ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/controllers/" (24373 15010 0 0) "sessions_controller.ex" "secret_controller.ex" "page_controller.ex" "../" "./")
-
  ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/bibletalks_web/" (23919 22629 0 0) "views/" "templates/" "router.ex" "gettext.ex" "endpoint.ex" "controllers/" "channels/" "authenticate.ex" "../" "./")
 
  ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/bibletalks/lib/" (23919 22629 0 0) "bibletalks_web.ex" "bibletalks_web/" "bibletalks.ex" "bibletalks/" "../" "./")
@@ -164,11 +176,7 @@
 
  ("c:/users/jakob/Desktop/Programming/BibleTalks/bibletalks/" (23965 44874 0 0) "bibletalks/" ".git/" "../" "./")
 
- ("c:/users/jakob/Desktop/Programming/" (24379 28713 0 0) "warrick/" "tetrisjs/" "tetris/" "taras/" "skribble/" "scans/" "pytube/" "project romba/" "processing-3.4/" "p5-multi/" "jakobklemm/" "ICDM06.metaclust.caruana.pdf" "gruppen.html" "gmacs/" "gitclone/" "exBankID/" "Erebos/" "emacsfiles/" "condacode/" "codenames/" "card.txt" "C-Programming/" "btadmin/" "bibletalksweb/" "bibletalksjoin/" "BibleTalks/" "ash.tex" "ash.pdf" "ash.org" "arthurpac/" "../" "./")
-
  ("c:/users/jakob/Desktop/" (24379 28701 0 0) "WhatsApp.lnk" "Programming/" "Private Internet Access.lnk" "Microsoft Teams.lnk" "HTTrack Website Copier.lnk" "HandBrake.lnk" "Google Drive.lnk" "Git Bash.lnk" "Eclipse Java 2018-12.lnk" "desktop.ini" "beook.lnk" "../" "./")
-
- ("c:/users/jakob/" (24379 29622 0 0) "Videos/" "TMPDIR/" "tensor/" "Templates/" "Startup.cs" "Start Menu/" "source/" "SendTo/" "Searches/" "SciTE.session" "SciTE.recent" "Saved Games/" "Roaming/" "Recent/" "PSY - GANGNAM STYLE(강남스타일) MV.mp4" "Properties/" "Programs/" "Program.cs" "PrintHood/" "Postman/" "Pictures/" "package-lock.json" "ownCloud/" "OpenVPN/" "OneDrive - Kantonsschule Baden/" "OneDrive/" "obj/" "nvvp_workspace/" "ntuser.ini" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{1796b6d5-070a-11ea-9c1b-f32881e185fe}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "node_modules/" "NetHood/" "My Documents/" "Music/" "MicrosoftEdgeBackups/" "logs/" "Local Settings/" "Links/" "Kantonsschule Baden/" "jakob.klemm@swissonline.ch Creative Cloud Files/" "jakob.csproj" "IntelGraphicsProfiles/" "IdeaProjects/" "Google Drive/" "go/" "flutterprojects/" "Favorites/" "eclipse-workspace/" "eclipse/" "Downloads/" "Documents/" "Desktop/" "Creative Cloud Files/" "Cookies/" "Controllers/" "Contacts/" "chemaxon/" "appsettings.json" "appsettings.Development.json" "Application Data/" "AppData/" "AndroidStudioProjects/" "advanced_port_scanner_MAC.bin" "advanced_port_scanner_Comments.bin" "advanced_port_scanner_Aliases.bin" "3D Objects/" ".vuerc" ".vue-cli-ui/" ".vscode/" ".tooling/" ".thumbnails/" ".templateengine/" ".swt/" ".ssh/" ".phet/" ".pgAdmin4.startup.log" ".pgAdmin4.427924103.log" ".pgAdmin4.427924103.addr" ".p2/" ".omnisharp/" ".nuget/" ".mume/" ".mix/" ".minttyrc" ".MakeMKV/" ".julia/" ".jssc/" ".IdeaIC2018.3/" ".hex/" ".gradle/" ".gitconfig" ".emulator_console_auth_token" ".emacs.d/" ".eclipse/" ".dotnet/" ".config/" ".conda/" ".cache/" ".bash_history" ".atom/" ".artofillusion/" ".AndroidStudio3.5/" ".AndroidStudio3.3/" "../" "./")
 
  ("c:/users/jakob/ownCloud/emacs/Schule/Spam/" (24377 26422 0 0) "Komplexe Zahlen Spam 3.1.20.pdf" "Aufgaben zu komplexen Zahlen Spam 3.1.20.pdf" "../" "./")
 
@@ -177,8 +185,6 @@
  ("c:/users/jakob/owncloud/.emacs.d/" (24378 22533 0 0) "../" "./")
 
  ("c:/users/jakob/owncloud/" (24378 22533 0 0) "jeykey/" "getter.rar" "emacs/" "documents/" "Desktop.ini" ".sync_6171c3cb1d97.db-wal" ".sync_6171c3cb1d97.db" ".owncloudsync.log" ".gitconfig" ".emacs.d/" ".bash_history" "../" "./")
-
- ("c:/users/jakob/ownCloud/documents/org/" (24378 22967 0 0) "index.org" "archive.org~" "archive.org" "../" "./")
 
  ("c:/users/jakob/ownCloud/emacs/Schule/" (24378 15175 0 0) "Wirtschaft/" "Sport/" "Spam/" "Robotik/" "PU/" "Praktikumsstelle RINO Electronics AG Bestätigung.pdf" "Physik/" "Nap/" "Mathematik/" "Informatik/" "Geschichte/" "Geographie/" "Franz/" "English/" "Deutsch/" "Chemie/" "Biologie/" "BG/" "Amat/" "../" "./")
 
@@ -191,10 +197,6 @@
  ("c:/users/jakob/ownCloud/documents/emacs/" (24378 23216 0 0) "main.tex" "main.org~" "main.org" "../" "./")
 
  ("c:/users/jakob/Documents/org/" (24378 23107 0 0) "archive.org" "../" "./")
-
- ("c:/users/jakob/ownCloud/documents/" (24314 11749 0 0) "org/" "notes/" "emacs/" "../" "./")
-
- ("c:/users/jakob/ownCloud/" (24378 22533 0 0) "jeykey/" "getter.rar" "emacs/" "documents/" "Desktop.ini" ".sync_6171c3cb1d97.db-wal" ".sync_6171c3cb1d97.db" ".owncloudsync.log" ".gitconfig" ".emacs.d/" ".bash_history" "../" "./")
 
  ("c:/Users/Jeykey/3D Objects/" (24311 24991 0 0) "desktop.ini" "../" "./")
 
