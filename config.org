@@ -3,33 +3,21 @@
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
 * TODO
-** SEARCH GCAL & Agenda
 ** TODO File Structure
 ** TODO Email
 ** TODO Language correction
 ** TODO Malyon
 ** TODO README
 * Installation
+** Fonts
 	1. Download fonts with =M-x all-the-icons-install-fonts=
 	2. Install the fonts
-	3. Setup or delete gcal, under Org/Agenda.
-		 =secret.el= should have the following structure:
-		 #+begin_quote
-		 (defun secret/id ()
-		 "748741424858-1i8cfm6j0c1kfka5kjfufnnk833gir.apps.googleusercontent.com"
-		 )
-		 (defun secret/secret ()
-		 "jkfas88JNAFKfndjfksG"
-		 )
-		 (defun secret/cal ()
-		 "ljffe8kfdksajfksjadkfnskfuu9@import.calendar.google.com"
-		 )
-		 (defun secret/file ()
-		 "~/todo.org"
-		 )
-		 #+end_quote
-		 The config should then follow the example from [[https:github.com/misohena/gcal][gcal]].
-	Binds
+** Gcal
+	 Setup or delete gcal, under Org/Agenda.
+	 Gcal need google oauth credentials, instructions can be found under [[https:github.com/myuhe/org-gcal.el][org-gcal]]
+	 Create a file called =secret.el= and insert the =org-cal= example config in
+	 there. Set all the three variables in there.
+** Binds
 	All used keybinds
 	 | Key           | Executes                    |
 	 |---------------+-----------------------------|
@@ -634,19 +622,11 @@
 ** Agenda
 	 Adding gcal for google calendar sync.
 	 #+begin_src emacs-lisp
-	 (load-file "~/.emacs.d/secret.el")
-	 (require 'org-gcal)
-
-	 ;; Custom
-	 (setq id '(secret/id))
-	 (setq secret '(secret/id))
-	 (setq cal '(secret/cal))
-	 (setq file '(secret/file))
-
+	 (use-package org-gcal)
 	 ;; GCAL
-	 (setq org-gcal-client-id (secret/id)
-   org-gcal-client-secret secret
-   org-gcal-file-alist '((cal . file)))
+
+	 (load-file "~/.emacs.d/secret.el")
+	 (secret/init)
 
    (defun todo/done ()
    (interactive)
@@ -658,4 +638,10 @@
 	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
 	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
+	 #+end_src
+* Entertainment
+** Games
+	 Malyon: Text adventure interface, games located under =/games=
+	 #+begin_src emacs-lisp
+	 (use-package malyon)
 	 #+end_src
