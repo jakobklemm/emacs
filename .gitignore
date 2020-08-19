@@ -52,7 +52,7 @@ config.el
 
 # Secrets file for gcal
 secret.el
-
+secret.el~
 org-gcal/
 
 # Temporary files
