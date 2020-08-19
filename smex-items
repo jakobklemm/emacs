@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ org-todo
  describe-key
  org-gcal-post-at-point
  org-gcal-sync
  org-gcal-fetch
  package-install
  minimap-mode
- customize-themes
 )
 
 ;; ----- smex-data -----
@@ -37,4 +37,5 @@
  (org-gcal-fetch . 1)
  (org-gcal-sync . 4)
  (org-gcal-post-at-point . 1)
+ (org-todo . 1)
 )
