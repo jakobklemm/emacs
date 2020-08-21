@@ -6,6 +6,7 @@
 ** TODO File Structure
 ** TODO Email
 ** TODO Language correction
+** TODO File modes
 * Installation
 ** Fonts
 	1. Download fonts with =M-x all-the-icons-install-fonts=
@@ -457,6 +458,10 @@
 	 (global-set-key (kbd "C-x g") 'magit-status)
 	 (global-set-key (kbd "C-x p") 'magit-init)
 	 #+end_src
+** Spell check
+	 Enable spellcheck for both English and German in all =org-mode= and
+	 =text-mode= buffers.
+
 * Programming
 ** Elixir
    Elixir major mode with synatx highlighting etc.
