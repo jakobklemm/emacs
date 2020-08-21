@@ -75,6 +75,15 @@
 	 | M-<UP>        | org-table-move-row-up          |
 	 | M-<DOWN>      | org-table-move-row-down        |
 	 | M-S-<UP>      | org-table-kill-row             |
+** Control
+*** Open files
+		Open files with a different program than emacs.
+		1. =C-x C-f= (Ido Mode)
+		2. =C-f= (Dired-mode)
+		3. Fullscreen dired
+		4. Select file
+		5. Type =!= for the command line.
+		6. Type =chrome= for PDF's, etc.
 * Setup
 ** =use-package=
   Verify the =use-package= installation and ensures the packages.
