@@ -3,43 +3,20 @@
 
 (require 'org)
 
-     (org-add-link-type "man" 'org-man-open)
-     (add-hook 'org-store-link-functions 'org-man-store-link)
-
-     (defcustom org-man-command 'man
-       "The Emacs command to be used to display a man page."
-       :group 'org-link
-       :type '(choice (const man) (const woman)))
-
-     (defun org-man-open (path)
-       "Visit the manpage on PATH.
-     PATH should be a topic that can be thrown at the man command."
-       (funcall org-man-command path))
-
-     (defun org-man-store-link ()
-       "Store a link to a manpage."
-       (when (memq major-mode '(Man-mode woman-mode))
-         ;; This is a man page, we do make this link
-         (let* ((page (org-man-get-page-name))
-                (link (concat "man:" page))
-                (description (format "Manpage for %s" page)))
-           (org-store-link-props
-            :type "man"
-            :link link
-            :description description))))
-
-     (defun org-man-get-page-name ()
-       "Extract the page name from the buffer name."
-       ;; This works for both `Man-mode' and `woman-mode'.
-       (if (string-match " \\(\\S-+\\)\\*" (buffer-name))
-           (match-string 1 (buffer-name))
-         (error "Cannot create link to this man page")))
+(org-link-set-parameters
+ "red"
+ :follow (lambda (path) (message "You clicked me."))
+ :export (lambda (path desc backend)
+           (cond
+            ((eq 'html backend)
+             (format "<font color=\"red\">%s</font>"
+                     (or desc path)))))
+ :face '(:foreground "red")
+ :help-echo "Click me for a message.")
 
 (defun md5-find (filename)
-	"Edit file FILENAME.
-     Switch to a buffer visiting file FILENAME,
-     creating one if none already exists."
+	"creating one if none already exists."
 	(interactive "FFind file: ")
-	(insert(find-file-noselect filename)))
+	(message (find-file-noselect filename)))
 
 (provide 'rodian)

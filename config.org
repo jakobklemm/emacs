@@ -671,7 +671,7 @@
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
 ** Rodian
-
+	 [[red:name][fkdsa]]
 	 #+begin_src emacs-lisp
    (add-to-list 'load-path "~/.emacs.d/rodian/")
 	 (require 'rodian)
