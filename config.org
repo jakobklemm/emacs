@@ -670,6 +670,12 @@
 	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
+** Rodian
+
+	 #+begin_src emacs-lisp
+   (add-to-list 'load-path "~/.emacs.d/rodian/")
+	 (require 'rodian)
+	 #+end_src
 * Entertainment
 ** Games
 	 Malyon: Text adventure interface, games located under =/games=
