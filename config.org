@@ -76,6 +76,12 @@
 	 | M-<UP>        | org-table-move-row-up          |
 	 | M-<DOWN>      | org-table-move-row-down        |
 	 | M-S-<UP>      | org-table-kill-row             |
+** Dict
+   (Windows)
+   Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
+   Config comes with two dictionaries, English and German, found under =dict/=.
+   dictionary
+
 ** Control
 *** Open files
 		Open files with a different program than emacs.
@@ -134,20 +140,57 @@
    #+end_src
 ** Improvements
 *** Symbols
-   Use prettify symbols -> fancy lambdas
-   #+begin_src emacs-lisp
-   (global-prettify-symbols-mode t)
-   #+end_src
-*** Bottom line
-   Use =moody= for a better bottom line.
-   #+begin_src emacs-lisp
-   (use-package moody
-   :config
-   (setq x-underline-at-descent-line t
-        moody-mode-line-height 30)
-	(moody-replace-mode-line-buffer-identification)
-	(moody-replace-vc-mode))
-   #+end_src
+    Prettify symobls.
+    #+begin_src emacs-lisp
+    (global-prettify-symbols-mode 1)
+    (defun add-pretty-lambda ()
+    "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
+    (setq prettify-symbols-alist
+    '(
+    ("lambda" . 955)
+    ("delta" . 120517)
+    ("epsilon" . 120518)
+    ("->" . 8594)
+    ("<-" . 8592)
+    ("<=" . 8804)
+    (">=" . 8805)
+    ("=~" . 8771)
+    ("!=" . 8800)
+    (":=" . 8788)
+    )))
+    (add-hook 'prog-mode-hook 'add-pretty-lambda)
+    (add-hook 'org-mode-hook 'add-pretty-lambda)
+    #+end_src
+*** Modline
+	Doom modline.
+		#+begin_src emacs-lisp
+		(use-package doom-modeline
+		:ensure t
+		:init (doom-modeline-mode 1))
+    #+end_src
+		Config and settings for modline, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
+		#+begin_src emacs-lisp
+		(setq doom-modeline-icon (display-graphic-p))
+		(setq doom-modeline-major-mode-icon t)
+		(setq doom-modeline-buffer-state-icon t)
+		(setq doom-modeline-buffer-modification-icon t)
+		(setq doom-modeline-unicode-fallback nil)
+		(setq doom-modeline-minor-modes nil)
+		(setq doom-modeline-enable-word-count nil)
+		(setq doom-modeline-buffer-encoding t)
+		(setq doom-modeline-lsp t)
+
+		;; Whether display the environment version.
+		(setq doom-modeline-env-version t)
+		;; Or for individual languages
+		(setq doom-modeline-env-enable-python t)
+		(setq doom-modeline-env-enable-ruby t)
+		(setq doom-modeline-env-enable-perl t)
+		(setq doom-modeline-env-enable-go t)
+		(setq doom-modeline-env-enable-elixir t)
+		(setq doom-modeline-env-enable-rust t)
+		(display-time-mode 1)
+		#+end_src
 *** Minor modes
    Hide all minor modes with =minions=.
    #+begin_src emacs-lisp
@@ -295,10 +338,40 @@
 * Projects
 ** General
 *** Indentation
-    Show tabs as 2 wide.
-    #+begin_src emacs-lisp
-    (setq-default tab-width 2)
-    #+end_src
+    Copied from [[https://github.com/MatthewZMD/.emacs.d][.emacs.d]]
+		#+begin_src emacs-lisp
+		(use-package highlight-indent-guides
+		:if (display-graphic-p)
+		:diminish
+		;; Enable manually if needed, it a severe bug which potentially core-dumps Emacs
+		;; https://github.com/DarthFennec/highlight-indent-guides/issues/76
+		:commands (highlight-indent-guides-mode)
+		:custom
+		(highlight-indent-guides-method 'character)
+		(highlight-indent-guides-responsive 'top)
+		(highlight-indent-guides-delay 0)
+		(highlight-indent-guides-auto-character-face-perc 7))
+    	#+end_src
+		Indent config
+		#+begin_src emacs-lisp
+		(setq-default indent-tabs-mode nil)
+		(setq-default indent-line-function 'insert-tab)
+		(setq-default tab-width 4)
+		(setq-default c-basic-offset 4)
+		(setq-default js-switch-indent-offset 4)
+		(c-set-offset 'comment-intro 0)
+		(c-set-offset 'innamespace 0)
+		(c-set-offset 'case-label '+)
+		(c-set-offset 'access-label 0)
+		(c-set-offset (quote cpp-macro) 0 nil)
+		(defun smart-electric-indent-mode ()
+		"Disable 'electric-indent-mode in certain buffers and enable otherwise."
+		(cond ((and (eq electric-indent-mode t)
+        (member major-mode '(erc-mode text-mode)))
+        (electric-indent-mode 0))
+        ((eq electric-indent-mode nil) (electric-indent-mode 1))))
+		(add-hook 'post-command-hook #'smart-electric-indent-mode)
+        #+end_src
 *** CamelCase
     Treat camel casing (the best and only right variable naming system) as multiple words.
     #+begin_src emacs-lisp
@@ -375,10 +448,10 @@
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
 ** Completion
-	 Use package =company= as a dependancy of lsp-mode.
+   Use package =company= as a dependancy of lsp-mode.
    #+begin_src emacs-lisp
-	 (use-package company)
-	 (add-hook 'after-init-hook 'global-company-mode)
+   (use-package company)
+   (add-hook 'after-init-hook 'global-company-mode)
    (use-package lsp-mode
    :commands lsp
    :ensure t
@@ -459,9 +532,32 @@
 	 (global-set-key (kbd "C-x p") 'magit-init)
 	 #+end_src
 ** Spell check
-	 Enable spellcheck for both English and German in all =org-mode= and
-	 =text-mode= buffers.
-
+   Enable spellcheck for both English and German in all =org-mode= and
+   =text-mode= buffers. school
+   #+begin_src emacs-lisp
+   (setq ispell-program-name "hunspell")
+   (setq ispell-hunspell-dict-paths-alist
+   '(("en_US" "~/.emacs.d/dict/en_US.aff")))
+   (setq ispell-local-dictionary "en_US")
+   (setq ispell-local-dictionary-alist
+   ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
+   ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
+   '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+   ;; the following line won't make flyspell-mode enabled by default as you might think
+   (flyspell-mode 1)
+   (global-set-key (kbd "C-.") 'ispell-word)
+#+end_src
+** Undo tree
+	 Visual undo tree
+	 #+begin_src emacs-lisp
+	 (use-package undo-tree
+  :defer t
+  :diminish undo-tree-mode
+  :init (global-undo-tree-mode)
+  :custom
+  (undo-tree-visualizer-diff t)
+  (undo-tree-visualizer-timestamps t))
+	#+end_src
 * Programming
 ** Elixir
    Elixir major mode with synatx highlighting etc.
@@ -671,7 +767,6 @@
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
 ** Rodian
-	 [[red:name][fkdsa]]
 	 #+begin_src emacs-lisp
    (add-to-list 'load-path "~/.emacs.d/rodian/")
 	 (require 'rodian)
