@@ -55,6 +55,8 @@ secret.el
 secret.el~
 org-gcal/
 
+.lsp-session-v1
+
 ido.last
 ido.last~
 places
