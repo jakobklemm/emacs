@@ -9,6 +9,6 @@ Config is located in =config.org= and loaded in evaluated by =init.el=.
 Inspiration and partial credits:
 - github.com/hrs
 - github.com/domse007
-
+- github.com/matthewzmd
 Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not techsupport. Most issues should be easy to fix.)
