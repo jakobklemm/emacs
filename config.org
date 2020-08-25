@@ -2,11 +2,6 @@
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
-* TODO
-** TODO File Structure
-** TODO Email
-** TODO Language correction
-** TODO File modes
 * Installation
 ** Fonts
 	1. Download fonts with =M-x all-the-icons-install-fonts=
@@ -18,64 +13,65 @@
 	 there. Set all the three variables in there.
 ** Binds
 	All used keybinds
-	 | Key           | Executes                       |
-	 |---------------+--------------------------------|
-	 | C-f           | move-right                     |
-	 | C-b           | move-left                      |
-	 | C-n           | move-down                      |
-	 | C-p           | move-up                        |
-	 | C-a           | line-begin                     |
-	 | C-e           | line-end                       |
-	 | <TAB>         | org-table, org-navigation      |
-	 | C-<TAB>       | yas-expand                     |
-	 | C-x g         | magit-status                   |
-	 | C-x p         | magit-init                     |
-	 | C-s           | swipe                          |
-	 | C-x C-f       | ido-file                       |
-	 | C-x C-f C-f   | dired-file                     |
-	 | C-c p         | projectile-map                 |
+	 | Key                   | Executes                       |
+	 |-----------------------+--------------------------------|
+	 | C-f                   | move-right                     |
+	 | C-b                   | move-left                      |
+	 | C-n                   | move-down                      |
+	 | C-p                   | move-up                        |
+	 | C-a                   | line-begin                     |
+	 | C-e                   | line-end                       |
+	 | <TAB>                 | org-table, org-navigation      |
+	 | C-<TAB>               | yas-expand                     |
+	 | C-x g                 | magit-status                   |
+	 | C-x p                 | magit-init                     |
+	 | C-s                   | swipe                          |
+	 | C-x C-f               | ido-file                       |
+	 | C-x C-f C-f           | dired-file                     |
+	 | C-c p                 | projectile-map                 |
 	 | C-c p				 | projectile-command-map         |
-	 | C-x o         | other window                   |
-	 | C-x j         | close buffer & window          |
-	 | C-x 3         | right-open-window              |
-	 | C-x 2         | down-open-window               |
-	 | C-x 4 f       | right-open-file                |
-	 | C-x 4 b       | right-open-buffer              |
-	 | C-x t         | terminal-emulator              |
-	 | C-x u         | undo (& redo)                  |
-	 | C-c t         | org-todo                       |
-	 | C-c a         | org-agenda                     |
-	 | C-c d         | org-deadline                   |
-	 | C-c g         | gcal-post                      |
-	 | C-c f         | gcal-fetch                     |
-	 | C-c x         | todo-done                      |
-	 | C-c s         | google-this                    |
-	 | C-c n         | deft-mode                      |
-	 | C-<RETURN>    | (deft only) new note with name |
-	 | C-c C-x C-s   | mark as done and archive       |
-	 | C-c C-a			 | org-attach                     |
-	 | C-c C-j	     | org-goto                       |
-	 | C-c C-l	     | org-insert-link                |
-	 | C-c C-o	     | org-open-at-point              |
-	 | C-c C-q	     | org-set-tags-command           |
-	 | C-c C-r	     | org-reveal                     |
-	 | C-c C-s	     | org-schedule                   |
-	 | C-c C-t	     | org-todo                       |
-	 | C-c C-z	     | org-add-note                   |
-	 | C-c SPC	     | org-table-blank-field          |
-	 | C-c +		     | org-table-sum                  |
-	 | C-c ,		     | org-priority                   |
-	 | C-c .		     | org-time-stamp                 |
-	 | C-c =		     | org-table-eval-formula         |
-	 | C-c ?		     | org-table-field-info           |
-	 | C-c ^		     | org-sort                       |
-	 | M-<LEFT>      | org-table-move-column-left     |
-	 | M-S-<LEFT>    | org-table-delete-column        |
-	 | M-S-<RIGHT>   | org-table-move-column-right    |
-	 | M-S-<RIGHT>   | org-table-insert-column        |
-	 | M-<UP>        | org-table-move-row-up          |
-	 | M-<DOWN>      | org-table-move-row-down        |
-	 | M-S-<UP>      | org-table-kill-row             |
+	 | C-x o                 | other window                   |
+	 | C-x j                 | close buffer & window          |
+	 | C-x 3                 | right-open-window              |
+	 | C-x 2                 | down-open-window               |
+	 | C-x 4 f               | right-open-file                |
+	 | C-x 4 b               | right-open-buffer              |
+	 | C-x t                 | terminal-emulator              |
+	 | C-x u                 | undo (& redo)                  |
+	 | C-c t                 | org-todo                       |
+	 | C-c a                 | org-agenda                     |
+	 | C-c d                 | org-deadline                   |
+	 | C-c g                 | gcal-post                      |
+	 | C-c f                 | gcal-fetch                     |
+	 | C-c x                 | todo-done                      |
+	 | C-c s                 | google-this                    |
+	 | C-c n                 | deft-mode                      |
+	 | C-<RETURN>            | (deft only) new note with name |
+	 | C-c C-x C-s           | mark as done and archive       |
+	 | C-c C-a               | org-attach                     |
+	 | C-c C-j               | org-goto                       |
+	 | C-c C-l               | org-insert-link                |
+	 | C-c C-o               | org-open-at-point              |
+	 | C-c C-q               | org-set-tags-command           |
+	 | C-c C-r               | org-reveal                     |
+	 | C-c C-s               | org-schedule                   |
+	 | C-c C-t               | org-todo                       |
+	 | C-c C-z               | org-add-note                   |
+	 | C-c SPC               | org-table-blank-field          |
+	 | C-c +		         | org-table-sum                  |
+	 | C-c ,		         | org-priority                   |
+	 | C-c .		         | org-time-stamp                 |
+	 | C-c =		         | org-table-eval-formula         |
+	 | C-c ?		         | org-table-field-info           |
+	 | C-c ^		         | org-sort                       |
+	 | C-.                   | ispell word                    |
+	 | M-<LEFT>              | org-table-move-column-left     |
+	 | M-S-<LEFT>            | org-table-delete-column        |
+	 | M-S-<RIGHT>           | org-table-move-column-right    |
+	 | M-S-<RIGHT>           | org-table-insert-column        |
+	 | M-<UP>                | org-table-move-row-up          |
+	 | M-<DOWN>              | org-table-move-row-down        |
+	 | M-S-<UP>              | org-table-kill-row             |
 ** Dict
    (Windows)
    Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
@@ -122,14 +118,14 @@
   (sensible-defaults/use-all-settings)
   (sensible-defaults/use-all-keybindings)
   #+end_src
-** Ressources
+** Resources
   Add =resources= to the path
   #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/resources/")
   #+end_src
 * Interface
-** Scrollbar
-   Disable the scrollbar in the entire window and minibuffers.
+** Scroll bar
+   Disable the scroll bar in the entire window and mini buffers.
    #+begin_src emacs-lisp
    ;; Menu bar
    (tool-bar-mode 0)
@@ -161,14 +157,14 @@
     (add-hook 'prog-mode-hook 'add-pretty-lambda)
     (add-hook 'org-mode-hook 'add-pretty-lambda)
     #+end_src
-*** Modline
-	Doom modline.
+*** Mod line
+	Doom mod line.
 		#+begin_src emacs-lisp
 		(use-package doom-modeline
 		:ensure t
 		:init (doom-modeline-mode 1))
     #+end_src
-		Config and settings for modline, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
+		Config and settings for mod line, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
 		#+begin_src emacs-lisp
 		(setq doom-modeline-icon (display-graphic-p))
 		(setq doom-modeline-major-mode-icon t)
@@ -448,7 +444,7 @@
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
 ** Completion
-   Use package =company= as a dependancy of lsp-mode.
+   Use package =company= as a dependency of lsp-mode.
    #+begin_src emacs-lisp
    (use-package company)
    (add-hook 'after-init-hook 'global-company-mode)
@@ -461,7 +457,7 @@
    :init
    (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
    #+end_src
-	 Flycheck mode.
+	 Fly check mode.
 	 #+begin_src emacs-lisp
 	 (use-package flycheck)
 	 (global-flycheck-mode)
@@ -505,7 +501,7 @@
    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
    #+end_src
 ** Ido
-	 Globaly enable IDO mode
+	 Global enable IDO mode
 	 #+begin_src emacs-lisp
 	 (setq ido-enable-flex-matching t)
 	 (setq ido-everywhere t)
@@ -533,7 +529,7 @@
 	 #+end_src
 ** Spell check
    Enable spellcheck for both English and German in all =org-mode= and
-   =text-mode= buffers. school
+   =text-mode= buffers.
    #+begin_src emacs-lisp
    (setq ispell-program-name "hunspell")
    (setq ispell-hunspell-dict-paths-alist
@@ -546,7 +542,9 @@
    ;; the following line won't make flyspell-mode enabled by default as you might think
    (flyspell-mode 1)
    (global-set-key (kbd "C-.") 'ispell-word)
-#+end_src
+   (add-hook 'text-mode-hook 'flyspell-mode)
+   (add-hook 'org-mode-hook 'flyspell-mode)
+   #+end_src
 ** Undo tree
 	 Visual undo tree
 	 #+begin_src emacs-lisp
@@ -560,7 +558,7 @@
 	#+end_src
 * Programming
 ** Elixir
-   Elixir major mode with synatx highlighting etc.
+   Elixir major mode with syntax highlighting etc.
    #+begin_src emacs-lisp
    (unless (package-installed-p 'elixir-mode)
    (package-install 'elixir-mode))
@@ -569,7 +567,7 @@
   Use
   \[M-x elixir-format\]
   to format the document following mix styleguide.
-** Webmode
+** Web mode
    Web mode and enable rainbow mode for hex colors.
    #+begin_src emacs-lisp
    (use-package web-mode)
@@ -616,7 +614,7 @@
    #+end_src
 * Org-mode
 ** Bullets
-   Use org-bulltes whenever possible.
+   Use org-bullets whenever possible.
    #+begin_src emacs-lisp
    (use-package org-bullets
    :init
@@ -628,8 +626,8 @@
    #+begin_src emacs-lisp
    (setq org-ellipsis "☭")
    #+end_src
-** Codeblock
-	 Higlight the entire code block when editing.
+** Code block
+	 Highlight the entire code block when editing.
 	 #+begin_src emacs-lisp
 	 (setq org-src-fontify-natively t)
 	 #+end_src
@@ -736,10 +734,10 @@
 	 Deft for taking quick notes and storing them in plain text.
 	 #+begin_src emacs-lisp
 	 (use-package deft)
-   (setq deft-default-extension "org")
-   (setq deft-extensions '("org"))
+     (setq deft-default-extension "org")
+     (setq deft-extensions '("org"))
 	 (setq deft-directory "~/private/documents/notes")
-   (setq deft-recursive t)
+     (setq deft-recursive t)
 	 (setq deft-text-mode 'org-mode)
 	 (setq deft-use-filename-as-title t)
 
@@ -768,7 +766,7 @@
 	 #+end_src
 ** Rodian
 	 #+begin_src emacs-lisp
-   (add-to-list 'load-path "~/.emacs.d/rodian/")
+     (add-to-list 'load-path "~/.emacs.d/rodian/")
 	 (require 'rodian)
 	 #+end_src
 * Entertainment
