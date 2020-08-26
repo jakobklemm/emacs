@@ -15,8 +15,8 @@
  :help-echo "Click me for a message.")
 
 (defun md5-find (filename)
-	"creating one if none already exists."
-	(interactive "FFind file: ")
-	(message (find-file-noselect filename)))
+  "md5 stuff"
+  (interactive "FFind file: ")
+  (shell-command (concat "echo " (buffer-name (find-file filename)))))
 
 (provide 'rodian)
