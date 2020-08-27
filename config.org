@@ -771,7 +771,9 @@
 	 #+end_src
 * Entertainment
 ** Games
-	 Malyon: Text adventure interface, games located under =/games=
-	 #+begin_src emacs-lisp
-	 (use-package malyon)
-	 #+end_src
+   [[red:][kfajh]]
+   [[red:kkk][some]]
+   Malyon: Text adventure interface, games located under =/games=
+   #+begin_src emacs-lisp
+   (use-package malyon)
+   #+end_src
