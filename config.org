@@ -117,6 +117,8 @@
   (load-file "~/.emacs.d/sensible-defaults.el/sensible-defaults.el")
   (sensible-defaults/use-all-settings)
   (sensible-defaults/use-all-keybindings)
+  ;; Disable all backups.
+  (setq make-backup-files nil)
   #+end_src
 ** Resources
   Add =resources= to the path
@@ -530,7 +532,7 @@
 ** Spell check
    Enable spellcheck for both English and German in all =org-mode= and
    =text-mode= buffers.
-   #+begin_src emacs-lisp
+temp   #+begin_src emacs-lisp
    (setq ispell-program-name "hunspell")
    (setq ispell-hunspell-dict-paths-alist
    '(("en_US" "~/.emacs.d/dict/en_US.aff")))
@@ -539,6 +541,22 @@
    ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
    ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
    '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+   ;; the following line won't make flyspell-mode enabled by default as you might think
+   (flyspell-mode 1)
+   (global-set-key (kbd "C-.") 'ispell-word)
+   (add-hook 'text-mode-hook 'flyspell-mode)
+   (add-hook 'org-mode-hook 'flyspell-mode)
+   #+end_src
+   German
+   #+begin_src emacs-lisp
+   (setq ispell-program-name "hunspell")
+   (setq ispell-hunspell-dict-paths-alist
+   '(("de_DE" "~/.emacs.d/dict/de_DE.aff")))
+   (setq ispell-local-dictionary "de_DE")
+   (setq ispell-local-dictionary-alist
+   ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
+   ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
+   '(("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE") nil utf-8)))
    ;; the following line won't make flyspell-mode enabled by default as you might think
    (flyspell-mode 1)
    (global-set-key (kbd "C-.") 'ispell-word)
@@ -771,8 +789,6 @@
 	 #+end_src
 * Entertainment
 ** Games
-   [[red:][kfajh]]
-   [[red:kkk][some]]
    Malyon: Text adventure interface, games located under =/games=
    #+begin_src emacs-lisp
    (use-package malyon)
