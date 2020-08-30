@@ -1,7 +1,8 @@
-#+TITLE: Emacs Config - Jakob Klemm
+#+TITLE: A clean emacs config is an empty config file.
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
+Emacs Config - Jakob Klemm
 * Installation
 ** Fonts
 	1. Download fonts with =M-x all-the-icons-install-fonts=
@@ -44,7 +45,10 @@
 	 | C-c g                 | gcal-post                      |
 	 | C-c f                 | gcal-fetch                     |
 	 | C-c x                 | todo-done                      |
-	 | C-c s                 | google-this                    |
+	 | C-c q                 | org-tags                       |
+	 | C-c v                 | org-agenda-add-file            |
+	 | C-c d                 | google-this                    |
+	 | C-c s                 | org-schedule                   |
 	 | C-c n                 | deft-mode                      |
 	 | C-<RETURN>            | (deft only) new note with name |
 	 | C-c C-x C-s           | mark as done and archive       |
@@ -438,7 +442,7 @@
 		#+begin_src emacs-lisp
 		(use-package google-this)
 		(google-this-mode 1)
-		(global-set-key (kbd "C-c s") 'google-this)
+		(global-set-key (kbd "C-c d") 'google-this)
 		#+end_src
 *** Terminal
 		Bind =C-x t= to =eshell=.
@@ -661,7 +665,7 @@ temp   #+begin_src emacs-lisp
 		(concat (file-name-as-directory org-directory) filename))
 
 		(setq org-archive-location
-    (concat (org-file-path "archive.org") "::* From %s"))
+        (concat (org-file-path "archive.org") "::* From %s"))
 		#+end_src
 *** Archive
 	 Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
@@ -676,10 +680,10 @@ temp   #+begin_src emacs-lisp
    (define-key org-mode-map (kbd "C-c C-x C-s") 'hrs/mark-done-and-archive)
    #+end_src
 *** Time
-	 Record the time that a todo was archived.
-   #+begin_src emacs-lisp
-   (setq org-log-done 'time)
-   #+end_src
+	Record the time that a todo was archived.
+    #+begin_src emacs-lisp
+    (setq org-log-done 'time)
+    #+end_src
 *** Check
 	 Ensure that a task can't be marked as done if it contains unfinished subtasks
 	 or checklist items. This is handy for organizing "blocking" tasks
@@ -688,12 +692,12 @@ temp   #+begin_src emacs-lisp
    (setq org-enforce-todo-dependencies t)
    (setq org-enforce-todo-checkbox-dependencies t)
    #+end_src
-*** Stats
+*** Options
 	 Add new states to the todo cycle to extend the basic TODO and DONE states that
 	 org mode normally provides.
    #+begin_src emacs-lisp
 	 (setq org-todo-keywords
-   '((sequence "TODO" "SEARCH" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
+   '((sequence "TODO" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
    #+end_src
 ** Export
 	 Allow export to markdown and beamer (for presentations).
@@ -763,6 +767,7 @@ temp   #+begin_src emacs-lisp
 	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
 	 #+end_src
 ** Agenda
+*** Gcal
 	 Adding gcal for google calendar sync.
 	 #+begin_src emacs-lisp
 	 (use-package org-gcal)
@@ -771,22 +776,31 @@ temp   #+begin_src emacs-lisp
 	 (load-file "~/.emacs.d/secret.el")
 	 (secret/init)
 
-   (defun todo/done ()
-   (interactive)
-   (org-todo 'done))
+     #+end_src
+*** Calendar
+    #+begin_src emacs-lisp
+     (defun todo/done ()
+     (interactive)
+     (org-todo 'done))
 
 	 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 	 (define-key org-mode-map (kbd "C-c d") 'org-deadline)
 	 (define-key org-mode-map (kbd "C-c t") 'org-todo)
+     (define-key org-mode-map (kbd "C-c s") 'org-schedule)
 	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
 	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
-** Rodian
-	 #+begin_src emacs-lisp
-     (add-to-list 'load-path "~/.emacs.d/rodian/")
-	 (require 'rodian)
-	 #+end_src
+*** Path
+    Use the entire home directory for agenda files.
+    #+begin_src emacs-lisp
+    (setq org-agenda-files '("~/private/documents/main.org"
+    "~/private/documents/personal/personal.org"))
+    #+end_src
+    Add file to the list of included agenda files, bound =C-c v=
+    #+begin_src emacs-lisp
+	(define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
+    #+end_src
 * Entertainment
 ** Games
    Malyon: Text adventure interface, games located under =/games=
