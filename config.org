@@ -165,13 +165,19 @@ Emacs Config - Jakob Klemm
     (add-hook 'prog-mode-hook 'add-pretty-lambda)
     (add-hook 'org-mode-hook 'add-pretty-lambda)
     #+end_src
+*** Bullets
+    Use org-bullets globally.
+    #+begin_src emacs-lisp
+    (use-package org-bullets)
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    #+end_src
 *** Mod line
 	Doom mod line.
 		#+begin_src emacs-lisp
 		(use-package doom-modeline
 		:ensure t
 		:init (doom-modeline-mode 1))
-    #+end_src
+        #+end_src
 		Config and settings for mod line, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
 		#+begin_src emacs-lisp
 		(setq doom-modeline-icon (display-graphic-p))
@@ -234,21 +240,23 @@ Emacs Config - Jakob Klemm
 	 - Elixify - AstonJ (elixirforum)
 	 - Doom-nord
 	 - Doom-material
+     - Doom-spacegrey
    #+begin_src emacs-lisp
    (use-package doom-themes)
-	 ;; (load-theme `doom-nord t)
-	 (load-theme `doom-material t)
+   ;; (load-theme `doom-nord t)
+   ;; (load-theme `doom-material t)
+   (load-theme `doom-spacegrey t)
    #+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
-   "Every time I see this package I think to myself "People exit Emacs?""
 *** Dependancies
    Page-break-lines
    #+begin_src emacs-lisp
-	 (use-package page-break-lines)
+   (use-package page-break-lines)
    (turn-on-page-break-lines-mode)
    #+end_src
-   Icons
+   Install icons.
+   (Not only used by =dashboard= but its the main dependancy.
    #+begin_src emacs-lisp
    (use-package all-the-icons)
    #+end_src
@@ -589,7 +597,7 @@ temp   #+begin_src emacs-lisp
   #+end_src
   Commands:\\
   Use
-  \[M-x elixir-format\]
+  -  M-x elixir-format
   to format the document following mix styleguide.
 ** Web mode
    Web mode and enable rainbow mode for hex colors.
@@ -636,162 +644,6 @@ temp   #+begin_src emacs-lisp
    (custom-set-faces
    '(markdown-code-face ((t nil)))))
    #+end_src
-* Org-mode
-** Bullets
-   Use org-bullets whenever possible.
-   #+begin_src emacs-lisp
-   (use-package org-bullets
-   :init
-   (add-hook 'org-mode-hook 'org-bullets-mode))
-   #+end_src
-** Folded
-   Instead of "..." show a downward pointing arrow at the end of title.
-	 TODO Change symbol or something.
-   #+begin_src emacs-lisp
-   (setq org-ellipsis "☭")
-   #+end_src
-** Code block
-	 Highlight the entire code block when editing.
-	 #+begin_src emacs-lisp
-	 (setq org-src-fontify-natively t)
-	 #+end_src
-** Todos
-	 (copied from hrs/config)
-*** Location
-		Org document storage location for archive and other documents.
-		#+begin_src emacs-lisp
-		(setq org-directory "~/private/documents")
-
-		(defun org-file-path (filename)
-		"Return the absolute address of an org file, given its relative name."
-		(concat (file-name-as-directory org-directory) filename))
-
-		(setq org-archive-location
-        (concat (org-file-path "archive.org") "::* From %s"))
-		#+end_src
-*** Archive
-	 Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
-	 place in the archive.
-   #+begin_src emacs-lisp
-   (defun hrs/mark-done-and-archive ()
-   "Mark the state of an org-mode item as DONE and archive it."
-   (interactive)
-   (org-todo 'done)
-   (org-archive-subtree))
-   ;; Shortcut to archive
-   (define-key org-mode-map (kbd "C-c C-x C-s") 'hrs/mark-done-and-archive)
-   #+end_src
-*** Time
-	Record the time that a todo was archived.
-    #+begin_src emacs-lisp
-    (setq org-log-done 'time)
-    #+end_src
-*** Check
-	 Ensure that a task can't be marked as done if it contains unfinished subtasks
-	 or checklist items. This is handy for organizing "blocking" tasks
-	 hierarchically.
-   #+begin_src emacs-lisp
-   (setq org-enforce-todo-dependencies t)
-   (setq org-enforce-todo-checkbox-dependencies t)
-   #+end_src
-*** Options
-	 Add new states to the todo cycle to extend the basic TODO and DONE states that
-	 org mode normally provides.
-   #+begin_src emacs-lisp
-	 (setq org-todo-keywords
-   '((sequence "TODO" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
-   #+end_src
-** Tags
-   Set default tags and bind to =C-c q=.
-   Remove tag by
-   - Selecting tag in dropdown
-   - Pressing =C-m=
-   #+begin_src emacs-lisp
-   (use-package counsel)
-   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
-   (global-set-key [remap org-set-tags-command] #'counsel-org-tag)
-   (setq org-tag-alist '(("work" . ?w) ("home" . ?h) ("laptop" . ?l)))
-   #+end_src
-** Export
-	 Allow export to markdown and beamer (for presentations).
-   #+begin_src emacs-lisp
-   ;; (use-package ox-md)
-   ;; (use-package ox-beamer)
-	 ;; Add odt
-	 (eval-after-load "org" '(require 'ox-odt nil t))
-   #+end_src
-*** Code
-		Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
-    #+begin_src emacs-lisp
-		(use-package ob-go)
-		(use-package ob-elixir)
-
-		(use-package gnuplot)
-		(org-babel-do-load-languages
-		'org-babel-load-languages
-		'((emacs-lisp . t)
-		(ruby . t)
-		(dot . t)
-		(gnuplot . t)
-		(python . t)
-		(go . t)
-		(sql . t)
-		(elixir . t)
-		))
-    #+end_src
-		Don't ask before evaluating code blocks.
-    #+BEGIN_src emacs-lisp
-		(setq org-confirm-babel-evaluate nil)
-    #+end_src
-*** HTML
-		Disable footer.
-    #+begin_src emacs-lisp
-		(setq org-html-postamble nil)
-    #+end_src
-** Tex
-*** Parse
-		Parse file after loading it.
-    #+begin_src emacs-lisp
-		(setq TeX-parse-self t)
-    #+end_src
-*** PDF-Latex
-    #+begin_src emacs-lisp
-		(setq TeX-PDF-mode t)
-    #+end_src
-*** Math mode
-    #+begin_src emacs-lisp
-		(add-hook 'LaTeX-mode-hook
-		(lambda ()
-		(LaTeX-math-mode)
-		(setq TeX-master t)))
-    #+end_src
-** Notes
-	 Deft for taking quick notes and storing them in plain text.
-	 #+begin_src emacs-lisp
-	 (use-package deft)
-     (setq deft-default-extension "org")
-     (setq deft-extensions '("org"))
-	 (setq deft-directory "~/private/documents/notes")
-     (setq deft-recursive t)
-	 (setq deft-text-mode 'org-mode)
-	 (setq deft-use-filename-as-title t)
-
-	 (define-key org-mode-map (kbd "C-c n") 'deft)
-	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
-	 #+end_src
-** Agenda
-*** Gcal
-	 Adding gcal for google calendar sync.
-	 #+begin_src emacs-lisp
-	 (use-package org-gcal)
-	 ;; GCAL
-
-	 (load-file "~/.emacs.d/secret.el")
-	 (secret/init)
-
-	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
-	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
-     #+end_src
 *** Calendar
     #+begin_src emacs-lisp
      (defun todo/done ()
