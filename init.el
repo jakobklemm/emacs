@@ -32,7 +32,7 @@
     ("~/.emacs.d/config.org" "~/private/documents/main.org")))
  '(package-selected-packages
    (quote
-    (counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile)))
+    (calfw-gcal calfw-cal calfw-org counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile)))
  '(pdf-view-midnight-colors (cons "#FAFFF6" "#172030"))
  '(rustic-ansi-faces
    ["#172030" "#c6797e" "#A3B09A" "#F7E3AF" "#6e94b9" "#b18bb1" "#88C0D0" "#FAFFF6"])

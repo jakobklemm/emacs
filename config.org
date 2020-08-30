@@ -40,9 +40,11 @@ Emacs Config - Jakob Klemm
 	 | C-x t                 | terminal-emulator              |
 	 | C-x u                 | undo (& redo)                  |
 	 | C-c t                 | org-todo                       |
-	 | C-c a                 | org-agenda                     |
+	 | C-c a                 | cfw:org-agenda                 |
+	 | C-c b                 | org-agenda                     |
 	 | C-c d                 | org-deadline                   |
 	 | C-c g                 | gcal-post                      |
+	 | C-c k                 | org-todo-list                  |
 	 | C-c f                 | gcal-fetch                     |
 	 | C-c x                 | todo-done                      |
 	 | C-c q                 | org-tags                       |
@@ -699,6 +701,17 @@ temp   #+begin_src emacs-lisp
 	 (setq org-todo-keywords
    '((sequence "TODO" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
    #+end_src
+** Tags
+   Set default tags and bind to =C-c q=.
+   Remove tag by
+   - Selecting tag in dropdown
+   - Pressing =C-m=
+   #+begin_src emacs-lisp
+   (use-package counsel)
+   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
+   (global-set-key [remap org-set-tags-command] #'counsel-org-tag)
+   (setq org-tag-alist '(("work" . ?w) ("home" . ?h) ("laptop" . ?l)))
+   #+end_src
 ** Export
 	 Allow export to markdown and beamer (for presentations).
    #+begin_src emacs-lisp
@@ -776,6 +789,8 @@ temp   #+begin_src emacs-lisp
 	 (load-file "~/.emacs.d/secret.el")
 	 (secret/init)
 
+	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
+	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
      #+end_src
 *** Calendar
     #+begin_src emacs-lisp
@@ -783,12 +798,12 @@ temp   #+begin_src emacs-lisp
      (interactive)
      (org-todo 'done))
 
-	 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
-	 (define-key org-mode-map (kbd "C-c d") 'org-deadline)
+	 (define-key org-mode-map (kbd "C-c a") 'cfw:open-org-calendar)
+     (define-key org-mode-map (kbd "C-c b") 'org-agenda)
+	 (define-key org-mode-map (kbd "C-c k") 'org-todo-list)
+     (define-key org-mode-map (kbd "C-c d") 'org-deadline)
 	 (define-key org-mode-map (kbd "C-c t") 'org-todo)
      (define-key org-mode-map (kbd "C-c s") 'org-schedule)
-	 (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
-	 (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
 	 (define-key org-mode-map (kbd "C-c x") 'todo/done)
 	 #+end_src
 *** Path
@@ -800,6 +815,25 @@ temp   #+begin_src emacs-lisp
     Add file to the list of included agenda files, bound =C-c v=
     #+begin_src emacs-lisp
 	(define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
+    #+end_src
+*** Config
+    Configure org-agenda
+    #+begin_src emacs-lisp
+    (defun fw/agenda-icon-material (name)
+    "Returns an all-the-icons-material icon"
+    (list (all-the-icons-material name)))
+
+    (setq org-agenda-category-icon-alist
+    `(("work" ,(fw/agenda-icon-material "cake") nil nil :ascent center)
+    ("home" ,(fw/agenda-icon-material "favorite") nil nil :ascent center)))
+
+  #+end_src
+*** View
+    Enable cfw
+    #+begin_src emacs-lisp
+    (use-package calfw)
+    (use-package calfw-org)
+    (setq cfw:org-overwrite-default-keybinding t)
     #+end_src
 * Entertainment
 ** Games
