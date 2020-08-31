@@ -10,5 +10,6 @@ Inspiration and partial credits:
 - github.com/hrs
 - github.com/domse007
 - github.com/matthewzmd
+- github.com/zaeph/.emacs.d
 Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not techsupport. Most issues should be easy to fix.)

@@ -163,12 +163,6 @@ Emacs Config - Jakob Klemm
     (add-hook 'prog-mode-hook 'add-pretty-lambda)
     (add-hook 'org-mode-hook 'add-pretty-lambda)
     #+end_src
-*** Bullets
-    Use org-bullets globally.
-    #+begin_src emacs-lisp
-    (use-package org-bullets)
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-    #+end_src
 *** Mod line
 	Doom mod line.
 		#+begin_src emacs-lisp
@@ -654,13 +648,18 @@ temp   #+begin_src emacs-lisp
    Instead of "..." show a downward pointing arrow at the end of title.
 	 TODO Change symbol or something.
    #+begin_src emacs-lisp
-   (setq org-ellipsis "☭")
+   (setq org-ellipsis "➘")
+   #+end_src
+** Indent mode
+   Globally enable =org-indent-mode=
+   #+begin_src emacs-lisp
+   (add-hook 'org-mode-hook 'org-indent-mode)
    #+end_src
 ** Code block
-	 Highlight the entire code block when editing.
-	 #+begin_src emacs-lisp
-	 (setq org-src-fontify-natively t)
-	 #+end_src
+   Highlight the entire code block when editing.
+   #+begin_src emacs-lisp
+   (setq org-src-fontify-natively t)
+    #+end_src
 ** Todos
 	 (copied from hrs/config)
 *** Location
@@ -775,6 +774,112 @@ temp   #+begin_src emacs-lisp
 	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
 	 #+end_src
 ** Agenda
+*** Super
+=org-super-agenda=
+#+begin_src emacs-lisp
+  (use-package org-super-agenda
+    ;; :load-path "~/projects/org-super-agenda/"
+    :after org-agenda
+    :config
+    (org-super-agenda-mode)
+
+    (setq org-super-agenda-header-separator "")
+
+    (defun zp/org-super-agenda-update-face ()
+      (let ((ul-color (internal-get-lisp-face-attribute
+                       'font-lock-comment-face :foreground)))
+        (set-face-attribute 'org-super-agenda-header nil
+                            :slant 'italic
+                            :underline `(:color ,ul-color))))
+
+    (defun zp/org-super-agenda-item-in-agenda-groups-p (item groups)
+      "Check if ITEM is in agenda GROUPS."
+      (let ((marker (or (get-text-property 0 'org-marker item)
+                        (get-text-property 0 'org-hd-marker item))))
+        (org-with-point-at marker
+          (apply #'zp/org-task-in-agenda-groups-p groups))))
+
+    (defun zp/org-super-agenda-groups (header groups)
+      "Create org-super-agenda section for GROUPS with HEADER."
+      `(:name ,header
+        :pred (lambda (item)
+                (zp/org-super-agenda-item-in-agenda-groups-p item ',groups))))
+
+    (defun zp/org-super-agenda-groups-all ()
+      `(,(zp/org-super-agenda-groups "Inbox" '("inbox"))
+        ,(zp/org-super-agenda-groups "Life" '("life"))
+        ,(zp/org-super-agenda-groups "Maintenance" '("mx"))
+        ,(zp/org-super-agenda-groups "Professional" '("pro"))
+        ,(zp/org-super-agenda-groups "Research" '("research"))
+        ,(zp/org-super-agenda-groups "Activism" '("act"))
+        ,(zp/org-super-agenda-groups "Hacking" '("hack"))
+        ,(zp/org-super-agenda-groups "Curiosities" '("curios"))
+        ,(zp/org-super-agenda-groups "Media" '("media"))))
+
+    (defun zp/org-super-agenda-subtask-p (item)
+      (let ((marker (or (get-text-property 0 'org-marker item)
+                        (get-text-property 0 'org-hd-marker item))))
+        (org-with-point-at marker
+          (zp/is-subtask-p))))
+
+    (defun zp/org-super-agenda-scheduled ()
+      '((:name "Overdue"
+         :face (:foreground "red")
+         :scheduled past)
+        (:name "Waiting"
+         :and (:tag "waiting"
+               :scheduled nil)
+         :and (:tag "waiting"
+               :scheduled today))
+        (:name "Scheduled"
+         :scheduled today)
+        (:name "Subtasks"
+         :and (:scheduled nil
+               :pred (lambda (item)
+                       (when zp/org-agenda-split-subtasks
+                         (zp/org-super-agenda-subtask-p item)))))
+        (:name "Current"
+         :and (:not (:scheduled t)
+               :not (:tag "waiting")))
+        (:name "Later"
+         :anything)))
+
+    (defun zp/org-super-agenda-group-heads (item)
+      (let ((marker (or (get-text-property 0 'org-marker item)
+                        (get-text-property 0 'org-hd-marker item))))
+        (org-entry-get marker "AGENDA_GROUP" nil)))
+
+    (defun zp/org-super-agenda-stuck-project-p (item)
+      (let ((marker (or (get-text-property 0 'org-marker item)
+                        (get-text-property 0 'org-hd-marker item))))
+        (org-with-point-at marker
+          (zp/is-stuck-project-p))))
+
+    (defun zp/org-super-agenda-finished-project-p (item)
+      (let ((marker (or (get-text-property 0 'org-marker item)
+                        (get-text-property 0 'org-hd-marker item))))
+        (org-with-point-at marker
+          (when (zp/is-confused-project-p)
+            (zp/org-resolve-confused-project))
+          (zp/is-finished-project-p))))
+
+    (defun zp/org-super-agenda-projects ()
+      '((:name "Group heads"
+         :pred (lambda (item)
+                 (zp/org-super-agenda-group-heads item)))
+        (:name "Finished"
+         :face (:foreground "purple")
+         :pred (lambda (item)
+                 (zp/org-super-agenda-finished-project-p item)))
+        (:name "Stuck"
+         :face (:foreground "red")
+         :pred (lambda (item)
+                 (zp/org-super-agenda-stuck-project-p item)))
+        (:name "Waiting"
+         :tag "waiting")
+        (:name "Current"
+         :anything))))
+#+end_src
 *** Gcal
 	 Adding gcal for google calendar sync.
 	 #+begin_src emacs-lisp
