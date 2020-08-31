@@ -1,4 +1,4 @@
-#+TITLE: A clean emacs config is an empty config file.
+#+TITLE: Emacs - Jakob Klemm
 #+AUTHOR: Jakob Klemm
 
 Current emacs config written by Jakob Klemm.
