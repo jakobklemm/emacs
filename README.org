@@ -34,6 +34,7 @@ All used keybinds
 	 | C-p                   | move-up                        |
 	 | C-a                   | line-begin                     |
 	 | C-e                   | line-end                       |
+	 | S-<ARROW>             | change windows                 |
 	 | <TAB>                 | org-table, org-navigation      |
 	 | C-<TAB>               | yas-expand                     |
 	 | C-x g                 | magit-status                   |
