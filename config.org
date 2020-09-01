@@ -23,6 +23,7 @@ Emacs Config - Jakob Klemm
 	 | C-a                   | line-begin                     |
 	 | C-e                   | line-end                       |
 	 | <TAB>                 | org-table, org-navigation      |
+	 | <TAB>                 | yas-expand                     |
 	 | C-<TAB>               | yas-expand                     |
 	 | C-x g                 | magit-status                   |
 	 | C-x p                 | magit-init                     |
@@ -227,18 +228,24 @@ Emacs Config - Jakob Klemm
 		#+begin_src emacs-lisp
 		(global-set-key (kbd "C-x j") 'kill-buffer-and-window)
 		#+end_src
+*** Cursor
+Set the cursor color to the same as beacon.
+#+begin_src emacs-lisp
+(set-cursor-color "#c678dd")
+#+end_src
 ** Theme
-	 Used themes:
-	 - Elixify - AstonJ (elixirforum)
-	 - Doom-nord
-	 - Doom-material
-     - Doom-spacegrey
-   #+begin_src emacs-lisp
-   (use-package doom-themes)
-   ;; (load-theme `doom-nord t)
-   ;; (load-theme `doom-material t)
-   (load-theme `doom-spacegrey t)
-   #+end_src
+Used themes:
+- Elixify - AstonJ (elixirforum)
+- Doom-nord
+- Doom-material
+- Doom-spacegrey
+#+begin_src emacs-lisp
+(use-package doom-themes)
+;; (load-theme `doom-nord t)
+;; (load-theme `doom-material t)
+;; (load-theme `doom-spacegrey t)
+(load-theme `doom-acario-dark)
+#+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
 *** Dependancies
@@ -487,20 +494,16 @@ Emacs Config - Jakob Klemm
 	 (global-set-key "\C-s" 'swiper)
 	 #+end_src
 ** Snippets
-	 Use yasnippets and the snippets from github.com/hrs/dotfiles
-	 #+begin_src emacs-lisp
-	 (use-package yasnippet)
-
-	 (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
-	 (yas-global-mode 1)
-
-	 (setq yas-indent-line 'auto)
-
-	 ;; Keys
-	 (define-key yas-minor-mode-map (kbd "<tab>") nil)
-	 (define-key yas-minor-mode-map (kbd "TAB") nil)
-	 (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
-    #+end_src
+Use yasnippets and the snippets from github.com/hrs/dotfiles
+#+begin_src emacs-lisp
+(use-package yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
+(yas-global-mode 1)
+(setq yas-indent-line 'auto)
+(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
+#+end_src
 ** Management
    Projectile for project management.
    #+begin_src emacs-lisp
@@ -538,7 +541,7 @@ Emacs Config - Jakob Klemm
 ** Spell check
    Enable spellcheck for both English and German in all =org-mode= and
    =text-mode= buffers.
-temp   #+begin_src emacs-lisp
+dis   #+begin_src emacs-lisp
    (setq ispell-program-name "hunspell")
    (setq ispell-hunspell-dict-paths-alist
    '(("en_US" "~/.emacs.d/dict/en_US.aff")))
