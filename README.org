@@ -17,11 +17,6 @@ Free to use for any reason, no guarantee that it will work.
 ** Fonts
 1. Download fonts with =M-x all-the-icons-install-fonts=
 2. Install the fonts
-** Gcal
-Setup or delete gcal, under Org/Agenda.
-Gcal need google oauth credentials, instructions can be found under [[https:github.com/myuhe/org-gcal.el][org-gcal]]
-Create a file called =secret.el= and insert the =org-cal= example config in
-there. Set all the three variables in there.
 ** Binds
 All used keybinds
 	 | Key                   | Executes                       |
@@ -53,7 +48,8 @@ All used keybinds
 	 | C-x t                 | terminal-emulator              |
 	 | C-x u                 | undo (& redo)                  |
 	 | C-c t                 | org-todo                       |
-	 | C-c a                 | org-agenda                     |
+	 | C-c a                 | cfw-agenda-view                |
+	 | C-c C-a               | org-agenda                     |
 	 | C-c d                 | org-deadline                   |
 	 | C-c g                 | gcal-post                      |
 	 | C-c f                 | gcal-fetch                     |
@@ -65,7 +61,6 @@ All used keybinds
 	 | C-c n                 | deft-mode                      |
 	 | C-<RETURN>            | (deft only) new note with name |
 	 | C-c C-x C-s           | mark as done and archive       |
-	 | C-c C-a               | org-attach                     |
 	 | C-c C-j               | org-goto                       |
 	 | C-c C-l               | org-insert-link                |
 	 | C-c C-o               | org-open-at-point              |

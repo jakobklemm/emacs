@@ -264,17 +264,17 @@ Directly switch to new window after opening.
 ** Resize
 Easy zoom in & out.
 #+begin_src emacs-lisp
-(defun zoom-in ()
-  (interactive)
-  (let ((x (+ (face-attribute 'default :height)
-  10)))
-  (set-face-attribute 'default nil :height x)))
+  (defun zoom-in ()
+    (interactive)
+    (let ((x (+ (face-attribute 'default :height)
+                10)))
+      (set-face-attribute 'default nil :height x)))
 
   (defun zoom-out ()
-  (interactive)
-  (let ((x (- (face-attribute 'default :height)
-  10)))
-  (set-face-attribute 'default nil :height x)))
+    (interactive)
+    (let ((x (- (face-attribute 'default :height)
+                10)))
+      (set-face-attribute 'default nil :height x)))
 
   (define-key global-map (kbd "C-1") 'zoom-in)
   (define-key global-map (kbd "C-0") 'zoom-out)
@@ -613,7 +613,8 @@ Org-mode toc
    (setq org-src-fontify-natively t)
     #+end_src
 ** Todos
-	 (copied from hrs/config)
+Differentiate between org-agenda for calendar events and org-todos for general
+todos.
 *** Location
 		Org document storage location for archive and other documents.
 		#+begin_src emacs-lisp
@@ -829,23 +830,24 @@ Allow export to markdown and beamer (for presentations).
         (:name "Current"
          :anything))))
 #+end_src
-*** Gcal
-	 Adding gcal for google calendar sync.
-	 #+begin_src emacs-lisp
-	 (use-package org-gcal)
-	 ;; GCAL
+*** View
+Use [[https:github.com/kiwanami/emacs-calfw][cfw]] for a better calendar view.
+#+begin_src emacs-lisp
+  (use-package calfw)
+  (use-package calfw-org)
+  (use-package calfw-ical)
 
-	 (load-file "~/.emacs.d/secret.el")
-	 (secret/init)
-
-     #+end_src
+  ;; Function defined in secret.el following specs from https://github.com/kiwanami/emacs-calfw
+  (add-to-list 'load-path "~/.emacs.d/secret.el")
+  (define-key org-mode-map (kbd "C-c a") '(lambda () (interactive) (secret/calendar)))
+#+end_src
 *** Calendar
     #+begin_src emacs-lisp
      (defun todo/done ()
      (interactive)
      (org-todo 'done))
 
-	 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+	 (define-key org-mode-map (kbd "C-c C-a") 'org-agenda)
 	 (define-key org-mode-map (kbd "C-c d") 'org-deadline)
 	 (define-key org-mode-map (kbd "C-c t") 'org-todo)
      (define-key org-mode-map (kbd "C-c s") 'org-schedule)
@@ -863,6 +865,20 @@ Allow export to markdown and beamer (for presentations).
     #+begin_src emacs-lisp
 	(define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
     #+end_src
+** Tags
+Default tags with keys.
+#+begin_src emacs-lisp
+  (setq org-tag-alist '((:startgroup . nil)
+                        ("@work" . ?w)
+                        ("@home" . ?h)
+                        ("@tennisclub" . ?t)
+                        (:endgroup . nil)
+                        ("laptop" . ?l)
+                        ("pc" . ?p)))
+  (use-package counsel)
+  (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
+  (global-set-key [remap org-set-tags-command] #'counsel-org-tag)
+#+end_src
 * Entertainment
 ** Games
    Malyon: Text adventure interface, games located under =/games=

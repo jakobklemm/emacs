@@ -27,7 +27,9 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#070A0E" "#64727d"))
  '(lsp-ui-doc-position (quote bottom))
  '(objed-cursor-color "#c6797e")
- '(org-agenda-files (quote ("~/.emacs.d/config.org")))
+ '(org-agenda-files
+   (quote
+    ("~/private/documents/main.org" "~/.emacs.d/config.org")))
  '(package-selected-packages
    (quote
     (counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile)))
