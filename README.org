@@ -4,12 +4,92 @@
 Current emacs config written by Jakob Klemm.
 
 Config is located in =config.org= and loaded in evaluated by =init.el=.
-=config.org= contains basic install instructions.
 
 Inspiration and partial credits:
-- github.com/hrs
-- github.com/domse007
-- github.com/matthewzmd
-- github.com/zaeph/.emacs.d
+- [[https:github.com/hrs][hrs]]
+- [[https:github.com/matthewzmd][matthewzmd]]
+- [[https:github.com/zaeph/.emacs.d][zaeph]]
+- [[https:github.com/munen/emacs.d/][munen]]
 Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not techsupport. Most issues should be easy to fix.)
+
+* Installation
+** Fonts
+1. Download fonts with =M-x all-the-icons-install-fonts=
+2. Install the fonts
+** Gcal
+Setup or delete gcal, under Org/Agenda.
+Gcal need google oauth credentials, instructions can be found under [[https:github.com/myuhe/org-gcal.el][org-gcal]]
+Create a file called =secret.el= and insert the =org-cal= example config in
+there. Set all the three variables in there.
+** Binds
+All used keybinds
+	 | Key                   | Executes                       |
+	 |-----------------------+--------------------------------|
+	 | C-1                   | zoom-in                        |
+	 | C-0                   | zoom-out                       |
+	 | C-f                   | move-right                     |
+	 | C-b                   | move-left                      |
+	 | C-n                   | move-down                      |
+	 | C-p                   | move-up                        |
+	 | C-a                   | line-begin                     |
+	 | C-e                   | line-end                       |
+	 | <TAB>                 | org-table, org-navigation      |
+	 | C-<TAB>               | yas-expand                     |
+	 | C-x g                 | magit-status                   |
+	 | C-x p                 | magit-init                     |
+	 | C-s                   | swipe                          |
+	 | C-x C-f               | ido-file                       |
+	 | C-x C-f C-f           | dired-file                     |
+	 | C-c p                 | projectile-map                 |
+	 | C-c p				 | projectile-command-map         |
+	 | C-x o                 | other window                   |
+	 | C-x j                 | close buffer & window          |
+	 | C-x 3                 | right-open-window              |
+	 | C-x 2                 | down-open-window               |
+	 | C-x 4 f               | right-open-file                |
+	 | C-x 4 b               | right-open-buffer              |
+	 | C-x t                 | terminal-emulator              |
+	 | C-x u                 | undo (& redo)                  |
+	 | C-c t                 | org-todo                       |
+	 | C-c a                 | org-agenda                     |
+	 | C-c d                 | org-deadline                   |
+	 | C-c g                 | gcal-post                      |
+	 | C-c f                 | gcal-fetch                     |
+	 | C-c x                 | todo-done                      |
+	 | C-c q                 | org-tags                       |
+	 | C-c v                 | org-agenda-add-file            |
+	 | C-c d                 | google-this                    |
+	 | C-c s                 | org-schedule                   |
+	 | C-c n                 | deft-mode                      |
+	 | C-<RETURN>            | (deft only) new note with name |
+	 | C-c C-x C-s           | mark as done and archive       |
+	 | C-c C-a               | org-attach                     |
+	 | C-c C-j               | org-goto                       |
+	 | C-c C-l               | org-insert-link                |
+	 | C-c C-o               | org-open-at-point              |
+	 | C-c C-q               | org-set-tags-command           |
+	 | C-c C-r               | org-reveal                     |
+	 | C-c C-s               | org-schedule                   |
+	 | C-c C-t               | org-todo                       |
+	 | C-c C-z               | org-add-note                   |
+	 | C-c SPC               | org-table-blank-field          |
+	 | C-c +		         | org-table-sum                  |
+	 | C-c ,		         | org-priority                   |
+	 | C-c .		         | org-time-stamp                 |
+	 | C-c =		         | org-table-eval-formula         |
+	 | C-c ?		         | org-table-field-info           |
+	 | C-c ^		         | org-sort                       |
+	 | C-.                   | ispell word                    |
+	 | M-<LEFT>              | org-table-move-column-left     |
+	 | M-S-<LEFT>            | org-table-delete-column        |
+	 | M-S-<RIGHT>           | org-table-move-column-right    |
+	 | M-S-<RIGHT>           | org-table-insert-column        |
+	 | M-<UP>                | org-table-move-row-up          |
+	 | M-<DOWN>              | org-table-move-row-down        |
+	 | M-S-<UP>              | org-table-kill-row             |
+** Dict
+(Windows)
+Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
+Config comes with two dictionaries, English and German, found under =dict/=.
+dictionary

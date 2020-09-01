@@ -3,105 +3,16 @@
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
 Emacs Config - Jakob Klemm
-* Installation
-** Fonts
-	1. Download fonts with =M-x all-the-icons-install-fonts=
-	2. Install the fonts
-** Gcal
-	 Setup or delete gcal, under Org/Agenda.
-	 Gcal need google oauth credentials, instructions can be found under [[https:github.com/myuhe/org-gcal.el][org-gcal]]
-	 Create a file called =secret.el= and insert the =org-cal= example config in
-	 there. Set all the three variables in there.
-** Binds
-	All used keybinds
-	 | Key                   | Executes                       |
-	 |-----------------------+--------------------------------|
-	 | C-f                   | move-right                     |
-	 | C-b                   | move-left                      |
-	 | C-n                   | move-down                      |
-	 | C-p                   | move-up                        |
-	 | C-a                   | line-begin                     |
-	 | C-e                   | line-end                       |
-	 | <TAB>                 | org-table, org-navigation      |
-	 | <TAB>                 | yas-expand                     |
-	 | C-<TAB>               | yas-expand                     |
-	 | C-x g                 | magit-status                   |
-	 | C-x p                 | magit-init                     |
-	 | C-s                   | swipe                          |
-	 | C-x C-f               | ido-file                       |
-	 | C-x C-f C-f           | dired-file                     |
-	 | C-c p                 | projectile-map                 |
-	 | C-c p				 | projectile-command-map         |
-	 | C-x o                 | other window                   |
-	 | C-x j                 | close buffer & window          |
-	 | C-x 3                 | right-open-window              |
-	 | C-x 2                 | down-open-window               |
-	 | C-x 4 f               | right-open-file                |
-	 | C-x 4 b               | right-open-buffer              |
-	 | C-x t                 | terminal-emulator              |
-	 | C-x u                 | undo (& redo)                  |
-	 | C-c t                 | org-todo                       |
-	 | C-c a                 | org-agenda                     |
-	 | C-c d                 | org-deadline                   |
-	 | C-c g                 | gcal-post                      |
-	 | C-c f                 | gcal-fetch                     |
-	 | C-c x                 | todo-done                      |
-	 | C-c q                 | org-tags                       |
-	 | C-c v                 | org-agenda-add-file            |
-	 | C-c d                 | google-this                    |
-	 | C-c s                 | org-schedule                   |
-	 | C-c n                 | deft-mode                      |
-	 | C-<RETURN>            | (deft only) new note with name |
-	 | C-c C-x C-s           | mark as done and archive       |
-	 | C-c C-a               | org-attach                     |
-	 | C-c C-j               | org-goto                       |
-	 | C-c C-l               | org-insert-link                |
-	 | C-c C-o               | org-open-at-point              |
-	 | C-c C-q               | org-set-tags-command           |
-	 | C-c C-r               | org-reveal                     |
-	 | C-c C-s               | org-schedule                   |
-	 | C-c C-t               | org-todo                       |
-	 | C-c C-z               | org-add-note                   |
-	 | C-c SPC               | org-table-blank-field          |
-	 | C-c +		         | org-table-sum                  |
-	 | C-c ,		         | org-priority                   |
-	 | C-c .		         | org-time-stamp                 |
-	 | C-c =		         | org-table-eval-formula         |
-	 | C-c ?		         | org-table-field-info           |
-	 | C-c ^		         | org-sort                       |
-	 | C-.                   | ispell word                    |
-	 | M-<LEFT>              | org-table-move-column-left     |
-	 | M-S-<LEFT>            | org-table-delete-column        |
-	 | M-S-<RIGHT>           | org-table-move-column-right    |
-	 | M-S-<RIGHT>           | org-table-insert-column        |
-	 | M-<UP>                | org-table-move-row-up          |
-	 | M-<DOWN>              | org-table-move-row-down        |
-	 | M-S-<UP>              | org-table-kill-row             |
-** Dict
-   (Windows)
-   Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
-   Config comes with two dictionaries, English and German, found under =dict/=.
-   dictionary
-
-** Control
-*** Open files
-		Open files with a different program than emacs.
-		1. =C-x C-f= (Ido Mode)
-		2. =C-f= (Dired-mode)
-		3. Fullscreen dired
-		4. Select file
-		5. Type =!= for the command line.
-		6. Type =chrome= for PDF's, etc.
 * Setup
 ** =use-package=
   Verify the =use-package= installation and ensures the packages.
   #+begin_src emacs-lisp
-	(unless (package-installed-p 'use-package)
+  (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-	(require 'use-package)
-	(setq use-package-always-ensure t)
+  (require 'use-package)
+  (setq use-package-always-ensure t)
   #+end_src
 ** Update and compile
   Update and compile all packages.
@@ -255,7 +166,7 @@ Used themes:
    (turn-on-page-break-lines-mode)
    #+end_src
    Install icons.
-   (Not only used by =dashboard= but its the main dependancy.
+   Not only used by =dashboard= but its the main dependancy.
    #+begin_src emacs-lisp
    (use-package all-the-icons)
    #+end_src
@@ -346,6 +257,24 @@ Used themes:
    (t
    "[no file]")))))
 	 #+end_src
+** Rezse
+Easy zoom in & out.
+#+begin_src emacs-lisp
+(defun zoom-in ()
+  (interactive)
+  (let ((x (+ (face-attribute 'default :height)
+  10)))
+  (set-face-attribute 'default nil :height x)))
+
+  (defun zoom-out ()
+  (interactive)
+  (let ((x (- (face-attribute 'default :height)
+  10)))
+  (set-face-attribute 'default nil :height x)))
+
+  (define-key global-map (kbd "C-1") 'zoom-in)
+  (define-key global-map (kbd "C-0") 'zoom-out)
+#+end_src
 * Projects
 ** General
 *** Indentation
@@ -458,6 +387,11 @@ Used themes:
 		#+begin_src emacs-lisp
 		(global-set-key (kbd "C-x t") 'eshell)
 		#+end_src
+*** Refresh
+Auto refresh updated files to avoid overwriting changes.
+#+begin_src emasc-lisp
+(global-auto-revert-mode t)
+#+end_src
 ** Completion
    Use package =company= as a dependency of lsp-mode.
    #+begin_src emacs-lisp
@@ -500,8 +434,8 @@ Use yasnippets and the snippets from github.com/hrs/dotfiles
 (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
 (yas-global-mode 1)
 (setq yas-indent-line 'auto)
-(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)
-(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
 #+end_src
 ** Management
@@ -539,39 +473,25 @@ Use yasnippets and the snippets from github.com/hrs/dotfiles
 	 (global-set-key (kbd "C-x p") 'magit-init)
 	 #+end_src
 ** Spell check
-   Enable spellcheck for both English and German in all =org-mode= and
-   =text-mode= buffers.
-dis   #+begin_src emacs-lisp
-   (setq ispell-program-name "hunspell")
-   (setq ispell-hunspell-dict-paths-alist
-   '(("en_US" "~/.emacs.d/dict/en_US.aff")))
-   (setq ispell-local-dictionary "en_US")
-   (setq ispell-local-dictionary-alist
-   ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
-   ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
-   '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
-   ;; the following line won't make flyspell-mode enabled by default as you might think
-   (flyspell-mode 1)
-   (global-set-key (kbd "C-.") 'ispell-word)
-   (add-hook 'text-mode-hook 'flyspell-mode)
-   (add-hook 'org-mode-hook 'flyspell-mode)
-   #+end_src
-   German
-   #+begin_src emacs-lisp
-   (setq ispell-program-name "hunspell")
-   (setq ispell-hunspell-dict-paths-alist
-   '(("de_DE" "~/.emacs.d/dict/de_DE.aff")))
-   (setq ispell-local-dictionary "de_DE")
-   (setq ispell-local-dictionary-alist
-   ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
-   ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
-   '(("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE") nil utf-8)))
-   ;; the following line won't make flyspell-mode enabled by default as you might think
-   (flyspell-mode 1)
-   (global-set-key (kbd "C-.") 'ispell-word)
-   (add-hook 'text-mode-hook 'flyspell-mode)
-   (add-hook 'org-mode-hook 'flyspell-mode)
-   #+end_src
+Enable spellcheck for both English and German in all =org-mode= and
+=text-mode= buffers.
+#+begin_src emacs-lisp
+(with-eval-after-load "ispell"
+;; Configure `LANG`, otherwise ispell.el cannot find a 'default
+;; dictionary' even though multiple dictionaries will be configured
+;; in next line.
+(setenv "LANG" "en_US")
+(setq ispell-program-name "hunspell")
+;; Configure German, Swiss German, and two variants of English.
+(setq ispell-dictionary "de_DE,de_CH,en_GB,en_US")
+;; ispell-set-spellchecker-params has to be called
+;; before ispell-hunspell-add-multi-dic will work
+(ispell-set-spellchecker-params)
+(ispell-hunspell-add-multi-dic "de_DE,de_CH,en_GB,en_US")
+;; For saving words to the personal dictionary, don't infer it from
+;; the locale, otherwise it would save to ~/.hunspell_de_DE.
+(setq ispell-personal-dictionary "~/.emacs.d/dict"))
+#+end_src
 ** Undo tree
 	 Visual undo tree
 	 #+begin_src emacs-lisp
