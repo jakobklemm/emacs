@@ -11,8 +11,15 @@ Inspiration and partial credits:
 - [[https:github.com/zaeph/.emacs.d][zaeph]]
 - [[https:github.com/munen/emacs.d/][munen]]
 Free to use for any reason, no guarantee that it will work.
-(Use at own risk, this is not techsupport. Most issues should be easy to fix.)
-
+(Use at own risk, this is not tech support. Most issues should be easy to fix.)
+* Future
+** TODO gcal
+** TODO notmuch
+** TODO org-agenda-super
+** TODO pdf-tools
+** TODO Roam
+** TODO Hoth
+** TODO Sort & Restructure
 * Installation
 ** Fonts
 1. Download fonts with =M-x all-the-icons-install-fonts=
