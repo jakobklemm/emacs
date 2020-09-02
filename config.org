@@ -832,29 +832,6 @@ Allow export to markdown and beamer (for presentations).
         (:name "Current"
          :anything))))
 #+end_src
-*** View
-Use [[https:github.com/kiwanami/emacs-calfw][cfw]] for a better calendar view.
-#+begin_src emacs-lisp
-  (use-package calfw)
-  (use-package calfw-org)
-  (use-package calfw-ical)
-
-  (setq cfw:display-calendar-holidays nil)
-
-  (setq cfw:fchar-junction ?╬
-          cfw:fchar-vertical-line ?║
-          cfw:fchar-horizontal-line ?═
-          cfw:fchar-left-junction ?╠
-          cfw:fchar-right-junction ?╣
-          cfw:fchar-top-junction ?╦
-          cfw:fchar-top-left-corner ?╔
-          cfw:fchar-top-right-corner ?╗)
-
-    ;; Function defined in secret.el following specs from https://github.com/kiwanami/emacs-calfw
-  (add-to-list 'load-path "~/.emacs.d/secret.el")
-  (load-file "~/.emacs.d/secret.el")
-  (define-key org-mode-map (kbd "C-c a") '(lambda () (interactive) (secret/calendar)))
-#+end_src
 *** Calendar
     #+begin_src emacs-lisp
       (defun todo/done ()
