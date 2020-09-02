@@ -413,16 +413,24 @@ Auto refresh updated files to avoid overwriting changes.
 *** Spell check
 Enable spellcheck for both English and German in all =org-mode= and
 =text-mode= buffers.
+Select the current spellcheck with =ispell-change-directory=, then use =C-.= to
+see suggestions and see issues with =flyspell-buffer=.
 #+begin_src emacs-lisp
-(setq ispell-program-name "hunspell")
-(setq ispell-hunspell-dict-paths-alist
-'(("en_US" "~/.emacs.d/dict/en_US.aff")))
-(setq ispell-local-dictionary "en_US")
-(setq ispell-local-dictionary-alist
-'(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
-(flyspell-mode 1)
-(global-set-key (kbd "C-.") 'ispell-word)
-(setq ispell-personal-dictionary "~/.emacs.d/dict")
+  (setq ispell-program-name "hunspell")
+  (setq ispell-hunspell-dict-paths-alist
+        '(("en_US" "~/.emacs.d/dict/en_US.aff")
+          ("de_DE" "~/.emacs.d/dict/de_DE.aff")))
+
+  (setq ispell-local-dictionary "en_US")
+  (setq ispell-local-dictionary-alist
+        '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+          ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US" "-a" "-i" "UTF-8") nil utf-8)))
+
+  (flyspell-mode 1)
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'org-mode-hook #'flyspell-mode)
+
+  (global-set-key (kbd "C-.") 'ispell-word)
 #+end_src
 *** Completion
 Use package =company= as a dependency of lsp-mode.
@@ -833,37 +841,16 @@ Use [[https:github.com/kiwanami/emacs-calfw][cfw]] for a better calendar view.
 
   (setq cfw:display-calendar-holidays nil)
 
-  (custom-set-faces
-   '(cfw:face-title ((t (:foreground "#f0dfaf" :weight bold :height 2.0 :inherit variable-pitch))))
-   '(cfw:face-header ((t (:foreground "#d0bf8f" :weight bold))))
-   '(cfw:face-sunday ((t :foreground "#cc9393" :background "grey10" :weight bold)))
-   '(cfw:face-saturday ((t :foreground "#8cd0d3" :background "grey10" :weight bold)))
-   '(cfw:face-holiday ((t :background "grey10" :foreground "#8c5353" :weight bold)))
-   '(cfw:face-grid ((t :foreground "DarkGrey")))
-   '(cfw:face-default-content ((t :foreground "#bfebbf")))
-   '(cfw:face-periods ((t :foreground "cyan")))
-   '(cfw:face-day-title ((t :background "grey10")))
-   '(cfw:face-default-day ((t :weight bold :inherit cfw:face-day-title)))
-   '(cfw:face-annotation ((t :foreground "RosyBrown" :inherit cfw:face-day-title)))
-   '(cfw:face-disable ((t :foreground "DarkGray" :inherit cfw:face-day-title)))
-   '(cfw:face-today-title ((t :background "#7f9f7f" :weight bold)))
-   '(cfw:face-today ((t :background: "grey10" :weight bold)))
-   '(cfw:face-select ((t :background "#2f2f2f")))
-   '(cfw:face-toolbar ((t :foreground "#ff1111" :background "#ff1111")))
-   '(cfw:face-toolbar-button-off ((t :foreground "Gray10" :weight bold)))
-   '(cfw:face-toolbar-button-on ((t :foreground "Gray50" :weight bold))))
-
-  ;; Unicode characters
   (setq cfw:fchar-junction ?╬
-        cfw:fchar-vertical-line ?║
-        cfw:fchar-horizontal-line ?═
-        cfw:fchar-left-junction ?╠
-        cfw:fchar-right-junction ?╣
-        cfw:fchar-top-junction ?╦
-        cfw:fchar-top-left-corner ?╔
-        cfw:fchar-top-right-corner ?╗)
+          cfw:fchar-vertical-line ?║
+          cfw:fchar-horizontal-line ?═
+          cfw:fchar-left-junction ?╠
+          cfw:fchar-right-junction ?╣
+          cfw:fchar-top-junction ?╦
+          cfw:fchar-top-left-corner ?╔
+          cfw:fchar-top-right-corner ?╗)
 
-  ;; Function defined in secret.el following specs from https://github.com/kiwanami/emacs-calfw
+    ;; Function defined in secret.el following specs from https://github.com/kiwanami/emacs-calfw
   (add-to-list 'load-path "~/.emacs.d/secret.el")
   (load-file "~/.emacs.d/secret.el")
   (define-key org-mode-map (kbd "C-c a") '(lambda () (interactive) (secret/calendar)))
@@ -910,7 +897,7 @@ Default tags with keys.
 #+end_src
 ** Roam
 Org-roam setup for the entire =documents= directory.
-#+begin_src emacs-lisp
+temp #+begin_src emacs-lisp
   (use-package org-roam
     :ensure t
     :hook
