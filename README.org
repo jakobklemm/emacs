@@ -51,8 +51,6 @@ All used keybinds
 	 | C-c a                 | cfw-agenda-view                |
 	 | C-c C-a               | org-agenda                     |
 	 | C-c d                 | org-deadline                   |
-	 | C-c g                 | gcal-post                      |
-	 | C-c f                 | gcal-fetch                     |
 	 | C-c x                 | todo-done                      |
 	 | C-c q                 | org-tags                       |
 	 | C-c v                 | org-agenda-add-file            |
@@ -89,3 +87,7 @@ All used keybinds
 Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
 Config comes with two dictionaries, English and German, found under =dict/=.
 dictionary
+** Roam
+Install
+- sqlite3
+- dot
