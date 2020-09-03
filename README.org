@@ -13,9 +13,7 @@ Inspiration and partial credits:
 Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not tech support. Most issues should be easy to fix.)
 * Future
-** TODO gcal
 ** TODO notmuch
-** TODO org-agenda-super
 ** TODO pdf-tools
 ** TODO Roam
 ** TODO Hoth
