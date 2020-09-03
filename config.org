@@ -722,8 +722,10 @@ Colored priorities.
         (interactive)
         (org-todo 'done))
 
-      ;;(define-key org-mode-map (kbd "C-c C-a") 'org-agenda) org-agenda-todo
-      (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+      ;;(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+      ;; Make agenda a global keybind.
+      (global-set-key (kbd "C-c  a") 'org-agenda)
+
       (define-key org-mode-map (kbd "C-c d") 'org-deadline)
       (define-key org-mode-map (kbd "C-c t") 'org-todo)
       (define-key org-mode-map (kbd "C-c s") 'org-schedule)
@@ -816,6 +818,13 @@ temp #+begin_src emacs-lisp
     :custom
     (org-roam-directory "~/private/documents/"))
     (add-hook 'after-init-hook 'org-roam-mode)
+#+end_src
+** Links
+Use =C-c C-l= to save the current file for linking.
+Then use =C-c l= to insert a new link or write the saved one.
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c  l") 'org-insert-link)
+(global-set-key (kbd "C-c  C-l") 'org-store-link)
 #+end_src
 * Content
 ** Games
