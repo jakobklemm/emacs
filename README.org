@@ -63,6 +63,8 @@ All used keybinds
 	 | C-c v       | org-agenda-add-file            |
 	 | C-c s       | org-schedule                   |
 	 | C-c n       | deft-mode                      |
+	 | C-c l       | org-insert-link                |
+	 | C-c C-l     | org-store-link                 |
 	 | C-<RETURN>  | (deft only) new note with name |
 	 | C-c C-x C-s | mark as done and archive       |
 	 | C-c C-j     | org-goto                       |

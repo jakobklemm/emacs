@@ -158,9 +158,9 @@ Used themes:
 - Doom-spacegrey
 #+begin_src emacs-lisp
 (use-package doom-themes)
-;; (load-theme `doom-nord t)
+(load-theme `doom-nord t)
 ;; (load-theme `doom-material t)
-(load-theme `doom-spacegrey t)
+;; (load-theme `doom-spacegrey t)
 #+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
@@ -693,21 +693,27 @@ Colored priorities.
              ((org-super-agenda-groups
          '(
            (:name "Important"
-                  :todo "TODAY"
+                  :todo "CURRENT"
+                  :todo "TODO"
                   :tag "admin"
                   :priority "A"
+                  ;;:time-grid t
+                  :face (:background "#8e933a")
                   :order 0
                   )
            (:name "Schule"
                   :tag ("schule" "Progress" "Quick")
+                  :face (:background "#13a1da")
                   :order 1
                   )
            (:name "Prüfungen"
                   :tag ("Prüfungen")
+                  :face (:background "#93f1fa")
                   :order 2
                   )
            (:name "Projects"
                   :tag ("Erebos" "Warrick")
+                  :face (:background "#34fb99")
                   :order 3
                   )
            (:priority<= "B"
