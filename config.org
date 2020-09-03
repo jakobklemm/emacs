@@ -780,8 +780,8 @@ Allow export to markdown and beamer (for presentations).
       (define-key org-mode-map (kbd "C-c d") 'org-deadline)
       (define-key org-mode-map (kbd "C-c t") 'org-todo)
       (define-key org-mode-map (kbd "C-c s") 'org-schedule)
-      (define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
-      (define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
+      ;;(define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
+      ;;(define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
       (define-key org-mode-map (kbd "C-c x") 'todo/done)
       (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 	 #+end_src
