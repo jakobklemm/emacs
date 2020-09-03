@@ -61,7 +61,6 @@ All used keybinds
 	 | C-c x                 | todo-done                      |
 	 | C-c q                 | org-tags                       |
 	 | C-c v                 | org-agenda-add-file            |
-	 | C-c d                 | google-this                    |
 	 | C-c s                 | org-schedule                   |
 	 | C-c n                 | deft-mode                      |
 	 | C-<RETURN>            | (deft only) new note with name |

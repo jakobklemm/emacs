@@ -397,13 +397,6 @@ Jump to function definitions.
 ("M-g j" . dumb-jump-go))
 :config (setq dumb-jump-selector 'ivy))
 	  #+end_src
-*** google-this
-		Automaticly google something.
-		#+begin_src emacs-lisp
-		(use-package google-this)
-		(google-this-mode 1)
-		(global-set-key (kbd "C-c d") 'google-this)
-		#+end_src
 *** Refresh
 Auto refresh updated files to avoid overwriting changes.
 #+begin_src emasc-lisp
@@ -658,8 +651,10 @@ todos.
 	 Add new states to the todo cycle to extend the basic TODO and DONE states that
 	 org mode normally provides.
    #+begin_src emacs-lisp
-	 (setq org-todo-keywords
-   '((sequence "TODO" "PROGRESS" "BLOCKED" "|" "DONE" "PAL")))
+     (setq org-todo-keywords
+           '((sequence "TODO(t)" "EARLY(e)" "BLOCKED(b)" "|" "DONE(y)")
+             (sequence "SCHULE(w)" "PROGRESS(w)" "LOW(l)" "|" "DONE(x)")
+             (sequence "LONG(j)" "RESEARCH(r)" "FIXING(f)" "|" "DONE(c)")))
    #+end_src
 ** Export
 Allow export to markdown and beamer (for presentations).
@@ -729,108 +724,50 @@ Allow export to markdown and beamer (for presentations).
 *** Super
 =org-super-agenda=
 #+begin_src emacs-lisp
-  (use-package org-super-agenda
-    ;; :load-path "~/projects/org-super-agenda/"
-    :after org-agenda
-    :config
-    (org-super-agenda-mode)
-
-    (setq org-super-agenda-header-separator "")
-
-    (defun zp/org-super-agenda-update-face ()
-      (let ((ul-color (internal-get-lisp-face-attribute
-                       'font-lock-comment-face :foreground)))
-        (set-face-attribute 'org-super-agenda-header nil
-                            :slant 'italic
-                            :underline `(:color ,ul-color))))
-
-    (defun zp/org-super-agenda-item-in-agenda-groups-p (item groups)
-      "Check if ITEM is in agenda GROUPS."
-      (let ((marker (or (get-text-property 0 'org-marker item)
-                        (get-text-property 0 'org-hd-marker item))))
-        (org-with-point-at marker
-          (apply #'zp/org-task-in-agenda-groups-p groups))))
-
-    (defun zp/org-super-agenda-groups (header groups)
-      "Create org-super-agenda section for GROUPS with HEADER."
-      `(:name ,header
-        :pred (lambda (item)
-                (zp/org-super-agenda-item-in-agenda-groups-p item ',groups))))
-
-    (defun zp/org-super-agenda-groups-all ()
-      `(,(zp/org-super-agenda-groups "Inbox" '("inbox"))
-        ,(zp/org-super-agenda-groups "Life" '("life"))
-        ,(zp/org-super-agenda-groups "Maintenance" '("mx"))
-        ,(zp/org-super-agenda-groups "Professional" '("pro"))
-        ,(zp/org-super-agenda-groups "Research" '("research"))
-        ,(zp/org-super-agenda-groups "Activism" '("act"))
-        ,(zp/org-super-agenda-groups "Hacking" '("hack"))
-        ,(zp/org-super-agenda-groups "Curiosities" '("curios"))
-        ,(zp/org-super-agenda-groups "Media" '("media"))))
-
-    (defun zp/org-super-agenda-subtask-p (item)
-      (let ((marker (or (get-text-property 0 'org-marker item)
-                        (get-text-property 0 'org-hd-marker item))))
-        (org-with-point-at marker
-          (zp/is-subtask-p))))
-
-    (defun zp/org-super-agenda-scheduled ()
-      '((:name "Overdue"
-         :face (:foreground "red")
-         :scheduled past)
-        (:name "Waiting"
-         :and (:tag "waiting"
-               :scheduled nil)
-         :and (:tag "waiting"
-               :scheduled today))
-        (:name "Scheduled"
-         :scheduled today)
-        (:name "Subtasks"
-         :and (:scheduled nil
-               :pred (lambda (item)
-                       (when zp/org-agenda-split-subtasks
-                         (zp/org-super-agenda-subtask-p item)))))
-        (:name "Current"
-         :and (:not (:scheduled t)
-               :not (:tag "waiting")))
-        (:name "Later"
-         :anything)))
-
-    (defun zp/org-super-agenda-group-heads (item)
-      (let ((marker (or (get-text-property 0 'org-marker item)
-                        (get-text-property 0 'org-hd-marker item))))
-        (org-entry-get marker "AGENDA_GROUP" nil)))
-
-    (defun zp/org-super-agenda-stuck-project-p (item)
-      (let ((marker (or (get-text-property 0 'org-marker item)
-                        (get-text-property 0 'org-hd-marker item))))
-        (org-with-point-at marker
-          (zp/is-stuck-project-p))))
-
-    (defun zp/org-super-agenda-finished-project-p (item)
-      (let ((marker (or (get-text-property 0 'org-marker item)
-                        (get-text-property 0 'org-hd-marker item))))
-        (org-with-point-at marker
-          (when (zp/is-confused-project-p)
-            (zp/org-resolve-confused-project))
-          (zp/is-finished-project-p))))
-
-    (defun zp/org-super-agenda-projects ()
-      '((:name "Group heads"
-         :pred (lambda (item)
-                 (zp/org-super-agenda-group-heads item)))
-        (:name "Finished"
-         :face (:foreground "purple")
-         :pred (lambda (item)
-                 (zp/org-super-agenda-finished-project-p item)))
-        (:name "Stuck"
-         :face (:foreground "red")
-         :pred (lambda (item)
-                 (zp/org-super-agenda-stuck-project-p item)))
-        (:name "Waiting"
-         :tag "waiting")
-        (:name "Current"
-         :anything))))
+  (let ((org-super-agenda-groups
+         '(;; Each group has an implicit boolean OR operator between its selectors.
+           (:name "Today"  ; Optionally specify section name
+                  :time-grid t  ; Items that appear on the time grid
+                  :todo "TODAY")  ; Items that have this TODO keyword
+           (:name "Important"
+                  ;; Single arguments given alone
+                  :tag "bills"
+                  :priority "A")
+           ;; Set order of multiple groups at once
+           (:order-multi (2 (:name "Shopping in town"
+                                   ;; Boolean AND group matches items that match all subgroups
+                                   :and (:tag "shopping" :tag "@town"))
+                            (:name "Food-related"
+                                   ;; Multiple args given in list with implicit OR
+                                   :tag ("food" "dinner"))
+                            (:name "Personal"
+                                   :habit t
+                                   :tag "personal")
+                            (:name "Space-related (non-moon-or-planet-related)"
+                                   ;; Regexps match case-insensitively on the entire entry
+                                   :and (:regexp ("space" "NASA")
+                                                 ;; Boolean NOT also has implicit OR between selectors
+                                                 :not (:regexp "moon" :tag "planet")))))
+           ;; Groups supply their own section names when none are given
+           (:todo "BLOCKED"
+                  :todo "BLOCKED"
+                  :order 8)  ; Set order of this section
+           (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
+                  ;; Show this group at the end of the agenda (since it has the
+                  ;; highest number). If you specified this group last, items
+                  ;; with these todo keywords that e.g. have priority A would be
+                  ;; displayed in that group instead, because items are grouped
+                  ;; out in the order the groups are listed.
+                  :order 9)
+           (:priority<= "B"
+                        ;; Show this section after "Today" and "Important", because
+                        ;; their order is unspecified, defaulting to 0. Sections
+                        ;; are displayed lowest-number-first.
+                        :order 1)
+           ;; After the last group, the agenda will display items that didn't
+           ;; match any of these groups, with the default order position of 99
+           )))
+    (org-agenda nil "a"))
 #+end_src
 *** Calendar
     #+begin_src emacs-lisp
@@ -861,16 +798,15 @@ Allow export to markdown and beamer (for presentations).
 ** Tags
 Default tags with keys.
 #+begin_src emacs-lisp
-  (setq org-tag-alist '((:startgroup . nil)
-                        ("@work" . ?w)
-                        ("@home" . ?h)
-                        ("@tennisclub" . ?t)
-                        (:endgroup . nil)
-                        ("laptop" . ?l)
-                        ("pc" . ?p)))
-  (use-package counsel)
+  (setq org-tag-alist '(("schule" . ?s)
+                        ("prüfung" . ?p)
+                        ("home" . ?h)
+                        ("data" . ?d)
+                        ("personal" . ?x)
+                        ("admin" . ?a)
+                        ("erebos" . ?e)
+                        ("warrick" . ?w)))
   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
-  (global-set-key [remap org-set-tags-command] #'counsel-org-tag)
 #+end_src
 ** Roam
 Org-roam setup for the entire =documents= directory.
