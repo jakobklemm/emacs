@@ -26,68 +26,70 @@ Free to use for any reason, no guarantee that it will work.
 2. Install the fonts
 ** Binds
 All used keybinds
-	 | Key                   | Executes                       |
-	 |-----------------------+--------------------------------|
-	 | C-1                   | zoom-in                        |
-	 | C-0                   | zoom-out                       |
-	 | C-f                   | move-right                     |
-	 | C-b                   | move-left                      |
-	 | C-n                   | move-down                      |
-	 | C-p                   | move-up                        |
-	 | C-a                   | line-begin                     |
-	 | C-e                   | line-end                       |
-	 | S-<ARROW>             | change windows                 |
-	 | <TAB>                 | org-table, org-navigation      |
-	 | C-<TAB>               | yas-expand                     |
-	 | C-x g                 | magit-status                   |
-	 | C-x p                 | magit-init                     |
-	 | C-s                   | swipe                          |
-	 | C-x C-f               | ido-file                       |
-	 | C-x C-f C-f           | dired-file                     |
-	 | C-c p                 | projectile-map                 |
-	 | C-c p				 | projectile-command-map         |
-	 | C-x o                 | other window                   |
-	 | C-x j                 | close buffer & window          |
-	 | C-x 3                 | right-open-window              |
-	 | C-x 2                 | down-open-window               |
-	 | C-x 4 f               | right-open-file                |
-	 | C-x 4 b               | right-open-buffer              |
-	 | C-x t                 | terminal-emulator              |
-	 | C-x u                 | undo (& redo)                  |
-	 | C-c t                 | org-todo                       |
-	 | C-c a                 | cfw-agenda-view                |
-	 | C-c C-a               | org-agenda                     |
-	 | C-c d                 | org-deadline                   |
-	 | C-c x                 | todo-done                      |
-	 | C-c q                 | org-tags                       |
-	 | C-c v                 | org-agenda-add-file            |
-	 | C-c s                 | org-schedule                   |
-	 | C-c n                 | deft-mode                      |
-	 | C-<RETURN>            | (deft only) new note with name |
-	 | C-c C-x C-s           | mark as done and archive       |
-	 | C-c C-j               | org-goto                       |
-	 | C-c C-l               | org-insert-link                |
-	 | C-c C-o               | org-open-at-point              |
-	 | C-c C-q               | org-set-tags-command           |
-	 | C-c C-r               | org-reveal                     |
-	 | C-c C-s               | org-schedule                   |
-	 | C-c C-t               | org-todo                       |
-	 | C-c C-z               | org-add-note                   |
-	 | C-c SPC               | org-table-blank-field          |
-	 | C-c +		         | org-table-sum                  |
-	 | C-c ,		         | org-priority                   |
-	 | C-c .		         | org-time-stamp                 |
-	 | C-c =		         | org-table-eval-formula         |
-	 | C-c ?		         | org-table-field-info           |
-	 | C-c ^		         | org-sort                       |
-	 | C-.                   | ispell word                    |
-	 | M-<LEFT>              | org-table-move-column-left     |
-	 | M-S-<LEFT>            | org-table-delete-column        |
-	 | M-S-<RIGHT>           | org-table-move-column-right    |
-	 | M-S-<RIGHT>           | org-table-insert-column        |
-	 | M-<UP>                | org-table-move-row-up          |
-	 | M-<DOWN>              | org-table-move-row-down        |
-	 | M-S-<UP>              | org-table-kill-row             |
+	 | Key         | Executes                       |
+	 |-------------+--------------------------------|
+	 | C-1         | zoom-in                        |
+	 | C-0         | zoom-out                       |
+	 | C-f         | move-right                     |
+	 | C-b         | move-left                      |
+	 | C-n         | move-down                      |
+	 | C-p         | move-up                        |
+	 | C-a         | line-begin                     |
+	 | C-e         | line-end                       |
+	 | S-<ARROW>   | change windows                 |
+	 | <TAB>       | org-table, org-navigation      |
+	 | C-<TAB>     | yas-expand                     |
+	 | C-x g       | magit-status                   |
+	 | C-x p       | magit-init                     |
+	 | C-s         | swipe                          |
+	 | C-x C-f     | ido-file                       |
+	 | C-x C-f C-f | dired-file                     |
+	 | C-c p       | projectile-map                 |
+	 | C-c p       | projectile-command-map         |
+	 | C-x o       | other window                   |
+	 | C-x j       | close buffer & window          |
+	 | C-x 3       | right-open-window              |
+	 | C-x 2       | down-open-window               |
+	 | C-x 4 f     | right-open-file                |
+	 | C-x 4 b     | right-open-buffer              |
+	 | C-x t       | terminal-emulator              |
+	 | C-x u       | undo (& redo)                  |
+	 | C-c t       | org-todo                       |
+	 | C-c a       | cfw-agenda-view                |
+	 | C-c C-a     | org-agenda                     |
+	 | C-c d       | org-deadline                   |
+	 | C-c x       | todo-done                      |
+	 | C-c q       | org-tags                       |
+	 | C-c v       | org-agenda-add-file            |
+	 | C-c s       | org-schedule                   |
+	 | C-c n       | deft-mode                      |
+	 | C-<RETURN>  | (deft only) new note with name |
+	 | C-c C-x C-s | mark as done and archive       |
+	 | C-c C-j     | org-goto                       |
+	 | C-c C-l     | org-insert-link                |
+	 | C-c C-o     | org-open-at-point              |
+	 | C-c C-q     | org-set-tags-command           |
+	 | C-c C-r     | org-reveal                     |
+	 | C-c C-s     | org-schedule                   |
+	 | C-c C-t     | org-todo                       |
+	 | C-c C-z     | org-add-note                   |
+	 | C-c SPC     | org-table-blank-field          |
+	 | C-c +       | org-table-sum                  |
+	 | C-c ,       | org-priority                   |
+	 | C-c .       | org-time-stamp                 |
+	 | C-c =       | org-table-eval-formula         |
+	 | C-c ?       | org-table-field-info           |
+	 | C-c ^       | org-sort                       |
+	 | C-.         | ispell word                    |
+	 | M-<LEFT>    | org-table-move-column-left     |
+	 | M-S-<LEFT>  | org-table-delete-column        |
+	 | M-S-<RIGHT> | org-table-move-column-right    |
+	 | M-S-<RIGHT> | org-table-insert-column        |
+	 | M-<UP>      | org-table-move-row-up          |
+	 | M-<DOWN>    | org-table-move-row-down        |
+	 | M-S-<UP>    | org-table-kill-row             |
+	 | <SPC>       | document-view next page        |
+	 | S-<SPC>     | document-view previous page    |
 ** Dict
 (Windows)
 Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=

@@ -146,6 +146,7 @@ Set the cursor color to the same as beacon.
 #+end_src
 ** Images
 Display images inline.
+Toggle with =C-c C-x C-v=
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'org-toggle-inline-images)
 #+end_src
@@ -238,10 +239,10 @@ Directly switch to new window after opening.
 ** Beacon
 	 Beacon for highlighting the cursor when switching buffers.
 	 #+begin_src emacs-lisp
-	 (use-package beacon
-   :custom
-   (beacon-color "#c678dd")
-   :hook (after-init . beacon-mode))
+       (use-package beacon
+         :custom
+         (beacon-color "#c678dd")
+         :hook (after-init . beacon-mode))
 	 #+end_src
 ** Title
 	 Set the window title to the current file.
@@ -653,7 +654,7 @@ todos.
 	 org mode normally provides.
    #+begin_src emacs-lisp
      (setq org-todo-keywords
-           '((sequence "TODO(1)" "TODAY(2)" "BLOCKED(3)" "|" "DONE(y)")
+           '((sequence "TODO(1)" "CURRENT(2)" "BLOCKED(3)" "|" "DONE(y)")
              (sequence "LONG(q)" "RESEARCH(w)" "FIXING(e)" "|" "DONE(c)")
              (sequence "SCHULE(s)" "PROGRESS(d)" "QUICK(f)" "|" "DONE(x)")))
    #+end_src
@@ -682,38 +683,38 @@ Colored priorities.
 *** Super
 =org-super-agenda=
 #+begin_src emacs-lisp
-    (use-package org-super-agenda)
-    (org-super-agenda-mode 1)
-    (let ((org-super-agenda-groups
-           '(
-             (:name "Today"
-                    :time-grid t
-                      :todo "TODAY"
-                      :face (:background "black" :underline t)
-                      :order 0
-                      )
-             (:name "Important"
-                      :tag "admin"
-                      :priority "A"
-                      :order 1
-                      )
-             (:name "Schule"
-                    :tag ("schule" "Progress" "Quick")
-                      :order 2)
-             (:name "Prüfungen"
-                    :tag ("Prüfungen")
-                    )
-             (:name "Projects"
-                    :tag ("Erebos" "Warrick"))
-             (:priority<= "B"
-                        ;; Show this section after "Today" and "Important", because
-                        ;; their order is unspecified, defaulting to 0. Sections
-                        ;; are displayed lowest-number-first.
-                        :order 1)
-           ;; After the last group, the agenda will display items that didn't
-           ;; match any of these groups, with the default order position of 99
+  (use-package org-super-agenda
+    :ensure t
+    :config (org-super-agenda-mode)
+    )
+    (setq org-agenda-custom-commands
+          '(("c" "Super Agenda" agenda
+             (org-super-agenda-mode)
+             ((org-super-agenda-groups
+         '(
+           (:name "Important"
+                  :todo "TODAY"
+                  :tag "admin"
+                  :priority "A"
+                  :order 0
+                  )
+           (:name "Schule"
+                  :tag ("schule" "Progress" "Quick")
+                  :order 1
+                  )
+           (:name "Prüfungen"
+                  :tag ("Prüfungen")
+                  :order 2
+                  )
+           (:name "Projects"
+                  :tag ("Erebos" "Warrick")
+                  :order 3
+                  )
+           (:priority<= "B"
+                        :order 4
+                        )
            )))
-    (org-agenda nil "a"))
+       (org-agenda nil "a"))))
 #+end_src
 *** Calendar
     #+begin_src emacs-lisp
@@ -816,7 +817,7 @@ temp #+begin_src emacs-lisp
     (org-roam-directory "~/private/documents/"))
     (add-hook 'after-init-hook 'org-roam-mode)
 #+end_src
-* Entertainment
+* Content
 ** Games
    Malyon: Text adventure interface, games located under =/games=
    #+begin_src emacs-lisp
