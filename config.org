@@ -913,17 +913,6 @@ Allow export to markdown and beamer (for presentations).
 	 (define-key org-mode-map (kbd "C-c n") 'deft)
 	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
 	 #+end_src
-** Roam
-Org-roam setup for the entire =documents= directory.
-#+begin_src emacs-lisp
-  (use-package org-roam
-    :ensure t
-    :hook
-    (after-init . org-roam-mode)
-    :custom
-    (org-roam-directory "~/private/documents/"))
-    (add-hook 'after-init-hook 'org-roam-mode)
-#+end_src
 ** Links
 Use =C-c C-l= to save the current file for linking.
 Then use =C-c l= to insert a new link or write the saved one.
@@ -937,3 +926,15 @@ Then use =C-c l= to insert a new link or write the saved one.
    #+begin_src emacs-lisp
    (use-package malyon)
    #+end_src
+** Roam
+(Configured under =/content= instead of =/org-mode=, might change in the future)
+Org-roam setup for the entire =documents= directory.
+#+begin_src emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :hook
+    (after-init . org-roam-mode)
+    :custom
+    (org-roam-directory "~/private/documents/"))
+    (add-hook 'after-init-hook 'org-roam-mode)
+#+end_src
