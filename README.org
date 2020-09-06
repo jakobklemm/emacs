@@ -15,7 +15,8 @@ Free to use for any reason, no guarantee that it will work.
 * Future
 ** TODO notmuch
 ** TODO Roam
-** TODO Hoth
+** TODO Rodian
+** TODO org-protocol
 ** TODO Sort & Restructure
 * Installation
 ** Fonts

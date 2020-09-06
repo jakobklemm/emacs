@@ -483,7 +483,7 @@ Use posframe for Ivy & Swiper.
 (use-package ivy-posframe
   :after ivy
   :init (ivy-posframe-mode 1)
-  :config (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center))
+  :config (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
 		ivy-posframe-border-width 8))
 
 (setq ivy-posframe-parameters
@@ -632,8 +632,7 @@ todos.
 		"Return the absolute address of an org file, given its relative name."
 		(concat (file-name-as-directory org-directory) filename))
 
-		(setq org-archive-location
-        (concat (org-file-path "archive.org") "::* From %s"))
+		(setq org-archive-location "~/private/archive/archive.org::* From %s")
 		#+end_src
 *** Archive
 	 Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
@@ -665,7 +664,7 @@ todos.
 	 org mode normally provides.
    #+begin_src emacs-lisp
      (setq org-todo-keywords
-           '((sequence "TODO(t)" "PROGRESS(t)" "BLOCKED(b)" "|" "DONE(d)" "PAL(p)")
+           '((sequence "TODO(t)" "PROGRESS(p)" "BLOCKED(b)" "|" "DONE(d)" "PAL(a)")
              (sequence "IDEA(i)" "STATIC(s)" "|" "DONE(f)")))
    #+end_src
 *** Faces
@@ -926,7 +925,7 @@ Then use =C-c l= to insert a new link or write the saved one.
    #+begin_src emacs-lisp
    (use-package malyon)
    #+end_src
-** Roam
+** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
 Org-roam setup for the entire =documents= directory.
 #+begin_src emacs-lisp
@@ -935,6 +934,35 @@ Org-roam setup for the entire =documents= directory.
     :hook
     (after-init . org-roam-mode)
     :custom
-    (org-roam-directory "~/private/documents/"))
-    (add-hook 'after-init-hook 'org-roam-mode)
+    (org-roam-directory "~/private/documents/")
+    :bind (:map org-roam-mode-map
+              (("C-c r l" . org-roam)
+               ("C-c r f" . org-roam-find-file)
+               ("C-c r g" . org-roam-graph-show))
+              :map org-mode-map
+              (("C-c r i" . org-roam-insert))
+              (("C-c r I" . org-roam-insert-immediate))))
+#+end_src
+** org-roam-server
+Dedicated config for =org-roam-server=
+#+begin_src emacs-lisp
+(use-package org-roam-server
+  :ensure t
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 8080
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
+#+end_src
+** Rodian
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/rodian/rodian.el")
+(require 'rodian)
 #+end_src

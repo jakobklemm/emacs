@@ -13,7 +13,8 @@
 (defun md5-find (filename)
   "md5 stuff"
   (interactive "FFind file: ")
-  (shell-command-to-string (concat "echo " (buffer-file-name (find-file-noselect filename)))))
+  (shell-command (concat "echo " (buffer-file-name (find-file-noselect filename))))
+  )
 
 (defun md5-open (file)
   (shell-command (concat "echo " file))
@@ -23,15 +24,16 @@
   "Store a link to a man page."
   (let* (page (get-file ()))
     (link (concat "md5:" page))
-    (description (format "Man page for %s" page))
     (org-link-store-props
      :type "md5"
      :link link
      :description description)))
 
-(defun get-file ()
+(defun get-file (filename)
+  "md5 stuff"
   (interactive "FFind file: ")
-  (concat "echo " (buffer-file-name (find-file-noselect filename)))
+  (shell-command (concat "echo " (buffer-file-name (find-file-noselect filename))))
   )
 
 (provide 'rodian)
+;;; rodian.el ends here
