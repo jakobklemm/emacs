@@ -14,7 +14,6 @@ Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not tech support. Most issues should be easy to fix.)
 * Future
 ** TODO notmuch
-** TODO pdf-tools
 ** TODO Roam
 ** TODO Hoth
 ** TODO Sort & Restructure
@@ -40,6 +39,7 @@ All used keybinds
 	 | C-x g       | magit-status                   |
 	 | C-x p       | magit-init                     |
 	 | C-s         | swipe                          |
+	 | C-x x       | previous-buffer                |
 	 | C-x C-f     | ido-file                       |
 	 | C-x C-f C-f | dired-file                     |
 	 | C-c p       | projectile-map                 |

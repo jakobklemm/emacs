@@ -287,6 +287,11 @@ Move between multiple open windows.
 (when (fboundp 'windmove-default-keybindings)
 (windmove-default-keybindings))
 #+end_src
+** Previous buffer
+Quickly switch to the previous buffer, useful for =org-agenda=
+#+begin_src emacs-lisp
+(define-key global-map (kbd "C-x x") 'previous-buffer)
+#+end_src
 * Projects
 ** Editing
 *** Indentation
@@ -654,9 +659,7 @@ todos.
 	 org mode normally provides.
    #+begin_src emacs-lisp
      (setq org-todo-keywords
-           '((sequence "TODO(1)" "CURRENT(2)" "BLOCKED(3)" "|" "DONE(y)")
-             (sequence "LONG(q)" "RESEARCH(w)" "FIXING(e)" "|" "DONE(c)")
-             (sequence "SCHULE(s)" "PROGRESS(d)" "QUICK(f)" "|" "DONE(x)")))
+           '((sequence "TODO(q)" "STEP(w)" "BLOCKED(e)" "|" "DONE(r)" "PAL(t)")))
    #+end_src
 ** Tags
 Default tags with keys.
@@ -687,40 +690,47 @@ Colored priorities.
     :ensure t
     :config (org-super-agenda-mode)
     )
-    (setq org-agenda-custom-commands
-          '(("c" "Super Agenda" agenda
-             (org-super-agenda-mode)
-             ((org-super-agenda-groups
-         '(
-           (:name "Important"
-                  :todo "CURRENT"
-                  :todo "TODO"
-                  :tag "admin"
-                  :priority "A"
-                  ;;:time-grid t
-                  :face (:background "#8e933a")
-                  :order 0
-                  )
-           (:name "Schule"
-                  :tag ("schule" "Progress" "Quick")
-                  :face (:background "#13a1da")
-                  :order 1
-                  )
-           (:name "Prüfungen"
-                  :tag ("Prüfungen")
-                  :face (:background "#93f1fa")
-                  :order 2
-                  )
-           (:name "Projects"
-                  :tag ("Erebos" "Warrick")
-                  :face (:background "#34fb99")
-                  :order 3
-                  )
-           (:priority<= "B"
-                        :order 4
-                        )
-           )))
-       (org-agenda nil "a"))))
+  (setq org-agenda-custom-commands
+        '(("c" "Super Agenda" agenda
+           (org-super-agenda-mode)
+           ((org-super-agenda-groups
+             '(
+               (:name "Timeline"
+                      :priority<= "B"
+                      :time-grid t
+                      :order 0
+                      )
+               (:name "Important"
+                      :todo "TODO"
+                      :tag "admin"
+                      :priority "A"
+                      :face (:background "#8e732d")
+                      :order 1
+                      )
+               (:name "Schule"
+                      :tag ("schule" "Progress" "Quick")
+                      :face (:background "#13a1da")
+                      :order 2
+                      )
+               (:name "Prüfungen"
+                      :tag ("Prüfungen")
+                      :face (:background "#93f1fa")
+                      :order 3
+                      )
+               (:name "Personal"
+                      :tag ("data")
+                      :tag ("personal")
+                      :tag ("home")
+                      :face (:background "#93f1fa")
+                      :order 4
+                      )
+               (:name "Projects"
+                      :tag ("Erebos" "Warrick")
+                      :face (:background "#34fb99")
+                      :order 5
+                    )
+               )))
+           (org-agenda nil "a"))))
 #+end_src
 *** Calendar
     #+begin_src emacs-lisp
@@ -728,27 +738,26 @@ Colored priorities.
         (interactive)
         (org-todo 'done))
 
-      ;;(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+      (define-key org-mode-map (kbd "C-c a") 'org-agenda)
       ;; Make agenda a global keybind.
-      (global-set-key (kbd "C-c  a") 'org-agenda)
+      ;; (global-set-key (kbd "C-c  a") 'org-agenda)
 
       (define-key org-mode-map (kbd "C-c d") 'org-deadline)
       (define-key org-mode-map (kbd "C-c t") 'org-todo)
       (define-key org-mode-map (kbd "C-c s") 'org-schedule)
-      ;;(define-key org-mode-map (kbd "C-c g") 'org-gcal-post-at-point)
-      ;;(define-key org-mode-map (kbd "C-c f") 'org-gcal-fetch)
       (define-key org-mode-map (kbd "C-c x") 'todo/done)
       (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 	 #+end_src
 *** Path
     Use the entire home directory for agenda files.
     #+begin_src emacs-lisp
-    (setq org-agenda-files '("~/private/documents/main.org"
-    "~/private/documents/personal/personal.org"))
+    (setq org-agenda-files
+      (append
+       (file-expand-wildcards "~/private/*.org")))
     #+end_src
     Add file to the list of included agenda files, bound =C-c v=
     #+begin_src emacs-lisp
-	(define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
+    (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
     #+end_src
 ** Export
 Allow export to markdown and beamer (for presentations).
