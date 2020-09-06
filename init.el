@@ -28,7 +28,7 @@
  '(objed-cursor-color "#c6797e")
  '(org-agenda-files '("~/private/documents/main.org" "~/.emacs.d/config.org"))
  '(package-selected-packages
-   '(swiper-helm helm org-roam-server org-roam calfw-org calfw haskell-mode org-super-agenda tangotango-theme rainbow-mode counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile))
+   '(xah-find amx helm-posframe swiper-helm helm org-roam-server org-roam calfw-org calfw haskell-mode org-super-agenda tangotango-theme rainbow-mode counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile))
  '(pdf-view-midnight-colors (cons "#FAFFF6" "#172030"))
  '(rustic-ansi-faces
    ["#172030" "#c6797e" "#A3B09A" "#F7E3AF" "#6e94b9" "#b18bb1" "#88C0D0" "#FAFFF6"])

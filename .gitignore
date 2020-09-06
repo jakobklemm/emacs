@@ -1,6 +1,6 @@
 # Ignore library files and all temporary files
 *~
-\#*\#
+nnn\#*\#
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
@@ -76,3 +76,5 @@ smex-items
 projectile-bookmarks.eld
 *.pdf
 *.tex
+
+amx-items

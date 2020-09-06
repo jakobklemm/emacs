@@ -203,6 +203,11 @@ Used themes:
     (setq dashboard-set-init-info t)
     ;; Message
     (setq dashboard-footer-messages '("Every time I see this package I think to myself \"People exit Emacs?\""))
+
+    (setq dashboard-items '((recents  . 5)
+                        (agenda . 10)))
+
+    (setq show-week-agenda-p t)
     #+end_src
 ** Font
 	 Use Fira Code as default font.
@@ -462,42 +467,29 @@ Bind =C-x t= to =eshell=.
 (global-set-key (kbd "C-x t") 'eshell)
 #+end_src
 ** Ivy - Swiper
-	 #+begin_src emacs-lisp
-	 (use-package swiper)
-	 (use-package ivy)
-	 (ivy-mode 1)
-	 (setq ivy-use-virtual-buffers t)
-	 (setq enable-recursive-minibuffers t)
-	 ;; enable this if you want `swiper' to use it
-	 (setq search-default-mode #'char-fold-to-regexp)
-	 (global-set-key "\C-s" 'swiper)
-	 #+end_src
-** Ido
-	 Global enable IDO mode.
-	 #+begin_src emacs-lisp
-	 (setq ido-enable-flex-matching t)
-	 (setq ido-everywhere t)
-	 (ido-mode 1)
-	 (setq ido-use-filename-at-point 'guess)
-	 (setq ido-create-new-buffer 'always)
-	 (setq ido-file-extensions-order '(".ex" ".exs" ".org" ".md" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-	 #+end_src
-*** Smex
-		Ido for Mx
-		#+begin_src emacs-lisp
-		(use-package smex)
-		(smex-initialize)
-
-		(global-set-key (kbd "M-x") 'smex)
-		(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-		(global-set-key (kbd "C-c C-x m") 'execute-extended-command)
-		#+end_src
-** Helm
-Use Helm instead of =ido= or =ivy=.
+Use Ivy and Swiper over Helm.
 #+begin_src emacs-lisp
-(use-package helm)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
+  (use-package swiper)
+  (use-package ivy)
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq search-default-mode #'char-fold-to-regexp)
+  (global-set-key "\C-s" 'swiper)
+  #+end_src
+** Posframe
+Use posframe for Ivy & Swiper.
+#+begin_src emacs-lisp
+(use-package ivy-posframe
+  :after ivy
+  :init (ivy-posframe-mode 1)
+  :config (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center))
+		ivy-posframe-border-width 8))
+
+(setq ivy-posframe-parameters
+      '((left-fringe . 4)
+        (right-fringe . 4)))
+(setq ivy-posframe-border-width 2)
 #+end_src
 ** Snippets
 Use yasnippets and the snippets from github.com/hrs/dotfiles
@@ -528,6 +520,13 @@ Highlight keywords like todo in files and in magit.
 #+begin_src emacs-lisp
 (use-package magit-todos)
 (magit-todos-mode t)
+#+end_src
+** GREP
+Plain text search using xah-find.
+Bound to =C-x C-j=.
+#+begin_src emacs-lisp
+(use-package xah-find)
+(global-set-key (kbd "C-x C-j") 'xah-find-text)
 #+end_src
 * Programming
 ** Elixir
@@ -686,25 +685,31 @@ Color for the different states.
 Default tags with keys.
 #+begin_src emacs-lisp
     (setq org-tag-persistent-alist
-          '((:startgroup . nil)
-            ("HOME" . ?h)
-            ("RESEARCH" . ?r)
-            ("TEACHING" . ?t)
-            (:endgroup . nil)
-            (:startgroup . nil)
-            ("OS" . ?o)
-            ("DEV" . ?d)
-            ("WWW" . ?w)
-            (:endgroup . nil)
-            (:startgroup . nil)
-            ("EASY" . ?e)
-            ("MEDIUM" . ?m)
-            ("HARD" . ?a)
-            (:endgroup . nil)
-            ("URGENT" . ?u)
-            ("KEY" . ?k)
-            ("BONUS" . ?b)
-            ("noexport" . ?x)
+          '(("HOME" . ?h)
+            ("ADMIN" . ?a)
+            ("PRIVATE" . ?x)
+            ("DATA" . ?d)
+            ("PROJECTS" . ?p)
+            ("WARRICK" . ?w)
+            ("EREBOS" . ?e)
+
+            ("BG" . ?1)
+            ("BIO" . ?1)
+            ("CHEM" . ?1)
+            ("DE" . ?1)
+            ("ENG" . ?1)
+            ("FRANZ" . ?1)
+            ("GER" . ?1)
+            ("GEO" .?1)
+            ("GS" . ?1)
+            ("MATH" . ?1)
+            ("MSPAM" . ?1)
+            ("PHY" . ?1)
+            ("PSPAM" . ?1)
+            ("PE" . ?1)
+            ("PU" . ?1)
+            ("PRÜFUNG" . ?1)
+            ("SCHULE" . ?1)
             )
           )
   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
@@ -714,21 +719,30 @@ Default tags with keys.
   (setq org-tag-faces
         '(
           ("HOME" . (:foreground "GoldenRod" :weight bold))
-          ("RESEARCH" . (:foreground "GoldenRod" :weight bold))
-          ("TEACHING" . (:foreground "GoldenRod" :weight bold))
-          ("OS" . (:foreground "IndianRed1" :weight bold))
-          ("DEV" . (:foreground "IndianRed1" :weight bold))
-          ("WWW" . (:foreground "IndianRed1" :weight bold))
-          ("URGENT" . (:foreground "Red" :weight bold))
-          ("KEY" . (:foreground "Red" :weight bold))
-          ("EASY" . (:foreground "OrangeRed" :weight bold))
-          ("MEDIUM" . (:foreground "OrangeRed" :weight bold))
-          ("HARD" . (:foreground "OrangeRed" :weight bold))
-          ("BONUS" . (:foreground "GoldenRod" :weight bold))
-          ("noexport" . (:foreground "LimeGreen" :weight bold))
+          ("ADMIN" . (:foreground "Red" :weight bold))
+          ("PRIVATE" . (:foreground "LimeGreen" :weight bold))
+          ("DATA" . (:foreground "LimeGreen" :weight bold))
+          ("PROJECTS" . (:foreground "OrangeRed" :weight bold))
+          ("WARRICK" . (:foreground "OrangeRed" :weight bold))
+          ("EREBOS" . (:foreground "OrangeRed" :weight bold))
+
+          ("BG" . (:foreground "GoldenRod" :weight bold))
+          ("BIO" . (:foreground "GoldenRod" :weight bold))
+          ("CHEM" . (:foreground "GoldenRod" :weight bold))
+          ("GER" . (:foreground "GoldenRod" :weight bold))
+          ("DE" . (:foreground "GoldenRod" :weight bold))
+          ("ENG" . (:foreground "GoldenRod" :weight bold))
+          ("FRANZ" . (:foreground "GoldenRod" :weight bold))
+          ("GEO" . (:foreground "GoldenRod" :weight bold))
+          ("GS" . (:foreground "GoldenRod" :weight bold))
+          ("MATH" . (:foreground "GoldenRod" :weight bold))
+          ("MSPAM" . (:foreground "GoldenRod" :weight bold))
+          ("PHY" . (:foreground "GoldenRod" :weight bold))
+          ("PSPAM" . (:foreground "GoldenRod" :weight bold))
+          ("PE" . (:foreground "GoldenRod" :weight bold))
+          ("PU" . (:foreground "GoldenRod" :weight bold))
           )
         )
-
 #+end_src
 ** Priority
 Colored priorities.
@@ -740,7 +754,6 @@ Colored priorities.
 #+end_src
 
 ** Agenda
-
 Super agenda is only meant for a general overview and more common tasks. All
 school related TODOs are found through the special view only for school.
 *** Agenda
@@ -773,25 +786,21 @@ school related TODOs are found through the special view only for school.
            ((org-super-agenda-groups
              '(
                (:name "Important"
-                  :tag "admin"
+                  :tag ("ADMIN")
                   :priority "A"
                   :time-grid t
-                  ;; :face (:background "#9e953a")
                   :order 0
                   )
            (:name "Schule"
-                  :tag ("schule" "prüfung")
-                  ;; :face (:background "#11a224")
+                  :tag ("SCHULE" "PRÜFUNG")
                   :order 1
                   )
            (:name "Personal"
-                  :tag ("data" "home" "personal")
-                  ;; :face (:background "#13a1da")
+                  :tag ("DATA" "HOME" "PRIVATE")
                   :order 1
                   )
            (:name "Projects"
-                  :tag ("erebos" "warrick")
-                  ;; :face (:background "#39abaf")
+                  :tag ("PROJECTS" "EREBOS" "WARRICK")
                   :order 2
                   )
            (:priority<= "B"
@@ -808,19 +817,19 @@ school related TODOs are found through the special view only for school.
 
                      ("d" "Agenda für private Pflichten und Aufgaben."
            ((agenda)
-            (tags-todo "home|personal"
+            (tags-todo "HOME|PRIVATE"
                        ((org-agenda-overriding-header "Private Pflichen und Aufgaben."))
                        )
-            (tags-todo "data"
+            (tags-todo "DATA"
                        ((org-agenda-overriding-header "Eingegangene Daten, noch zu verarbeiten."))
                        )
             ))
           ("s" "Agenda für Schule und Prüfungen."
            ((agenda)
-            (tags-todo "schule"
+            (tags-todo "SCHULE|BG|BIO|CHEM|DE|ENG|FRANZ|GER|GEO|GS|MATH|MSPAM|PHY|PSPAM|PE|PU"
                        ((org-agenda-overriding-header "Hausaufgaben, Abgaben und andere Pflichten und Termine."))
                        )
-            (tags "prüfung"
+            (tags "PRÜFUNG"
                   (
                    (org-agenda-overriding-header "Prüfungen und notenrelevante Termine.")
                    (org-agenda-sorting-strategy '(priority-up))))))
