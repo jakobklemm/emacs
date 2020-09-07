@@ -190,24 +190,22 @@ Used themes:
 *** Config
     Options and configuration for dashboard following the readme.
     #+begin_src emacs-lisp
-    ;; Set the banner
-    (setq dashboard-startup-banner 2)
-    ;; Content is not centered by default. To center, set
-    (setq dashboard-center-content t)
-    ;; Icons
-    (setq dashboard-set-heading-icons t)
-    (setq dashboard-set-file-icons t)
-    ;; Navigator
-    (setq dashboard-set-navigator t)
-    ;; Init info
-    (setq dashboard-set-init-info t)
-    ;; Message
-    (setq dashboard-footer-messages '("Every time I see this package I think to myself \"People exit Emacs?\""))
+      ;; Set the banner
+      (setq dashboard-startup-banner 2)
+      ;; Content is not centered by default. To center, set
+      (setq dashboard-center-content t)
+      ;; Icons
+      (setq dashboard-set-heading-icons t)
+      (setq dashboard-set-file-icons t)
+      ;; Navigator
+      (setq dashboard-set-navigator t)
+      ;; Init info
+      (setq dashboard-set-init-info t)
+      ;; Message
+      (setq dashboard-footer-messages '("Every time I see this package I think to myself \"People exit Emacs?\""))
 
-    (setq dashboard-items '((recents  . 10)
-                        (agenda . 10)))
-
-    (setq show-week-agenda-p t)
+      (setq dashboard-items '((recents  . 10)
+                              (agenda . 15)))
     #+end_src
 ** Font
 	 Use Fira Code as default font.
@@ -469,13 +467,13 @@ Bind =C-x t= to =eshell=.
 ** Ivy - Swiper
 Use Ivy and Swiper over Helm.
 #+begin_src emacs-lisp
-    (use-package swiper)
-    (use-package ivy)
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t)
-    (setq search-default-mode #'char-fold-to-regexp)
-    (global-set-key "\C-s" 'swiper)
+  (use-package swiper)
+  (use-package ivy)
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq search-default-mode #'char-fold-to-regexp)
+  (global-set-key "\C-s" 'swiper)
 
   (use-package amx
     :ensure t
@@ -487,11 +485,16 @@ Use Ivy and Swiper over Helm.
     (amx-show-key-bindings nil)
     :config (amx-mode 1))
 
+  (use-package all-the-icons-ivy-rich
+    :ensure t
+    :init (all-the-icons-ivy-rich-mode 1))
+
   (use-package ivy-rich
     :ensure t
     :after ivy
     :custom (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
     :config (ivy-rich-mode 1))
+
 
   #+end_src
 ** Posframe
@@ -617,7 +620,7 @@ Bound to =C-x C-j=.
    #+end_src
 ** Folded
    Instead of "..." show a downward pointing arrow at the end of title.
-	 TODO Change symbol or something.
+   TODO Change symbol or something.
    #+begin_src emacs-lisp
    (setq org-ellipsis "➘")
    #+end_src

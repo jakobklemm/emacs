@@ -41,6 +41,7 @@ All used keybinds
 	 | C-x p       | magit-init                     |
 	 | C-s         | swipe                          |
 	 | C-x x       | previous-buffer                |
+	 | C-x C-j     | grep                           |
 	 | C-x C-f     | ido-file                       |
 	 | C-x C-f C-f | dired-file                     |
 	 | C-c p       | projectile-map                 |

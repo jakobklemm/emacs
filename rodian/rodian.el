@@ -35,5 +35,10 @@
   (shell-command (concat "echo " (buffer-file-name (find-file-noselect filename))))
   )
 
+(defun insert-md5 (filename)
+  (interactive "FFind file: ")
+  (insert (buffer-file-name (find-file-noselect filename)))
+  )
+
 (provide 'rodian)
 ;;; rodian.el ends here
