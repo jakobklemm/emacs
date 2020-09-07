@@ -10,10 +10,24 @@
  :face '(:foreground "yellow")
  :help-echo "Rodian cloud file system with md5 indexing.")
 
-(defun md5-find (filename)
+(defun md5-comp ()
+  (let ((file (md5-find()))
+        (desc (get-description()))
+        ))
+  (message "String %s" (concat file desc))
+  )
+
+(defun md5-find ()
   "md5 stuff"
-  (interactive "FFind file: ")
-  (shell-command (concat "echo " (buffer-file-name (find-file-noselect filename))))
+  (interactive)
+  ;; (shell-command (concat "echo " (buffer-file-name (find-file-noselect filename))))
+  (message "String is %s" (read-file-name "Enter file name:"))
+  )
+
+(defun get-description ()
+  "stuff"
+  (interactive)
+  (message "String %s" (read-string "File: "))
   )
 
 (defun md5-open (file)
@@ -26,8 +40,8 @@
     (link (concat "md5:" page))
     (org-link-store-props
      :type "md5"
-     :link link
-     :description description)))
+     :description "DESC"))
+  )
 
 (defun get-file (filename)
   "md5 stuff"
