@@ -1003,7 +1003,9 @@ Org-roam setup for the entire =documents= directory.
       :bind (:map org-roam-mode-map
                 (("C-c r l" . org-roam)
                  ("C-c r f" . org-roam-find-file)
-                 ("C-c r g" . org-roam-graph-show))
+                 ("C-c r u" . org-roam-unliked-references)
+                 ("C-c r g" . org-roam-graph-show)
+                 ("C-c r s" . org-roam-server-mode))
                 :map org-mode-map
                 (("C-c r i" . org-roam-insert))
                 (("C-c r I" . org-roam-insert-immediate))))
@@ -1092,10 +1094,11 @@ use org-roam?]]
 #+RESULTS:
 : mmr/org-roam-insert-replace-region-with-link-and-follow
 
-** Rodian
+** Hoth
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/rodian/rodian.el")
-(require 'rodian)
+(load-file "~/.emacs.d/hoth/hoth.el")
+(require 'hoth)
+(define-key org-mode-map (kbd "C-c r h") 'md5-total)
 #+end_src
 ** Notes
 	 Deft for taking quick notes and storing them in plain text.

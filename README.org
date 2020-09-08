@@ -14,8 +14,6 @@ Free to use for any reason, no guarantee that it will work.
 (Use at own risk, this is not tech support. Most issues should be easy to fix.)
 * Future
 ** TODO notmuch
-** TODO Roam
-** TODO Rodian
 ** TODO org-protocol
 ** TODO Sort & Restructure
 * Installation
@@ -108,3 +106,8 @@ dictionary
 Install
 - sqlite3
 - dot
+- ripgrep
+** Hoth
+1. Add =emacs/hoth= to path.
+2. Change the paths or names in =main.go=
+3. Compile =emacs/hoth= using =go build=
