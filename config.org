@@ -1,8 +1,6 @@
 #+TITLE: A clean emacs config is an empty config file.
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
-#+OPTIONS: toc:nil num:nil
-#+ATTR_LATEX: :options frame=single
 Emacs Config - Jakob Klemm
 * Setup
 ** =use-package=
@@ -211,12 +209,12 @@ Used themes:
 ** Font
 	 Use Fira Code as default font.
 	 #+begin_src emacs-lisp
-	 (set-face-attribute
-	 'default nil
-	 :font "Fira Code"
-	 :weight 'normal
-	 :width 'normal
-	 )
+       (set-face-attribute
+        'default nil
+        :font "Fira Code"
+        :weight 'normal
+        :width 'normal
+        )
 	 #+end_src
 ** New window
 Directly switch to new window after opening.
@@ -239,6 +237,11 @@ Directly switch to new window after opening.
 ;; Keys
 (global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
 (global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
+#+end_src
+** Ace
+Use =ace-windows=, mainly as a dependency for =org-roam=
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-o") 'ace-window)
 #+end_src
 ** Beacon
 	 Beacon for highlighting the cursor when switching buffers.
@@ -549,6 +552,14 @@ Bound to =C-x C-j=.
 (use-package xah-find)
 (global-set-key (kbd "C-x C-j") 'xah-find-text)
 #+end_src
+** Search
+For plain text document search with use of =recoll=, instead of =GREP=.
+#+begin_src emacs-lisp
+(require 'org-recoll)
+;;(load "org-recoll")
+(global-set-key (kbd "C-c g") 'org-recoll-search)
+(global-set-key (kbd "C-c u") 'org-recoll-update-index)
+#+end_src
 * Programming
 ** Elixir
    Elixir major mode with syntax highlighting etc.
@@ -782,7 +793,6 @@ school related TODOs are found through the special view only for school.
         (interactive)
         (org-todo 'done))
 
-      ;; (define-key org-mode-map (kbd "C-c a") 'org-agenda)
       ;; Make agenda a global keybind.
       (global-set-key (kbd "C-c  a") 'org-agenda)
 
@@ -932,36 +942,80 @@ Allow export to markdown and beamer (for presentations).
 Use =C-c C-l= to save the current file for linking.
 Then use =C-c l= to insert a new link or write the saved one.
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c  l") 'org-insert-link)
+(global-set-key (kbd "C-c l") 'org-insert-link)
 (define-key org-mode-map (kbd "C-c l") 'org-insert-link)
-(global-set-key (kbd "C-c  C-l") 'org-store-link)
+(global-set-key (kbd "C-c C-l") 'org-store-link)
 (define-key org-mode-map (kbd "C-c C-l") 'org-store-link)
 #+end_src
+** Design
+General improvements and design changes for =org-mode=, currently under the
+=org-mode= heading instead of =Interface=.
+Following [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][this]] blog.
+#+begin_src emacs-lisp
+  (setq org-hide-emphasis-markers t)
+  (let* ((variable-tuple
+          (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+                ((x-list-fonts "Fira Code") '(:font "Fira Code"))
+                (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+         (base-font-color     (face-foreground 'default nil 'default))
+         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.40))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.55))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+
+  (add-hook 'org-mode-hook 'visual-line-mode)
+
+  (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info ((t (:foreground "dark orange"))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-link ((t (:foreground "dark orange" :underline t))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
+
+#+end_src
 * Content
-** Games
-   Malyon: Text adventure interface, games located under =/games=
-   #+begin_src emacs-lisp
-   (use-package malyon)
-   #+end_src
 ** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
 Org-roam setup for the entire =documents= directory.
 #+begin_src emacs-lisp
-  (use-package org-roam
-    :ensure t
-    :hook
-    (after-init . org-roam-mode)
-    :custom
-    (org-roam-directory "~/private/documents")
-    :bind (:map org-roam-mode-map
-              (("C-c r l" . org-roam)
-               ("C-c r f" . org-roam-find-file)
-               ("C-c r g" . org-roam-graph-show))
-              :map org-mode-map
-              (("C-c r i" . org-roam-insert))
-              (("C-c r I" . org-roam-insert-immediate))))
+    (use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/documents/org/")
+      :bind (:map org-roam-mode-map
+                (("C-c r l" . org-roam)
+                 ("C-c r f" . org-roam-find-file)
+                 ("C-c r g" . org-roam-graph-show))
+                :map org-mode-map
+                (("C-c r i" . org-roam-insert))
+                (("C-c r I" . org-roam-insert-immediate))))
 
-  (setq org-roam-index-file "~/private/main.org")
+  (setq org-roam-index-file "~/documents/org/main.org")
+  (setq org-roam-db-location "~/documents/org-roam.db")
+  (add-hook 'after-init-hook 'org-roam-mode)
+
+  (use-package company-org-roam
+    :ensure t
+    :config
+    (push 'company-org-roam company-backends))
 #+end_src
 ** org-roam-server
 Dedicated config for =org-roam-server=
@@ -981,6 +1035,68 @@ Dedicated config for =org-roam-server=
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 #+end_src
+** org-roam-config
+Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/comments/gsv5np/care_to_share_configs_for_how_you_use_orgroam/][Care to share configs for how you
+use org-roam?]]
+#+begin_src emacs-lisp
+  (defun org-force-open-current-window ()
+    (interactive)
+    (let ((org-link-frame-setup (quote
+                                 ((vm . vm-visit-folder)
+                                  (vm-imap . vm-visit-imap-folder)
+                                  (gnus . gnus)
+                                  (file . find-file)
+                                  (wl . wl)))
+                                ))
+      (org-open-at-point)))
+  ;; Depending on universal argument try opening link
+  (defun org-open-maybe (&optional arg)
+    (interactive "P")
+    (if arg
+        (org-open-at-point)
+      (org-force-open-current-window)
+      )
+    )
+
+  ;; redefined to use org-open-maybe
+  (defun ace-link-org (&optional arg)
+    "Open a visible link in an `org-mode' buffer."
+    (interactive "P")
+    (require 'org)
+    (let ((pt (avy-with ace-link-org
+                        (avy-process
+                         (mapcar #'cdr (ace-link--org-collect))
+                         (avy--style-fn avy-style)))))
+      (when (numberp pt)
+        (goto-char pt)
+        (org-open-maybe arg))
+      ))
+
+  (defun mmr/org-roam-insert-replace-region-with-link-and-follow ()
+    (interactive )
+    (let ((title (buffer-substring (mark) (point)) )
+          (top (current-buffer)))
+      (org-roam-find-file title)
+      (let ((target-file (buffer-file-name (buffer-base-buffer)))
+          (note-buffer (current-buffer)))
+        (switch-to-buffer top nil t)
+        (kill-region (mark) (point))
+        (insert (concat "[[" target-file "][" title "]]"))
+        (switch-to-buffer note-buffer nil t)
+        (save-buffer))))
+
+  (define-key org-mode-map (kbd "C-c o") 'org-open-maybe)
+  (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
+#+end_src
+
+#+RESULTS:
+: mmr/org-roam-insert-replace-region-with-link-and-follow
+
+** Rodian
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/rodian/rodian.el")
+(require 'rodian)
+#+end_src
 ** Notes
 	 Deft for taking quick notes and storing them in plain text.
 	 #+begin_src emacs-lisp
@@ -995,8 +1111,13 @@ Dedicated config for =org-roam-server=
 	 (define-key org-mode-map (kbd "C-c n") 'deft)
 	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
 	 #+end_src
-** Rodian
+** Browser
+Use =chrome= as the default browser for links.
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/rodian/rodian.el")
-(require 'rodian)
+(setq browse-url-browser-function 'browse-url-generic browse-url-generic-program "google-chrome-stable")
 #+end_src
+** Games
+   Malyon: Text adventure interface, games located under =/games=
+   #+begin_src emacs-lisp
+   (use-package malyon)
+   #+end_src

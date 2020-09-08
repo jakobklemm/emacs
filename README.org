@@ -22,6 +22,7 @@ Free to use for any reason, no guarantee that it will work.
 ** Fonts
 1. Download fonts with =M-x all-the-icons-install-fonts=
 2. Install the fonts
+3. Install =Fira Code= or [[https://github.com/edwardtufte/et-book/tree/gh-pages/et-book][et-book]]
 ** Binds
 All used keybinds
 	 | Key         | Executes                       |
@@ -54,6 +55,8 @@ All used keybinds
 	 | C-x 4 b     | right-open-buffer              |
 	 | C-x t       | terminal-emulator              |
 	 | C-x u       | undo (& redo)                  |
+	 | C-c C-x C-n | org-next-link                  |
+	 | C-c C-x C-p | org-previous-link              |
 	 | C-c t       | org-todo                       |
 	 | C-c a       | cfw-agenda-view                |
 	 | C-c C-a     | org-agenda                     |
@@ -69,7 +72,8 @@ All used keybinds
 	 | C-c C-x C-s | mark as done and archive       |
 	 | C-c C-j     | org-goto                       |
 	 | C-c C-l     | org-insert-link                |
-	 | C-c C-o     | org-open-at-point              |
+	 | C-c o       | org-open-at-point              |
+	 | C-c C-o     | org-open                       |
 	 | C-c C-q     | org-set-tags-command           |
 	 | C-c C-r     | org-reveal                     |
 	 | C-c C-s     | org-schedule                   |
@@ -92,6 +96,9 @@ All used keybinds
 	 | M-S-<UP>    | org-table-kill-row             |
 	 | <SPC>       | document-view next page        |
 	 | S-<SPC>     | document-view previous page    |
+** Recoll
+Install =recoll= and hit =C-c u=
+(Might take a minute)
 ** Dict
 (Windows)
 Set DICPATH variable to the correct dictionary. Use =ispell= with =C-.=
