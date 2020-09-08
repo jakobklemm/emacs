@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}confirm\PYGZhy{}babel\PYGZhy{}evaluate} \PYG{n+no}{nil}\PYG{p}{)}
+
+\PYG{c+c1}{;; inside .emacs file}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}latex\PYGZhy{}listings} \PYG{l+s+ss}{\PYGZsq{}minted}
+      \PYG{n+nv}{org\PYGZhy{}latex\PYGZhy{}packages\PYGZhy{}alist} \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}\PYGZdq{}} \PYG{l+s}{\PYGZdq{}minted\PYGZdq{}}\PYG{p}{))}
+      \PYG{n+nv}{org\PYGZhy{}latex\PYGZhy{}pdf\PYGZhy{}process}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}pdflatex \PYGZhy{}shell\PYGZhy{}escape \PYGZhy{}interaction nonstopmode \PYGZhy{}output\PYGZhy{}directory \PYGZpc{}o \PYGZpc{}f\PYGZdq{}}
+        \PYG{l+s}{\PYGZdq{}pdflatex \PYGZhy{}shell\PYGZhy{}escape \PYGZhy{}interaction nonstopmode \PYGZhy{}output\PYGZhy{}directory \PYGZpc{}o \PYGZpc{}f\PYGZdq{}}
+        \PYG{l+s}{\PYGZdq{}pdflatex \PYGZhy{}shell\PYGZhy{}escape \PYGZhy{}interaction nonstopmode \PYGZhy{}output\PYGZhy{}directory \PYGZpc{}o \PYGZpc{}f\PYGZdq{}}\PYG{p}{))}
+\end{Verbatim}

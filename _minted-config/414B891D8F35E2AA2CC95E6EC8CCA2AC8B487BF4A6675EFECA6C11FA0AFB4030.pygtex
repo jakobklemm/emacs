@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}todo\PYGZhy{}keyword\PYGZhy{}faces}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}IDEA\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}facb20\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}TODO\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}af1212\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}PROGRESS\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}a8fa80\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}BLOCKED\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}b213c4\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}PAL\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}30bb03\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}STATIC\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}34a8ff\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}DONE\PYGZdq{}} \PYG{o}{.} \PYG{p}{(}\PYG{l+s+ss}{:foreground} \PYG{l+s}{\PYGZdq{}\PYGZsh{}ffffff\PYGZdq{}} \PYG{l+s+ss}{:weight} \PYG{n+nv}{bold}\PYG{p}{))}
+        \PYG{p}{))}
+\end{Verbatim}

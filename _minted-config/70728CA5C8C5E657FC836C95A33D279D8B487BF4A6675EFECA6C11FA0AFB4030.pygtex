@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{dumb\PYGZhy{}jump}
+\PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+\PYG{l+s+ss}{:bind} \PYG{p}{((}\PYG{l+s}{\PYGZdq{}M\PYGZhy{}g o\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{dumb\PYGZhy{}jump\PYGZhy{}go\PYGZhy{}other\PYGZhy{}window}\PYG{p}{)}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}M\PYGZhy{}g j\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{dumb\PYGZhy{}jump\PYGZhy{}go}\PYG{p}{))}
+\PYG{l+s+ss}{:config} \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{dumb\PYGZhy{}jump\PYGZhy{}selector} \PYG{l+s+ss}{\PYGZsq{}ivy}\PYG{p}{))}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{show\PYGZhy{}paren\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{column\PYGZhy{}number\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{size\PYGZhy{}indication\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{transient\PYGZhy{}mark\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{delete\PYGZhy{}selection\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

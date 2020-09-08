@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}\PYGZti{}/private/documents\PYGZdq{}}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{org\PYGZhy{}file\PYGZhy{}path} \PYG{p}{(}\PYG{n+nv}{filename}\PYG{p}{)}
+\PYG{l+s}{\PYGZdq{}Return the absolute address of an org file, given its relative name.\PYGZdq{}}
+\PYG{p}{(}\PYG{n+nv}{concat} \PYG{p}{(}\PYG{n+nv}{file\PYGZhy{}name\PYGZhy{}as\PYGZhy{}directory} \PYG{n+nv}{org\PYGZhy{}directory}\PYG{p}{)} \PYG{n+nv}{filename}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}archive\PYGZhy{}location} \PYG{l+s}{\PYGZdq{}\PYGZti{}/private/archive/archive.org::* From \PYGZpc{}s\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

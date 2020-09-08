@@ -1,0 +1,64 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{org\PYGZhy{}super\PYGZhy{}agenda}
+    \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+    \PYG{l+s+ss}{:config} \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}super\PYGZhy{}agenda\PYGZhy{}mode}\PYG{p}{)}
+    \PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}custom\PYGZhy{}commands}
+        \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}c\PYGZdq{}} \PYG{l+s}{\PYGZdq{}Super Agenda\PYGZdq{}} \PYG{n+nv}{agenda}
+           \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}super\PYGZhy{}agenda\PYGZhy{}mode}\PYG{p}{)}
+           \PYG{p}{((}\PYG{n+nv}{org\PYGZhy{}super\PYGZhy{}agenda\PYGZhy{}groups}
+             \PYG{o}{\PYGZsq{}}\PYG{p}{(}
+               \PYG{p}{(}\PYG{l+s+ss}{:name} \PYG{l+s}{\PYGZdq{}Important\PYGZdq{}}
+                  \PYG{l+s+ss}{:tag} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}ADMIN\PYGZdq{}}\PYG{p}{)}
+                  \PYG{l+s+ss}{:priority} \PYG{l+s}{\PYGZdq{}A\PYGZdq{}}
+                  \PYG{l+s+ss}{:time\PYGZhy{}grid} \PYG{n+no}{t}
+                  \PYG{l+s+ss}{:order} \PYG{l+m+mi}{0}
+                  \PYG{p}{)}
+           \PYG{p}{(}\PYG{l+s+ss}{:name} \PYG{l+s}{\PYGZdq{}Schule\PYGZdq{}}
+                  \PYG{l+s+ss}{:tag} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}SCHULE\PYGZdq{}} \PYG{l+s}{\PYGZdq{}PRÜFUNG\PYGZdq{}}\PYG{p}{)}
+                  \PYG{l+s+ss}{:order} \PYG{l+m+mi}{1}
+                  \PYG{p}{)}
+           \PYG{p}{(}\PYG{l+s+ss}{:name} \PYG{l+s}{\PYGZdq{}Personal\PYGZdq{}}
+                  \PYG{l+s+ss}{:tag} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}DATA\PYGZdq{}} \PYG{l+s}{\PYGZdq{}HOME\PYGZdq{}} \PYG{l+s}{\PYGZdq{}PRIVATE\PYGZdq{}}\PYG{p}{)}
+                  \PYG{l+s+ss}{:order} \PYG{l+m+mi}{1}
+                  \PYG{p}{)}
+           \PYG{p}{(}\PYG{l+s+ss}{:name} \PYG{l+s}{\PYGZdq{}Projects\PYGZdq{}}
+                  \PYG{l+s+ss}{:tag} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}PROJECTS\PYGZdq{}} \PYG{l+s}{\PYGZdq{}EREBOS\PYGZdq{}} \PYG{l+s}{\PYGZdq{}WARRICK\PYGZdq{}}\PYG{p}{)}
+                  \PYG{l+s+ss}{:order} \PYG{l+m+mi}{2}
+                  \PYG{p}{)}
+           \PYG{p}{(}\PYG{l+s+ss}{:priority\PYGZlt{}=} \PYG{l+s}{\PYGZdq{}B\PYGZdq{}}
+                        \PYG{l+s+ss}{:order} \PYG{l+m+mi}{3}
+                        \PYG{p}{)}
+           \PYG{p}{)))}
+           \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}agenda} \PYG{n+no}{nil} \PYG{l+s}{\PYGZdq{}a\PYGZdq{}}\PYG{p}{))}
+          \PYG{p}{(}\PYG{l+s}{\PYGZdq{}g\PYGZdq{}} \PYG{l+s}{\PYGZdq{}TODOs nach Priorität sortiert.\PYGZdq{}}
+                      \PYG{p}{(}
+            \PYG{p}{(}\PYG{n+nv}{agenda} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{tags} \PYG{l+s}{\PYGZdq{}PRIORITY=\PYGZbs{}\PYGZdq{}A\PYGZbs{}\PYGZdq{}\PYGZdq{}}
+                  \PYG{p}{((}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}skip\PYGZhy{}function} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}skip\PYGZhy{}entry\PYGZhy{}if} \PYG{l+s+ss}{\PYGZsq{}todo} \PYG{l+s+ss}{\PYGZsq{}done}\PYG{p}{))}
+                   \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}overriding\PYGZhy{}header} \PYG{l+s}{\PYGZdq{}High\PYGZhy{}priority unfinished tasks:\PYGZdq{}}\PYG{p}{)))))}
+
+                     \PYG{p}{(}\PYG{l+s}{\PYGZdq{}d\PYGZdq{}} \PYG{l+s}{\PYGZdq{}Agenda für private Pflichten und Aufgaben.\PYGZdq{}}
+           \PYG{p}{((}\PYG{n+nv}{agenda}\PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{tags\PYGZhy{}todo} \PYG{l+s}{\PYGZdq{}HOME|PRIVATE\PYGZdq{}}
+                       \PYG{p}{((}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}overriding\PYGZhy{}header} \PYG{l+s}{\PYGZdq{}Private Pflichen und Aufgaben.\PYGZdq{}}\PYG{p}{))}
+                       \PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{tags\PYGZhy{}todo} \PYG{l+s}{\PYGZdq{}DATA\PYGZdq{}}
+                       \PYG{p}{((}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}overriding\PYGZhy{}header} \PYG{l+s}{\PYGZdq{}Eingegangene Daten, noch zu verarbeiten.\PYGZdq{}}\PYG{p}{))}
+                       \PYG{p}{)}
+            \PYG{p}{))}
+          \PYG{p}{(}\PYG{l+s}{\PYGZdq{}s\PYGZdq{}} \PYG{l+s}{\PYGZdq{}Agenda für Schule und Prüfungen.\PYGZdq{}}
+           \PYG{p}{((}\PYG{n+nv}{agenda}\PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{tags\PYGZhy{}todo} \PYG{l+s}{\PYGZdq{}SCHULE|BG|BIO|CHEM|DE|ENG|FRANZ|GER|GEO|GS|MATH|MSPAM|PHY|PSPAM|PE|PU\PYGZdq{}}
+                       \PYG{p}{((}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}overriding\PYGZhy{}header} \PYG{l+s}{\PYGZdq{}Hausaufgaben, Abgaben und andere Pflichten und Termine.\PYGZdq{}}\PYG{p}{))}
+                       \PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{tags} \PYG{l+s}{\PYGZdq{}PRÜFUNG\PYGZdq{}}
+                  \PYG{p}{(}
+                   \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}overriding\PYGZhy{}header} \PYG{l+s}{\PYGZdq{}Prüfungen und notenrelevante Termine.\PYGZdq{}}\PYG{p}{)}
+                   \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}sorting\PYGZhy{}strategy} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{n+nv}{priority\PYGZhy{}up}\PYG{p}{))))))}
+          \PYG{p}{(}\PYG{l+s}{\PYGZdq{}f\PYGZdq{}} \PYG{l+s}{\PYGZdq{}Alle aktuellen TODOs\PYGZdq{}}
+           \PYG{p}{((}\PYG{n+nv}{agenda}\PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nv}{todo}\PYG{p}{)}
+            \PYG{p}{))}
+          \PYG{p}{))}
+\end{Verbatim}

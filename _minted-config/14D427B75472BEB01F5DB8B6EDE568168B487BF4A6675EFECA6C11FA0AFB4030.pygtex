@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nb}{fboundp} \PYG{l+s+ss}{\PYGZsq{}windmove\PYGZhy{}default\PYGZhy{}keybindings}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{windmove\PYGZhy{}default\PYGZhy{}keybindings}\PYG{p}{))}
+\end{Verbatim}

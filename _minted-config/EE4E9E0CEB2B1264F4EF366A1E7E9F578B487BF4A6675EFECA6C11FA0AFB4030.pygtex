@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{ivy\PYGZhy{}posframe}
+  \PYG{l+s+ss}{:after} \PYG{n+nv}{ivy}
+  \PYG{l+s+ss}{:init} \PYG{p}{(}\PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+  \PYG{l+s+ss}{:config} \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}display\PYGZhy{}functions\PYGZhy{}alist} \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{n+no}{t} \PYG{o}{.} \PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}display\PYGZhy{}at\PYGZhy{}frame\PYGZhy{}center}\PYG{p}{))}
+        \PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}border\PYGZhy{}width} \PYG{l+m+mi}{8}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}parameters}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{n+nv}{left\PYGZhy{}fringe} \PYG{o}{.} \PYG{l+m+mi}{4}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nv}{right\PYGZhy{}fringe} \PYG{o}{.} \PYG{l+m+mi}{4}\PYG{p}{)))}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ivy\PYGZhy{}posframe\PYGZhy{}border\PYGZhy{}width} \PYG{l+m+mi}{2}\PYG{p}{)}
+\end{Verbatim}

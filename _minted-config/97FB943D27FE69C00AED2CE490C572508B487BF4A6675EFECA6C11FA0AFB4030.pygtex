@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{hrs/split\PYGZhy{}window\PYGZhy{}below\PYGZhy{}and\PYGZhy{}switch} \PYG{p}{()}
+\PYG{l+s}{\PYGZdq{}Split the window horizontally, then switch to the new pane.\PYGZdq{}}
+\PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{split\PYGZhy{}window\PYGZhy{}below}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{balance\PYGZhy{}windows}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{other\PYGZhy{}window} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{hrs/split\PYGZhy{}window\PYGZhy{}right\PYGZhy{}and\PYGZhy{}switch} \PYG{p}{()}
+\PYG{l+s}{\PYGZdq{}Split the window vertically, then switch to the new pane.\PYGZdq{}}
+\PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{split\PYGZhy{}window\PYGZhy{}right}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{balance\PYGZhy{}windows}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{other\PYGZhy{}window} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{c+c1}{;; Keys}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x 2\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}hrs/split\PYGZhy{}window\PYGZhy{}below\PYGZhy{}and\PYGZhy{}switch}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x 3\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}hrs/split\PYGZhy{}window\PYGZhy{}right\PYGZhy{}and\PYGZhy{}switch}\PYG{p}{)}
+\end{Verbatim}

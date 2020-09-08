@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ispell\PYGZhy{}program\PYGZhy{}name} \PYG{l+s}{\PYGZdq{}hunspell\PYGZdq{}}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ispell\PYGZhy{}hunspell\PYGZhy{}dict\PYGZhy{}paths\PYGZhy{}alist}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}en\PYGZus{}US\PYGZdq{}} \PYG{l+s}{\PYGZdq{}\PYGZti{}/.emacs.d/dict/en\PYGZus{}US.aff\PYGZdq{}}\PYG{p}{)}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}de\PYGZus{}DE\PYGZdq{}} \PYG{l+s}{\PYGZdq{}\PYGZti{}/.emacs.d/dict/de\PYGZus{}DE.aff\PYGZdq{}}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ispell\PYGZhy{}local\PYGZhy{}dictionary} \PYG{l+s}{\PYGZdq{}en\PYGZus{}US\PYGZdq{}}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ispell\PYGZhy{}local\PYGZhy{}dictionary\PYGZhy{}alist}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}en\PYGZus{}US\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[[:alpha:]]\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[\PYGZca{}[:alpha:]]\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[\PYGZsq{}]\PYGZdq{}} \PYG{n+no}{nil} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{}d\PYGZdq{}} \PYG{l+s}{\PYGZdq{}en\PYGZus{}US\PYGZdq{}}\PYG{p}{)} \PYG{n+no}{nil} \PYG{n+nv}{utf\PYGZhy{}8}\PYG{p}{)}
+        \PYG{p}{(}\PYG{l+s}{\PYGZdq{}de\PYGZus{}DE\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[[:alpha:]]\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[\PYGZca{}[:alpha:]]\PYGZdq{}} \PYG{l+s}{\PYGZdq{}[\PYGZsq{}]\PYGZdq{}} \PYG{n+no}{nil} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{}d\PYGZdq{}} \PYG{l+s}{\PYGZdq{}en\PYGZus{}US\PYGZdq{}} \PYG{l+s}{\PYGZdq{}\PYGZhy{}a\PYGZdq{}} \PYG{l+s}{\PYGZdq{}\PYGZhy{}i\PYGZdq{}} \PYG{l+s}{\PYGZdq{}UTF\PYGZhy{}8\PYGZdq{}}\PYG{p}{)} \PYG{n+no}{nil} \PYG{n+nv}{utf\PYGZhy{}8}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{n+nv}{flyspell\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}text\PYGZhy{}mode\PYGZhy{}hook} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{flyspell\PYGZhy{}mode}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}mode\PYGZhy{}hook} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{flyspell\PYGZhy{}mode}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}.\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}ispell\PYGZhy{}word}\PYG{p}{)}
+\end{Verbatim}

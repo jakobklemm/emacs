@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{company}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}after\PYGZhy{}init\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}global\PYGZhy{}company\PYGZhy{}mode}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{lsp\PYGZhy{}mode}
+\PYG{l+s+ss}{:commands} \PYG{n+nv}{lsp}
+\PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+\PYG{l+s+ss}{:diminish} \PYG{n+nv}{lsp\PYGZhy{}mode}
+\PYG{l+s+ss}{:hook}
+\PYG{p}{(}\PYG{n+nv}{elixir\PYGZhy{}mode} \PYG{o}{.} \PYG{n+nv}{lsp}\PYG{p}{)}
+\PYG{l+s+ss}{:init}
+\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}to\PYGZhy{}list} \PYG{l+s+ss}{\PYGZsq{}exec\PYGZhy{}path} \PYG{l+s}{\PYGZdq{}\PYGZti{}/.emacs.d/elixir\PYGZhy{}ls\PYGZdq{}}\PYG{p}{))}
+\end{Verbatim}

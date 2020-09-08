@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{set\PYGZhy{}face\PYGZhy{}attribute}
+\PYG{l+s+ss}{\PYGZsq{}default} \PYG{n+no}{nil}
+\PYG{l+s+ss}{:font} \PYG{l+s}{\PYGZdq{}Fira Code\PYGZdq{}}
+\PYG{l+s+ss}{:weight} \PYG{l+s+ss}{\PYGZsq{}normal}
+\PYG{l+s+ss}{:width} \PYG{l+s+ss}{\PYGZsq{}normal}
+\PYG{p}{)}
+\end{Verbatim}

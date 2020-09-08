@@ -2,6 +2,7 @@
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
 #+OPTIONS: toc:nil num:nil
+#+ATTR_LATEX: :options frame=single
 Emacs Config - Jakob Klemm
 * Setup
 ** =use-package=
@@ -892,10 +893,19 @@ Allow export to markdown and beamer (for presentations).
 		(elixir . t)
 		))
     #+end_src
-		Don't ask before evaluating code blocks.
-    #+BEGIN_src emacs-lisp
-		(setq org-confirm-babel-evaluate nil)
-    #+end_src
+	Don't ask before evaluating code blocks.
+  #+BEGIN_src emacs-lisp
+    (setq org-confirm-babel-evaluate nil)
+
+    ;; inside .emacs file
+    (setq org-latex-listings 'minted
+          org-latex-packages-alist '(("" "minted"))
+          org-latex-pdf-process
+          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+  #+end_src
 *** HTML
 		Disable footer.
     #+begin_src emacs-lisp

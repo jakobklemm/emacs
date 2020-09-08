@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{l+s+ss}{:config}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}host} \PYG{l+s}{\PYGZdq{}127.0.0.1\PYGZdq{}}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}port} \PYG{l+m+mi}{8080}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}authenticate} \PYG{n+no}{nil}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}export\PYGZhy{}inline\PYGZhy{}images} \PYG{n+no}{t}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}serve\PYGZhy{}files} \PYG{n+no}{nil}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}served\PYGZhy{}file\PYGZhy{}extensions} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}pdf\PYGZdq{}} \PYG{l+s}{\PYGZdq{}mp4\PYGZdq{}} \PYG{l+s}{\PYGZdq{}ogv\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}network\PYGZhy{}poll} \PYG{n+no}{t}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}network\PYGZhy{}arrows} \PYG{n+no}{nil}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}network\PYGZhy{}label\PYGZhy{}truncate} \PYG{n+no}{t}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}network\PYGZhy{}label\PYGZhy{}truncate\PYGZhy{}length} \PYG{l+m+mi}{60}
+        \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}server\PYGZhy{}network\PYGZhy{}label\PYGZhy{}wrap\PYGZhy{}length} \PYG{l+m+mi}{20}\PYG{p}{))}
+\end{Verbatim}

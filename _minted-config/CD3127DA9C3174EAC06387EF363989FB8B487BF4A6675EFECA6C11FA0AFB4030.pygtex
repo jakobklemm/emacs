@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{deft}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}default\PYGZhy{}extension} \PYG{l+s}{\PYGZdq{}org\PYGZdq{}}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}extensions} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}org\PYGZdq{}}\PYG{p}{))}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}\PYGZti{}/private/documents\PYGZdq{}}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}recursive} \PYG{n+no}{t}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}text\PYGZhy{}mode} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}mode}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{deft\PYGZhy{}use\PYGZhy{}filename\PYGZhy{}as\PYGZhy{}title} \PYG{n+no}{t}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c n\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}deft}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}M\PYGZhy{}c n\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}deft\PYGZhy{}find\PYGZhy{}file}\PYG{p}{)}
+\end{Verbatim}

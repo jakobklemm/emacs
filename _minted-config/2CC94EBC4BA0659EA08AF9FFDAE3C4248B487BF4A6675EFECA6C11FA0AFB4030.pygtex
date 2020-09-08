@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{todo/done} \PYG{p}{()}
+  \PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}todo} \PYG{l+s+ss}{\PYGZsq{}done}\PYG{p}{))}
+
+\PYG{c+c1}{;; (define\PYGZhy{}key org\PYGZhy{}mode\PYGZhy{}map (kbd \PYGZdq{}C\PYGZhy{}c a\PYGZdq{}) \PYGZsq{}org\PYGZhy{}agenda)}
+\PYG{c+c1}{;; Make agenda a global keybind.}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c  a\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}agenda}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c d\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}deadline}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c s\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}schedule}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c f\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}time\PYGZhy{}stamp}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c t\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}todo}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c x\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}todo/done}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c e\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}set\PYGZhy{}effort}\PYG{p}{)}
+\end{Verbatim}

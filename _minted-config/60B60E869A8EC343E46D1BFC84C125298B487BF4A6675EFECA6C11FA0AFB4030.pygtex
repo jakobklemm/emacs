@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{p}{(}\PYG{n+nv}{setq\PYGZhy{}default} \PYG{n+nv}{frame\PYGZhy{}title\PYGZhy{}format}
+\PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s+ss}{:eval}
+\PYG{p}{(}\PYG{n+nb}{format} \PYG{l+s}{\PYGZdq{}\PYGZpc{}s@\PYGZpc{}s: \PYGZpc{}s \PYGZpc{}s\PYGZdq{}}
+\PYG{p}{(}\PYG{n+nb}{or} \PYG{p}{(}\PYG{n+nv}{file\PYGZhy{}remote\PYGZhy{}p} \PYG{n+nv}{default\PYGZhy{}directory} \PYG{l+s+ss}{\PYGZsq{}user}\PYG{p}{)}
+\PYG{n+nv}{user\PYGZhy{}real\PYGZhy{}login\PYGZhy{}name}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{or} \PYG{p}{(}\PYG{n+nv}{file\PYGZhy{}remote\PYGZhy{}p} \PYG{n+nv}{default\PYGZhy{}directory} \PYG{l+s+ss}{\PYGZsq{}host}\PYG{p}{)}
+\PYG{n+nv}{system\PYGZhy{}name}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{buffer\PYGZhy{}name}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{cond}
+\PYG{p}{(}\PYG{n+nv}{buffer\PYGZhy{}file\PYGZhy{}truename}
+\PYG{p}{(}\PYG{n+nv}{concat} \PYG{l+s}{\PYGZdq{}(\PYGZdq{}} \PYG{n+nv}{buffer\PYGZhy{}file\PYGZhy{}truename} \PYG{l+s}{\PYGZdq{})\PYGZdq{}}\PYG{p}{))}
+\PYG{p}{(}\PYG{n+nv}{dired\PYGZhy{}directory}
+\PYG{p}{(}\PYG{n+nv}{concat} \PYG{l+s}{\PYGZdq{}\PYGZob{}\PYGZdq{}} \PYG{n+nv}{dired\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}\PYGZcb{}\PYGZdq{}}\PYG{p}{))}
+\PYG{p}{(}\PYG{n+no}{t}
+\PYG{l+s}{\PYGZdq{}[no file]\PYGZdq{}}\PYG{p}{)))))}
+\end{Verbatim}

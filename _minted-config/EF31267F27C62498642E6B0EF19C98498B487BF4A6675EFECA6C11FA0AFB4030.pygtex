@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}hl\PYGZhy{}line\PYGZhy{}mode}\PYG{p}{)}
+    \PYG{c+c1}{;; Marked number}
+    \PYG{p}{(}\PYG{n+nv}{set\PYGZhy{}face\PYGZhy{}background} \PYG{n+nv}{hl\PYGZhy{}line\PYGZhy{}face} \PYG{l+s}{\PYGZdq{}\PYGZsh{}090405\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

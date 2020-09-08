@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{org\PYGZhy{}roam}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{l+s+ss}{:hook}
+  \PYG{p}{(}\PYG{n+nv}{after\PYGZhy{}init} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}mode}\PYG{p}{)}
+  \PYG{l+s+ss}{:custom}
+  \PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}\PYGZti{}/private/documents\PYGZdq{}}\PYG{p}{)}
+  \PYG{l+s+ss}{:bind} \PYG{p}{(}\PYG{l+s+ss}{:map} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}mode\PYGZhy{}map}
+            \PYG{p}{((}\PYG{l+s}{\PYGZdq{}C\PYGZhy{}c r l\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam}\PYG{p}{)}
+             \PYG{p}{(}\PYG{l+s}{\PYGZdq{}C\PYGZhy{}c r f\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}find\PYGZhy{}file}\PYG{p}{)}
+             \PYG{p}{(}\PYG{l+s}{\PYGZdq{}C\PYGZhy{}c r g\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}graph\PYGZhy{}show}\PYG{p}{))}
+            \PYG{l+s+ss}{:map} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map}
+            \PYG{p}{((}\PYG{l+s}{\PYGZdq{}C\PYGZhy{}c r i\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}insert}\PYG{p}{))}
+            \PYG{p}{((}\PYG{l+s}{\PYGZdq{}C\PYGZhy{}c r I\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}insert\PYGZhy{}immediate}\PYG{p}{))))}
+
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}roam\PYGZhy{}index\PYGZhy{}file} \PYG{l+s}{\PYGZdq{}\PYGZti{}/private/main.org\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

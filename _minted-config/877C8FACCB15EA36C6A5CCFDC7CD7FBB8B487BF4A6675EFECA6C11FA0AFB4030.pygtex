@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides}
+\PYG{l+s+ss}{:if} \PYG{p}{(}\PYG{n+nv}{display\PYGZhy{}graphic\PYGZhy{}p}\PYG{p}{)}
+\PYG{l+s+ss}{:diminish}
+\PYG{c+c1}{;; Enable manually if needed, it a severe bug which potentially core\PYGZhy{}dumps Emacs}
+\PYG{c+c1}{;; https://github.com/DarthFennec/highlight\PYGZhy{}indent\PYGZhy{}guides/issues/76}
+\PYG{l+s+ss}{:commands} \PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides\PYGZhy{}mode}\PYG{p}{)}
+\PYG{l+s+ss}{:custom}
+\PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides\PYGZhy{}method} \PYG{l+s+ss}{\PYGZsq{}character}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides\PYGZhy{}responsive} \PYG{l+s+ss}{\PYGZsq{}top}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides\PYGZhy{}delay} \PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}indent\PYGZhy{}guides\PYGZhy{}auto\PYGZhy{}character\PYGZhy{}face\PYGZhy{}perc} \PYG{l+m+mi}{7}\PYG{p}{))}
+\end{Verbatim}

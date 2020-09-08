@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{zoom\PYGZhy{}in} \PYG{p}{()}
+  \PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{x} \PYG{p}{(}\PYG{n+nb}{+} \PYG{p}{(}\PYG{n+nv}{face\PYGZhy{}attribute} \PYG{l+s+ss}{\PYGZsq{}default} \PYG{l+s+ss}{:height}\PYG{p}{)}
+              \PYG{l+m+mi}{10}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{n+nv}{set\PYGZhy{}face\PYGZhy{}attribute} \PYG{l+s+ss}{\PYGZsq{}default} \PYG{n+no}{nil} \PYG{l+s+ss}{:height} \PYG{n+nv}{x}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{zoom\PYGZhy{}out} \PYG{p}{()}
+  \PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{x} \PYG{p}{(}\PYG{n+nb}{\PYGZhy{}} \PYG{p}{(}\PYG{n+nv}{face\PYGZhy{}attribute} \PYG{l+s+ss}{\PYGZsq{}default} \PYG{l+s+ss}{:height}\PYG{p}{)}
+              \PYG{l+m+mi}{10}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{n+nv}{set\PYGZhy{}face\PYGZhy{}attribute} \PYG{l+s+ss}{\PYGZsq{}default} \PYG{n+no}{nil} \PYG{l+s+ss}{:height} \PYG{n+nv}{x}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{global\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}1\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}zoom\PYGZhy{}in}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{global\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}0\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}zoom\PYGZhy{}out}\PYG{p}{)}
+\end{Verbatim}

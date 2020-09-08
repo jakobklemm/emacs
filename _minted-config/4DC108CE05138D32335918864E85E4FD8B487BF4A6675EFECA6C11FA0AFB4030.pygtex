@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c  l\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}insert\PYGZhy{}link}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c l\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}insert\PYGZhy{}link}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c  C\PYGZhy{}l\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}store\PYGZhy{}link}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c C\PYGZhy{}l\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}store\PYGZhy{}link}\PYG{p}{)}
+\end{Verbatim}

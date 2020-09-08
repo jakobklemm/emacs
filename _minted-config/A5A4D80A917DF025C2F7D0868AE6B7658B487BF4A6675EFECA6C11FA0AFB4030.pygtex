@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{hrs/mark\PYGZhy{}done\PYGZhy{}and\PYGZhy{}archive} \PYG{p}{()}
+\PYG{l+s}{\PYGZdq{}Mark the state of an org\PYGZhy{}mode item as DONE and archive it.\PYGZdq{}}
+\PYG{p}{(}\PYG{n+nv}{interactive}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}todo} \PYG{l+s+ss}{\PYGZsq{}done}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}archive\PYGZhy{}subtree}\PYG{p}{))}
+\PYG{c+c1}{;; Shortcut to archive}
+\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{org\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}c C\PYGZhy{}x C\PYGZhy{}s\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}hrs/mark\PYGZhy{}done\PYGZhy{}and\PYGZhy{}archive}\PYG{p}{)}
+\end{Verbatim}

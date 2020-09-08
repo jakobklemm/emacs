@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{swiper}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{ivy}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{ivy\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ivy\PYGZhy{}use\PYGZhy{}virtual\PYGZhy{}buffers} \PYG{n+no}{t}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{enable\PYGZhy{}recursive\PYGZhy{}minibuffers} \PYG{n+no}{t}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{search\PYGZhy{}default\PYGZhy{}mode} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{char\PYGZhy{}fold\PYGZhy{}to\PYGZhy{}regexp}\PYG{p}{)}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{l+s}{\PYGZdq{}\PYGZbs{}C\PYGZhy{}s\PYGZdq{}} \PYG{l+s+ss}{\PYGZsq{}swiper}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{amx}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{l+s+ss}{:after} \PYG{n+nv}{ivy}
+  \PYG{l+s+ss}{:custom}
+  \PYG{p}{(}\PYG{n+nv}{amx\PYGZhy{}backend} \PYG{l+s+ss}{\PYGZsq{}auto}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{amx\PYGZhy{}save\PYGZhy{}file} \PYG{l+s}{\PYGZdq{}\PYGZti{}/.emacs.d/amx\PYGZhy{}items\PYGZdq{}}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{amx\PYGZhy{}history\PYGZhy{}length} \PYG{l+m+mi}{50}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{amx\PYGZhy{}show\PYGZhy{}key\PYGZhy{}bindings} \PYG{n+no}{nil}\PYG{p}{)}
+  \PYG{l+s+ss}{:config} \PYG{p}{(}\PYG{n+nv}{amx\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{all\PYGZhy{}the\PYGZhy{}icons\PYGZhy{}ivy\PYGZhy{}rich}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{l+s+ss}{:init} \PYG{p}{(}\PYG{n+nv}{all\PYGZhy{}the\PYGZhy{}icons\PYGZhy{}ivy\PYGZhy{}rich\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{ivy\PYGZhy{}rich}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{l+s+ss}{:after} \PYG{n+nv}{ivy}
+  \PYG{l+s+ss}{:custom} \PYG{p}{(}\PYG{n+nv}{setcdr} \PYG{p}{(}\PYG{n+nv}{assq} \PYG{n+no}{t} \PYG{n+nv}{ivy\PYGZhy{}format\PYGZhy{}functions\PYGZhy{}alist}\PYG{p}{)} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{ivy\PYGZhy{}format\PYGZhy{}function\PYGZhy{}line}\PYG{p}{)}
+  \PYG{l+s+ss}{:config} \PYG{p}{(}\PYG{n+nv}{ivy\PYGZhy{}rich\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{))}
+\end{Verbatim}
