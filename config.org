@@ -697,7 +697,7 @@ todos.
    #+begin_src emacs-lisp
      (setq org-todo-keywords
            '((sequence "TODO(t)" "PROGRESS(p)" "BLOCKED(b)" "|" "DONE(d)" "PAL(a)")
-             (sequence "IDEA(i)" "STATIC(s)" "|" "DONE(f)")))
+             (sequence "IDEA(i)" "NOTE(n)" "|" "DONE(f)")))
    #+end_src
 *** Faces
 Color for the different states.
@@ -708,7 +708,7 @@ Color for the different states.
         ("PROGRESS" . (:foreground "#a8fa80" :weight bold))
         ("BLOCKED" . (:foreground "#b213c4" :weight bold))
         ("PAL" . (:foreground "#30bb03" :weight bold))
-        ("STATIC" . (:foreground "#34a8ff" :weight bold))
+        ("NOTE" . (:foreground "#eaa222" :weight bold))
         ("DONE" . (:foreground "#ffffff" :weight bold))
         ))
 #+end_src
@@ -806,68 +806,74 @@ school related TODOs are found through the special view only for school.
 *** Commands
 =org-super-agenda=
 #+begin_src emacs-lisp
-(use-package org-super-agenda
-    :ensure t
-    :config (org-super-agenda-mode)
-    )
-  (setq org-agenda-custom-commands
-        '(("c" "Super Agenda" agenda
-           (org-super-agenda-mode)
-           ((org-super-agenda-groups
-             '(
-               (:name "Important"
-                  :tag ("ADMIN")
-                  :priority "A"
-                  :time-grid t
-                  :order 0
-                  )
-           (:name "Schule"
-                  :tag ("SCHULE" "PRÜFUNG")
-                  :order 1
-                  )
-           (:name "Personal"
-                  :tag ("DATA" "HOME" "PRIVATE")
-                  :order 1
-                  )
-           (:name "Projects"
-                  :tag ("PROJECTS" "EREBOS" "WARRICK")
-                  :order 2
-                  )
-           (:priority<= "B"
-                        :order 3
-                        )
-           )))
-           (org-agenda nil "a"))
-          ("g" "TODOs nach Priorität sortiert."
-                      (
-            (agenda "")
-            (tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                   (org-agenda-overriding-header "High-priority unfinished tasks:")))))
+  (use-package org-super-agenda
+      :ensure t
+      :config (org-super-agenda-mode)
+      )
+    (setq org-agenda-custom-commands
+          '(("c" "Super Agenda" agenda
+             (org-super-agenda-mode)
+             ((org-super-agenda-groups
+               '(
+                 (:name "Important"
+                    :tag ("ADMIN")
+                    :priority "A"
+                    :time-grid t
+                    :order 0
+                    )
+             (:name "Schule"
+                    :tag ("SCHULE" "PRÜFUNG")
+                    :order 1
+                    )
+             (:name "Personal"
+                    :tag ("DATA" "HOME" "PRIVATE")
+                    :order 1
+                    )
+             (:name "Projects"
+                    :tag ("PROJECTS" "EREBOS" "WARRICK")
+                    :order 2
+                    )
+             (:priority<= "B"
+                          :order 3
+                          )
+             )))
+             (org-agenda nil "a"))
+            ("g" "TODOs nach Priorität sortiert."
+                        (
+              (agenda "")
+              (tags "PRIORITY=\"A\""
+                    ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                     (org-agenda-overriding-header "High-priority unfinished tasks:")))))
 
-                     ("d" "Agenda für private Pflichten und Aufgaben."
-           ((agenda)
-            (tags-todo "HOME|PRIVATE"
-                       ((org-agenda-overriding-header "Private Pflichen und Aufgaben."))
-                       )
-            (tags-todo "DATA"
-                       ((org-agenda-overriding-header "Eingegangene Daten, noch zu verarbeiten."))
-                       )
+                       ("d" "Agenda für private Pflichten und Aufgaben."
+             ((agenda)
+              (tags-todo "HOME|PRIVATE"
+                         ((org-agenda-overriding-header "Private Pflichen und Aufgaben."))
+                         )
+              (tags-todo "DATA"
+                         ((org-agenda-overriding-header "Eingegangene Daten, noch zu verarbeiten."))
+                         )
+              ))
+            ("s" "Agenda für Schule und Prüfungen."
+             ((agenda)
+              (tags-todo "SCHULE|BG|BIO|CHEM|DE|ENG|FRANZ|GER|GEO|GS|MATH|MSPAM|PHY|PSPAM|PE|PU"
+                         ((org-agenda-overriding-header "Hausaufgaben, Abgaben und andere Pflichten und Termine."))
+                         )
+              (tags "PRÜFUNG"
+                    (
+                     (org-agenda-overriding-header "Prüfungen und notenrelevante Termine.")
+                     (org-agenda-sorting-strategy '(priority-up))))))
+            ("f" "Alle aktuellen TODOs"
+             ((agenda)
+              (todo)
+              ))
+            ("b" "Blocked TODO's"
+             ((agenda)
+              (tags-todo "BLOCKED|PAL"
+                         ((org-agenda-overriding-header "Blockierte TODOs oder Status unbekannt. "))
+                )
+              ))
             ))
-          ("s" "Agenda für Schule und Prüfungen."
-           ((agenda)
-            (tags-todo "SCHULE|BG|BIO|CHEM|DE|ENG|FRANZ|GER|GEO|GS|MATH|MSPAM|PHY|PSPAM|PE|PU"
-                       ((org-agenda-overriding-header "Hausaufgaben, Abgaben und andere Pflichten und Termine."))
-                       )
-            (tags "PRÜFUNG"
-                  (
-                   (org-agenda-overriding-header "Prüfungen und notenrelevante Termine.")
-                   (org-agenda-sorting-strategy '(priority-up))))))
-          ("f" "Alle aktuellen TODOs"
-           ((agenda)
-            (todo)
-            ))
-          ))
 #+end_src
 *** Path
 Use the entire home directory for agenda files.
