@@ -1098,8 +1098,9 @@ use org-roam?]]
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/hoth/hoth.el")
 (require 'hoth)
-(define-key org-mode-map (kbd "C-c r h") 'md5-total)
+(define-key org-mode-map (kbd "C-c r h") 'hoth-total)
 #+end_src
+
 ** Notes
 	 Deft for taking quick notes and storing them in plain text.
 	 #+begin_src emacs-lisp

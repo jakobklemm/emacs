@@ -20,7 +20,7 @@ Free to use for any reason, no guarantee that it will work.
 ** Fonts
 1. Download fonts with =M-x all-the-icons-install-fonts=
 2. Install the fonts
-3. Install =Fira Code= or [[https://github.com/edwardtufte/et-book/tree/gh-pages/et-book][et-book]]
+3. Install =Fira Code= and [[https://github.com/edwardtufte/et-book/tree/gh-pages/et-book][et-book]]
 ** Binds
 All used keybinds
 	 | Key         | Executes                       |
