@@ -20,7 +20,7 @@
 
 (defun hoth-insert (type filename)
   "Write the generated link to the current file with the hoth shell script, TYPE = md5 or uuid, FILENAME = absolute file path."
-  (insert "[[" (string-trim-newline (shell-command-to-string (concat "~/.emacs.d/rodian/hoth.sh " type " " filename))) "][" (file-relative-name filename) "]]")
+  (insert "[[" (string-trim-newline (shell-command-to-string (concat "~/.emacs.d/hoth/hoth.sh " type " " filename))) "][" (file-relative-name filename) "]]")
   )
 
 (defun hoth-type (choice)

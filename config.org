@@ -1100,7 +1100,6 @@ use org-roam?]]
 (require 'hoth)
 (define-key org-mode-map (kbd "C-c r h") 'hoth-total)
 #+end_src
-
 ** Notes
 	 Deft for taking quick notes and storing them in plain text.
 	 #+begin_src emacs-lisp
