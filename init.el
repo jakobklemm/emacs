@@ -26,8 +26,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#070A0E" "#64727d"))
  '(lsp-ui-doc-position 'bottom)
  '(objed-cursor-color "#c6797e")
- '(org-agenda-files
-   '("~/documents/org/content.org" "~/documents/org/main.org" "~/.emacs.d/config.org"))
+ '(org-agenda-files '("~/.emacs.d/config.org"))
  '(package-selected-packages
    '(org-plus-contrib xah-find amx helm-posframe swiper-helm helm org-roam-server org-roam calfw-org calfw haskell-mode org-super-agenda tangotango-theme rainbow-mode counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile))
  '(pdf-view-midnight-colors (cons "#FAFFF6" "#172030"))
@@ -60,6 +59,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(cfw:face-annotation ((t :foreground "RosyBrown" :inherit cfw:face-day-title)))
  '(cfw:face-day-title ((t :background "grey10")))
  '(cfw:face-default-content ((t :foreground "#bfebbf")))

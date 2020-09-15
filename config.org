@@ -431,7 +431,7 @@ see suggestions and see issues with =flyspell-buffer=.
   (setq ispell-local-dictionary "en_US")
   (setq ispell-local-dictionary-alist
         '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
-          ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US" "-a" "-i" "UTF-8") nil utf-8)))
+          ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
 
   (flyspell-mode 1)
   (add-hook 'text-mode-hook #'flyspell-mode)
@@ -687,7 +687,7 @@ todos.
 	 Ensure that a task can't be marked as done if it contains unfinished subtasks
 	 or checklist items. This is handy for organizing "blocking" tasks
 	 hierarchically.
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lispn
    (setq org-enforce-todo-dependencies t)
    (setq org-enforce-todo-checkbox-dependencies t)
    #+end_src
@@ -727,10 +727,10 @@ Default tags with keys.
             (:endgroup . nil)
             (:startgroup . nil)
             ("BG" . ?1)
-            ("BIO" . ?2)
+            ;;("BIO" . ?2)
             ("CHEM" . ?3)
             ("DE" . ?4)
-            ("ENG" . ?5)
+            ;;("ENG" . ?5)
             ("FRANZ" . ?6)
             ("GER" . ?7)
             ("GEO" .?8)
@@ -746,7 +746,7 @@ Default tags with keys.
           )
   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
   (use-package counsel)
-  ;;(global-set-key [remap org-set-tags-command] #'counsel-org-tag)
+  (define-key org-mode-map (kbd "C-c C-q") 'counsel-org-tag)
 
   (setq org-tag-faces
         '(
@@ -998,6 +998,13 @@ Following [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][this]] blo
    '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
 #+end_src
+** Apps
+Default apps for file extensions.
+#+begin_src emacs-lisp
+(eval-after-load "org"
+  '(progn
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "google-chrome-stable %s")))
+#+end_src
 * Content
 ** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
@@ -1115,7 +1122,7 @@ use org-roam?]]
 	 (use-package deft)
      (setq deft-default-extension "org")
      (setq deft-extensions '("org"))
-	 (setq deft-directory "~/private/documents")
+	 (setq deft-directory "~/documents/org/")
      (setq deft-recursive t)
 	 (setq deft-text-mode 'org-mode)
 	 (setq deft-use-filename-as-title t)
@@ -1123,6 +1130,17 @@ use org-roam?]]
 	 (define-key org-mode-map (kbd "C-c n") 'deft)
 	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
 	 #+end_src
+** Special tags
+Special tags used for content inside of a table.
+#+begin_src emacs-lisp
+  (defun org-table-tag (choice)
+    "Select one of the two available modes as CHOICE."
+    (interactive)
+    (let ((completion-ignore-case  t))
+    (list (completing-read "File type: " '(":fun:" ":wiki:" ":rec:") nil t)))
+    )
+    (require 'org-inlinetask)
+#+end_src
 ** Browser
 Use =chrome= as the default browser for links.
 #+begin_src emacs-lisp
