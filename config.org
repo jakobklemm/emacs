@@ -658,13 +658,13 @@ todos.
 *** Location
 		Org document storage location for archive and other documents.
 		#+begin_src emacs-lisp
-		(setq org-directory "~/private/documents")
+		(setq org-directory "~/documents/org/")
 
 		(defun org-file-path (filename)
 		"Return the absolute address of an org file, given its relative name."
 		(concat (file-name-as-directory org-directory) filename))
 
-		(setq org-archive-location "~/private/archive/archive.org::* From %s")
+		(setq org-archive-location "~/documents/archive/archive.org::* From %s")
 		#+end_src
 *** Archive
 	 Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
@@ -725,23 +725,6 @@ Default tags with keys.
             ("PRÜFUNG" . ?u)
             ("SCHULE" . ?y)
             (:endgroup . nil)
-            (:startgroup . nil)
-            ("BG" . ?1)
-            ;;("BIO" . ?2)
-            ("CHEM" . ?3)
-            ("DE" . ?4)
-            ;;("ENG" . ?5)
-            ("FRANZ" . ?6)
-            ("GER" . ?7)
-            ("GEO" .?8)
-            ("GS" . ?9)
-            ("MATH" . ?q)
-            ("MSPAM" . ?w)
-            ("PHY" . ?e)
-            ("PSPAM" . ?r)
-            ("SPORT" . ?t)
-            ("PU" . ?z)
-            (:endgroup . nil)
             )
           )
   (define-key org-mode-map (kbd "C-c q") 'org-set-tags-command)
@@ -755,24 +738,7 @@ Default tags with keys.
           ("PRIVATE" . (:foreground "LimeGreen" :weight bold))
           ("DATA" . (:foreground "LimeGreen" :weight bold))
           ("PROJECTS" . (:foreground "OrangeRed" :weight bold))
-          ("WARRICK" . (:foreground "OrangeRed" :weight bold))
-          ("EREBOS" . (:foreground "OrangeRed" :weight bold))
 
-          ("BG" . (:foreground "GoldenRod" :weight bold))
-          ("BIO" . (:foreground "GoldenRod" :weight bold))
-          ("CHEM" . (:foreground "GoldenRod" :weight bold))
-          ("GER" . (:foreground "GoldenRod" :weight bold))
-          ("DE" . (:foreground "GoldenRod" :weight bold))
-          ("ENG" . (:foreground "GoldenRod" :weight bold))
-          ("FRANZ" . (:foreground "GoldenRod" :weight bold))
-          ("GEO" . (:foreground "GoldenRod" :weight bold))
-          ("GS" . (:foreground "GoldenRod" :weight bold))
-          ("MATH" . (:foreground "GoldenRod" :weight bold))
-          ("MSPAM" . (:foreground "GoldenRod" :weight bold))
-          ("PHY" . (:foreground "GoldenRod" :weight bold))
-          ("PSPAM" . (:foreground "GoldenRod" :weight bold))
-          ("PE" . (:foreground "GoldenRod" :weight bold))
-          ("PU" . (:foreground "GoldenRod" :weight bold))
           ("SCHULE" . (:foreground "DarkMagenta" :weight bold))
           ("PRÜFUNG" . (:foreground "Magenta" :weight bold))
           )
@@ -881,13 +847,28 @@ school related TODOs are found through the special view only for school.
 *** Path
 Use the entire home directory for agenda files.
 #+begin_src emacs-lisp
-(setq org-agenda-files '("~/private/documents/"))
+(setq org-agenda-files '("~/documents/org/"))
     #+end_src
     Add file to the list of included agenda files, bound =C-c v=
     #+begin_src emacs-lisp
     (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
     #+end_src
 
+** Capture
+Org-gtd setup.
+#+begin_src emacs-lisp
+    (setq org-default-notes-file "~/documents/org/tasks.org")
+
+    (setq org-capture-templates
+        '(("t" "Todo" entry (file "~/documents/org/tasks.org")
+           "* TODO %?\n%U" :empty-lines 1)
+          ("n" "Note" entry (file "~/documents/org/notes.org")
+           "* NOTE %?\n%U" :empty-lines 1)
+          ("q" "Note" entry (file "~/documents/org/quotes.org")
+           "* QUOTE %?\n%U" :empty-lines 1)
+        ))
+  (global-set-key (kbd "C-c c") 'org-capture)
+#+end_src
 ** Export
 Allow export to markdown and beamer (for presentations).
 #+begin_src emacs-lisp
@@ -1054,62 +1035,59 @@ Dedicated config for =org-roam-server=
         org-roam-server-network-label-wrap-length 20))
 #+end_src
 ** org-roam-config
-Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/comments/gsv5np/care_to_share_configs_for_how_you_use_orgroam/][Care to share configs for how you
-use org-roam?]]
+Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/comments/gsv5np/care_to_share_configs_for_how_you_use_orgroam/][Care to share configs for how you use org-roam?]]
 #+begin_src emacs-lisp
-  (defun org-force-open-current-window ()
-    (interactive)
-    (let ((org-link-frame-setup (quote
-                                 ((vm . vm-visit-folder)
-                                  (vm-imap . vm-visit-imap-folder)
-                                  (gnus . gnus)
-                                  (file . find-file)
-                                  (wl . wl)))
-                                ))
-      (org-open-at-point)))
-  ;; Depending on universal argument try opening link
-  (defun org-open-maybe (&optional arg)
-    (interactive "P")
-    (if arg
-        (org-open-at-point)
-      (org-force-open-current-window)
+    (defun org-force-open-current-window ()
+      (interactive)
+      (let ((org-link-frame-setup (quote
+                                   ((vm . vm-visit-folder)
+                                    (vm-imap . vm-visit-imap-folder)
+                                    (gnus . gnus)
+                                    (file . find-file)
+                                    (wl . wl)))
+                                  ))
+        (org-open-at-point)))
+    ;; Depending on universal argument try opening link
+    (defun org-open-maybe (&optional arg)
+      (interactive "P")
+      (if arg
+          (org-open-at-point)
+        (org-force-open-current-window)
+        )
       )
-    )
 
-  ;; redefined to use org-open-maybe
-  (defun ace-link-org (&optional arg)
-    "Open a visible link in an `org-mode' buffer."
-    (interactive "P")
-    (require 'org)
-    (let ((pt (avy-with ace-link-org
-                        (avy-process
-                         (mapcar #'cdr (ace-link--org-collect))
-                         (avy--style-fn avy-style)))))
-      (when (numberp pt)
-        (goto-char pt)
-        (org-open-maybe arg))
-      ))
+    ;; redefined to use org-open-maybe
+    (defun ace-link-org (&optional arg)
+      "Open a visible link in an `org-mode' buffer."
+      (interactive "P")
+      (require 'org)
+      (let ((pt (avy-with ace-link-org
+                          (avy-process
+                           (mapcar #'cdr (ace-link--org-collect))
+                           (avy--style-fn avy-style)))))
+        (when (numberp pt)
+          (goto-char pt)
+          (org-open-maybe arg))
+        ))
 
-  (defun mmr/org-roam-insert-replace-region-with-link-and-follow ()
-    (interactive )
-    (let ((title (buffer-substring (mark) (point)) )
-          (top (current-buffer)))
-      (org-roam-find-file title)
-      (let ((target-file (buffer-file-name (buffer-base-buffer)))
-          (note-buffer (current-buffer)))
-        (switch-to-buffer top nil t)
-        (kill-region (mark) (point))
-        (insert (concat "[[" target-file "][" title "]]"))
-        (switch-to-buffer note-buffer nil t)
-        (save-buffer))))
+    (defun mmr/org-roam-insert-replace-region-with-link-and-follow ()
+      (interactive )
+      (let ((title (buffer-substring (mark) (point)) )
+            (top (current-buffer)))
+        (org-roam-find-file title)
+        (let ((target-file (buffer-file-name (buffer-base-buffer)))
+            (note-buffer (current-buffer)))
+          (switch-to-buffer top nil t)
+          (kill-region (mark) (point))
+          (insert (concat "[[" target-file "][" title "]]"))
+          (switch-to-buffer note-buffer nil t)
+          (save-buffer))))
 
-  (define-key org-mode-map (kbd "C-c o") 'org-open-maybe)
-  (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
+    (define-key org-mode-map (kbd "C-c o") 'org-open-maybe)
+    (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
+
+  (setq org-roam-graph-exclude-matcher '("tasks" "archive" "Schule"))
 #+end_src
-
-#+RESULTS:
-: mmr/org-roam-insert-replace-region-with-link-and-follow
-
 ** Hoth
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/hoth/hoth.el")
