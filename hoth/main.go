@@ -10,9 +10,17 @@ import (
 	"os/user"
 	"log"
 	"os"
+	"time"
+)
+
+var (
+	// Relative to home directory.
+	log_file = "/documents/archive/hoth.log"
 )
 
 func main() {
+	strs := event("a", "b")
+	fmt.Println(save(strs))
 	mode, file := arguments()
 	if mode == "md5" {
 		hash := hash(file)
@@ -28,7 +36,7 @@ func arguments() (string, string) {
 	if length == 3 {
 		return os.Args[1], os.Args[2]
 	} else {
-		log.Fatalf("Arguments error!")
+		log.Fatalf("Arguments erronr!")
 		return "error", "fatal"
 	}
 }
@@ -40,8 +48,14 @@ func move(directory, local, name string) {
 	}
 	homeDirectory := user.HomeDir
 	archive := homeDirectory + "/documents/files/" + directory + "/"
-	fmt.Println("file:" + "~/documents/files/" + directory + "/" + name)
-	os.Rename(local, archive + name)
+	rel := event(local, name, directory)
+	status := save(rel)
+	if status {
+		fmt.Println("file:" + "~/documents/files/" + directory + "/" + name)
+		os.Rename(local, archive + name)
+	} else {
+		fmt.Println("ERROR][ERROR")
+	}
 }
 
 func hash(file string) string{
@@ -61,4 +75,29 @@ func uid(file string) string {
 	token := randstr.Hex(16)
 	ftype := filepath.Ext(file)
 	return token + ftype
+}
+
+func event(filename, id, mode  string) string {
+	now := time.Now().Format(time.ANSIC)
+	res := now + "-" + filename + "-" + id + + "-" + mode +"\n"
+	return res
+}
+
+func save(event string) bool {
+	user, err := user.Current()
+    if err != nil {
+		return false
+	}
+	homeDirectory := user.HomeDir
+	path := homeDirectory + log_file
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+	if _, err = f.WriteString(event); err != nil {
+		return false
+	} else {
+		return true
+	}
 }
