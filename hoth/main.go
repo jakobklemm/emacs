@@ -19,8 +19,6 @@ var (
 )
 
 func main() {
-	strs := event("a", "b")
-	fmt.Println(save(strs))
 	mode, file := arguments()
 	if mode == "md5" {
 		hash := hash(file)
@@ -49,12 +47,17 @@ func move(directory, local, name string) {
 	homeDirectory := user.HomeDir
 	archive := homeDirectory + "/documents/files/" + directory + "/"
 	rel := event(local, name, directory)
-	status := save(rel)
-	if status {
-		fmt.Println("file:" + "~/documents/files/" + directory + "/" + name)
-		os.Rename(local, archive + name)
-	} else {
-		fmt.Println("ERROR][ERROR")
+	e := os.Rename(local, archive + name)
+    if e != nil {
+        log.Fatal(e)
+    } else {
+		status := save(rel)
+		if status {
+			fmt.Println("file:" + "~/documents/files/" + directory + "/" + name)
+
+		} else {
+			fmt.Println("ERROR][ERROR")
+		}
 	}
 }
 
@@ -79,7 +82,7 @@ func uid(file string) string {
 
 func event(filename, id, mode  string) string {
 	now := time.Now().Format(time.ANSIC)
-	res := now + "-" + filename + "-" + id + + "-" + mode +"\n"
+	res := now + "-" + filename + "-" + id + "-" + mode +"\n"
 	return res
 }
 
