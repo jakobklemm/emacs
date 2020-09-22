@@ -135,7 +135,8 @@ Config and settings for mod line, from [[https:github.com/seagle0128/doom-modlin
     #+end_src
 ** Line numbers
    #+begin_src emacs-lisp
-    (global-display-line-numbers-mode)
+;; Toggle with =C-c j=
+     ;;(global-display-line-numbers-mode)
    #+end_src
 ** Kill and close
 		Kill the current buffer and close the window in one command.
@@ -629,11 +630,9 @@ For plain text document search with use of =recoll=, instead of =GREP=.
 ** Bullets
    Use org-bullets whenever possible.
    #+begin_src emacs-lisp
-     ;;(use-package org-bullets
-     ;;:init
-     ;;(add-hook 'org-mode-hook 'org-bullets-mode))
      (use-package org-superstar)
      (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+     (org-superstar-configure-like-org-bullets)
      (setq org-superstar-special-todo-items t)
      (setq org-superstar-todo-bullet-alist '(("TODO" . 9744) ("BLOCKED" . 9202) ("PROGRESS" . 8885) ("DONE" . 9745) ("PAL" . 9745) ("IDEA" . 1422) ("NOTE" . 9738)))
    #+end_src
@@ -641,8 +640,14 @@ For plain text document search with use of =recoll=, instead of =GREP=.
    Instead of "..." show a downward pointing arrow at the end of title.
    TODO Change symbol or something.
    #+begin_src emacs-lisp
-   (setq org-ellipsis " ➘ ")
+     ;;(setq org-ellipsis " ➘ ")
+     (setq org-ellipsis "  ") ;; folding symbol
    #+end_src
+** Visibility
+Set initial startup visibility to folded.
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+#+end_src
 ** Table of content
 Org-mode toc
 #+begin_src emacs-lisp
@@ -993,6 +998,12 @@ Default apps for file extensions.
   '(progn
      (setcdr (assoc "\\.pdf\\'" org-file-apps) "google-chrome-stable %s")))
 #+end_src
+** Table
+Use pretty tables. [[http:https://github.com/Fuco1/org-pretty-table]]
+#+begin_src emacs-lisp
+  (require 'org-pretty-table)
+  (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))
+#+end_src
 * Content
 ** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
@@ -1098,11 +1109,23 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
 ** Writing
 Turn off all distractions.
 #+begin_src emacs-lisp
-  (setq left-margin-width 2)
-  (setq right-margin-width 2)
+  ;; (setq left-margin-width 2)
+  ;; (setq right-margin-width 2)
 
   (define-key org-mode-map (kbd "C-c m") 'darkroom-mode)
   (define-key org-mode-map (kbd "C-c j") 'display-line-numbers-mode)
+
+  (setq org-startup-indented t
+        ;;org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+        org-ellipsis "  " ;; folding symbol
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+        ;; show actually italicized text instead of /italicized text/
+        org-agenda-block-separator ""
+        org-fontify-whole-heading-line t
+        org-fontify-done-headline t
+        org-fontify-quote-and-verse-blocks t)
+
 #+end_src
 ** Hoth
 #+begin_src emacs-lisp
