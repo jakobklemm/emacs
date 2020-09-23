@@ -90,34 +90,38 @@ Prettify symobls.
 #+end_src
 ** Mod line
 Doom mod line.
-		#+begin_src emacs-lisp
-		(use-package doom-modeline
-		:ensure t
-		:init (doom-modeline-mode 1))
-        #+end_src
-		Config and settings for mod line, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
-		#+begin_src emacs-lisp
-		(setq doom-modeline-icon (display-graphic-p))
-		(setq doom-modeline-major-mode-icon t)
-		(setq doom-modeline-buffer-state-icon t)
-		(setq doom-modeline-buffer-modification-icon t)
-		(setq doom-modeline-unicode-fallback nil)
-		(setq doom-modeline-minor-modes nil)
-		(setq doom-modeline-enable-word-count nil)
-		(setq doom-modeline-buffer-encoding t)
-		(setq doom-modeline-lsp t)
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+#+end_src
+Config and settings for mod line, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
+#+begin_src emacs-lisp
+  (setq doom-modeline-icon (display-graphic-p))
+  (setq doom-modeline-major-mode-icon t)
+  (setq doom-modeline-buffer-state-icon t)
+  (setq doom-modeline-buffer-modification-icon t)
+  (setq doom-modeline-unicode-fallback nil)
+  (setq doom-modeline-minor-modes nil)
+  (setq doom-modeline-enable-word-count nil)
+  (setq doom-modeline-buffer-encoding t)
+  (setq doom-modeline-lsp t)
 
-		;; Whether display the environment version.
-		(setq doom-modeline-env-version t)
-		;; Or for individual languages
-		(setq doom-modeline-env-enable-python t)
-		(setq doom-modeline-env-enable-ruby t)
-		(setq doom-modeline-env-enable-perl t)
-		(setq doom-modeline-env-enable-go t)
-		(setq doom-modeline-env-enable-elixir t)
-		(setq doom-modeline-env-enable-rust t)
-		(display-time-mode 1)
-		#+end_src
+  ;; Whether display the environment version.
+  (setq doom-modeline-env-version t)
+  ;; Or for individual languages
+  (setq doom-modeline-env-enable-python t)
+  (setq doom-modeline-env-enable-ruby t)
+  (setq doom-modeline-env-enable-perl t)
+  (setq doom-modeline-env-enable-go t)
+  (setq doom-modeline-env-enable-elixir t)
+  (setq doom-modeline-env-enable-rust t)
+  (display-time-mode 1)
+
+
+
+
+#+end_src
 ** Fullscreen
    #+begin_src emacs-lisp
    (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -131,7 +135,8 @@ Doom mod line.
     #+end_src
 ** Line numbers
    #+begin_src emacs-lisp
-    (global-display-line-numbers-mode)
+;; Toggle with =C-c j=
+     ;;(global-display-line-numbers-mode)
    #+end_src
 ** Kill and close
 		Kill the current buffer and close the window in one command.
@@ -371,13 +376,13 @@ Other /cool/ default modes.
 *** Undo tree
 	 Visual undo tree
 	 #+begin_src emacs-lisp
-	 (use-package undo-tree
-  :defer t
-  :diminish undo-tree-mode
-  :init (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-diff t)
-  (undo-tree-visualizer-timestamps t))
+       ;(use-package undo-tree
+       ;;:defer t
+       ;;:diminish undo-tree-mode
+       ;;:init (global-undo-tree-mode)
+       ;;:custom
+       ;;(undo-tree-visualizer-diff t)
+       ;;(undo-tree-visualizer-timestamps t))
 	#+end_src
 ** Helper
 *** Kill current
@@ -621,21 +626,28 @@ For plain text document search with use of =recoll=, instead of =GREP=.
 #+begin_src emacs-lisp
 (use-package dockerfile-mode)
 #+end_src
-***
 * Org-mode
 ** Bullets
    Use org-bullets whenever possible.
    #+begin_src emacs-lisp
-   (use-package org-bullets
-   :init
-   (add-hook 'org-mode-hook 'org-bullets-mode))
+     (use-package org-superstar)
+     (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+     (org-superstar-configure-like-org-bullets)
+     (setq org-superstar-special-todo-items t)
+     (setq org-superstar-todo-bullet-alist '(("TODO" . 9744) ("BLOCKED" . 9202) ("PROGRESS" . 8885) ("DONE" . 9745) ("PAL" . 9745) ("IDEA" . 1422) ("NOTE" . 9738)))
    #+end_src
 ** Folded
    Instead of "..." show a downward pointing arrow at the end of title.
    TODO Change symbol or something.
    #+begin_src emacs-lisp
-   (setq org-ellipsis "➘")
+     ;;(setq org-ellipsis " ➘ ")
+     (setq org-ellipsis "  ") ;; folding symbol
    #+end_src
+** Visibility
+Set initial startup visibility to folded.
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+#+end_src
 ** Table of content
 Org-mode toc
 #+begin_src emacs-lisp
@@ -986,6 +998,12 @@ Default apps for file extensions.
   '(progn
      (setcdr (assoc "\\.pdf\\'" org-file-apps) "google-chrome-stable %s")))
 #+end_src
+** Table
+Use pretty tables. [[http:https://github.com/Fuco1/org-pretty-table]]
+#+begin_src emacs-lisp
+  (require 'org-pretty-table)
+  (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))
+#+end_src
 * Content
 ** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
@@ -1087,6 +1105,27 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
     (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
 
   (setq org-roam-graph-exclude-matcher '("tasks" "archive" "Schule"))
+#+end_src
+** Writing
+Turn off all distractions.
+#+begin_src emacs-lisp
+  ;; (setq left-margin-width 2)
+  ;; (setq right-margin-width 2)
+
+  (define-key org-mode-map (kbd "C-c m") 'darkroom-mode)
+  (define-key org-mode-map (kbd "C-c j") 'display-line-numbers-mode)
+
+  (setq org-startup-indented t
+        ;;org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+        org-ellipsis "  " ;; folding symbol
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+        ;; show actually italicized text instead of /italicized text/
+        org-agenda-block-separator ""
+        org-fontify-whole-heading-line t
+        org-fontify-done-headline t
+        org-fontify-quote-and-verse-blocks t)
+
 #+end_src
 ** Hoth
 #+begin_src emacs-lisp
