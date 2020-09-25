@@ -153,6 +153,7 @@ Display images inline.
 Toggle with =C-c C-x C-v=
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'org-toggle-inline-images)
+(setq org-image-actual-width '(600))
 #+end_src
 ** Theme
 Used themes:
@@ -376,13 +377,14 @@ Other /cool/ default modes.
 *** Undo tree
 	 Visual undo tree
 	 #+begin_src emacs-lisp
-       ;(use-package undo-tree
-       ;;:defer t
-       ;;:diminish undo-tree-mode
+     (use-package undo-tree
+     :defer t
+       :diminish undo-tree-mode
        ;;:init (global-undo-tree-mode)
-       ;;:custom
-       ;;(undo-tree-visualizer-diff t)
-       ;;(undo-tree-visualizer-timestamps t))
+       :custom
+       (undo-tree-visualizer-diff t)
+       (undo-tree-visualizer-timestamps t))
+	   (global-set-key (kbd "C-x C-u") 'global-undo-tree-mode)
 	#+end_src
 ** Helper
 *** Kill current
@@ -626,7 +628,7 @@ For plain text document search with use of =recoll=, instead of =GREP=.
 #+begin_src emacs-lisp
 (use-package dockerfile-mode)
 #+end_src
-* Org-mode
+* Org mode
 ** Bullets
    Use org-bullets whenever possible.
    #+begin_src emacs-lisp
@@ -723,6 +725,16 @@ Color for the different states.
         ("NOTE" . (:foreground "#eaa222" :weight bold))
         ("DONE" . (:foreground "#ffffff" :weight bold))
         ))
+#+end_src
+*** Auto
+Automatically mark a todo as done once all inner todos are completed.
+#+begin_src emacs-lisp
+  (defun org-summary-todo (n-done n-not-done)
+    "Switch entry to DONE when all subentries are done, to TODO otherwise."
+    (let (org-log-done org-log-states)   ; turn off logging
+      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 #+end_src
 ** Tags
 Default tags with keys.
@@ -1005,7 +1017,7 @@ Use pretty tables. [[http:https://github.com/Fuco1/org-pretty-table]]
   (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))
 #+end_src
 * Content
-** org-roam
+** org roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
 Org-roam setup for the entire =documents= directory.
 #+begin_src emacs-lisp
@@ -1034,7 +1046,7 @@ Org-roam setup for the entire =documents= directory.
     :config
     (push 'company-org-roam company-backends))
 #+end_src
-** org-roam-server
+** org roam server
 Dedicated config for =org-roam-server=
 #+begin_src emacs-lisp
 (use-package org-roam-server
@@ -1052,7 +1064,7 @@ Dedicated config for =org-roam-server=
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 #+end_src
-** org-roam-config
+** org roam config
 Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/comments/gsv5np/care_to_share_configs_for_how_you_use_orgroam/][Care to share configs for how you use org-roam?]]
 #+begin_src emacs-lisp
     (defun org-force-open-current-window ()
@@ -1109,15 +1121,18 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
 ** Writing
 Turn off all distractions.
 #+begin_src emacs-lisp
-  ;; (setq left-margin-width 2)
-  ;; (setq right-margin-width 2)
+  (setq left-margin-width 2)
+  (setq right-margin-width 2)
 
+  (use-package darkroom)
   (define-key org-mode-map (kbd "C-c m") 'darkroom-mode)
-  (define-key org-mode-map (kbd "C-c j") 'display-line-numbers-mode)
+
+  (global-set-key (kbd "C-c j") 'display-line-numbers-mode)
+
 
   (setq org-startup-indented t
-        ;;org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
-        org-ellipsis "  " ;; folding symbol
+        org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+        org-ellipsis " > " ;; folding symbol
         org-pretty-entities t
         org-hide-emphasis-markers t
         ;; show actually italicized text instead of /italicized text/
