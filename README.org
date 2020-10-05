@@ -61,6 +61,7 @@ All used keybinds
 	 | C-c d       | org-deadline                   |
 	 | C-c x       | todo-done                      |
 	 | C-c q       | org-tags                       |
+	 | C-c w       | org-random-entry               |
 	 | C-c v       | org-agenda-add-file            |
 	 | C-c s       | org-schedule                   |
 	 | C-c n       | deft-mode                      |

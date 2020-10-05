@@ -162,10 +162,10 @@ Used themes:
 - Doom-material
 - Doom-spacegrey
 #+begin_src emacs-lisp
-(use-package doom-themes)
-(load-theme `doom-nord t)
-;; (load-theme `doom-material t)
-;; (load-theme `doom-spacegrey t)
+  (use-package doom-themes)
+  (load-theme `doom-nord t)
+  ;; (load-theme `doom-material t)
+  ;; (load-theme `doom-spacegrey t)
 #+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
@@ -505,8 +505,6 @@ Use Ivy and Swiper over Helm.
     :after ivy
     :custom (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
     :config (ivy-rich-mode 1))
-
-
   #+end_src
 ** Posframe
 Use posframe for Ivy & Swiper.
@@ -636,7 +634,7 @@ For plain text document search with use of =recoll=, instead of =GREP=.
      (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
      (org-superstar-configure-like-org-bullets)
      (setq org-superstar-special-todo-items t)
-     (setq org-superstar-todo-bullet-alist '(("TODO" . 9744) ("BLOCKED" . 9202) ("PROGRESS" . 8885) ("DONE" . 9745) ("PAL" . 9745) ("IDEA" . 1422) ("NOTE" . 9738)))
+     (setq org-superstar-todo-bullet-alist '(("TODO" . 9744) ("BLOCKED" . 9202) ("PROGRESS" . 8885) ("DONE" . 9745) ("PAL" . 9745) ("IDEA" . 1422) ("NOTE" . 9738) ("INTAKE" . 8227)))
    #+end_src
 ** Folded
    Instead of "..." show a downward pointing arrow at the end of title.
@@ -669,6 +667,11 @@ Org-mode toc
 ** Todos
 Differentiate between org-agenda for calendar events and org-todos for general
 todos.
+General binds.
+#+begin_src emacs-lisp
+(define-key org-mode-map (kbd "C-c t") 'org-todo)
+(define-key org-mode-map (kbd "C-c x") 'todo/done)
+#+end_src
 *** Location
 		Org document storage location for archive and other documents.
 		#+begin_src emacs-lisp
@@ -697,21 +700,13 @@ todos.
     #+begin_src emacs-lisp
     (setq org-log-done 'time)
     #+end_src
-*** Check
-	 Ensure that a task can't be marked as done if it contains unfinished subtasks
-	 or checklist items. This is handy for organizing "blocking" tasks
-	 hierarchically.
-   #+begin_src emacs-lispn
-   (setq org-enforce-todo-dependencies t)
-   (setq org-enforce-todo-checkbox-dependencies t)
-   #+end_src
 *** States
 	 Add new states to the todo cycle to extend the basic TODO and DONE states that
 	 org mode normally provides.
    #+begin_src emacs-lisp
      (setq org-todo-keywords
            '((sequence "TODO(t)" "PROGRESS(p)" "BLOCKED(b)" "|" "DONE(d)" "PAL(a)")
-             (sequence "IDEA(i)" "NOTE(n)" "|" "DONE(f)")))
+             (sequence "IDEA(i)" "NOTE(n)" "INTAKE(o)" "|" "DONE(f)")))
    #+end_src
 *** Faces
 Color for the different states.
@@ -723,6 +718,7 @@ Color for the different states.
         ("BLOCKED" . (:foreground "#b213c4" :weight bold))
         ("PAL" . (:foreground "#30bb03" :weight bold))
         ("NOTE" . (:foreground "#eaa222" :weight bold))
+        ("INTAKE" . (:foreground "#bba494" :weight bold))
         ("DONE" . (:foreground "#ffffff" :weight bold))
         ))
 #+end_src
@@ -736,6 +732,67 @@ Automatically mark a todo as done once all inner todos are completed.
 
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 #+end_src
+*** Random
+Pick a random task from the global list.
+#+begin_src emacs-lisp
+(defun org-random-entry (&optional arg)
+  "Select and goto a random todo item from the global agenda"
+  (interactive "P")
+  (if org-agenda-overriding-arguments
+      (setq arg org-agenda-overriding-arguments))
+  (if (and (stringp arg) (not (string-match "\\S-" arg))) (setq arg nil))
+  (let* ((today (org-today))
+         (date (calendar-gregorian-from-absolute today))
+         (kwds org-todo-keywords-for-agenda)
+         (lucky-entry nil)
+         (completion-ignore-case t)
+         (org-agenda-buffer (when (buffer-live-p org-agenda-buffer)
+                              org-agenda-buffer))
+         (org-select-this-todo-keyword
+          (if (stringp arg) arg
+            (and arg (integerp arg) (> arg 0)
+                 (nth (1- arg) kwds))))
+         rtn rtnall files file pos marker buffer)
+    (when (equal arg '(4))
+      (setq org-select-this-todo-keyword
+            (org-icompleting-read "Keyword (or KWD1|K2D2|...): "
+                                  (mapcar 'list kwds) nil nil)))
+    (and (equal 0 arg) (setq org-select-this-todo-keyword nil))
+    (catch 'exit
+      (org-compile-prefix-format 'todo)
+      (org-set-sorting-strategy 'todo)
+      (setq files (org-agenda-files nil 'ifmode)
+            rtnall nil)
+      (while (setq file (pop files))
+        (catch 'nextfile
+          (org-check-agenda-file file)
+          (setq rtn (org-agenda-get-day-entries file date :todo))
+          (setq rtnall (append rtnall rtn))))
+
+      (when rtnall
+        (setq lucky-entry
+              (nth (random
+                    (safe-length
+                     (setq entries rtnall)))
+                   entries))
+
+        (setq marker (or (get-text-property 0 'org-marker lucky-entry)
+                         (org-agenda-error)))
+        (setq buffer (marker-buffer marker))
+        (setq pos (marker-position marker))
+        (org-pop-to-buffer-same-window buffer)
+        (widen)
+        (goto-char pos)
+        (when (derived-mode-p 'org-mode)
+          (org-show-context 'agenda)
+          (save-excursion
+            (and (outline-next-heading)
+                 (org-flag-heading nil))) ; show the next heading
+          (when (outline-invisible-p)
+            (show-entry))                 ; display invisible text
+          (run-hooks 'org-agenda-after-show-hook))))))
+(global-set-key (kbd "C-c w") 'org-random-entry)
+#+end_src
 ** Tags
 Default tags with keys.
 #+begin_src emacs-lisp
@@ -745,7 +802,7 @@ Default tags with keys.
             ("ADMIN" . ?a)
             ("PRIVATE" . ?x)
             ("DATA" . ?d)
-            ("PROJECTS" . ?p)
+            ("PROJECT" . ?p)
             ("PRÜFUNG" . ?u)
             ("SCHULE" . ?y)
             (:endgroup . nil)
@@ -761,7 +818,7 @@ Default tags with keys.
           ("ADMIN" . (:foreground "Red" :weight bold))
           ("PRIVATE" . (:foreground "LimeGreen" :weight bold))
           ("DATA" . (:foreground "LimeGreen" :weight bold))
-          ("PROJECTS" . (:foreground "OrangeRed" :weight bold))
+          ("PROJECT" . (:foreground "OrangeRed" :weight bold))
 
           ("SCHULE" . (:foreground "DarkMagenta" :weight bold))
           ("PRÜFUNG" . (:foreground "Magenta" :weight bold))
@@ -792,8 +849,6 @@ school related TODOs are found through the special view only for school.
       (define-key org-mode-map (kbd "C-c d") 'org-deadline)
       (define-key org-mode-map (kbd "C-c s") 'org-schedule)
       (define-key org-mode-map (kbd "C-c f") 'org-time-stamp)
-      (define-key org-mode-map (kbd "C-c t") 'org-todo)
-      (define-key org-mode-map (kbd "C-c x") 'todo/done)
       (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 	 #+end_src
 *** Commands
@@ -877,20 +932,19 @@ Use the entire home directory for agenda files.
     #+begin_src emacs-lisp
     (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
     #+end_src
-
 ** Capture
 Org-gtd setup.
 #+begin_src emacs-lisp
-    (setq org-default-notes-file "~/documents/org/tasks.org")
+  (setq org-default-notes-file "~/documents/supervisors/tasks.org")
 
-    (setq org-capture-templates
-        '(("t" "Todo" entry (file "~/documents/org/tasks.org")
-           "* TODO %?\n%U" :empty-lines 1)
-          ("n" "Note" entry (file "~/documents/org/notes.org")
-           "* NOTE %?\n%U" :empty-lines 1)
-          ("q" "Note" entry (file "~/documents/org/quotes.org")
-           "* QUOTE %?\n%U" :empty-lines 1)
-        ))
+  (setq org-capture-templates
+        '(("t" "High" entry (file+headline "~/documents/supervisors/tasks.org" "High")
+           "* TODO %?\n  %i\n  %a"
+
+           )
+          ("j" "Journal" entry (file+datetree "~/org/journal.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
+
   (global-set-key (kbd "C-c c") 'org-capture)
 #+end_src
 ** Export
@@ -1016,6 +1070,10 @@ Use pretty tables. [[http:https://github.com/Fuco1/org-pretty-table]]
   (require 'org-pretty-table)
   (add-hook 'org-mode-hook (lambda () (org-pretty-table-mode 1)))
 #+end_src
+** Navigation
+#+begin_src emacs-lisp
+(setq org-src-tab-acts-natively t)
+#+end_src
 * Content
 ** org roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
@@ -1026,7 +1084,7 @@ Org-roam setup for the entire =documents= directory.
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/documents/org/")
+      (org-roam-directory "~/documents/vaults/knowledge/")
       :bind (:map org-roam-mode-map
                 (("C-c r l" . org-roam)
                  ("C-c r f" . org-roam-find-file)
@@ -1037,8 +1095,7 @@ Org-roam setup for the entire =documents= directory.
                 (("C-c r i" . org-roam-insert))
                 (("C-c r I" . org-roam-insert-immediate))))
 
-  (setq org-roam-index-file "~/documents/org/main.org")
-  (setq org-roam-db-location "~/documents/org-roam.db")
+  (setq org-roam-db-location "~/documents/vaults/org-roam.db")
   (add-hook 'after-init-hook 'org-roam-mode)
 
   (use-package company-org-roam
@@ -1057,7 +1114,7 @@ Dedicated config for =org-roam-server=
         org-roam-server-authenticate nil
         org-roam-server-export-inline-images t
         org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
         org-roam-server-network-poll t
         org-roam-server-network-arrows nil
         org-roam-server-network-label-truncate t
@@ -1116,7 +1173,7 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
     (define-key org-mode-map (kbd "C-c o") 'org-open-maybe)
     (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
 
-  (setq org-roam-graph-exclude-matcher '("tasks" "archive" "Schule"))
+  (setq org-roam-graph-exclude-matcher '("tasks" "archive"))
 #+end_src
 ** Writing
 Turn off all distractions.
