@@ -91,12 +91,14 @@ Prettify symobls.
 ** Mod line
 Doom mod line.
 #+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1))
+  (when (display-graphic-p)
+    (use-package doom-modeline
+      :ensure t
+      :init (doom-modeline-mode 1)))
 #+end_src
 Config and settings for mod line, from [[https:github.com/seagle0128/doom-modline][doom-modline]]
 #+begin_src emacs-lisp
+(when (display-graphic-p)
   (setq doom-modeline-icon (display-graphic-p))
   (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-buffer-state-icon t)
@@ -116,15 +118,12 @@ Config and settings for mod line, from [[https:github.com/seagle0128/doom-modlin
   (setq doom-modeline-env-enable-go t)
   (setq doom-modeline-env-enable-elixir t)
   (setq doom-modeline-env-enable-rust t)
-  (display-time-mode 1)
-
-
-
-
+  (display-time-mode 1))
 #+end_src
 ** Fullscreen
    #+begin_src emacs-lisp
-   (add-to-list 'default-frame-alist '(fullscreen . maximized))
+     (when (display-graphic-p)
+        (add-to-list 'default-frame-alist '(fullscreen . maximized)))
    #+end_src
 ** Current line
     Hightlight the current line.
@@ -152,8 +151,9 @@ Set the cursor color to the same as beacon.
 Display images inline.
 Toggle with =C-c C-x C-v=
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook 'org-toggle-inline-images)
-(setq org-image-actual-width '(600))
+  (when (display-graphic-p)
+    (add-hook 'org-mode-hook 'org-toggle-inline-images)
+    (setq org-image-actual-width '(600)))
 #+end_src
 ** Theme
 Used themes:
@@ -162,10 +162,11 @@ Used themes:
 - Doom-material
 - Doom-spacegrey
 #+begin_src emacs-lisp
-  (use-package doom-themes)
-  (load-theme `doom-nord t)
-  ;; (load-theme `doom-material t)
-  ;; (load-theme `doom-spacegrey t)
+  (when (display-graphic-p)
+    (use-package doom-themes)
+    (load-theme `doom-nord t))
+    ;; (load-theme `doom-material t)
+    ;; (load-theme `doom-spacegrey t)
 #+end_src
 ** Dashboard
    Setup the dashboard with come modifications and configs.
@@ -178,19 +179,21 @@ Used themes:
    Install icons.
    Not only used by =dashboard= but its the main dependancy.
    #+begin_src emacs-lisp
-   (use-package all-the-icons)
+     (when (display-graphic-p)
+          (use-package all-the-icons))
    #+end_src
 *** Setup
     Setup the dashboard.
     #+begin_src emacs-lisp
-    ;; Disable *scratch*
-    (setq inhibit-startup-screen t
-      initial-buffer-choice  nil)
+      ;; Disable *scratch*
+      (when (display-graphic-p)
+        (setq inhibit-startup-screen t
+              initial-buffer-choice  nil)
 
-    (use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook))
+        (use-package dashboard
+          :ensure t
+          :config
+          (dashboard-setup-startup-hook)))
     #+end_src
 *** Config
     Options and configuration for dashboard following the readme.
@@ -215,12 +218,13 @@ Used themes:
 ** Font
 	 Use Fira Code as default font.
 	 #+begin_src emacs-lisp
-       (set-face-attribute
-        'default nil
-        :font "Fira Code"
-        :weight 'normal
-        :width 'normal
-        )
+       (when (display-graphic-p)
+              (set-face-attribute
+               'default nil
+               :font "Fira Code"
+               :weight 'normal
+               :width 'normal
+               ))
 	 #+end_src
 ** New window
 Directly switch to new window after opening.
@@ -247,7 +251,8 @@ Directly switch to new window after opening.
 ** Ace
 Use =ace-windows=, mainly as a dependency for =org-roam=
 #+begin_src emacs-lisp
-(global-set-key (kbd "M-o") 'ace-window)
+  (when (display-graphic-p)
+    (global-set-key (kbd "M-o") 'ace-window))
 #+end_src
 ** Beacon
 	 Beacon for highlighting the cursor when switching buffers.
@@ -260,21 +265,22 @@ Use =ace-windows=, mainly as a dependency for =org-roam=
 ** Title
 	 Set the window title to the current file.
 	 #+begin_src emacs-lisp
-	 (setq-default frame-title-format
-   '(:eval
-   (format "%s@%s: %s %s"
-   (or (file-remote-p default-directory 'user)
-   user-real-login-name)
-   (or (file-remote-p default-directory 'host)
-   system-name)
-   (buffer-name)
-   (cond
-   (buffer-file-truename
-   (concat "(" buffer-file-truename ")"))
-   (dired-directory
-   (concat "{" dired-directory "}"))
-   (t
-   "[no file]")))))
+       (when (display-graphic-p)
+         (setq-default frame-title-format
+                       '(:eval
+                         (format "%s@%s: %s %s"
+                                 (or (file-remote-p default-directory 'user)
+                                     user-real-login-name)
+                                 (or (file-remote-p default-directory 'host)
+                                     system-name)
+                                 (buffer-name)
+                                 (cond
+                                  (buffer-file-truename
+                                   (concat "(" buffer-file-truename ")"))
+                                  (dired-directory
+                                   (concat "{" dired-directory "}"))
+                                  (t
+                                   "[no file]"))))))
 	 #+end_src
 ** Resize
 Easy zoom in & out.
@@ -732,67 +738,6 @@ Automatically mark a todo as done once all inner todos are completed.
 
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 #+end_src
-*** Random
-Pick a random task from the global list.
-#+begin_src emacs-lisp
-(defun org-random-entry (&optional arg)
-  "Select and goto a random todo item from the global agenda"
-  (interactive "P")
-  (if org-agenda-overriding-arguments
-      (setq arg org-agenda-overriding-arguments))
-  (if (and (stringp arg) (not (string-match "\\S-" arg))) (setq arg nil))
-  (let* ((today (org-today))
-         (date (calendar-gregorian-from-absolute today))
-         (kwds org-todo-keywords-for-agenda)
-         (lucky-entry nil)
-         (completion-ignore-case t)
-         (org-agenda-buffer (when (buffer-live-p org-agenda-buffer)
-                              org-agenda-buffer))
-         (org-select-this-todo-keyword
-          (if (stringp arg) arg
-            (and arg (integerp arg) (> arg 0)
-                 (nth (1- arg) kwds))))
-         rtn rtnall files file pos marker buffer)
-    (when (equal arg '(4))
-      (setq org-select-this-todo-keyword
-            (org-icompleting-read "Keyword (or KWD1|K2D2|...): "
-                                  (mapcar 'list kwds) nil nil)))
-    (and (equal 0 arg) (setq org-select-this-todo-keyword nil))
-    (catch 'exit
-      (org-compile-prefix-format 'todo)
-      (org-set-sorting-strategy 'todo)
-      (setq files (org-agenda-files nil 'ifmode)
-            rtnall nil)
-      (while (setq file (pop files))
-        (catch 'nextfile
-          (org-check-agenda-file file)
-          (setq rtn (org-agenda-get-day-entries file date :todo))
-          (setq rtnall (append rtnall rtn))))
-
-      (when rtnall
-        (setq lucky-entry
-              (nth (random
-                    (safe-length
-                     (setq entries rtnall)))
-                   entries))
-
-        (setq marker (or (get-text-property 0 'org-marker lucky-entry)
-                         (org-agenda-error)))
-        (setq buffer (marker-buffer marker))
-        (setq pos (marker-position marker))
-        (org-pop-to-buffer-same-window buffer)
-        (widen)
-        (goto-char pos)
-        (when (derived-mode-p 'org-mode)
-          (org-show-context 'agenda)
-          (save-excursion
-            (and (outline-next-heading)
-                 (org-flag-heading nil))) ; show the next heading
-          (when (outline-invisible-p)
-            (show-entry))                 ; display invisible text
-          (run-hooks 'org-agenda-after-show-hook))))))
-(global-set-key (kbd "C-c w") 'org-random-entry)
-#+end_src
 ** Tags
 Default tags with keys.
 #+begin_src emacs-lisp
@@ -1020,42 +965,42 @@ General improvements and design changes for =org-mode=, currently under the
 =org-mode= heading instead of =Interface=.
 Following [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][this]] blog.
 #+begin_src emacs-lisp
-  (setq org-hide-emphasis-markers t)
-  (let* ((variable-tuple
-          (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-                ((x-list-fonts "Fira Code") '(:font "Fira Code"))
-                (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-         (base-font-color     (face-foreground 'default nil 'default))
-         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+  (when (display-graphic-p)
+    (setq org-hide-emphasis-markers t)
+    (let* ((variable-tuple
+            (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+                  ((x-list-fonts "Fira Code") '(:font "Fira Code"))
+                  (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+           (base-font-color     (face-foreground 'default nil 'default))
+           (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+      (custom-theme-set-faces
+       'user
+       `(org-level-8 ((t (,@headline ,@variable-tuple))))
+       `(org-level-7 ((t (,@headline ,@variable-tuple))))
+       `(org-level-6 ((t (,@headline ,@variable-tuple))))
+       `(org-level-5 ((t (,@headline ,@variable-tuple))))
+       `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+       `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+       `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.40))))
+       `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.55))))
+       `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+
+    (add-hook 'org-mode-hook 'visual-line-mode)
+
     (custom-theme-set-faces
      'user
-     `(org-level-8 ((t (,@headline ,@variable-tuple))))
-     `(org-level-7 ((t (,@headline ,@variable-tuple))))
-     `(org-level-6 ((t (,@headline ,@variable-tuple))))
-     `(org-level-5 ((t (,@headline ,@variable-tuple))))
-     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.40))))
-     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.55))))
-     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
-
-  (add-hook 'org-mode-hook 'visual-line-mode)
-
-  (custom-theme-set-faces
-   'user
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit (shadow fixed-pitch)))))
-   '(org-document-info ((t (:foreground "dark orange"))))
-   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-   '(org-link ((t (:foreground "dark orange" :underline t))))
-   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-property-value ((t (:inherit fixed-pitch))) t)
-   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-   '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
-
+     '(org-block ((t (:inherit fixed-pitch))))
+     '(org-code ((t (:inherit (shadow fixed-pitch)))))
+     '(org-document-info ((t (:foreground "dark orange"))))
+     '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+     '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+     '(org-link ((t (:foreground "dark orange" :underline t))))
+     '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+     '(org-property-value ((t (:inherit fixed-pitch))) t)
+     '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+     '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+     '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+     '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))))
 #+end_src
 ** Apps
 Default apps for file extensions.
@@ -1178,6 +1123,8 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
 ** Writing
 Turn off all distractions.
 #+begin_src emacs-lisp
+
+(when (display-graphic-p)
   (setq left-margin-width 2)
   (setq right-margin-width 2)
 
@@ -1196,7 +1143,7 @@ Turn off all distractions.
         org-agenda-block-separator ""
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
-        org-fontify-quote-and-verse-blocks t)
+        org-fontify-quote-and-verse-blocks t))
 
 #+end_src
 ** Hoth
