@@ -1,6 +1,8 @@
 #+TITLE: A clean emacs config is an empty config file.
 #+AUTHOR: Jakob Klemm
 #+EMAIL: jakob.klemm@protonmail.com
+#+HUGO_SECTION: posts
+#+HUGO_BASE_DIR:~/documents/projects/knowledge
 Emacs Config - Jakob Klemm
 * Setup
 ** =use-package=
@@ -69,24 +71,22 @@ Emacs Config - Jakob Klemm
 ** Symbols
 Prettify symobls.
 #+begin_src emacs-lisp
-(global-prettify-symbols-mode 1)
-(defun add-pretty-lambda ()
-"Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
-(setq prettify-symbols-alist
-'(
-("lambda" . 955)
-("delta" . 120517)
-("epsilon" . 120518)
-("->" . 8594)
-("<-" . 8592)
-("<=" . 8804)
-(">=" . 8805)
-("=~" . 8771)
-("!=" . 8800)
-(":=" . 8788)
-)))
-(add-hook 'prog-mode-hook 'add-pretty-lambda)
-(add-hook 'org-mode-hook 'add-pretty-lambda)
+  (global-prettify-symbols-mode 1)
+  (defun add-pretty-lambda ()
+  "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955)
+          ("->" . 8594)
+          ("<-" . 8592)
+          ("<=" . 8804)
+          (">=" . 8805)
+          ("=~" . 8771)
+          ("!=" . 8800)
+          (":=" . 8788)
+          )))
+  (add-hook 'prog-mode-hook 'add-pretty-lambda)
+  (add-hook 'org-mode-hook 'add-pretty-lambda)
 #+end_src
 ** Mod line
 Doom mod line.
@@ -627,8 +627,7 @@ For plain text document search with use of =recoll=, instead of =GREP=.
    (custom-set-faces
    '(markdown-code-face ((t nil)))))
    #+end_src
-** Modes
-*** Docker
+** More modes
 #+begin_src emacs-lisp
 (use-package dockerfile-mode)
 #+end_src
@@ -681,13 +680,13 @@ General binds.
 *** Location
 		Org document storage location for archive and other documents.
 		#+begin_src emacs-lisp
-		(setq org-directory "~/documents/org/")
+		(setq org-directory "~/documents/supervisors/")
 
 		(defun org-file-path (filename)
 		"Return the absolute address of an org file, given its relative name."
 		(concat (file-name-as-directory org-directory) filename))
 
-		(setq org-archive-location "~/documents/archive/archive.org::* From %s")
+		(setq org-archive-location "~/documents/vaults/archive/archive.org::* From %s")
 		#+end_src
 *** Archive
 	 Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
@@ -728,21 +727,13 @@ Color for the different states.
         ("DONE" . (:foreground "#ffffff" :weight bold))
         ))
 #+end_src
-*** Auto
-Automatically mark a todo as done once all inner todos are completed.
-#+begin_src emacs-lisp
-  (defun org-summary-todo (n-done n-not-done)
-    "Switch entry to DONE when all subentries are done, to TODO otherwise."
-    (let (org-log-done org-log-states)   ; turn off logging
-      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-
-  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-#+end_src
 ** Tags
 Default tags with keys.
 #+begin_src emacs-lisp
     (setq org-tag-persistent-alist
           '((:startgroup . nil)
+            ("sapin" . ?s)
+            ("event" . ?e)
             ("HOME" . ?h)
             ("ADMIN" . ?a)
             ("PRIVATE" . ?x)
@@ -799,84 +790,45 @@ school related TODOs are found through the special view only for school.
 *** Commands
 =org-super-agenda=
 #+begin_src emacs-lisp
-  (use-package org-super-agenda
-      :ensure t
-      :config (org-super-agenda-mode)
-      )
-    (setq org-agenda-custom-commands
-          '(("c" "Super Agenda" agenda
-             (org-super-agenda-mode)
-             ((org-super-agenda-groups
-               '(
-                 (:name "Important"
-                    :tag ("ADMIN")
-                    :priority "A"
-                    :time-grid t
-                    :order 0
-                    )
-             (:name "Schule"
-                    :tag ("SCHULE" "PRÜFUNG")
-                    :order 1
-                    )
-             (:name "Personal"
-                    :tag ("DATA" "HOME" "PRIVATE")
-                    :order 1
-                    )
-             (:name "Projects"
-                    :tag ("PROJECTS" "EREBOS" "WARRICK")
-                    :order 2
-                    )
-             (:priority<= "B"
-                          :order 3
-                          )
-             )))
-             (org-agenda nil "a"))
-            ("g" "TODOs nach Priorität sortiert."
-                        (
-              (agenda "")
-              (tags "PRIORITY=\"A\""
-                    ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                     (org-agenda-overriding-header "High-priority unfinished tasks:")))))
+  (setq jethro/org-agenda-directory "~/documents/supervisor/")
 
-                       ("d" "Agenda für private Pflichten und Aufgaben."
-             ((agenda)
-              (tags-todo "HOME|PRIVATE"
-                         ((org-agenda-overriding-header "Private Pflichen und Aufgaben."))
-                         )
-              (tags-todo "DATA"
-                         ((org-agenda-overriding-header "Eingegangene Daten, noch zu verarbeiten."))
-                         )
-              ))
-            ("s" "Agenda für Schule und Prüfungen."
-             ((agenda)
-              (tags-todo "SCHULE|BG|BIO|CHEM|DE|ENG|FRANZ|GER|GEO|GS|MATH|MSPAM|PHY|PSPAM|PE|PU"
-                         ((org-agenda-overriding-header "Hausaufgaben, Abgaben und andere Pflichten und Termine."))
-                         )
-              (tags "PRÜFUNG"
-                    (
-                     (org-agenda-overriding-header "Prüfungen und notenrelevante Termine.")
-                     (org-agenda-sorting-strategy '(priority-up))))))
-            ("f" "Alle aktuellen TODOs"
-             ((agenda)
-              (todo)
-              ))
-            ("b" "Blocked TODO's"
-             ((agenda)
-              (tags-todo "BLOCKED|PAL"
-                         ((org-agenda-overriding-header "Blockierte TODOs oder Status unbekannt. "))
-                )
-              ))
+  (use-package org-super-agenda
+    :ensure t
+    :config (org-super-agenda-mode)
+    )
+  (setq org-agenda-custom-commands
+        '(
+          ("c" "Super Agenda" agenda
+           (org-super-agenda-mode)
+           ((org-super-agenda-groups
+             '((:auto-category t))))
+           (org-agenda-list))
+
+          ("f" "Alle aktuellen TODOs"
+           ((agenda)
+            (todo)
+            ))
+          ("d" "Agenda"
+           ((agenda ""
+                    ((org-agenda-span 'day)
+                     (org-deadline-warning-days 365)))
+            (todo "TODO"
+                  ((org-agenda-overriding-header "Stack")
+                   (org-agenda-files '("~/documents/supervisor/stack.org"))
+                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+            nil))
             ))
 #+end_src
 *** Path
 Use the entire home directory for agenda files.
 #+begin_src emacs-lisp
-(setq org-agenda-files '("~/documents/org/"))
-    #+end_src
-    Add file to the list of included agenda files, bound =C-c v=
-    #+begin_src emacs-lisp
-    (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
-    #+end_src
+
+  (setq org-agenda-files (directory-files-recursively "~/documents/supervisor/" "\\.org$"))
+#+end_src
+Add file to the list of included agenda files, bound =C-c v=
+#+begin_src emacs-lisp
+  (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
+#+end_src
 ** Capture
 Org-gtd setup.
 #+begin_src emacs-lisp
@@ -887,7 +839,7 @@ Org-gtd setup.
            "* TODO %?\n  %i\n  %a"
 
            )
-          ("j" "Journal" entry (file+datetree "~/org/journal.org")
+          ("n" "Note" entry (file+datetree "~/documents/inbox/notes.org")
            "* %?\nEntered on %U\n  %i\n  %a")))
 
   (global-set-key (kbd "C-c c") 'org-capture)
@@ -900,21 +852,22 @@ Allow export to markdown and beamer (for presentations).
 *** Code
 		Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
     #+begin_src emacs-lisp
-		(use-package ob-go)
-		(use-package ob-elixir)
+      (use-package ob-go)
+      (use-package ob-elixir)
 
-		(use-package gnuplot)
-		(org-babel-do-load-languages
-		'org-babel-load-languages
-		'((emacs-lisp . t)
-		(ruby . t)
-		(dot . t)
-		(gnuplot . t)
-		(python . t)
-		(go . t)
-		(sql . t)
-		(elixir . t)
-		))
+
+      (use-package gnuplot)
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((emacs-lisp . t)
+         (ruby . t)
+         (dot . t)
+         (gnuplot . t)
+         (python . t)
+            (go . t)
+            (sql . t)
+            (elixir . t)
+            ))
     #+end_src
 	Don't ask before evaluating code blocks.
   #+BEGIN_src emacs-lisp
@@ -1020,7 +973,7 @@ Use pretty tables. [[http:https://github.com/Fuco1/org-pretty-table]]
 (setq org-src-tab-acts-natively t)
 #+end_src
 * Content
-** org roam
+** org-roam
 (Configured under =/content= instead of =/org-mode=, might change in the future)
 Org-roam setup for the entire =documents= directory.
 #+begin_src emacs-lisp
@@ -1048,7 +1001,7 @@ Org-roam setup for the entire =documents= directory.
     :config
     (push 'company-org-roam company-backends))
 #+end_src
-** org roam server
+** org-roam-server
 Dedicated config for =org-roam-server=
 #+begin_src emacs-lisp
 (use-package org-roam-server
@@ -1066,7 +1019,7 @@ Dedicated config for =org-roam-server=
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 #+end_src
-** org roam config
+** org-roam-config
 Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/comments/gsv5np/care_to_share_configs_for_how_you_use_orgroam/][Care to share configs for how you use org-roam?]]
 #+begin_src emacs-lisp
     (defun org-force-open-current-window ()
@@ -1152,20 +1105,20 @@ Turn off all distractions.
 (require 'hoth)
 (define-key org-mode-map (kbd "C-c r h") 'hoth-total)
 #+end_src
-** Notes
-	 Deft for taking quick notes and storing them in plain text.
-	 #+begin_src emacs-lisp
-	 (use-package deft)
-     (setq deft-default-extension "org")
-     (setq deft-extensions '("org"))
-	 (setq deft-directory "~/documents/org/")
-     (setq deft-recursive t)
-	 (setq deft-text-mode 'org-mode)
-	 (setq deft-use-filename-as-title t)
+** Deft
+Deft for taking quick notes and storing them in plain text.
+#+begin_src emacs-lisp
+  (use-package deft)
+  (setq deft-default-extension "org")
+  (setq deft-extensions '("org"))
+  (setq deft-directory "~/documents/inbox/")
+  (setq deft-recursive t)
+  (setq deft-text-mode 'org-mode)
+  (setq deft-use-filename-as-title t)
 
-	 (define-key org-mode-map (kbd "C-c n") 'deft)
-	 (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
-	 #+end_src
+  (define-key org-mode-map (kbd "C-c n") 'deft)
+  (define-key org-mode-map (kbd "M-c n") 'deft-find-file)
+#+end_src
 ** Special tags
 Special tags used for content inside of a table.
 #+begin_src emacs-lisp
@@ -1187,3 +1140,26 @@ Use =chrome= as the default browser for links.
    #+begin_src emacs-lisp
    (use-package malyon)
    #+end_src
+** Hugo
+*** Header
+Automatically insert =ox-hugo= header.
+#+begin_src emacs-lisp
+  (defun hugo-header ()
+    (interactive)
+    (insert "#+HUGO_SECTION: posts \n#+HUGO_BASE_DIR:~/documents/projects/knowledge")
+    )
+  (define-key org-mode-map (kbd "C-c r e") 'hugo-header)
+#+end_src
+*** Quick export
+#+begin_src emacs-lisp
+  (defun hugo-export ()
+    (org-export-dispatch "H h")
+    )
+  (define-key org-mode-map (kbd "C-c r d") 'hugo-export)
+#+end_src
+*** ox
+#+begin_src emacs-lisp
+(use-package ox-hugo
+  :ensure t            ;Auto-install the package from Melpa (optional)
+  :after ox)
+#+end_src

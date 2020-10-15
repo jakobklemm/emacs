@@ -88,6 +88,10 @@ All used keybinds
 	 | C-c ?       | org-table-field-info           |
 	 | C-c ^       | org-sort                       |
 	 | C-.         | ispell word                    |
+	 | C-c r i     | org-roam-insert                |
+	 | C-c r l     | org-roam-mode                  |
+	 | C-c r h     | hoth-file-mgm                  |
+	 | C-c r e     | hugo-insert-header             |
 	 | M-<LEFT>    | org-table-move-column-left     |
 	 | M-S-<LEFT>  | org-table-delete-column        |
 	 | M-S-<RIGHT> | org-table-move-column-right    |
