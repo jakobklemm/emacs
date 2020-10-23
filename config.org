@@ -767,16 +767,22 @@ Colored priorities.
 ** Agenda
 *** Agenda
     #+begin_src emacs-lisp
-      (defun todo/done ()
-        (interactive)
-        (org-todo 'done))
+          (defun todo/done ()
+            (interactive)
+            (org-todo 'done))
 
-      ;; Make agenda a global keybind.
-      (global-set-key (kbd "C-c  a") 'org-agenda)
+          (defun agenda/super (&optional arg)
+            (interactive "P")
+            (org-agenda arg "c"))
 
-      (define-key org-mode-map (kbd "C-c d") 'org-deadline)
-      (define-key org-mode-map (kbd "C-c s") 'org-schedule)
-      (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
+          ;; Make agenda a global keybind.
+          (global-set-key (kbd "C-c  a") 'org-agenda)
+          ;; Direct access to super-agenda
+          (global-set-key [f1] 'agenda/super)
+
+          (define-key org-mode-map (kbd "C-c d") 'org-deadline)
+          (define-key org-mode-map (kbd "C-c s") 'org-schedule)
+          (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 	 #+end_src
 *** Commands
 =org-super-agenda=
@@ -793,18 +799,14 @@ Colored priorities.
                          '((:name "Today"
                                   :time-grid t
                                   :date today
-                                  ;;:file-path "tasks.org|events.org"
                                   :order 1)
-                           (:name "Unscheduled"
-                                  :file-path "tasks.org"
-                                  :order 10)
-                           (:name "Overdue"
-                                  :scheduled past
-                                  :order 10)
                            ))))
             (alltodo "" ((org-agenda-overriding-header "Tasks")
                          (org-super-agenda-groups
                           '(
+                            (:name "Sapin"
+                                   :file-path "tasks.org"
+                                   :order 10)
                             (:name "Home"
                                    :tag ("HOME")
                                    :order 20)
@@ -851,17 +853,19 @@ Org-refile setup for multi-file task management.
 ** Capture
 Org-gtd setup.
 #+begin_src emacs-lisp
-  (setq org-default-notes-file "~/documents/supervisors/tasks.org")
+    (setq org-default-notes-file "~/documents/supervisors/tasks.org")
 
-  (setq org-capture-templates
-        '(("t" "High" entry (file+headline "~/documents/supervisors/tasks.org" "High")
-           "* TODO %?\n  %i\n  %a"
+    (setq org-capture-templates
+          '(("c" "Stack TODO" entry (file "~/documents/supervisor/stack.org")
+             "* TODO %?\n  %i\n  %a")
+            ("v" "Quick Task" entry (file+headline "~/documents/supervisor/tasks.org" "Sapin")
+             "* TODO %?\n  %i\n  %a")
+            ("e" "New event" entry (file "~/documents/supervisor/events.org")
+             "* TODO %?\n  %i\n  %a")
+            ("n" "Note" entry (file+datetree "~/documents/supervisor/notes.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))
 
-           )
-          ("n" "Note" entry (file+datetree "~/documents/inbox/notes.org")
-           "* %?\nEntered on %U\n  %i\n  %a")))
-
-  (global-set-key (kbd "C-c c") 'org-capture)
+    (global-set-key (kbd "C-c c") 'org-capture)
 #+end_src
 ** Export
 Allow export to markdown and beamer (for presentations).
