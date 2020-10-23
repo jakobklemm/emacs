@@ -56,7 +56,8 @@ All used keybinds
 	 | C-c C-x C-n | org-next-link                  |
 	 | C-c C-x C-p | org-previous-link              |
 	 | C-c t       | org-todo                       |
-	 | C-c a       | cfw-agenda-view                |
+	 | C-c a       | org-agenda                     |
+	 | C-c f       | org-refile                     |
 	 | C-c C-a     | org-agenda                     |
 	 | C-c d       | org-deadline                   |
 	 | C-c x       | todo-done                      |

@@ -27,7 +27,7 @@
  '(lsp-ui-doc-position 'bottom)
  '(objed-cursor-color "#c6797e")
  '(org-agenda-files
-   '("~/documents/projects/jakku/README.org" "~/.emacs.d/config.org"))
+   '("~/documents/supervisor/guide.org" "~/documents/supervisor/stack.org" "~/documents/supervisor/tasks.org"))
  '(package-selected-packages
    '(ox-hugo org-superstar writeroom-mode darkroom org-plus-contrib xah-find amx helm-posframe swiper-helm helm org-roam-server org-roam calfw-org calfw haskell-mode org-super-agenda tangotango-theme rainbow-mode counsel doom-modeline deft org-gcal minimap doom-themes elixir-yasnippets yasnippet company swiper flycheck ivy rainbow-delimiters malyon org-special-block-extras ox-mdx-deck dimmer magit smartparens lsp-ui elixir-mode eglot company-ghc company-jedi company-erlang dashboard projectile page-break-lines minions moody use-package babel auto-compile))
  '(pdf-view-midnight-colors (cons "#FAFFF6" "#172030"))

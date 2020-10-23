@@ -732,15 +732,11 @@ Default tags with keys.
 #+begin_src emacs-lisp
     (setq org-tag-persistent-alist
           '((:startgroup . nil)
-            ("sapin" . ?s)
-            ("event" . ?e)
             ("HOME" . ?h)
-            ("ADMIN" . ?a)
-            ("PRIVATE" . ?x)
-            ("DATA" . ?d)
+            ("CONTENT" . ?c)
             ("PROJECT" . ?p)
-            ("PRÜFUNG" . ?u)
-            ("SCHULE" . ?y)
+            ("PRÜFUNG" . ?t)
+            ("SCHULE" . ?s)
             (:endgroup . nil)
             )
           )
@@ -751,9 +747,7 @@ Default tags with keys.
   (setq org-tag-faces
         '(
           ("HOME" . (:foreground "GoldenRod" :weight bold))
-          ("ADMIN" . (:foreground "Red" :weight bold))
-          ("PRIVATE" . (:foreground "LimeGreen" :weight bold))
-          ("DATA" . (:foreground "LimeGreen" :weight bold))
+          ("CONTENT" . (:foreground "LimeGreen" :weight bold))
           ("PROJECT" . (:foreground "OrangeRed" :weight bold))
 
           ("SCHULE" . (:foreground "DarkMagenta" :weight bold))
@@ -771,8 +765,6 @@ Colored priorities.
 #+end_src
 
 ** Agenda
-Super agenda is only meant for a general overview and more common tasks. All
-school related TODOs are found through the special view only for school.
 *** Agenda
     #+begin_src emacs-lisp
       (defun todo/done ()
@@ -784,40 +776,54 @@ school related TODOs are found through the special view only for school.
 
       (define-key org-mode-map (kbd "C-c d") 'org-deadline)
       (define-key org-mode-map (kbd "C-c s") 'org-schedule)
-      (define-key org-mode-map (kbd "C-c f") 'org-time-stamp)
       (define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 	 #+end_src
 *** Commands
 =org-super-agenda=
 #+begin_src emacs-lisp
-  (setq jethro/org-agenda-directory "~/documents/supervisor/")
-
   (use-package org-super-agenda
     :ensure t
     :config (org-super-agenda-mode)
     )
-  (setq org-agenda-custom-commands
-        '(
-          ("c" "Super Agenda" agenda
-           (org-super-agenda-mode)
-           ((org-super-agenda-groups
-             '((:auto-category t))))
-           (org-agenda-list))
 
-          ("f" "Alle aktuellen TODOs"
-           ((agenda)
-            (todo)
-            ))
-          ("d" "Agenda"
-           ((agenda ""
-                    ((org-agenda-span 'day)
-                     (org-deadline-warning-days 365)))
-            (todo "TODO"
-                  ((org-agenda-overriding-header "Stack")
-                   (org-agenda-files '("~/documents/supervisor/stack.org"))
-                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
-            nil))
-            ))
+  (setq org-agenda-custom-commands
+        '(("c" "Super view"
+           ((agenda "" ((org-agenda-span 1)
+                        (org-super-agenda-groups
+                         '((:name "Today"
+                                  :time-grid t
+                                  :date today
+                                  ;;:file-path "tasks.org|events.org"
+                                  :order 1)
+                           (:name "Unscheduled"
+                                  :file-path "tasks.org"
+                                  :order 10)
+                           ))))
+            (alltodo "" ((org-agenda-overriding-header "Tasks")
+                         (org-super-agenda-groups
+                          '(
+                            (:name "Unscheduled"
+                                   :file-path "tasks.org"
+                                   :order 10)
+                            (:name "Home"
+                                   :tag ("HOME")
+                                   :order 20)
+                            (:name "Projects"
+                                   :tag ("PROJECT")
+                                   :order 30)
+                            (:name "Content"
+                                   :tag ("CONTENT")
+                                   :order 40)
+                            (:name "Schule"
+                                   :tag ("SCHULE")
+                                   :order 50)
+                            (:name "Prüfung"
+                                   :tag ("PRÜFUNG")
+                                   :order 60)
+                            (:name "Stack"
+                                   :file-path "stack.org"
+                                   :order 70)
+                            ))))))))
 #+end_src
 *** Path
 Use the entire home directory for agenda files.
@@ -828,6 +834,15 @@ Use the entire home directory for agenda files.
 Add file to the list of included agenda files, bound =C-c v=
 #+begin_src emacs-lisp
   (define-key org-mode-map (kbd "C-c v") 'org-agenda-file-to-front)
+#+end_src
+** Refile
+Org-refile setup for multi-file task management.
+#+begin_src emacs-lisp
+  (setq org-refile-targets
+        '(("~/documents/supervisor/tasks.org" :maxlevel . 1)
+          ("~/documents/supervisor/week.org" :maxlevel . 1)))
+  (define-key org-mode-map (kbd "C-c f") 'org-refile)
+  (define-key org-mode-map (kbd "C-c C-f") 'org-agenda-refile)
 #+end_src
 ** Capture
 Org-gtd setup.
@@ -1072,6 +1087,19 @@ Some configurations for =org-roam= inspired by [[https://www.reddit.com/r/emacs/
     (define-key org-mode-map (kbd "C-c r r") 'mmr/org-roam-insert-replace-region-with-link-and-follow)
 
   (setq org-roam-graph-exclude-matcher '("tasks" "archive"))
+#+end_src
+** Org-roam-capture
+#+begin_src emacs-lisp
+    (setq org-roam-capture-templates
+            '(("i" "With fixed filename -> For Export." plain (function org-roam--capture-get-point)
+               "%?"
+               :file-name "${slug}"
+               :head "#+title: ${title}
+  ,#+SETUPFILE:~/.hugo.org\n"
+               :unnarrowed t)
+              ("o" "Unchanged org-roam insert." plain (function org-roam--capture-get-point)
+               "%?"
+               :head "#+title: ${title}\n")))
 #+end_src
 ** Writing
 Turn off all distractions.
