@@ -798,13 +798,13 @@ Colored priorities.
                            (:name "Unscheduled"
                                   :file-path "tasks.org"
                                   :order 10)
+                           (:name "Overdue"
+                                  :scheduled past
+                                  :order 10)
                            ))))
             (alltodo "" ((org-agenda-overriding-header "Tasks")
                          (org-super-agenda-groups
                           '(
-                            (:name "Unscheduled"
-                                   :file-path "tasks.org"
-                                   :order 10)
                             (:name "Home"
                                    :tag ("HOME")
                                    :order 20)
@@ -823,6 +823,10 @@ Colored priorities.
                             (:name "Stack"
                                    :file-path "stack.org"
                                    :order 70)
+                            (:name "Future"
+                                   :file-path "guide.org"
+                                   :deadline future
+                                   :order 80)
                             ))))))))
 #+end_src
 *** Path
