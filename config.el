@@ -1,13 +1,16 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Jakob Klemm"
+      user-mail-address "jakob.klemm@protonmail.com"
+      doom-font (font-spec :family "Iosevka" :size 16)
+      doom-variable-pitch-font (font-spec :family "Overpass Mono")
+      doom-theme 'doom-nord
+      display-line-numbers-type nil
+      load-prefer-newer t
+      display-line-numbers-type t
+      )
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -22,19 +25,13 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-
+;; org-mode configuration.
+(setq org-directory "~/documents/supervisor/"
+      org-ellipsis " ▼ "
+      org-adapt-indentation t
+      indent-line-function 'insert-tab
+      tab-width 4
+      )
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -45,20 +42,21 @@
 ;;   this file. Emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
 
-;; Elixir & LSP
+;; Language server protocol - This configures a manual lsp for elixir, because
+;; the automatic doom installation is still problematic. Company-Box-Mode is
+;; used to display icons in the lsp-dropdown. Next to that lsp is also
+;; configured.
+
 (add-hook 'elixir-mode 'lsp)
 (add-to-list 'exec-path "~/.doom.d/elixir-ls")
 
 (add-hook 'company-mode-hook 'company-box-mode)
 
 (lsp-ui-mode t)
-;;(setq lsp-ui-sideline-show-hover t)
-;;(setq lsp-ui-sideline-enable t)
+
+(setq company-idle-delay nil
+      ;;lsp-ui-sideline-show-hover t
+      lsp-ui-doc-enable t
+      lsp-ui-doc-position 'top
+      )

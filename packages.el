@@ -51,3 +51,4 @@
 (package! helm-swoop)
 (package! lsp-ui)
 (package! company-box)
+(package! company-lsp)

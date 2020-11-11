@@ -1,7 +1,9 @@
 #+TITLE:   Jakob Klemm - Doom Emacs
 Yet Another Personal Doom Emacs Configuration - YAPDEC
 * Installation
-#aaaaaa
+Some basic text
+** Even more text
+more indent stuff
 * Doom - Vanilla
 * Functionality
 * System
