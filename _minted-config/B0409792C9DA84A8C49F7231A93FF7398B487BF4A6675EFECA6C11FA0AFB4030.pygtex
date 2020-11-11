@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{doom\PYGZhy{}modeline}
-\PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
-\PYG{l+s+ss}{:init} \PYG{p}{(}\PYG{n+nv}{doom\PYGZhy{}modeline\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{))}
-\end{Verbatim}

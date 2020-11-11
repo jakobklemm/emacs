@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x j\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}kill\PYGZhy{}buffer\PYGZhy{}and\PYGZhy{}window}\PYG{p}{)}
-\end{Verbatim}

@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{scala\PYGZhy{}mode}
-\PYG{l+s+ss}{:interpreter}
-\PYG{p}{(}\PYG{l+s}{\PYGZdq{}scala\PYGZdq{}} \PYG{o}{.} \PYG{n+nv}{scala\PYGZhy{}mode}\PYG{p}{))}
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{sbt\PYGZhy{}mode}\PYG{p}{)}
-\end{Verbatim}

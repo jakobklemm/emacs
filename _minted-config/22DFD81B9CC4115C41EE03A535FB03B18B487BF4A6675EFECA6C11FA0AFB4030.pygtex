@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{magit\PYGZhy{}todos}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{magit\PYGZhy{}todos\PYGZhy{}mode} \PYG{n+no}{t}\PYG{p}{)}
-\end{Verbatim}

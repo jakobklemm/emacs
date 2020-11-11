@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}todo\PYGZhy{}keywords}
-      \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{n+nc}{sequence} \PYG{l+s}{\PYGZdq{}TODO(t)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}PROGRESS(p)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}BLOCKED(b)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}|\PYGZdq{}} \PYG{l+s}{\PYGZdq{}DONE(d)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}PAL(a)\PYGZdq{}}\PYG{p}{)}
-        \PYG{p}{(}\PYG{n+nc}{sequence} \PYG{l+s}{\PYGZdq{}IDEA(i)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}STATIC(s)\PYGZdq{}} \PYG{l+s}{\PYGZdq{}|\PYGZdq{}} \PYG{l+s}{\PYGZdq{}DONE(f)\PYGZdq{}}\PYG{p}{)))}
-\end{Verbatim}

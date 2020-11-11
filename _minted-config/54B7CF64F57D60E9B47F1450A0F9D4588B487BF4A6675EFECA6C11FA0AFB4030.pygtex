@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{xah\PYGZhy{}find}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x C\PYGZhy{}j\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}xah\PYGZhy{}find\PYGZhy{}text}\PYG{p}{)}
-\end{Verbatim}

@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}enforce\PYGZhy{}todo\PYGZhy{}dependencies} \PYG{n+no}{t}\PYG{p}{)}
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}enforce\PYGZhy{}todo\PYGZhy{}checkbox\PYGZhy{}dependencies} \PYG{n+no}{t}\PYG{p}{)}
-\end{Verbatim}

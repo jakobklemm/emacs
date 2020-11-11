@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{yasnippet}\PYG{p}{)}
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{yas\PYGZhy{}snippet\PYGZhy{}dirs} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/.emacs.d/snippets/text\PYGZhy{}mode\PYGZdq{}}\PYG{p}{))}
-\PYG{p}{(}\PYG{n+nv}{yas\PYGZhy{}global\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{yas\PYGZhy{}indent\PYGZhy{}line} \PYG{l+s+ss}{\PYGZsq{}auto}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{yas\PYGZhy{}minor\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}\PYGZlt{}tab\PYGZgt{}\PYGZdq{}}\PYG{p}{)} \PYG{n+no}{nil}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{yas\PYGZhy{}minor\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}TAB\PYGZdq{}}\PYG{p}{)} \PYG{n+no}{nil}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{define\PYGZhy{}key} \PYG{n+nv}{yas\PYGZhy{}minor\PYGZhy{}mode\PYGZhy{}map} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}\PYGZlt{}C\PYGZhy{}tab\PYGZgt{}\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}yas\PYGZhy{}expand}\PYG{p}{)}
-\end{Verbatim}

@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{magit}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x g\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}magit\PYGZhy{}status}\PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x p\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}magit\PYGZhy{}init}\PYG{p}{)}
-\end{Verbatim}
