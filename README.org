@@ -1,0 +1,6 @@
+#+TITLE:   Jakob Klemm - Doom Emacs
+Yet Another Personal Doom Emacs Configuration - YAPDEC
+* Installation
+* Functionality
+* Doom - Vanilla
+* System
