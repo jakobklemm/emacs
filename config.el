@@ -32,37 +32,8 @@
       org-hide-emphasis-markers t
       )
 
-(let*
-    (custom-theme-set-faces
-     'user
-     `(org-level-8 ((t (,@headline ,@variable-tuple))))
-     `(org-level-7 ((t (,@headline ,@variable-tuple))))
-     `(org-level-6 ((t (,@headline ,@variable-tuple))))
-     `(org-level-5 ((t (,@headline ,@variable-tuple))))
-     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.40))))
-     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.55))))
-     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
-
-(custom-theme-set-faces
-   'user
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit (shadow fixed-pitch)))))
-   '(org-document-info ((t (:foreground "dark orange"))))
-   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-   '(org-link ((t (:foreground "dark orange" :underline t))))
-   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-property-value ((t (:inherit fixed-pitch))) t)
-   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-   '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
-
 ;; Superstar mode for better symbols (replacements for org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-(org-superstar-configure-like-org-bullets)
 (setq org-superstar-special-todo-items t
       org-superstar-todo-bullet-alist '(
                                         ("TODO" . 9744)
@@ -124,6 +95,7 @@
 
 ;; org-roam && org-roam-server
 (setq org-roam-db-location "~/documents/vaults/org-roam.db"
+      org-roam-directory "~/documents/vaults/knowledge/"
       org-roam-capture-templates '(
                                    ("i" "With fixed filename, for export to hugo." plain (function org-roam--capture-get-point)
                                     "%?"
