@@ -53,4 +53,12 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package! helm-swoop)
+;; Elixir & LSP
+(add-hook 'elixir-mode 'lsp)
+(add-to-list 'exec-path "~/.doom.d/elixir-ls")
+
+(add-hook 'company-mode-hook 'company-box-mode)
+
+(lsp-ui-mode t)
+;;(setq lsp-ui-sideline-show-hover t)
+;;(setq lsp-ui-sideline-enable t)

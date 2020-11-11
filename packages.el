@@ -49,3 +49,5 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! helm-swoop)
+(package! lsp-ui)
+(package! company-box)
