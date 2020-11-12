@@ -2,7 +2,9 @@
 ;;; $DOOMDIR/packages.el
 
 (package! helm-swoop)
+(package! lsp-mode)
 (package! lsp-ui)
+(package! lsp-ivy)
 (package! company-box)
 (package! company-lsp)
 (package! subword)

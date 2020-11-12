@@ -9,43 +9,68 @@
       display-line-numbers-type nil
       load-prefer-newer t
       display-line-numbers-type t
-      org-pretty-entities t
       browse-url-browser-function 'browse-url-generic browse-url-generic-program "google-chrome-stable"
+      company-idle-delay 0
       )
 
 (set-language-environment "UTF-8")
 
 ;; org-mode configuration.
-(setq org-directory "~/documents/supervisor/"
-      org-ellipsis " ▼ "
-      org-adapt-indentation t
-      indent-line-function 'insert-tab
-      tab-width 4
-      org-startup-folded t
-      org-src-fontify-natively t
-      org-priority-faces '(
-                           (?A . (:foreground "red" :weight 'bold))
-                           (?B . (:foreground "yellow"))
-                           (?C . (:foreground "green"))
-                           )
-      org-src-tab-acts-natively t
-      org-hide-emphasis-markers t
-      )
+(after! org (setq org-directory "~/documents/supervisor/"
+                  org-ellipsis " ▼ "
+                  org-adapt-indentation t
+                  indent-line-function 'insert-tab
+                  tab-width 4
+                  org-pretty-entities t
+                  org-startup-folded t
+                  org-src-fontify-natively t
+                  org-priority-faces '(
+                                       (?A . (:foreground "red" :weight 'bold))
+                                       (?B . (:foreground "yellow"))
+                                       (?C . (:foreground "green"))
+                                       )
+                  org-src-tab-acts-natively t
+                  org-hide-emphasis-markers t
+                  org-src-window-setup 'current-window
+                  org-return-follows-link t
+                  org-confirm-babel-evaluate nil
+                  org-use-speed-commands t
+                  org-catch-invisible-edits 'show
+                  org-todo-keywords '(
+                                      (sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "PAL(p)")
+                                      (sequence "NOTE(m)" "BLOCKED(b)" | "DONE(d)")
+                                      )
+                  org-refile-use-outline-path 'file
+                  org-tag-alist '(
+                                  ("@event" . ?e)
+                                  ("@private" . ?p)
+                                  ("@schule" . ?s)
+                                  )
+                  org-refile-allow-creating-parents-nodes 'confirm
+                  org-refile-targets '((org-agenda-files . (:level . 1)))
+                  org-log-done 'time
+                  org-log-into-drawer t
+                  org-capture-templates `(
+                                          ("i" "Inbox" entry (file "~/documents/supervisor/tasks.org"))
+                                          )
+                  )
+  )
 
 ;; Superstar mode for better symbols (replacements for org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-(setq org-superstar-special-todo-items t
-      org-superstar-todo-bullet-alist '(
-                                        ("TODO" . 9744)
-                                        ("BLOCKED" . 9202)
-                                        ("PROGRESS" . 8885)
-                                        ("DONE" . 9745)
-                                        ("PAL" . 9745)
-                                        ("IDEA" . 1422)
-                                        ("NOTE" . 9738)
-                                        ("INTAKE" . 8227)
-                                        )
-     )
+(after! org (setq org-superstar-special-todo-items t
+                  org-superstar-todo-bullet-alist '(
+                                                    ("TODO" . 9744)
+                                                    ("BLOCKED" . 9202)
+                                                    ("PROGRESS" . 8885)
+                                                    ("DONE" . 9745)
+                                                    ("PAL" . 9745)
+                                                    ("IDEA" . 1422)
+                                                    ("NOTE" . 9738)
+                                                    ("INTAKE" . 8227)
+                                                    )
+                  )
+  )
 
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'gfm-mode-hook 'auto-fill-mode)
@@ -85,13 +110,16 @@
 
 (add-hook 'company-mode-hook 'company-box-mode)
 
-(lsp-ui-mode t)
+(use-package! lsp-mode
+  :hook (elixir-mode . lsp)
+  :commands lsp
+  )
 
-(setq company-idle-delay nil
-      ;;lsp-ui-sideline-show-hover t
-      lsp-ui-doc-enable t
-      lsp-ui-doc-position 'top
-      )
+(use-package! lsp-ui :commands lsp-ui-mode)
+(use-package! lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+;; Start emacs maximized (only relevant for non-tiling use)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; org-roam && org-roam-server
 (setq org-roam-db-location "~/documents/vaults/org-roam.db"

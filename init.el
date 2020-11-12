@@ -55,7 +55,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       lsp
+       ;;lsp
        magit            ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -79,7 +79,7 @@
        ;;json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       julia             ; a better, faster MATLAB
+       ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
        markdown          ; writing docs for people to ignore
@@ -89,7 +89,7 @@
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       scala             ; java, but good
+       ;;scala             ; java, but good
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        web               ; the tubes
