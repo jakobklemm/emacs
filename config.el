@@ -1,19 +1,24 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Base config
+;; Base settings and configuration
 (setq user-full-name "Jakob Klemm"
       user-mail-address "jakob.klemm@protonmail.com"
       doom-font (font-spec :family "Iosevka" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass Mono")
-      doom-theme 'doom-nord
-      display-line-numbers-type nil
+      doom-theme 'doom-vibrant
       load-prefer-newer t
-      display-line-numbers-type t
+      display-line-numbers-type 'relative
       browse-url-browser-function 'browse-url-generic browse-url-generic-program "google-chrome-stable"
-      company-idle-delay 0
+      delete-by-moving-to-trash t
+      window-combination-resize t
+      undo-limit 80000000
+      evil-want-fine-undo t
+      auto-save-default t
+      evil-vsplit-window-right t
+      evil-split-window-below t
+      +ivy-buffer-preview t
+      history-length 1000
       )
-
-(set-language-environment "UTF-8")
 
 ;; org-mode configuration.
 (after! org (setq org-directory "~/documents/supervisor/"
@@ -100,6 +105,32 @@
 ;; Auto revert (refresh) files
 (global-auto-revert-mode t)
 
+;; Set always to UTF-8, only display in bar if not UTF-8
+(set-language-environment "UTF-8")
+
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer)
+  )
+
+(defun modeline-conditional-encoding ()
+  "Mostly UTF-8 so only show if not that."
+  (setq-local doom-modeline-buffer-encoding
+              (unless
+                  (or
+                   (eq buffer-file-coding-system 'utf-8-unix)
+                   (eq buffer-file-coding-system 'utf-8)
+                   )
+                  )
+              )
+  )
+
+(add-hook 'after-change-major-mode-hook #'modeline-conditional-encoding)
+
+(custom-set-faces!
+  '(doom-modeline-buffer-modified :foreground "red" :height 0.9 :family "Fira Code")
+  )
+
 ;; Language server protocol - This configures a manual lsp for elixir, because
 ;; the automatic doom installation is still problematic. Company-Box-Mode is
 ;; used to display icons in the lsp-dropdown. Next to that lsp is also
@@ -113,13 +144,45 @@
 (use-package! lsp-mode
   :hook (elixir-mode . lsp)
   :commands lsp
+  :config (setq
+           lsp-ui-doc-max-height 52
+           lsp-ui-doc-max-width 64
+           lsp-ui-doc-position 'bottom
+           lsp-ui-doc-show-with-mouse t
+           lsp-ui-doc-show-with-cursor t
+           company-idle-delay 0.25
+           company-show-numbers t
+           )
   )
 
 (use-package! lsp-ui :commands lsp-ui-mode)
 (use-package! lsp-ivy :commands lsp-ivy-workspace-symbol)
 
+;; Company config
+;; Setup all company-backends
+(set-company-backend!
+  '(text-mode
+    markdown-mode
+    gfm-mode
+    )
+  '(:seperate
+    company-ispell
+    company-files
+    company-yasnippet
+    )
+ )
+
 ;; Start emacs maximized (only relevant for non-tiling use)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; org-mode export & LaTeX config
+(setq
+ org-confirm-babel-evaluate t
+ org-latex-listings 'listed
+ TeX-parse-self t
+ TeX-PDF-mode t
+ )
+
 
 ;; org-roam && org-roam-server
 (setq org-roam-db-location "~/documents/vaults/org-roam.db"
