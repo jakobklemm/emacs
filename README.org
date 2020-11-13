@@ -1,9 +1,17 @@
 #+TITLE:   Jakob Klemm - Doom Emacs
 Yet Another Personal Doom Emacs Configuration - YAPDEC
-* Installation
-Some basic text
-** Even more text
-more indent stuff
-* Doom - Vanilla
-* Functionality
-* System
+* Outstanding
+** TODO keywords
+** Agenda & super agenda
+** Capture & icons
+** Tags & icons
+** Org-checkboxes
+** org-ql
+** org-fragtog
+** Exporting (hugo, html, latex)
+** notmuch
+** org-ref
+** dark-room
+** dumb-jump
+** custom / new binds
+** Hoth

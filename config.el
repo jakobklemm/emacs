@@ -17,7 +17,7 @@
       evil-vsplit-window-right t
       evil-split-window-below t
       +ivy-buffer-preview t
-      history-length 1000
+      history-length 442
       )
 
 ;; org-mode configuration.
@@ -53,33 +53,64 @@
                                   )
                   org-refile-allow-creating-parents-nodes 'confirm
                   org-refile-targets '((org-agenda-files . (:level . 1)))
-                  org-log-done 'time
+                  ;;org-log-done 'time
                   org-log-into-drawer t
                   org-capture-templates `(
                                           ("i" "Inbox" entry (file "~/documents/supervisor/tasks.org"))
                                           )
+                  org-use-property-inheritance t
+                  org-catch-invisible-edits 'smart
+                  ;; Agenda
+                  org-agenda-skip-scheduled-if-done t
+                  org-agenda-skip-deadline-if-done t
+                  org-agenda-include-deadlines t
+                  org-agenda-block-separator nil
+                  org-agenda-tags-column 130
+                  org-agenda-compact-blocks t
+                  org-agenda-deadline-faces '(
+                                              (1.001 . error)
+                                              (1.0 . org-warning)
+                                              (0.5 . org-upcoming-deadline)
+                                              (0.0 . org-upcoming-distant-deadline)
+                                              )
+                  org-fontify-quote-and-verse-blocks t
+                  org-agenda-custom-commands '(
+                                               (
+                                                "o" "Overview" (
+                                                                (agenda ""
+                                                                        (
+                                                                         (org-agenda-span 'day)
+                                                                         (org-super-agenda-groups
+                                                                          '(
+                                                                            (:name "Today"
+                                                                             :time-grid t
+                                                                             :date today
+                                                                             :todo "TODAY"
+                                                                             :scheduled today
+                                                                             :order 1
+                                                                             )
+                                                                            )
+                                                                          )
+                                                                         )
+                                                                        )
+                                                                )
+                                                )
+                                               )
                   )
   )
 
-;; Superstar mode for better symbols (replacements for org-bullets)
+(use-package! org-super-agenda
+  :commands (org-super-agenda-mode)
+  )
+(after! org-agenda
+  (org-super-agenda-mode)
+  )
+
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-(after! org (setq org-superstar-special-todo-items t
-                  org-superstar-todo-bullet-alist '(
-                                                    ("TODO" . 9744)
-                                                    ("BLOCKED" . 9202)
-                                                    ("PROGRESS" . 8885)
-                                                    ("DONE" . 9745)
-                                                    ("PAL" . 9745)
-                                                    ("IDEA" . 1422)
-                                                    ("NOTE" . 9738)
-                                                    ("INTAKE" . 8227)
-                                                    )
-                  )
-  )
-
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'gfm-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook  'auto-fill-mode)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'after-init-hook 'org-roam-mode)
 
@@ -105,6 +136,12 @@
 ;; Auto revert (refresh) files
 (global-auto-revert-mode t)
 
+(use-package! org-ref
+  :after org
+  :config
+  (setq org-ref-completion-library 'org-ref)
+  )
+
 ;; Set always to UTF-8, only display in bar if not UTF-8
 (set-language-environment "UTF-8")
 
@@ -129,6 +166,29 @@
 
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "red" :height 0.9 :family "Fira Code")
+  '(outline-1 :weight extra-bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  )
+
+(after! org
+  (custom-set-faces!
+    '(org-document-title :height 1.2)
+    )
+  )
+
+(after! org
+  (use-package! org-pretty-tags
+    :config
+    (setq
+     org-pretty-tags-surrogate-strings `(
+                                         ("schule" . ,(all-the-icons-faicon "graduation-cap" :face 'all-the-icons-purple :v-adjust 0.01))
+                                         )
+     )
+    )
   )
 
 ;; Language server protocol - This configures a manual lsp for elixir, because
@@ -182,7 +242,6 @@
  TeX-parse-self t
  TeX-PDF-mode t
  )
-
 
 ;; org-roam && org-roam-server
 (setq org-roam-db-location "~/documents/vaults/org-roam.db"
