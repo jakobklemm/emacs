@@ -13,3 +13,18 @@
 
 (package! helm)
 (package! helm-swoop)
+
+(package! toc-org)
+(package! org-superstar)
+(package! org-super-agenda)
+(package! org-fragtog)
+(package! org-roam)
+(package! org-roam-server)
+(package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+(package! org-pretty-table-mode
+  :recipe (:host github :repo "Fuco1/org-pretty-table"))
+
+;; Media
+(package! 2048-game)
+(package! speed-type)
+(package! malyon)

@@ -37,24 +37,29 @@
 (add-hook 'elixir-mode 'lsp)
 
 ;; Spell checks using ispell (external dep)
-(setq ispell-program-name "hunspell")
-(setq ispell-hunspell-dict-paths-alist
-      '(("en_US" "~/.doom.d/dict/en_US.aff")
-        ("de_DE" "~/.doom.d/dict/de_DE.aff")))
+;;(setq ispell-program-name "hunspell")
+;;(setq ispell-hunspell-dict-paths-alist
+;;      '(("en_US" "~/.doom.d/dict/en_US.aff")
+;;        ("de_DE" "~/.doom.d/dict/de_DE.aff")))
 
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
-        ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+;;(setq ispell-local-dictionary-alist
+;;      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+;;        ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
 
-(flyspell-mode 1)
-(add-hook 'text-mode-hook #'flyspell-mode)
-(add-hook 'org-mode-hook #'flyspell-mode)
+;;(add-hook 'text-mode-hook #'flyspell-mode)
+;;(add-hook 'org-mode-hook #'flyspell-mode)
 
 ;; Hooks
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'gfm-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook  'auto-fill-mode)
+;;(add-hook 'org-mode-hook 'org-toggle-inline-images)
+(add-hook 'prog-mode-hook 'add-pretty-lambda)
+(add-hook 'org-mode-hook 'add-pretty-lambda)
+(add-hook 'org-mode-hook 'org-toggle-inline-images)
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+(add-hook 'org-mode-hook 'org-fragtog-mode)
 
 ;; Quality of live changes
 ;; Start emacs maximized (only relevant for non-tiling use)
@@ -84,8 +89,7 @@
           )
         )
   )
-(add-hook 'prog-mode-hook 'add-pretty-lambda)
-(add-hook 'org-mode-hook 'add-pretty-lambda)
+
 ;; Better window switch functionality
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
