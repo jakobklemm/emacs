@@ -23,6 +23,7 @@
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 (package! org-pretty-table-mode
   :recipe (:host github :repo "Fuco1/org-pretty-table"))
+(package! org-ref)
 
 ;; Media
 (package! 2048-game)
