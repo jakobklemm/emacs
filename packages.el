@@ -13,6 +13,8 @@
 
 (package! helm)
 (package! helm-swoop)
+(package! dumb-jump)
+(package! darkroom)
 
 (package! toc-org)
 (package! org-superstar)
@@ -24,6 +26,7 @@
 (package! org-pretty-table-mode
   :recipe (:host github :repo "Fuco1/org-pretty-table"))
 (package! org-ref)
+(package! org-ql)
 
 ;; Media
 (package! 2048-game)

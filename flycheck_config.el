@@ -100,6 +100,17 @@
   )
 (setq +ivy-buffer-preview t)
 
+;; Replace swiper with helm-swoop as search engine.
+(map! :leader
+       (:prefix ("a" . "applications")
+        :desc "Use helm swoop to search over ivy." "s" #'helm-swoop
+        :desc "Dumb jump to definition in new window." "j" #'dumb-jump-go
+        :desc "Dumb jump to definition in current window." "k" #'dumb-jump-go-other-window
+        :desc "Darkroom mode for editing." "d" #'darkroom-mode
+        )
+       )
+
+
 ;; Specialized sizes & colors, mostly for org-mode.
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "red" :height 0.9 :family "Fira Code")

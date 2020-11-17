@@ -167,7 +167,7 @@
        ;;yaml              ; JSON, but readable
 
        :email
-       notmuch
+       ;;mu4e
 
        :app
        ;;calendar
