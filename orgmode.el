@@ -1,46 +1,59 @@
 ;;; orgmode.el -*- lexical-binding: t; -*-
 
-(setq org-directory "~/documents/"
-      org-ellipsis " ▼ "
-      org-adapt-indentation nil
-      org-fontify-quote-and-verse-blocks t
-      global-org-pretty-table-mode t
-      org-priority-highest ?A
-      org-priority-lowest ?C
-      org-priority-faces
-      '((?A . 'all-the-icons-red)
-        (?B . 'all-the-icons-orange)
-        (?C . 'all-the-icons-yellow))
-      org-src-tab-acts-natively t
-      org-hide-emphasis-markers t
-      org-src-window-setup 'current-window
-      org-return-follows-link t
-      org-confirm-babel-evaluate nil
-      org-use-speed-commands t
-      org-catch-invisible-edits 'show
-      org-image-actual-width '(600)
-      org-log-done 'time
-      org-archive-location "~/documents/vaults/archive/archive.org::* From %s"
-      )
+(after! org
+  (setq org-directory "~/documents/"
+        org-ellipsis " ▼ "
+        org-adapt-indentation nil
+        org-fontify-quote-and-verse-blocks t
+        global-org-pretty-table-mode t
+        org-priority-highest ?A
+        org-priority-lowest ?C
+        org-priority-faces
+        '((?A . 'all-the-icons-red)
+          (?B . 'all-the-icons-orange)
+          (?C . 'all-the-icons-yellow))
+        org-src-tab-acts-natively t
+        org-hide-emphasis-markers t
+        org-src-window-setup 'current-window
+        org-return-follows-link t
+        org-confirm-babel-evaluate nil
+        org-use-speed-commands t
+        org-catch-invisible-edits 'show
+        org-image-actual-width '(600)
+        org-log-done 'time
+        org-archive-location "~/documents/vaults/archive/archive.org::* From %s"
+        org-agenda-files (directory-files-recursively "~/documents/supervisor/" "\\.org$")
+        org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
+                             ("~/documents/supervisor/last.org" :maxlevel . 1)
+                             ("~/documents/supervisor/inbox.org" :maxlevel . 3)
+                             ("~/documents/supervisor/areas.org" :maxlevel . 3)
+                             ("~/documents/supervisor/events.org" :maxlevel . 1)
+                             )
+        org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
+                                 "* TODO %?\n  %i\n  %a")
+                                )
+        )
+  )
 
 (after! org
   (custom-set-faces!
-    '(org-document-title :height 1.2)))
+    '(org-document-title :height 1.2))
+  )
 
 (after! org-superstar
   (setq ;;org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-        org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
-        org-superstar-prettify-item-bullets t
-        ;; Enable custom bullets for TODO items
-        org-superstar-special-todo-items t
-        org-superstar-todo-bullet-alist '(("TODO" "☐ ")
-                                          ("NEXT" "✒ ")
-                                          ("STATIC" "» ")
-                                          ("BLOCKED" "˧ ")
-                                          ("DONE" "✔ ")
-                                          ("PAL" "✔ ")
-                                          )
-        )
+   org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+   org-superstar-prettify-item-bullets t
+   ;; Enable custom bullets for TODO items
+   org-superstar-special-todo-items t
+   org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+                                     ("NEXT" "✒ ")
+                                     ("STATIC" "» ")
+                                     ("BLOCKED" "˧ ")
+                                     ("DONE" "✔ ")
+                                     ("PAL" "✔ ")
+                                     )
+   )
   (org-superstar-restart))
 
 (setq org-agenda-deadline-faces
@@ -64,6 +77,22 @@
           ))
   )
 
+(defun todo/done ()
+  (interactive)
+  (org-todo 'done))
+
+;; Org binds
+(map! :leader
+      (:prefix ("a" . "applications")
+       :desc "Org capture" "c" #'org-capture
+       :desc "Setting org-mode tags" "t" #'org-set-tags-command
+       :desc "Org-todo menu" "f" #'org-todo
+       :desc "Org-todo mark as done" "x" #'todo/done
+       :desc "Bring an org-mode file to agenda from" "v" #'org-agenda-file-to-front
+       :desc "Refile org-heading, used in supervisor" "r" #'org-refile
+       )
+      )
+
 ;; org-mode export
 (setq
  org-html-postamble nil
@@ -71,10 +100,13 @@
  TeX-PDF-mode t
  )
 
+(after! org
+  )
+
 (add-hook 'LaTeX-mode-hook
-		(lambda ()
-		(LaTeX-math-mode)
-		(setq TeX-master t)))
+	  (lambda ()
+	    (LaTeX-math-mode)
+	    (setq TeX-master t)))
 
 (setq org-confirm-babel-evaluate nil)
 

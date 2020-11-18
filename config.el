@@ -29,6 +29,11 @@
       company-show-numbers t
       )
 
+(defun home-file ()
+    (interactive)
+    (find-file "~/documents/supervisor/projects.org")
+    )
+
 ;; org-mode configuration
 (load-file "~/.doom.d/orgmode.el")
 
@@ -107,10 +112,17 @@
         :desc "Dumb jump to definition in new window." "j" #'dumb-jump-go
         :desc "Dumb jump to definition in current window." "k" #'dumb-jump-go-other-window
         :desc "Darkroom mode for editing." "d" #'darkroom-mode
+        :desc "Home file" "a" #'home-file
         )
        )
 
-
+(use-package! smartparens
+  :init
+  (map! :map smartparens-mode-map
+        "C-M-f" #'sp-forward-sexp
+        "C-M-b" #'sp-backward-sexp
+        )
+  )
 ;; Specialized sizes & colors, mostly for org-mode.
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "red" :height 0.9 :family "Fira Code")
