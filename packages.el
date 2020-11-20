@@ -27,6 +27,8 @@
   :recipe (:host github :repo "Fuco1/org-pretty-table"))
 (package! org-ref)
 (package! org-ql)
+(package! ox-hugo)
+(package! org-sidebar)
 
 ;; Media
 (package! 2048-game)

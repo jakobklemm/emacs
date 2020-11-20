@@ -5,7 +5,6 @@
         org-ellipsis " ▼ "
         org-adapt-indentation nil
         org-fontify-quote-and-verse-blocks t
-        global-org-pretty-table-mode t
         org-priority-highest ?A
         org-priority-lowest ?C
         org-priority-faces
@@ -18,16 +17,26 @@
         org-return-follows-link t
         org-confirm-babel-evaluate nil
         org-use-speed-commands t
+        org-startup-folded t
+        org-agenda-start-on-weekday nil
+        org-agenda-start-day "0d"
+        org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
+        org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-compact-blocks t
+        org-agenda-start-with-log-mode t
+        org-refile-use-outline-path 'file
         org-catch-invisible-edits 'show
         org-image-actual-width '(600)
         org-log-done 'time
         org-archive-location "~/documents/vaults/archive/archive.org::* From %s"
-        org-agenda-files (directory-files-recursively "~/documents/supervisor/" "\\.org$")
-        org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
-                             ("~/documents/supervisor/last.org" :maxlevel . 1)
-                             ("~/documents/supervisor/inbox.org" :maxlevel . 3)
-                             ("~/documents/supervisor/areas.org" :maxlevel . 3)
-                             ("~/documents/supervisor/events.org" :maxlevel . 1)
+        org-refile-targets '(;;("~/documents/supervisor/projects.org" :maxlevel . 3)
+                             ;;("~/documents/supervisor/last.org" :maxlevel . 1)
+                             ;;("~/documents/supervisor/inbox.org" :maxlevel . 3)
+                             ;;("~/documents/supervisor/areas.org" :maxlevel . 3)
+                             ;;("~/documents/supervisor/events.org" :maxlevel . 1)
+                             ("~/documents/supervisor/gsd.org" :maxlevel . 1)
                              )
         org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
                                  "* TODO %?\n  %i\n  %a")
@@ -35,9 +44,18 @@
         )
   )
 
+(defun my/refile ()
+  (interactive)
+    (org-refile nil nil (list "gsd.org" (find-file "~/documents/supervisor/gsd.org") nil (point)))
+  )
+
 (after! org
   (custom-set-faces!
     '(org-document-title :height 1.2))
+  (follow-mode)
+  (load-library "find-lisp")
+  (setq org-agenda-files
+        (find-lisp-find-files "~/documents/supervisor/" "\.org$"))
   )
 
 (after! org-superstar
@@ -75,6 +93,52 @@
           ("STATIC" . (:foreground "#eaa222" :weight bold))
           ("DONE" . (:foreground "#ffffff" :weight bold))
           ))
+  )
+
+(after! org
+  (setq org-agenda-custom-commands
+        '(("o" "Overview"
+           ((agenda "" ((org-agenda-span 'day)
+                        (org-super-agenda-groups
+                         '((:name "Today"
+                            :time-grid t
+                            :date today
+                            :scheduled today
+                            :order 1)))))
+            (alltodo "" ((org-agenda-overriding-header "")
+                         (org-super-agenda-groups
+                          '((:name "Next to do"
+                             :todo "NEXT"
+                             :order 1)))))
+            (agenda "" ((org-agenda-span 4)
+                        (org-super-agenda-groups
+                         '((:name "Week"
+                            :time-grid t
+                            :date today
+                            :order 1)))))
+            (alltodo "" ((org-agenda-overriding-header "")
+                         (org-super-agenda-groups
+                          '((:name "Next to do"
+                             :todo "NEXT"
+                             :order 1)
+
+                            (:name "Due Today"
+                             :deadline today
+                             :order 2)
+                            (:name "Due Soon"
+                             :deadline future
+                             :order 8)
+                            (:name "Overdue"
+                             :deadline past
+                             :face error
+                             :order 7)
+                            (:name "Trivial"
+                             :priority<= "E"
+                             :tag ("Trivial" "Unimportant")
+                             :todo ("SOMEDAY" )
+                             :order 90)
+                            (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
+
   )
 
 (defun todo/done ()
@@ -123,6 +187,10 @@
 (after! org
   '(progn
      (setcdr (assoc "\\.pdf\\'" org-file-apps) "google-chrome-stable %s")))
+
+(use-package! ox-hugo
+  :ensure t            ;Auto-install the package from Melpa (optional)
+  :after ox)
 
 (after! org
   (appendq! +ligatures-extra-symbols
