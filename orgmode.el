@@ -103,8 +103,9 @@
   )
 
 (after! org
+  (org-super-agenda-mode t)
   (setq org-agenda-custom-commands
-        '(("o" "Overview"
+        '(("s" "Super Agenda - Week"
            ((agenda "" ((org-agenda-span 'week)
                         (org-super-agenda-groups
                          '((:name "Today"
@@ -115,28 +116,57 @@
             (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
                          (org-agenda-files '("~/documents/supervisor/gsd.org"))
                          (org-super-agenda-groups
-                          '((:name "Ivy-Lee"
-                             :order 2)))))
+                          '((:name ""
+                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+                             :order 2)
+                            (:discard (:anything))
+                            ))))
             (alltodo "" ((org-agenda-overriding-header "Next tasks")
                          (org-super-agenda-groups
-                          '((:name "Next to do"
-                             :tag "NEXT"
-                             :order 3)))))
-            (alltodo "" ((org-agenda-overriding-header "Inbox")
+                          '((:name ""
+                             :todo "NEXT"
+                             :order 4)
+                            (:discard (:anything))
+                            ))))
+            (alltodo "" ((org-agenda-overriding-header "All items")
                          (org-super-agenda-groups
-                          '((:name "Due Today"
-                             :deadline today
-                             :order 6)
-                            (:name "Overdue"
-                             :deadline past
-                             :face error
-                             :order 7)
-                            (:name "Trivial"
-                             :priority<= "E"
-                             :tag ("Trivial" "Unimportant")
-                             :todo ("SOMEDAY" )
-                             :order 90)
-                            (:discard (:tag ("Chore" "Routine" "Daily")))))))
+                          '((:name ""
+                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+                             :order 5)
+                            (:discard (:anything))
+                            ))))
+            )
+           )
+          ("d" "Super Agenda - Day"
+           ((agenda "" ((org-agenda-span 'day)
+                        (org-super-agenda-groups
+                         '((:name "Today"
+                            :time-grid t
+                            :date today
+                            :scheduled today
+                            :order 1)))))
+            (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
+                         (org-agenda-files '("~/documents/supervisor/gsd.org"))
+                         (org-super-agenda-groups
+                          '((:name ""
+                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+                             :order 2)
+                            (:discard (:anything))
+                            ))))
+            (alltodo "" ((org-agenda-overriding-header "Next tasks")
+                         (org-super-agenda-groups
+                          '((:name ""
+                             :todo "NEXT"
+                             :order 4)
+                            (:discard (:anything))
+                            ))))
+            (alltodo "" ((org-agenda-overriding-header "All items")
+                         (org-super-agenda-groups
+                          '((:name ""
+                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+                             :order 5)
+                            (:discard (:anything))
+                            ))))
             )
            )
           )
