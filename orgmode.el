@@ -18,18 +18,18 @@
         org-confirm-babel-evaluate nil
         org-use-speed-commands t
         org-startup-folded t
+        ;; Agenda
         org-agenda-start-on-weekday nil
         org-agenda-start-day "0d"
-        org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
         org-agenda-include-deadlines t
-        org-agenda-compact-blocks t
-        org-agenda-start-with-log-mode t
+        ;; Refile
         org-refile-use-outline-path 'file
         org-catch-invisible-edits 'show
         org-image-actual-width '(600)
         org-log-done 'time
+        org-agenda-files (list "~/documents/supervisor/")
         org-archive-location "~/documents/vaults/archive/archive.org::* From %s"
         org-refile-targets '(;;("~/documents/supervisor/projects.org" :maxlevel . 3)
                              ;;("~/documents/supervisor/last.org" :maxlevel . 1)
@@ -41,21 +41,28 @@
         org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
                                  "* TODO %?\n  %i\n  %a")
                                 )
+        org-tag-alist '(("@NEXT" . ?n) ("@home" . ?h) ("laptop" . ?l))
         )
   )
 
-(defun my/refile ()
+;; https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
+(defun ivy/refile-to (file headline)
+  "Move current headline to specified location"
+  (let ((pos (save-excursion
+               (find-file file)
+               (org-find-exact-headline-in-buffer headline))))
+    (org-refile nil nil (list headline file nil pos))))
+
+(defun ivy/refile ()
+  "Move current headline to bookmarks"
   (interactive)
-    (org-refile nil nil (list "gsd.org" (find-file "~/documents/supervisor/gsd.org") nil (point)))
-  )
+  (org-mark-ring-push)
+  (ivy/refile-to "~/documents/supervisor/gsd.org" "gsd.org")
+  (org-mark-ring-goto))
 
 (after! org
   (custom-set-faces!
     '(org-document-title :height 1.2))
-  (follow-mode)
-  (load-library "find-lisp")
-  (setq org-agenda-files
-        (find-lisp-find-files "~/documents/supervisor/" "\.org$"))
   )
 
 (after! org-superstar
@@ -98,36 +105,28 @@
 (after! org
   (setq org-agenda-custom-commands
         '(("o" "Overview"
-           ((agenda "" ((org-agenda-span 'day)
+           ((agenda "" ((org-agenda-span 'week)
                         (org-super-agenda-groups
                          '((:name "Today"
                             :time-grid t
                             :date today
                             :scheduled today
                             :order 1)))))
-            (alltodo "" ((org-agenda-overriding-header "")
+            (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
+                         (org-agenda-files '("~/documents/supervisor/gsd.org"))
+                         (org-super-agenda-groups
+                          '((:name "Ivy-Lee"
+                             :order 2)))))
+            (alltodo "" ((org-agenda-overriding-header "Next tasks")
                          (org-super-agenda-groups
                           '((:name "Next to do"
-                             :todo "NEXT"
-                             :order 1)))))
-            (agenda "" ((org-agenda-span 4)
-                        (org-super-agenda-groups
-                         '((:name "Week"
-                            :time-grid t
-                            :date today
-                            :order 1)))))
-            (alltodo "" ((org-agenda-overriding-header "")
+                             :tag "NEXT"
+                             :order 3)))))
+            (alltodo "" ((org-agenda-overriding-header "Inbox")
                          (org-super-agenda-groups
-                          '((:name "Next to do"
-                             :todo "NEXT"
-                             :order 1)
-
-                            (:name "Due Today"
+                          '((:name "Due Today"
                              :deadline today
-                             :order 2)
-                            (:name "Due Soon"
-                             :deadline future
-                             :order 8)
+                             :order 6)
                             (:name "Overdue"
                              :deadline past
                              :face error
@@ -137,8 +136,11 @@
                              :tag ("Trivial" "Unimportant")
                              :todo ("SOMEDAY" )
                              :order 90)
-                            (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
-
+                            (:discard (:tag ("Chore" "Routine" "Daily")))))))
+            )
+           )
+          )
+        )
   )
 
 (defun todo/done ()
@@ -154,6 +156,7 @@
        :desc "Org-todo mark as done" "x" #'todo/done
        :desc "Bring an org-mode file to agenda from" "v" #'org-agenda-file-to-front
        :desc "Refile org-heading, used in supervisor" "r" #'org-refile
+       :desc "Directly refile to gsd.org file." "e" #'ivy/refile
        )
       )
 
