@@ -34,8 +34,14 @@
     (find-file "~/documents/supervisor/projects.org")
     )
 
+(load-file "~/.doom.d/hoth/hoth.el")
+(require 'hoth)
+
 ;; org-mode configuration
 (load-file "~/.doom.d/orgmode.el")
+
+;; Custom markdown export
+(load-file "~/.doom.d/export.el")
 
 ;; Basic LSP setup with elixir-lsp
 (use-package! lsp-ui :commands lsp-ui-mode)
@@ -113,6 +119,7 @@
         :desc "Dumb jump to definition in current window." "k" #'dumb-jump-go-other-window
         :desc "Darkroom mode for editing." "d" #'darkroom-mode
         :desc "Home file" "a" #'home-file
+        :desc "Hoth file indexing" "h" #'hoth-total
         )
        )
 

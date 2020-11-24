@@ -29,6 +29,7 @@
 (package! org-ql)
 (package! ox-hugo)
 (package! org-sidebar)
+;;(package! ox-pandoc)
 
 ;; Media
 (package! 2048-game)
