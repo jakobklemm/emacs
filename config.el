@@ -40,11 +40,7 @@
 ;; org-mode configuration
 (load-file "~/.doom.d/orgmode.el")
 
-;; Custom markdown export
-(load-file "~/.doom.d/export.el")
-
-;; Custom html eport
-;;(load-file "~/.doom.d/html.el")
+(load-file "~/.doom.d/wikijs.el")
 
 ;; Basic LSP setup with elixir-lsp
 (use-package! lsp-ui :commands lsp-ui-mode)
