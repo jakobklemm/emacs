@@ -2,7 +2,7 @@
 
 ;; Initial setup
 (setq user-full-name "Jakob Klemm"
-      user-mail-address "jakob.klemm@protonmail.com"
+      user-mail-address "jakob@jeykey.net"
       doom-font (font-spec :family "Iosevka" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass Mono")
       doom-theme 'doom-vibrant
@@ -42,6 +42,9 @@
 
 ;; Custom markdown export
 (load-file "~/.doom.d/export.el")
+
+;; Custom html eport
+;;(load-file "~/.doom.d/html.el")
 
 ;; Basic LSP setup with elixir-lsp
 (use-package! lsp-ui :commands lsp-ui-mode)
