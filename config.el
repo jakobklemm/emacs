@@ -40,8 +40,6 @@
 ;; org-mode configuration
 (load-file "~/.doom.d/orgmode.el")
 
-(load-file "~/.doom.d/wikijs.el")
-
 ;; Basic LSP setup with elixir-lsp
 (use-package! lsp-ui :commands lsp-ui-mode)
 (use-package! lsp-ivy :commands lsp-ivy-workspace-symbol)

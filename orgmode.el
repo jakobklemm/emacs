@@ -304,7 +304,7 @@
         :desc "org-roam-insert" "i" #'org-roam-insert
         :desc "org-roam-capture" "c" #'org-roam-capture
         :desc "org-roam-dailies-capture-today" "j" #'org-roam-dailies-capture-today)
-  (setq org-roam-directory (file-truename "~/documents/")
+  (setq org-roam-directory (file-truename "~/documents/vaults/database")
         org-roam-graph-exclude-matcher "supervisor"
         org-roam-db-gc-threshold most-positive-fixnum
         org-roam-graph-exclude-matcher "private"
