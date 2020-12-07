@@ -10,12 +10,13 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
 var (
 	// Relative to home directory.
-	log_file = "/documents/vaults/archive/hoth.log"
+	log_file = "/documents/archive/hoth.log"
 )
 
 func main() {
@@ -32,11 +33,17 @@ func main() {
 func arguments() (string, string) {
 	length := len(os.Args)
 	if length == 3 {
-		return os.Args[1], os.Args[2]
+		return os.Args[1], removeSpace(os.Args[2])
 	} else {
-		log.Fatalf("Arguments erronr!")
+		log.Fatalf("Arguments error!")
 		return "error", "fatal"
 	}
+}
+
+func removeSpace(old string) string {
+	new := strings.ReplaceAll(old, " ", "")
+	os.Rename(old, new)
+	return new
 }
 
 func move(directory, local, name string) {
@@ -86,6 +93,7 @@ func event(filename, id, mode string) string {
 	return res
 }
 
+// log function only
 func save(event string) bool {
 	user, err := user.Current()
 	if err != nil {
