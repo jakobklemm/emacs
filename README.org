@@ -3,3 +3,5 @@
 #+DATE: 17.12.2020
 
 nothing special here, just my personal emacs config.
+* Packages
+- no-litter

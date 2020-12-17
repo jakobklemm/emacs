@@ -1,12 +1,19 @@
+;; Config structure:
+;; setup.el -> Calls out to all required modules and loads them.
+;; custom.el -> Added by Custom.
+;; defaults.el -> Basic settings, disable & change emacs stuff.
+
 (setq user-full-name "Jakob Klemm"
       user-mail-address "jakob@jeykey.net"
       )
 
-;; All code added by "custom" is stored in "custom.el"
-(setq custom-file "~/.emacs.d/custom.el")
-(load-file "~/.emacs.d/custom.el")
+;; Store scripts and snippets in ressource/ directory
+(add-to-list 'load-path "~/.emacs.d/resources/")
 
+;; Install no-littering to handle all temporary and backup files.
+(use-package no-littering
+  :ensure t
+  )
 
-;; Auto save related settings
-(setq auto-save-file-name-transforms
-          `((".*" ,(concat user-emacs-directory "auto-save/") t))) 
+;; Initial settings, disable some emacs features.
+(load-file (concat user-emacs-directory "defaults.el"))

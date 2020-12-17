@@ -1,5 +1,11 @@
 # -*- mode: gitignore; -*-
-*~ \#*\# /.emacs.desktop /.emacs.desktop.lock *.elc auto-save-list tramp .\#*
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list tramp
+.\#*
 
 # Org-mode
 .org-id-locations
@@ -40,6 +46,7 @@ hoth/hoth
 # Added
 auto-save-list/
 
+README.org~
 config.el~
 init.el~
 setup.el~
