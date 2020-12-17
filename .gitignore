@@ -51,3 +51,6 @@ config.el~
 init.el~
 setup.el~
 auto-save/
+
+var/
+transient/
