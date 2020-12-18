@@ -21,6 +21,7 @@
 (transient-mark-mode t)
 
 ;; If some text is selected, and you type some text, delete the
+
 ;; selected text and start inserting your typed text.
 (delete-selection-mode t)
 
@@ -34,7 +35,8 @@
 
 ;; When you perform a problematic operation, flash the screen instead
 ;; of ringing the terminal bell.
-(setq visible-bell t)
+(setq ring-bell-function 'ignore)
+(setq visible-bell nil)
 
 ;; Don't ask `yes/no?', ask `y/n?'.
 (fset 'yes-or-no-p 'y-or-n-p)
