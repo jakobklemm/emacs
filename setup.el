@@ -8,6 +8,7 @@
 ;; major/major.el -> Entry point for other major / editing modes, has children.
 ;; projects/projects.el -> Entry point for project related functions, has children.
 ;; binds.el -> Setup evil and navigation functions (partially in qol.el)
+;; navigation.el -> Helm setup for files, buffers, MX-, etc.
 
 (setq user-full-name "Jakob Klemm"
       user-mail-address "jakob@jeykey.net"
@@ -27,3 +28,6 @@
 
 ;; Binds
 (load-file (concat user-emacs-directory "binds.el"))
+
+;; Navigation
+(load-file (concat user-emacs-directory "navigation.el"))
