@@ -53,4 +53,6 @@ setup.el~
 auto-save/
 
 var/
+etc/
 transient/
+server/

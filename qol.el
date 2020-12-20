@@ -31,3 +31,11 @@
 ;; Keys
 (global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
 (global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
+(global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+
+;; C-x k to kill the current buffer.
+(defun kill-current-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
