@@ -4,15 +4,12 @@
 ;; defaults.el -> Basic settings, disable & change emacs stuff.
 ;; qol.el -> Quality of life changes, code snippets, etc. (mostly minor changes)
 ;; org/org.el -> Entry point for org-mode config, has children.
+;; editor -> General editor settings and packages.
 ;; design.el -> Configures theme, colors, etc.
 ;; major/major.el -> Entry point for other major / editing modes, has children.
 ;; projects/projects.el -> Entry point for project related functions, has children.
 ;; binds.el -> Setup evil and navigation functions (partially in qol.el)
 ;; navigation.el -> Helm setup for files, buffers, MX-, etc.
-
-(setq user-full-name "Jakob Klemm"
-      user-mail-address "jakob@jeykey.net"
-      )
 
 ;; Store scripts and snippets in ressource/ directory
 (add-to-list 'load-path "~/.emacs.d/resources/")
@@ -31,3 +28,9 @@
 
 ;; Navigation
 (load-file (concat user-emacs-directory "navigation.el"))
+
+;; Editor
+(load-file (concat user-emacs-directory "editor.el"))
+
+;; Projects
+(load-file (concat user-emacs-directory "projects/projects.el"))

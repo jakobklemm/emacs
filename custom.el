@@ -22,5 +22,5 @@
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-changed))))
  '(ivy-posframe ((t (:background "#282a36"))))
- '(ivy-posframe-border ((t (:background "#6272a4"))))
- '(ivy-posframe-cursor ((t (:background "#61bfff")))))
+ '(ivy-posframe-border ((t (:background "#242732"))))
+ '(ivy-posframe-cursor ((t (:background "#95a3b0")))))

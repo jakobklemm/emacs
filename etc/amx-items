@@ -1,6 +1,8 @@
 
 ;; ----- amx-history -----
 (
+ kill-buffer-and-window
+ all-the-icons-install-fonts
  customize
  customize-face
  ivy-kill-line
@@ -49,8 +51,6 @@
  diary
  dired
  ediff
- edirs
- hanoi
 )
 
 ;; ----- amx-data -----
@@ -58,4 +58,6 @@
  (ivy-kill-line . 1)
  (customize-face . 1)
  (customize . 2)
+ (all-the-icons-install-fonts . 1)
+ (kill-buffer-and-window . 1)
 )

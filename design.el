@@ -25,7 +25,8 @@
         )
   )
 
-(set-frame-font "JetBrains Mono 11" nil t)
+;;(set-frame-font "JetBrains Mono 11" nil t)
+(set-frame-font "Iosevka 11" nil t)
 
 (set-cursor-color "#D069D6")
 
@@ -34,3 +35,7 @@
   :custom
   (beacon-color "#D271D8")
   :hook (after-init . beacon-mode))
+
+(use-package all-the-icons
+  :ensure t
+  )
