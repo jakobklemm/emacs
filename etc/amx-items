@@ -1,7 +1,9 @@
 
 ;; ----- amx-history -----
 (
- package-install
+ customize
+ customize-face
+ ivy-kill-line
  cd
  5x5
  amx
@@ -49,11 +51,11 @@
  ediff
  edirs
  hanoi
- imenu
- lgrep
 )
 
 ;; ----- amx-data -----
 (
- (package-install . 1)
+ (ivy-kill-line . 1)
+ (customize-face . 1)
+ (customize . 2)
 )
