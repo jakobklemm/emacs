@@ -16,12 +16,6 @@
   :config
   (evil-mode)
 
-  (use-package evil-collection
-    :after evil
-    :ensure t
-    :config
-    (evil-collection-init))
-
   (use-package evil-commentary
     :ensure t
     :bind (:map evil-normal-state-map

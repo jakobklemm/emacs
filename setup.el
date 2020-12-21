@@ -26,3 +26,5 @@
 (load-file (concat user-emacs-directory "editor.el"))
 ;; Projects
 (load-file (concat user-emacs-directory "projects/projects.el"))
+;; Org-mode
+(load-file (concat user-emacs-directory "org/org.el"))

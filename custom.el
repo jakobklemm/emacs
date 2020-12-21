@@ -7,7 +7,9 @@
    (quote
     ("e57eec7e0399272aaca7985a5cc94f3a2675db4cd2dbd79a99c72786e489e43c" default)))
  '(helm-minibuffer-history-key "M-p")
- '(package-selected-packages (quote (evil use-package no-littering magit))))
+ '(package-selected-packages
+   (quote
+    (org-roam-server evil use-package no-littering magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
