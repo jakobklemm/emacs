@@ -3,10 +3,11 @@
 ;; custom.el -> Added by Custom.
 ;; defaults.el -> Basic settings, disable & change emacs stuff.
 ;; qol.el -> Quality of life changes, code snippets, etc. (mostly minor changes)
+;; development/major.el -> Entry point for programming major modes.
 ;; org/org.el -> Entry point for org-mode config, has children.
 ;; editor -> General editor settings and packages.
 ;; design.el -> Configures theme, colors, etc.
- ;; projects/projects.el -> Entry point for project related functions, has children.
+;; projects/projects.el -> Entry point for project related functions, has children.
 ;; binds.el -> Setup evil and navigation functions (partially in qol.el)
 ;; navigation.el -> Helm setup for files, buffers, MX-, etc.
 
@@ -28,3 +29,5 @@
 (load-file (concat user-emacs-directory "projects/projects.el"))
 ;; Org-mode
 (load-file (concat user-emacs-directory "org/org.el"))
+;; Major programming modes
+(load-file (concat user-emacs-directory "development/major.el"))

@@ -31,27 +31,12 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
-;; LSP Setup
-(use-package lsp-mode
-  :commands lsp
-  :ensure t
-  :diminish lsp-mode
-  :hook
-  (elixir-mode . lsp)
-  :init
-  (add-to-list 'exec-path "~/.emacs.d/elixir-ls"))
-
-;; LSP UI
-(use-package lsp-ivy
+(use-package eglot
   :ensure t
   :config
-  (setq company-idle-delay 0.2
-	lsp-ui-doc-max-height 52
-	lsp-ui-doc-max-width 64
-	lsp-ui-doc-position 'bottom
-	lsp-ui-doc-show-with-mouse t
-	lsp-ui-doc-show-with-cursor t
-	)
+  (add-to-list 'eglot-server-programs '(elixir-mode . ("sh" "~/.emacs.d/elixir-ls/language_server.sh")))
+  :hook
+  (elixir-mode . eglot-ensure)
   )
 
 (use-package yasnippet

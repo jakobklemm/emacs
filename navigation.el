@@ -92,10 +92,9 @@
     (setq ivy-posframe-parameters
 	  '((left-fringe . 4)
 	    (right-fringe . 4)))
-    :config (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center))
+    :config (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
 		  ivy-posframe-border-width 4)
     :custom-face
-    (ivy-posframe ((t (:background "#282a36"))))
     (ivy-posframe-border ((t (:background "#242732"))))
     (ivy-posframe-cursor ((t (:background "#95a3b0"))))
     :hook

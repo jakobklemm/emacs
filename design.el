@@ -25,7 +25,9 @@
         )
   )
 
-;;(set-frame-font "JetBrains Mono 11" nil t)
+(add-hook 'prog-mode-hook 'add-pretty-lambda)
+(add-hook 'org-mode-hook 'add-pretty-lambda)
+
 (set-frame-font "Iosevka 11" nil t)
 
 (set-cursor-color "#D069D6")
