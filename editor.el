@@ -18,18 +18,24 @@
   :config
   (global-undo-tree-mode))
 
-;; Completion and corretion (LSP + Hunspell + Flyspell)
 (setq ispell-program-name "hunspell")
-(setq ispell-hunspell-dict-paths-alist
-      '(("en_US" "~/.emacs.d/dict/en_US.aff")
-        ("de_DE" "~/.emacs.d/dict/de_DE.aff")))
-
+;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
+(setq ispell-local-dictionary "en_US")
 (setq ispell-local-dictionary-alist
       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
         ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
 
-(add-hook 'text-mode-hook #'flyspell-mode)
-(add-hook 'org-mode-hook #'flyspell-mode)
+;; (setq ispell-program-name "hunspell")
+;; (setq ispell-hunspell-dict-paths-alist
+;;       '(("en_US" "~/.emacs.d/dict/en_US.aff")
+;;         ("de_DE" "~/.emacs.d/dict/de_DE.aff")))
+
+;; (setq ispell-local-dictionary-alist
+;;       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+;;         ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+
+;;(add-hook 'text-mode-hook #'flyspell-mode)
+;;(add-hook 'org-mode-hook #'flyspell-mode)
 
 (use-package eglot
   :ensure t
@@ -49,4 +55,5 @@
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
   )
+
 (global-set-key (kbd "C-x t") 'eshell)
