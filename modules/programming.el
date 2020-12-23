@@ -1,5 +1,12 @@
 ;; Programming
 
+;; Dedicated setups
+(load-file (concat user-emacs-directory "modules/elixir.el"))
+(load-file (concat user-emacs-directory "modules/rust.el"))
+
+
+;; General modes
+
 ;; General major modes
 (use-package js2-mode
   :ensure t
@@ -22,10 +29,6 @@
   (use-package go-errcheck
     :ensure t
     )
-  )
-
-(use-package rust-mode
-  :ensure t
   )
 
 (use-package markdown-mode
