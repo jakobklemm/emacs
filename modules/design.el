@@ -48,3 +48,45 @@
 (use-package all-the-icons
   :ensure t
   )
+
+;; Darkroom mode (https://www.draketo.de/light/english/simple-emacs-darkroom) (not the "offical" package, but just a function)
+; simple darkroom with fullscreen, fringe, mode-line, menu-bar and scroll-bar hiding.
+(defvar darkroom-enabled nil)
+; TODO: Find out if menu bar is enabled when entering darkroom. If yes: reenable.
+(defvar darkroom-menu-bar-enabled nil)
+
+(defun toggle-darkroom ()
+  (interactive)
+  (if (not darkroom-enabled)
+      (setq darkroom-enabled t)
+    (setq darkroom-enabled nil))
+  (if darkroom-enabled
+      (progn
+        ; if the menu bar was enabled, reenable it when disabling darkroom
+        (if menu-bar-mode
+            (setq darkroom-menu-bar-enabled t)
+          (setq darkroom-menu-bar-enabled nil))
+        ; save the frame configuration to be able to restore to the exact previous state.
+        (if darkroom-menu-bar-enabled
+            (menu-bar-mode -1))
+        (scroll-bar-mode -1)
+        (let ((fringe-width
+               (* (window-width (get-largest-window))
+                  (/ (- 1 0.61803) (1+ (count-windows)))))
+              (char-width-pixels 6))
+        ; 8 pixels is the default, 6 is the average char width in pixels
+        ; for some fonts:
+        ; http://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html
+           (set-fringe-mode (truncate (* fringe-width char-width-pixels))))
+
+        (add-hook 'after-save-hook 'count-words-and-characters-buffer))
+
+    (progn
+      (if darkroom-menu-bar-enabled
+          (menu-bar-mode))
+      (scroll-bar-mode t)
+      (set-fringe-mode nil)
+      (remove-hook 'after-save-hook 'count-words-and-characters-buffer)
+      (toggle-fullscreen))))
+
+(global-set-key [f11] 'toggle-darkroom)
