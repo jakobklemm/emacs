@@ -9,15 +9,12 @@ use at own risk and don't expect help, this isn't tech support.
 - lsp / eglot config (https://lupan.pl/dotemacs/)
 - exports
 - mu4e + send
-- org-download
+- elixir
+- programming modes
 - org-ql
 - snippets
 - hoth
-- capture (+ icons)
-- refile
-- agenda + super-agenda
 - reveal js
-- inline latex (https://github.com/io12/org-fragtog)
 - org-capture into table (cis)  (https://emacs.stackexchange.com/questions/45638/org-capture-into-org-table)
 * Keybinds
   - engine-mode
