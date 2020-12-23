@@ -17,7 +17,7 @@ use at own risk and don't expect help, this isn't tech support.
 - refile
 - agenda + super-agenda
 - reveal js
-- inline latex
+- inline latex (https://github.com/io12/org-fragtog)
 - org-capture into table (cis)  (https://emacs.stackexchange.com/questions/45638/org-capture-into-org-table)
 * Keybinds
   - engine-mode

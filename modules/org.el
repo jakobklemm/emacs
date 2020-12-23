@@ -6,6 +6,7 @@
 
 (load-file (concat user-emacs-directory "modules/org-productivity.el"))
 
+(load-file (concat user-emacs-directory "modules/org-latex.el"))
 ;; Images
 (setq
  org-directory "~/documents/"
