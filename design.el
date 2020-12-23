@@ -38,6 +38,13 @@
   (beacon-color "#D271D8")
   :hook (after-init . beacon-mode))
 
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  )
+
 (use-package all-the-icons
   :ensure t
   )

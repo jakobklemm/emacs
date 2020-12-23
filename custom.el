@@ -3,23 +3,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("e57eec7e0399272aaca7985a5cc94f3a2675db4cd2dbd79a99c72786e489e43c" default))
- '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(ivy-posframe flx all-the-icons-ivy-rich amx org-roam-server evil use-package no-littering magit)))
+   '(rainbow-mode rainbow-delimiters yasnippet-snippets which-key use-package undo-tree smartparens org-superstar org-roam-server no-littering mood-one-theme magit-todos lsp-ui ivy-posframe git-messenger flx evil-leader evil-commentary engine-mode elixir-mode dumb-jump counsel beacon amx all-the-icons-ivy-rich ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-goggles-change-face ((t (:inherit diff-removed))))
- '(evil-goggles-delete-face ((t (:inherit diff-removed))))
- '(evil-goggles-paste-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
- '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
- '(evil-goggles-yank-face ((t (:inherit diff-changed))))
- '(ivy-posframe ((t (:background "#282a36"))))
  '(ivy-posframe-border ((t (:background "#242732"))))
- '(ivy-posframe-cursor ((t (:background "#95a3b0")))))
+ '(ivy-posframe-cursor ((t (:background "#95a3b0"))))
+ '(org-ellipsis ((t (:foreground "medium orchid")))))

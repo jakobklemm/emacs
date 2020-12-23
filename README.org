@@ -6,31 +6,28 @@ nothing special here, just my personal emacs config. it has a lot of external de
 use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
-- ace-window keys (https://lupan.pl/dotemacs/)
-- winner-mode
-- git-messenger
 - lsp / eglot config (https://lupan.pl/dotemacs/)
-- org mode
 - exports
-- google search
 - mu4e + send
-- looks (setq inhibit-startup-screen t
-  frame-title-format "%b"
-  ediff-window-setup-function #'ediff-setup-windows-plain)
-  (add-to-list 'global-mode-string
-  `(t (,(user-login-name) "@" system-name " ")) t)
-  (set-scroll-bar-mode 'right)
-  (menu-bar-mode 0)
-  (tool-bar-mode 0)
-  (scroll-bar-mode 0)
+- org-download
 - org-ql
-- all binds
 - snippets
 - hoth
-- color-mode
 - capture (+ icons)
 - refile
 - agenda + super-agenda
-- superstar
 - reveal js
 - org-capture into table (cis)  (https://emacs.stackexchange.com/questions/45638/org-capture-into-org-table)
+* Keybinds
+  - engine-mode
+  - window function (hrs + quick)
+  - dumb-jump
+  - ace
+  - swiper, ivy, counsel
+  - undo-tree
+  - ispell / flyspell
+  - eshell
+  - git + git-messager
+  - projectile
+  - org-mode (specific)
+  -

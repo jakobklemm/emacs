@@ -39,3 +39,15 @@
   (kill-buffer (current-buffer)))
 
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+
+;; Google search
+(use-package engine-mode
+  :ensure t
+  :config
+  (engine-mode t)
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d")
+  (defengine google
+    "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+    :keybinding "g"))

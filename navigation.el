@@ -105,9 +105,11 @@
 ;; Ace window for easy window navigation
 (use-package ace-window
   :ensure t
-  :config
-  (global-set-key (kbd "M-o") 'ace-window)
-  )
+  :init
+  (setq aw-scope 'frame ; limit to single frame
+        aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :bind
+  ("C-x o" . ace-window))
 
 ;; Dump jump for context based navigation
 (use-package dumb-jump
