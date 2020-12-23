@@ -57,11 +57,9 @@
 ;; Editor
 (load-file (concat user-emacs-directory "modules/editor.el"))
 ;; Projects
-(load-file (concat user-emacs-directory "modules/projects/projects.el"))
+(load-file (concat user-emacs-directory "modules/projects.el"))
 ;; Org-mode
-(load-file (concat user-emacs-directory "modules/org/org.el"))
-;; Major programming modes
-(load-file (concat user-emacs-directory "modules/development/major.el"))
+(load-file (concat user-emacs-directory "modules/org.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)

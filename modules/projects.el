@@ -39,4 +39,4 @@
   (projectile-mode))
 
 ;; Magit / Version control system
-(load-file (concat user-emacs-directory "projects/vcs.el"))
+(load-file (concat user-emacs-directory "modules/vcs.el"))

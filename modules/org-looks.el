@@ -36,4 +36,12 @@
       org-return-follows-link t
       org-confirm-babel-evaluate nil
       org-use-speed-commands t
+      org-catch-invisible-edits 'show
       )
+
+;; Deadline colors
+(setq org-agenda-deadline-faces
+      '((1.001 . error)
+        (1.0 . org-warning)
+        (0.5 . org-upcoming-deadline)
+        (0.0 . org-upcoming-distant-deadline)))
