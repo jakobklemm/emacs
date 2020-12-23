@@ -19,41 +19,13 @@
   (global-undo-tree-mode))
 
 (setq ispell-program-name "hunspell")
-;; you could set `ispell-dictionary` instead but `ispell-local-dictionary' has higher priority
+
 (setq ispell-local-dictionary "en_US")
 (setq ispell-local-dictionary-alist
       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
         ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
 
-;; (setq ispell-program-name "hunspell")
-;; (setq ispell-hunspell-dict-paths-alist
-;;       '(("en_US" "~/.emacs.d/dict/en_US.aff")
-;;         ("de_DE" "~/.emacs.d/dict/de_DE.aff")))
-
-;; (setq ispell-local-dictionary-alist
-;;       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
-;;         ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
-
-;;(add-hook 'text-mode-hook #'flyspell-mode)
-;;(add-hook 'org-mode-hook #'flyspell-mode)
-
-(use-package eglot
-  :ensure t
-  :config
-  (add-to-list 'eglot-server-programs '(elixir-mode . ("sh" "~/.emacs.d/elixir-ls/language_server.sh")))
-  :hook
-  (elixir-mode . eglot-ensure)
-  )
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets/text-mode"))
-  (yas-global-mode 1)
-  (setq yas-indent-line 'auto)
-  (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-  (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
-  )
+(add-hook 'text-mode-hook #'flyspell-mode)
+(add-hook 'org-mode-hook #'flyspell-mode)
 
 (global-set-key (kbd "C-x t") 'eshell)

@@ -1,6 +1,12 @@
 ;; Evil binds & navigation
 ;; http://evgeni.io/posts/quick-start-evil-mode/
 
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  )
+
 (use-package evil
   :ensure t
   :init
