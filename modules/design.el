@@ -52,7 +52,6 @@
 ;; Darkroom mode (https://www.draketo.de/light/english/simple-emacs-darkroom) (not the "offical" package, but just a function)
 ; simple darkroom with fullscreen, fringe, mode-line, menu-bar and scroll-bar hiding.
 (defvar darkroom-enabled nil)
-; TODO: Find out if menu bar is enabled when entering darkroom. If yes: reenable.
 (defvar darkroom-menu-bar-enabled nil)
 
 (defun toggle-darkroom ()

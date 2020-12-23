@@ -33,4 +33,10 @@
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")
     )
+
+  (use-package evil-collection
+    :ensure t
+    :config
+    (evil-collection-init)
+    )
   )

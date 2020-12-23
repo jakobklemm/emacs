@@ -117,6 +117,7 @@
  org-agenda-skip-scheduled-if-done t
  org-agenda-skip-deadline-if-done t
  org-agenda-include-deadlines t
+ org-agenda-current-time-string "← now"
  )
 
 ;; https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location

@@ -12,4 +12,9 @@
  ;; If there is more than one, they won't work right.
  '(ivy-posframe-border ((t (:background "#242732"))))
  '(ivy-posframe-cursor ((t (:background "#95a3b0"))))
- '(org-ellipsis ((t (:foreground "medium orchid")))))
+ '(org-ellipsis ((t (:foreground "medium orchid"))))
+ '(org-level-1 ((t (:inherit outline-1 :height 1.75))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))

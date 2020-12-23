@@ -6,6 +6,9 @@
   (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
 	;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
 	org-superstar-prettify-item-bullets t
+	org-superstar-configure-like-org-bullets t
+	org-hide-leading-stars nil
+	org-superstar-leading-bullet ?\s
 	;; Enable custom bullets for TODO items
 	org-superstar-special-todo-items t
 	org-superstar-todo-bullet-alist '(("TODO" "☐ ")
@@ -45,3 +48,50 @@
         (1.0 . org-warning)
         (0.5 . org-upcoming-deadline)
         (0.0 . org-upcoming-distant-deadline)))
+
+;; Heading sizes
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.75))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.50))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+)
+
+;; Special names / items
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+                                       ("#+END_SRC" . "λ")
+                                       ("#+begin_src" . "λ")
+                                       ("#+end_src" . "λ")
+				       ("#+TITLE:" . "𝙏")
+				       ("#+title:" . "𝙏")
+				       ("#+SUBTITLE:" . "𝙩")
+				       ("#+subtitle:" . "𝙩")
+				       ("#+DATE:" . "𝘿")
+				       ("#+date:" . "𝘿")
+				       ("#AUTHOR:" . "𝘼")
+				       ("#author:" . "𝘼")
+				       ("#+PROPERTY:" . "☸")
+				       ("#+property:" . "☸")
+				       ("#+OPTIONS:" . "⌥")
+				       ("#+options:" . "⌥")
+				       ("#+LATEX_HEADER:" . "⇾")
+				       ("#+latex_header:" . "⇾")
+				       ("#+LATEX_CLASS:" . "⇥")
+				       ("#+latexx_class:" . "⇥")
+				       ("#+ATTR_LATEX:" . "🄛")
+				       ("#+attr_latex:" . "🄛")
+				       ("#+LATEX:" . "ɫ")
+				       ("#+latex:" . "ɫ")
+				       ("#+ATTR_HTML:" . "🄗")
+				       ("#+attr_html:" . "🄗")
+				       ("#+BEGIN_QUOTE:" . "❮")
+				       ("#+begin_quote:" . "❮")
+				       ("#+END_QUOTE:" . "❯")
+				       ("#+end_quote:" . "❯")
+				       ("#+CAPTION:" . "☰")
+				       ("#+caption:" . "☰")
+                                       ))
+
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(add-hook 'org-mode-hook 'prettify-symbols-mode)
