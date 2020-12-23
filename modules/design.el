@@ -84,9 +84,8 @@
     (progn
       (if darkroom-menu-bar-enabled
           (menu-bar-mode))
-      (scroll-bar-mode t)
       (set-fringe-mode nil)
       (remove-hook 'after-save-hook 'count-words-and-characters-buffer)
-      (toggle-fullscreen))))
+      )))
 
 (global-set-key [f11] 'toggle-darkroom)
