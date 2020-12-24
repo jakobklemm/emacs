@@ -7,10 +7,8 @@
 (load-file (concat user-emacs-directory "modules/org-productivity.el"))
 
 (load-file (concat user-emacs-directory "modules/org-latex.el"))
-;; Images
+
 (setq
  org-directory "~/documents/"
  initial-buffer-choice  "~/documents/supervisor/projects.org"
  )
-(add-hook 'org-mode-hook 'org-toggle-inline-images)
-(setq org-image-actual-width '(600))

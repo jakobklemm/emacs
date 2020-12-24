@@ -7,10 +7,8 @@ use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
 - lsp / eglot config (https://lupan.pl/dotemacs/)
-- exports
 - mu4e + send
 - elixir
-- programming modes
 - org-ql
 - snippets
 - hoth
