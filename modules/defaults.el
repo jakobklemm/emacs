@@ -20,6 +20,9 @@
 ;; Turn on transient-mark-mode.
 (transient-mark-mode t)
 
+;; Auto wrap text
+(auto-fill-mode t)
+
 ;; If some text is selected, and you type some text, delete the
 
 ;; selected text and start inserting your typed text.
