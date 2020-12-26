@@ -15,6 +15,16 @@
   :ensure t
   )
 
+(use-package htmlize
+  :ensure t)
+
+(use-package ox-reveal
+  :ensure t
+  :custom ((org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+	   (org-reveal-mathjax t)
+	   (org-reveal-ignore-speaker-notes nil)
+	   (org-reveal-note-key-char nil)))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)

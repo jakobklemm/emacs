@@ -6,14 +6,10 @@ nothing special here, just my personal emacs config. it has a lot of external de
 use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
-- lsp / eglot config (https://lupan.pl/dotemacs/)
-  (LSP-Breadcrumb-Mode)
 - mu4e + send
 - elixir
-- org-ql
 - snippets
 - hoth
-- reveal js
 - org-capture into table (cis)  (https://emacs.stackexchange.com/questions/45638/org-capture-into-org-table)
 * Keybinds
   - engine-mode
