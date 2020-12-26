@@ -29,3 +29,46 @@
 (add-hook 'org-mode-hook #'flyspell-mode)
 
 (global-set-key (kbd "C-x t") 'eshell)
+
+(add-to-list 'exec-path "~/.tools/elixir-ls")
+
+(setq
+   lsp-ui-doc-max-height 52
+   lsp-ui-doc-max-width 64
+   lsp-ui-doc-position 'bottom
+   lsp-ui-doc-show-with-mouse t
+   lsp-ui-doc-show-with-cursor t
+   )
+
+;; company stuff
+(use-package company
+  :ensure t
+  :init
+  (setq company-idle-delay 0.2)
+  :config
+  (progn
+    (add-hook 'after-init-hook 'global-company-mode)))
+
+(use-package company-posframe
+  :ensure t
+  :config
+  (company-posframe-mode 1))
+
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  )
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :config (lsp-ui-doc-enable t))
+
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol
+  )

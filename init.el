@@ -60,6 +60,8 @@
 (load-file (concat user-emacs-directory "modules/org.el"))
 ;; Programming
 (load-file (concat user-emacs-directory "modules/programming.el"))
+;; Communication
+(load-file (concat user-emacs-directory "modules/com.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
