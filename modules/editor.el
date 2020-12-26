@@ -32,13 +32,13 @@
 
 (add-to-list 'exec-path "~/.tools/elixir-ls")
 
-(setq
-   lsp-ui-doc-max-height 52
-   lsp-ui-doc-max-width 64
-   lsp-ui-doc-position 'bottom
-   lsp-ui-doc-show-with-mouse t
-   lsp-ui-doc-show-with-cursor t
-   )
+(setq lsp-ui-doc-max-height 52
+      lsp-ui-doc-max-width 64
+      lsp-ui-doc-position 'at-point
+      lsp-ui-doc-position 'bottom
+      lsp-ui-doc-show-with-mouse t
+      lsp-ui-doc-show-with-cursor t
+      )
 
 ;; company stuff
 (use-package company
@@ -61,12 +61,24 @@
 (use-package lsp-mode
   :ensure t
   :commands lsp
+  :init
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-signature-auto-activate nil)
   )
 
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
-  :config (lsp-ui-doc-enable t))
+  :config
+  (lsp-ui-doc-enable t)
+  (lsp-ui-mode)
+  (setq lsp-ui-doc-max-height 128
+	lsp-ui-doc-max-width 64
+	lsp-ui-doc-position 'top
+	lsp-ui-doc-show-with-mouse t
+	lsp-ui-doc-show-with-cursor t
+      )
+  )
 
 (use-package lsp-ivy
   :ensure t
