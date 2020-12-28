@@ -42,6 +42,9 @@
       org-catch-invisible-edits 'show
       )
 
+(require 'org-pretty-table)
+(add-hook 'org-mode-hook 'org-pretty-table-mode)
+
 ;; Deadline colors
 (setq org-agenda-deadline-faces
       '((1.001 . error)

@@ -148,6 +148,9 @@
 (setq
  org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
                           "* TODO %?\n  %i\n  %a")
+			 ("t" "Table" table-line
+			  (file+headline "~/documents/supervisor/content.org" "Books")
+			  "| %? |  |  |  |")
                          )
  org-tag-alist '(("@NEXT" . ?n) ("@home" . ?h) ("laptop" . ?l))
  )
