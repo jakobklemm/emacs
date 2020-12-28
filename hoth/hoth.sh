@@ -1,3 +1,3 @@
 #!/bin/bash
-export PATH=$PATH:~/.doom.d/hoth/
+export PATH=$PATH:~/.emacs.d/hoth/
 hoth $1 $2

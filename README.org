@@ -7,8 +7,6 @@ use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
 - mu4e + send
-- elixir
-- snippets
 - hoth
 - org-capture into table (cis)  (https://emacs.stackexchange.com/questions/45638/org-capture-into-org-table)
 * Keybinds
