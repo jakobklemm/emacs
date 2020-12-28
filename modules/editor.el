@@ -32,7 +32,9 @@
 (use-package yasnippet
   :ensure t
   :config
-  (setq yas-snippet-dirs '("~/.tools/snippets/text-mode"))
+  (use-package yasnippet-snippets
+    :ensure t
+    )
   (yas-global-mode 1)
   (setq yas-indent-line 'auto)
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
@@ -76,6 +78,8 @@
   :init
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-signature-auto-activate nil)
+  :hook
+  (elixir-mode . lsp)
   )
 
 (use-package lsp-ui
