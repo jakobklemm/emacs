@@ -79,7 +79,15 @@
   "ox" 'todo/done
   "oh" 'home-file
   "og" 'ivy/refile
+  )
 
+;; Magit & VCS
+(my-leader-def
+  :keymaps 'normal
+  "gg" 'magit-status
+  "gi" 'magit-init
+  "gm" 'git-messenger:popup-message
+  "gp" 'magit-pull
   )
 
 ;; Org-roam
