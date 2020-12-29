@@ -7,16 +7,17 @@ use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
 - mu4e
-- send email
+- send email (multiple)
 - mu4e dashboard
 - exwm
 - mu4e alerts
 - signature (end of email)
 - digital signature (import & publish public)
-- Attachments
+- Attachments (email)
 - Quickbind last / next buffer
 - Global margins
 - (Helm Swoop / Grep)
+- Kill-Ring-Save issue
 * Keybinds
   - engine-mode
   - window function (hrs + quick)
