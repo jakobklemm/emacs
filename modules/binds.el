@@ -40,3 +40,48 @@
     (evil-collection-init)
     )
   )
+
+(use-package general
+  :ensure t
+  )
+
+;; Keybind config
+;; structure partially copied from general.el readme.
+(general-create-definer my-leader-def
+  ;; :prefix my-leader
+  :prefix "SPC")
+
+;; Quick access (selection)
+(my-leader-def
+  :keymaps 'normal
+  "a" 'org-agenda
+  "c" 'org-capture)
+
+;; Buffers
+
+(my-leader-def
+  :keymaps 'normal
+  "bs" 'save-buffer
+  "bk" 'kill-buffer
+  "bj" 'kill-buffer-and-window
+  "bb" 'ivy-switch-buffer
+  )
+
+;; Org-mode
+;; Org-mode navigation
+(general-define-key
+ :keymaps 'org-mode-map
+ "gj" 'org-next-visible-heading
+ "gp" 'org-previous-visible-heading
+ "gi" 'org-cycle
+ )
+
+;; Org-roam
+(my-leader-def
+  :keymaps 'normal
+  "nl" 'org-roam
+  "ni" 'org-roam-insert
+  "nf" 'org-roam-find-file
+  "nc" 'org-roam-capture
+  "nr" 'org-roam-random-note
+  )

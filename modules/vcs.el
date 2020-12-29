@@ -12,11 +12,5 @@
     )
   (use-package git-messenger
     :ensure t
-    :bind
-    (
-     (:map evil-normal-state-map
-           ("<SPC> g m" . git-messenger:popup-message)
-	   )
-     )
     )
   )
