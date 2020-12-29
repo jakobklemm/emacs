@@ -13,17 +13,17 @@ use at own risk and don't expect help, this isn't tech support.
 - mu4e alerts
 - signature (end of email)
 - digital signature (import & publish public)
+- Attachments
+- Quickbind last / next buffer
+- Global margins
+- (Helm Swoop / Grep)
 * Keybinds
   - engine-mode
   - window function (hrs + quick)
   - navigation (ace, buffers)
   - dumb-jump
-  - ace
-  - swiper, ivy, counsel
   - undo-tree
   - ispell / flyspell
   - eshell
-  - git + git-messager
   - projectile
-  - org-mode (specific)
   -

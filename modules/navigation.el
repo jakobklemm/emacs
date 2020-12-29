@@ -4,22 +4,6 @@
   :diminish ivy-mode counsel-mode
   :defines
   (projectile-completion-system magit-completing-read-function)
-  :bind
-  (("C-s" . swiper)
-   ("M-s r" . ivy-resume)
-   ("C-c v p" . ivy-push-view)
-    ("C-c v o" . ivy-pop-view)
-    ("C-c v ." . ivy-switch-view)
-    ("M-s c" . counsel-ag)
-    ("M-o f" . counsel-fzf)
-    ("M-o r" . counsel-recentf)
-    ("M-y" . counsel-yank-pop)
-    :map ivy-minibuffer-map
-    ("C-w" . ivy-backward-kill-word)
-    ("C-k" . ivy-kill-line)
-    ("C-j" . ivy-immediate-done)
-    ("RET" . ivy-alt-done)
-    ("C-h" . ivy-backward-delete-char))
   :preface
     (defun ivy-format-function-pretty (cands)
       "Transform CANDS into a string for minibuffer."
@@ -108,14 +92,9 @@
   :init
   (setq aw-scope 'frame ; limit to single frame
         aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind
-  ("C-x o" . ace-window))
+  )
 
 ;; Dump jump for context based navigation
 (use-package dumb-jump
   :ensure t
-  :bind (("M-g o" . dumb-jump-go-other-window)
-	 ("M-g j" . dumb-jump-go)
-	 ("M-g b" . dumb-jump-back)
-	 )
   :config (setq dumb-jump-selector 'ivy))
