@@ -6,10 +6,17 @@ nothing special here, just my personal emacs config. it has a lot of external de
 use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
-- mu4e + send
+- mu4e
+- send email
+- mu4e dashboard
+- exwm
+- mu4e alerts
+- signature (end of email)
+- digital signature (import & publish public)
 * Keybinds
   - engine-mode
   - window function (hrs + quick)
+  - navigation (ace, buffers)
   - dumb-jump
   - ace
   - swiper, ivy, counsel

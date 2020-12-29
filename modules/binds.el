@@ -68,13 +68,19 @@
   )
 
 ;; Org-mode
-;; Org-mode navigation
-(general-define-key
- :keymaps 'org-mode-map
- "gj" 'org-next-visible-heading
- "gp" 'org-previous-visible-heading
- "gi" 'org-cycle
- )
+(my-leader-def
+  :keymaps 'normal
+  "oi" 'org-cycle
+  "oa" 'org-agenda
+  "oc" 'org-capture
+  "ot" 'org-todo
+  "or" 'org-set-tags-command
+  "oe" 'org-set-effort
+  "ox" 'todo/done
+  "oh" 'home-file
+  "og" 'ivy/refile
+
+  )
 
 ;; Org-roam
 (my-leader-def
