@@ -38,6 +38,32 @@
   (beacon-color "#D271D8")
   :hook (after-init . beacon-mode))
 
+;; Margins
+(defcustom perfect-margin-ignore-regexps
+  '("^minibuf" "^[*]" "Minibuf" "[*]" "magit")
+  "List of strings to determine if window is ignored.
+Each string is used as regular expression to match the window buffer name."
+  :group 'perfect-margin)
+
+(defcustom perfect-margin-ignore-filters
+  '(window-minibuffer-p)
+  "List of functions to determine if window is ignored.
+Each function is called with window as its sole arguemnt, returning a non-nil value indicate to ignore the window."
+  :group 'perfect-margin)
+
+(use-package perfect-margin
+  :ensure t
+  :config
+  (perfect-margin-mode 1)
+  )
+
+(defun current-buffer ()
+  (interactive)
+  (message (buffer-name))
+  )
+
+;;(setq-default left-margin-width 24 right-margin-width 48)
+
 (use-package rainbow-delimiters
   :ensure t
   :config
