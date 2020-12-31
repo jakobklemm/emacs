@@ -8,23 +8,30 @@ use at own risk and don't expect help, this isn't tech support.
 * Outstanding
 - mu4e
 - send email (multiple)
-- mu4e dashboard
+- mu4e dashboard 
+manual install https://github.com/rougier/mu4e-dashboard
+copy dashboard.org from readme, evaluate bable queries.
+integrate into gsd.org
 - exwm
-- mu4e alerts
-- signature (end of email)
+video tutorial, replace xmonad
+- mu4e alerts -> remove xmonad bar (exwm)
+"
+(mu4e-alert-set-default-style 'notifications)
+(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+"
 - digital signature (import & publish public)
 - Attachments (email)
+bind -> "mail-add-attachment" "SPC-m-a"
 - Quickbind last / next buffer
-- Global margins
 - (Helm Swoop / Grep)
+helm swoop / xah
+-> install xah
+"
+(use-package xah-find)
+'xah-find-text
+"
 - Kill-Ring-Save issue
 * Keybinds
   - engine-mode
-  - window function (hrs + quick)
-  - navigation (ace, buffers)
-  - dumb-jump
   - undo-tree
-  - ispell / flyspell
-  - eshell
   - projectile
-  -
