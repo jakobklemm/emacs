@@ -22,6 +22,8 @@
   "bj" 'kill-buffer-and-window
   "bb" 'ivy-switch-buffer
   "bf" 'find-file
+  "bh" 'previous-buffer
+  "bl" 'next-buffer
   )
 
 ;; Windows & Navigation
@@ -39,6 +41,8 @@
   "wg" 'dumb-jump-go-other-window
   "wh" 'dump-jump-go
   "wb" 'dumb-jump-back
+  "," 'find-file
+  "." 'ivy-switch-buffer
   )
 
 ;; Files
@@ -54,8 +58,6 @@
   :keymaps 'normal
   "ö" 'ivy-immediate-done
   "p" 'ivy-yank-word
-  "," 'set-mark-command
-  "." 'kill-ring-save
 )
 
 ;; Search
@@ -63,8 +65,12 @@
   :keymaps 'normal
   "ss" 'swiper
   "sr" 'replace-string
-  "sg" 'org-recoll-search
+  "sf" 'org-recoll-search
   "su" 'org-recoll-update-index
+  "seg" 'engine/search-google
+  "sep" 'engine/search-duckduckgo
+  "sed" 'engine/search-github
+  "see" 'engine/search-prompt
   )
 
 ;; Admin

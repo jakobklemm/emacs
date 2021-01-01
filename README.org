@@ -19,9 +19,6 @@ integrate into gsd.org
 - exwm
 video tutorial, replace xmonad
 - digital signature (import & publish public)
-- Quickbind last / next buffer
-- Kill-Ring-Save issue
 * Keybinds
   - engine-mode
-  - undo-tree
   - projectile

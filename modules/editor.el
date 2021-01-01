@@ -28,6 +28,12 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
+(use-package simpleclip
+  :ensure t
+  :config
+  (simpleclip-mode 1)
+  )
+
 ;; Snippets
 (use-package yasnippet
   :ensure t
@@ -37,12 +43,11 @@
     )
   (yas-global-mode 1)
   (setq yas-indent-line 'auto)
+  ;; TODO: Move to definitions.
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
   )
-
-(global-set-key (kbd "C-x t") 'eshell)
 
 (add-to-list 'exec-path "~/.tools/elixir-ls")
 
