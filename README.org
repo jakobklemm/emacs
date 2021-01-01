@@ -5,6 +5,12 @@
 nothing special here, just my personal emacs config. it has a lot of external dependencies and no guide or tutorial.
 use at own risk and don't expect help, this isn't tech support.
 
+* Installation
+- Recoll
+- SQLite
+- .tools
+- Fira Code Pro
+- GPG-Keys
 * Outstanding
 - mu4e dashboard
 manual install https://github.com/rougier/mu4e-dashboard
@@ -15,7 +21,6 @@ video tutorial, replace xmonad
 - digital signature (import & publish public)
 - Quickbind last / next buffer
 - Kill-Ring-Save issue
-- https://fonts.google.com/specimen/Source+Code+Pro
 * Keybinds
   - engine-mode
   - undo-tree
