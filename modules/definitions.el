@@ -18,9 +18,10 @@
 (my-leader-def
   :keymaps 'normal
   "bs" 'save-buffer
-  "bk" 'kill-buffer
+  "bk" 'kill-current-buffer
   "bj" 'kill-buffer-and-window
   "bb" 'ivy-switch-buffer
+  "bf" 'find-file
   )
 
 ;; Windows & Navigation
@@ -115,8 +116,12 @@
 
 ;; Email / Com
 (my-leader-def
-  :keymaps 'normal
-  "mn" 'compose-mail-other-window
+ :keymaps 'normal
+  "mo" 'mu4e
+  "mc" 'mu4e-compose-new
   "mm" 'message-send-and-exit
+  "ma" 'mail-add-attachment
   "ms" 'mml-secure-message-sign-pgp
+  "me" 'mml-secure-message-encrypt-pgp
+  "mj" 'mu4e~headers-jump-to-maildir
   )

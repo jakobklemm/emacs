@@ -92,5 +92,8 @@
 ;; Hide the modeline
 (setq mode-line-format nil)
 
+;; Error handling
+(setq warning-minimum-level :emergency)
+
 ;; Make it affect all buffers.
 (setq-default mode-line-format nil)

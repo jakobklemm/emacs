@@ -4,6 +4,7 @@
 
 (require 'package) ;; Emacs builtin
 
+
 ;; set package.el repositories
 (setq package-archives
 '(
@@ -48,8 +49,6 @@
 (load-file (concat user-emacs-directory "modules/qol.el"))
 ;; Design
 (load-file (concat user-emacs-directory "modules/design.el"))
-;; Binds
-(load-file (concat user-emacs-directory "modules/binds.el"))
 ;; Navigation
 (load-file (concat user-emacs-directory "modules/navigation.el"))
 ;; Editor
@@ -62,6 +61,8 @@
 (load-file (concat user-emacs-directory "modules/programming.el"))
 ;; Communication
 (load-file (concat user-emacs-directory "modules/com.el"))
+;; Binds
+(load-file (concat user-emacs-directory "modules/binds.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)

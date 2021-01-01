@@ -6,9 +6,7 @@ nothing special here, just my personal emacs config. it has a lot of external de
 use at own risk and don't expect help, this isn't tech support.
 
 * Outstanding
-- mu4e
-- send email (multiple)
-- mu4e dashboard 
+- mu4e dashboard
 manual install https://github.com/rougier/mu4e-dashboard
 copy dashboard.org from readme, evaluate bable queries.
 integrate into gsd.org
@@ -20,8 +18,6 @@ video tutorial, replace xmonad
 (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 "
 - digital signature (import & publish public)
-- Attachments (email)
-bind -> "mail-add-attachment" "SPC-m-a"
 - Quickbind last / next buffer
 - (Helm Swoop / Grep)
 helm swoop / xah

@@ -40,7 +40,7 @@
 
 ;; Margins
 (defcustom perfect-margin-ignore-regexps
-  '("^minibuf" "^[*]" "Minibuf" "[*]" "magit")
+  '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
   "List of strings to determine if window is ignored.
 Each string is used as regular expression to match the window buffer name."
   :group 'perfect-margin)

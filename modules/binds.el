@@ -45,6 +45,10 @@
   :ensure t
   )
 
+(use-package evil-mu4e
+  :ensure t
+  )
+
 ;; Definitions: define keys and functions
 ;; Undefinitions: remove common emacs binds for easier learning.
 
