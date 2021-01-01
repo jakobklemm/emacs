@@ -60,10 +60,12 @@
 
 ;; Search
 (my-leader-def
-:keymaps 'normal
-"ss" 'swiper
-"sr" 'replace-string
-)
+  :keymaps 'normal
+  "ss" 'swiper
+  "sr" 'replace-string
+  "sg" 'org-recoll-search
+  "su" 'org-recoll-update-index
+  )
 
 ;; Admin
 (my-leader-def

@@ -98,3 +98,6 @@
 (use-package dumb-jump
   :ensure t
   :config (setq dumb-jump-selector 'ivy))
+
+;; GREP / Multi-File-Search
+(require 'org-recoll)

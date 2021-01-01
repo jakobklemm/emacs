@@ -12,21 +12,10 @@ copy dashboard.org from readme, evaluate bable queries.
 integrate into gsd.org
 - exwm
 video tutorial, replace xmonad
-- mu4e alerts -> remove xmonad bar (exwm)
-"
-(mu4e-alert-set-default-style 'notifications)
-(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-"
 - digital signature (import & publish public)
 - Quickbind last / next buffer
-- (Helm Swoop / Grep)
-helm swoop / xah
--> install xah
-"
-(use-package xah-find)
-'xah-find-text
-"
 - Kill-Ring-Save issue
+- https://fonts.google.com/specimen/Source+Code+Pro
 * Keybinds
   - engine-mode
   - undo-tree
