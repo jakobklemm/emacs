@@ -10,6 +10,8 @@
 
 (global-prettify-symbols-mode 1)
 
+
+
 (defun add-pretty-lambda ()
   "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
   (setq prettify-symbols-alist
@@ -34,6 +36,7 @@
 
 (use-package beacon
   :ensure t
+  :disabled t
   :custom
   (beacon-color "#D271D8")
   :hook (after-init . beacon-mode))
@@ -61,8 +64,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   (interactive)
   (message (buffer-name))
   )
-
-;;(setq-default left-margin-width 24 right-margin-width 48)
 
 (use-package rainbow-delimiters
   :ensure t

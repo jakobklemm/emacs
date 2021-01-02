@@ -1,5 +1,7 @@
 ;; Definitions
 
+(global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+
 (general-create-definer my-leader-def
   ;; :prefix my-leader
   :prefix "SPC")
@@ -133,3 +135,21 @@
   "me" 'mml-secure-message-encrypt-pgp
   "mj" 'mu4e~headers-jump-to-maildir
   )
+
+;; EXWM Navigation
+;;(define-key global-map [?\s] nil)
+(general-define-key
+ :prefix "s-SPC"
+ ;; bind "C-c a" to 'org-agenda
+ "b" 'ido-switch-buffer
+ "f" 'ido-find-file
+ "w"  'exwm-workspace-switch
+ )
+
+(general-define-key
+ :prefix "s-M"
+ ;; bind "C-c a" to 'org-agenda
+ "b" 'ido-switch-buffer
+ "f" 'ido-find-file
+ "w"  'exwm-workspace-switch
+ )

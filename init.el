@@ -31,15 +31,6 @@
     (package-install package)))
 
 ;; Config structure:
-;; setup.el -> Calls out to all required modules and loads them.
-;; custom.el -> Added by Custom.
-;; defaults.el -> Basic settings, disable & change emacs stuff.
-;; qol.el -> Quality of life changes, code snippets, etc. (mostly minor changes)
-;; programming.el -> Entry point for programming major modes.
-;; editor -> General editor settings and packages.
-;; design.el -> Configures theme, colors, etc.
-;; binds.el -> Setup evil and navigation functions (partially in qol.el)
-;; navigation.el -> Helm setup for files, buffers, MX-, etc.
 
 ;; Store scripts and snippets in ressource/ directory
 (add-to-list 'load-path "~/.emacs.d/resources/")
@@ -63,6 +54,8 @@
 (load-file (concat user-emacs-directory "modules/com.el"))
 ;; Binds
 (load-file (concat user-emacs-directory "modules/binds.el"))
+;; Window manager
+(load-file (concat user-emacs-directory "modules/windows.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)

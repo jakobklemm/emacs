@@ -67,7 +67,7 @@
 (setq indent-line-function 'insert-tab)
 
 ;; Launch emacs in fullscreen mode
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Save the location within a file.
 (save-place-mode t)

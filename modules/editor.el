@@ -28,12 +28,6 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
-(use-package simpleclip
-  :ensure t
-  :config
-  (simpleclip-mode 1)
-  )
-
 ;; Snippets
 (use-package yasnippet
   :ensure t
