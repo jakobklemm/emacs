@@ -1,6 +1,9 @@
 ;; Definitions
 
 (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+(global-set-key (kbd "C-x C-f") 'ido-find-file)
+(global-set-key (kbd "C-x b") 'ido-switch-buffer)
+(global-set-key (kbd "C-x o") 'ace-window)
 
 (general-create-definer my-leader-def
   ;; :prefix my-leader
@@ -10,7 +13,10 @@
 (my-leader-def
   :keymaps 'normal
   "a" 'agenda/super
-  "d" 'ivy/refile
+  "r" 'ivy/refile
+  "t" 'org-todo
+  "d" 'org-deadline
+  "s" 'org-schedule
   "h" 'home-file
   "c" 'org-capture
   "x" 'todo/done
@@ -65,14 +71,14 @@
 ;; Search
 (my-leader-def
   :keymaps 'normal
-  "ss" 'swiper
-  "sr" 'replace-string
-  "sf" 'org-recoll-search
-  "su" 'org-recoll-update-index
-  "seg" 'engine/search-google
-  "sep" 'engine/search-duckduckgo
-  "sed" 'engine/search-github
-  "see" 'engine/search-prompt
+  "ys" 'swiper
+  "yr" 'replace-string
+  "yf" 'org-recoll-search
+  "yu" 'org-recoll-update-index
+  "yeg" 'engine/search-google
+  "yep" 'engine/search-duckduckgo
+  "yed" 'engine/search-github
+  "yee" 'engine/search-prompt
   )
 
 ;; Admin
@@ -103,6 +109,8 @@
   "oö" 'org-store-link
   "oo" 'org-open-at-point
   "op" 'org-link-open-as-file
+  "of" 'org-agenda-file-to-front
+  "ow" 'org-export-dispatch
   )
 
 ;; Magit & VCS

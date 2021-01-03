@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-minibuffer-history-key "M-p")
- '(org-agenda-files '("~/documents/vaults/schule/English/christmas.org"))
+ '(org-agenda-files
+   '("~/documents/supervisor/events.org" "~/documents/supervisor/gsd.org" "~/documents/supervisor/projects.org"))
  '(package-selected-packages
    '(rainbow-mode rainbow-delimiters yasnippet-snippets which-key use-package undo-tree smartparens org-superstar org-roam-server no-littering mood-one-theme magit-todos lsp-ui ivy-posframe git-messenger flx evil-leader evil-commentary engine-mode elixir-mode dumb-jump counsel beacon amx all-the-icons-ivy-rich ace-window))
  '(smtpmail-smtp-server "mail.cyon.ch")

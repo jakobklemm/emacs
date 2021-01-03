@@ -8,7 +8,7 @@ use at own risk and don't expect help, this isn't tech support.
 * Installation
 - Recoll
 - SQLite
-- .tools
+- .tools (private repository)
 - Fira Code Pro
 - GPG-Keys
 - Gnuplot (https://plantuml.com/de/emacs

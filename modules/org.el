@@ -12,5 +12,5 @@
 
 (setq
  org-directory "~/documents/"
- initial-buffer-choice  "~/documents/supervisor/projects.org"
+ initial-buffer-choice  "~/documents/supervisor/gsd.org"
  )

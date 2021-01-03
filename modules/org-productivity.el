@@ -34,7 +34,7 @@
 
 (defun home-file ()
     (interactive)
-    (find-file "~/documents/supervisor/projects.org")
+    (find-file "~/documents/supervisor/gsd.org")
     )
 
 (use-package org-super-agenda

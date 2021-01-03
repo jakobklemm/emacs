@@ -49,6 +49,8 @@
   :ensure t
   )
 
+;;(evil-set-initial-state 'pdf-view-mode 'normal)
+
 ;; Definitions: define keys and functions
 ;; Undefinitions: remove common emacs binds for easier learning.
 
