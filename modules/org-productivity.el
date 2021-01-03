@@ -17,7 +17,7 @@
 
 (defun agenda/super (&optional arg)
   (interactive "P")
-  (org-agenda arg "c"))
+  (org-agenda arg "d"))
 
 ;; Make agenda a global keybind.
 (global-set-key (kbd "C-c  a") 'org-agenda)

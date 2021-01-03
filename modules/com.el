@@ -25,6 +25,8 @@
 
       message-kill-buffer-on-exit t
 
+      mu4e-attachment-dir  "~/documents/supervisor/intake"
+
       mu4e-sent-folder "/global/Sent"
       mu4e-drafts-folder "/global/Drafts"
       mu4e-trash-folder "/global/Trash"
