@@ -130,6 +130,7 @@
   "nf" 'org-roam-find-file
   "nc" 'org-roam-capture
   "nr" 'org-roam-random-note
+  "ns" 'org-roam-server-mode
   )
 
 ;; Email / Com

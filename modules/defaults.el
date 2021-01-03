@@ -99,4 +99,9 @@
 (setq-default mode-line-format nil)
 
 ;; Line wrap mode
-(auto-fill-mode)
+(auto-fill-mode 1)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))

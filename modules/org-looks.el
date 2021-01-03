@@ -95,6 +95,8 @@
 				       ("#+end_quote:" . "❯")
 				       ("#+CAPTION:" . "☰")
 				       ("#+caption:" . "☰")
+				       (":PROPERTIES:" . "⚙")
+				       (":properties:" . "⚙")
                                        ))
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
