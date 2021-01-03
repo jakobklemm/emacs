@@ -97,3 +97,6 @@
 
 ;; Make it affect all buffers.
 (setq-default mode-line-format nil)
+
+;; Line wrap mode
+(auto-fill-mode)

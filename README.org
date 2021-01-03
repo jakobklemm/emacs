@@ -12,13 +12,9 @@ use at own risk and don't expect help, this isn't tech support.
 - Fira Code Pro
 - GPG-Keys
 * Outstanding
-- mu4e dashboard
-manual install https://github.com/rougier/mu4e-dashboard
-copy dashboard.org from readme, evaluate bable queries.
-integrate into gsd.org
 - exwm
 video tutorial, replace xmonad
 - digital signature (import & publish public)
+- second refile target.
 * Keybinds
-  - engine-mode
   - projectile

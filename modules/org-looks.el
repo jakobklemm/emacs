@@ -45,6 +45,7 @@
 (require 'org-pretty-table)
 (add-hook 'org-mode-hook 'org-pretty-table-mode)
 
+(add-hook 'org-mode-hook 'org-indent-mode)
 ;; Deadline colors
 (setq org-agenda-deadline-faces
       '((1.001 . error)
