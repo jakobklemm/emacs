@@ -99,7 +99,10 @@
 (setq-default mode-line-format nil)
 
 ;; Line wrap mode
-(auto-fill-mode 1)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'gfm-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook 'auto-fill-mode)
+
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))

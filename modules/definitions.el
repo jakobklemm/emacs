@@ -13,7 +13,8 @@
 (my-leader-def
   :keymaps 'normal
   "a" 'agenda/super
-  "r" 'ivy/refile
+  "e" 'ivy/refile
+  "r" 'ivy/last
   "t" 'org-todo
   "d" 'org-deadline
   "s" 'org-schedule
@@ -100,17 +101,19 @@
   "od" 'org-deadline
   "os" 'org-schedule
   "ot" 'org-todo
-  "or" 'org-set-tags-command
+  "oz" 'org-set-tags-command
   "oe" 'org-set-effort
   "ox" 'todo/done
-  "oh" 'home-file
+  "or" 'org-refile
   "og" 'ivy/refile
+  "ob" 'ivy/last
   "ol" 'org-insert-link
   "oö" 'org-store-link
   "oo" 'org-open-at-point
   "op" 'org-link-open-as-file
   "of" 'org-agenda-file-to-front
   "ow" 'org-export-dispatch
+  "oh" 'hoth-total
   )
 
 ;; Magit & VCS
@@ -143,6 +146,7 @@
   "ms" 'mml-secure-message-sign-pgp
   "me" 'mml-secure-message-encrypt-pgp
   "mj" 'mu4e~headers-jump-to-maildir
+  "ml" 'mu4e~view-browse-url-from-binding
   )
 
 ;; EXWM Navigation

@@ -135,9 +135,18 @@
   (ivy/refile-to "~/documents/supervisor/gsd.org" "gsd.org")
   (org-mark-ring-goto))
 
+(defun ivy/last ()
+  "Move current headline to bookmarks"
+  (interactive)
+  (org-mark-ring-push)
+  (ivy/refile-to "~/documents/supervisor/last.org" "Week")
+  (org-mark-ring-goto))
+
+
+
 (setq
- org-refile-targets '(;;("~/documents/supervisor/projects.org" :maxlevel . 3)
-		      ;;("~/documents/supervisor/last.org" :maxlevel . 1)
+ org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
+		      ("~/documents/supervisor/last.org" :maxlevel . 1)
 		      ;;("~/documents/supervisor/inbox.org" :maxlevel . 3)
 		      ;;("~/documents/supervisor/areas.org" :maxlevel . 3)
 		      ;;("~/documents/supervisor/events.org" :maxlevel . 1)
