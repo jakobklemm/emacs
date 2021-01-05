@@ -147,6 +147,7 @@
   "me" 'mml-secure-message-encrypt-pgp
   "mj" 'mu4e~headers-jump-to-maildir
   "ml" 'mu4e~view-browse-url-from-binding
+  "mf" 'mu4e~view-save-attach-from-binding
   )
 
 ;; EXWM Navigation

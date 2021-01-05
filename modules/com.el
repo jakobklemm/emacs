@@ -6,7 +6,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 
-(add-hook 'mu4e-view-mode-hook 'normal-mode)
+;;(add-hook 'mu4e-view-mode-hook 'normal-mode)
 
 (setq mu4e-completing-read-function 'ivy-completing-read)
 (setq mail-user-agent 'mu4e-user-agent)
@@ -25,7 +25,7 @@
 
       message-kill-buffer-on-exit t
 
-      mu4e-attachment-dir  "~/documents/supervisor/intake"
+      mu4e-attachment-dir  "~/documents/files/inbox"
 
       mu4e-sent-folder "/global/Sent"
       mu4e-drafts-folder "/global/Drafts"
@@ -39,7 +39,7 @@
       mml-secure-openpgp-encrypt-to-self t
       mml-secure-smime-sign-with-sender "jakob@jeykey.net"
 
-      mu4e-attachment-dir "~/documents"
+      mu4e-view-prefer-html t
 
       )
 
@@ -48,7 +48,7 @@
 (use-package mu4e-alert
   :ensure t
   :config
-  (mu4e-alert-set-default-style 'notifications)
+  (mu4e-alert-set-default-style 'libnotify)
   (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
   )
 
@@ -103,9 +103,6 @@
       (keyboard-quit))))
 
 (add-hook 'message-send-hook #'ok/message-warn-if-no-attachments)
-
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-
 (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
-
 (add-hook 'mu4e-compose-mode-hook 'visual-line-mode)
