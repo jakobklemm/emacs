@@ -33,13 +33,16 @@
     )
   (use-package ivy
     :ensure t
+    :config
+    (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
     )
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq search-default-mode #'char-fold-to-regexp)
 
-  (setq ivy-posframe-height-alist '((swiper . 20)
+  (setq ivy-use-virtual-buffers t
+	enable-recursive-minibuffers t
+	search-default-mode #'char-fold-to-regexp
+
+	ivy-posframe-height-alist '((swiper . 20)
 				    (t      . 15)))
 
   (use-package amx
@@ -101,3 +104,10 @@
 
 ;; GREP / Multi-File-Search
 (require 'org-recoll)
+
+;; enhance the completion framework
+(use-package orderless
+  :ensure t
+  :after ivy
+  :init (icomplete-mode)
+  :config (completion--styles '(orderless)))

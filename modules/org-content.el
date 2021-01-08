@@ -13,7 +13,7 @@
    org-roam-db-gc-threshold most-positive-fixnum
    org-roam-graph-exclude-matcher "private"
    org-roam-tag-sources '(prop last-directory)
-   org-id-link-to-org-use-id t)
+   )
   :config
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)

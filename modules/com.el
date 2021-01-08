@@ -6,7 +6,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 
-;;(add-hook 'mu4e-view-mode-hook 'normal-mode)
+(add-hook 'mu4e-view-mode-hook 'normal-mode)
 
 (setq mu4e-completing-read-function 'ivy-completing-read)
 (setq mail-user-agent 'mu4e-user-agent)
