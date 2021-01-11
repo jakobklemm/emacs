@@ -1,12 +1,21 @@
 ;; Design / look & feel of emacs
 
-(use-package mood-one-theme
-  :ensure t
+(use-package modus-themes
+  :ensure
   :init
-  (setq custom-safe-themes t)
+  ;; Add all your customizations prior to loading the themes
+
+  (setq modus-themes-slanted-constructs t
+        modus-themes-bold-constructs nil
+	custom-safe-themes t
+	)
+
+  ;; Load the theme files before enabling a theme
+  (modus-themes-load-themes)
   :config
-  (load-theme 'mood-one)
-  )
+  ;; Load the theme of your choice:
+  (modus-themes-load-vivendi)
+  :bind ("<f5>" . modus-themes-toggle))
 
 (global-prettify-symbols-mode 1)
 
