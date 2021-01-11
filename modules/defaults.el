@@ -67,7 +67,7 @@
 (setq indent-line-function 'insert-tab)
 
 ;; Launch emacs in fullscreen mode
-;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Save the location within a file.
 (save-place-mode t)
@@ -93,7 +93,7 @@
 (setq mode-line-format nil)
 
 ;; Error handling
-(setq warning-minimum-level :emergency)
+;;(setq warning-minimum-level :emergency)
 
 ;; Make it affect all buffers.
 (setq-default mode-line-format nil)

@@ -61,6 +61,7 @@
 	    (setq TeX-master t)))
 
 (use-package bibtex-completion
+  :ensure t
   :config
   (setq bibtex-completion-notes-path "~/documents/supervisor"
         bibtex-completion-bibliography "~/.tools/references.bib"

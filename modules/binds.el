@@ -45,11 +45,12 @@
   :ensure t
   )
 
-(use-package evil-mu4e
-  :ensure t
-  )
+;; (use-package evil-mu4e
+;;   :ensure t
+;;   )
 
 ;;(evil-set-initial-state 'pdf-view-mode 'normal)
+;;(evil-set-initial-state 'image-mode 'normal)
 
 ;; Definitions: define keys and functions
 ;; Undefinitions: remove common emacs binds for easier learning.

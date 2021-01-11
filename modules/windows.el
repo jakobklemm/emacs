@@ -12,6 +12,7 @@
 
 (use-package exwm
   :ensure t
+  :disabled t
   :config
   (require 'exwm-config)
   (require 'exwm-randr)
