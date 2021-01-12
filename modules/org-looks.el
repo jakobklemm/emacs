@@ -40,6 +40,10 @@
       org-confirm-babel-evaluate nil
       org-use-speed-commands t
       org-catch-invisible-edits 'show
+
+      ;; Inline images
+      org-startup-with-inline-images t
+      org-image-actual-width '(600)
       )
 
 (require 'org-pretty-table)
@@ -73,8 +77,6 @@
 				       ("#+subtitle:" . "𝙩")
 				       ("#+DATE:" . "𝘿")
 				       ("#+date:" . "𝘿")
-				       ("#AUTHOR:" . "A")
-				       ("#author:" . "A")
 				       ("#+PROPERTY:" . "☸")
 				       ("#+property:" . "☸")
 				       ("#+OPTIONS:" . "⌥")
@@ -97,7 +99,9 @@
 				       ("#+caption:" . "☰")
 				       (":PROPERTIES:" . "⚙")
 				       (":properties:" . "⚙")
-                                       ))
+				       ("#+AUTHOR:" . "A")
+				       ("#+author:" . "A")
+				       ))
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)

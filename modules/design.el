@@ -82,3 +82,5 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 (use-package all-the-icons
   :ensure t
   )
+
+(add-hook 'prog-mode-hook #'hl-todo-mode)
