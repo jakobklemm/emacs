@@ -46,7 +46,6 @@
   )
 
 (use-package evil-mu4e
-  :disabled t
   :ensure t
   )
 

@@ -15,7 +15,7 @@
   "a" 'agenda/super
   "e" 'ivy/refile
   "r" 'ivy/last
-  "t" 'org-todo
+  "t" 'todo/todo
   "d" 'org-deadline
   "s" 'org-schedule
   "h" 'home-file
@@ -114,6 +114,7 @@
   "of" 'org-agenda-file-to-front
   "ow" 'org-export-dispatch
   "oh" 'hoth-total
+  "oy" 'org-archive-subtree
   )
 
 ;; Magit & VCS

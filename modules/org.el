@@ -13,4 +13,5 @@
 (setq
  org-directory "~/documents/"
  initial-buffer-choice  "~/documents/supervisor/gsd.org"
+ org-archive-location "~/documents/archive/2021.org::* From %s"
  )

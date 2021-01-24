@@ -32,6 +32,12 @@
   (interactive)
   (org-todo 'done))
 
+(defun todo/todo  ()
+  (interactive)
+  (org-todo 'todo)
+  (org-priority-up)
+  )
+
 (defun home-file ()
     (interactive)
     (find-file "~/documents/supervisor/gsd.org")
