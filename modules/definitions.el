@@ -19,6 +19,7 @@
   "d" 'org-deadline
   "s" 'org-schedule
   "h" 'home-file
+  "j" 'projects-file
   "c" 'org-capture
   "x" 'todo/done
   )

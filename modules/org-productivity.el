@@ -43,6 +43,12 @@
     (find-file "~/documents/supervisor/gsd.org")
     )
 
+(defun projects-file ()
+    (interactive)
+    (find-file "~/documents/supervisor/projects.org")
+    )
+
+
 (use-package org-super-agenda
   :ensure t
   :init
