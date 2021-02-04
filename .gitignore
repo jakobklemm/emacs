@@ -52,6 +52,9 @@ init.el~
 setup.el~
 auto-save/
 
+eln-cache/
+quelpa/
+
 var/
 etc/
 transient/

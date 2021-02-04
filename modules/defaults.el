@@ -90,7 +90,7 @@
 (global-hl-line-mode)
 
 ;; Hide the modeline
-(setq mode-line-format nil)
+;; (setq mode-line-format nil)
 
 ;; Error handling
 (setq warning-minimum-level :emergency)
