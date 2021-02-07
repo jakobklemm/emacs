@@ -18,7 +18,9 @@
       mu4e-update-interval  300
       mu4e-index-update-in-background t
       mu4e-main-buffer-hide-personal-addresses t
-      message-send-mail-function 'smtpmail-send-it
+
+      send-mail-function 'smtpmail-send-it
+      message-send-mail-function 'message-smtpmail-send-it
       starttls-use-gnutls t
 
       mu4e-view-show-addresses t

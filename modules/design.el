@@ -85,7 +85,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
-;; Mini Modeline (Testing only)
 (use-package mini-modeline
   :ensure t
   :init
@@ -98,20 +97,12 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 				(list "-"
 				      'mode-line-mule-info
 				      'mode-line-modified
-				      'mode-line-frame-identification
-				      "%b--"
 				      ;; Note that this is evaluated while making the list.
-				      ;; It makes a mode line construct which is just a string.
 				      ":"
 				      'default-directory
-				      "   "
-				      'global-mode-string
-				      "   %[("
-				      '(:eval (format-time-string "%F"))
-				      'mode-line-process
-				      "%n"
-				      ")%]--"
-				      '(which-func-mode ("" which-func-format "--"))
+				      ":"
+				      'mode-name
+				      ":"
 				      '(line-number-mode "L%l")
 				      ))
    )
