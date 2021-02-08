@@ -5,24 +5,52 @@
 (global-set-key (kbd "C-x b") 'ido-switch-buffer)
 (global-set-key (kbd "C-x o") 'ace-window)
 
+(general-def 'normal
+  ;; Movement 1
+  "h" 'evil-next-line
+  "t" 'evil-previous-line
+  "d" 'evil-backward-char
+  "n" 'evil-forward-char
+  "N" 'evil-scroll-page-down
+  "D" 'evil-scroll-page-up
+
+  ;;  Movement 2
+  "l" 'evil-forward-word-begin
+  "L" 'evil-forward-WORD-begin
+  "g" 'evil-backward-word-end
+  "G" 'evil-backward-WORD-end
+  "f" 'evil-first-non-blank
+  "r" 'evil-end-of-line
+
+  ;; Editing
+  "m" 'evil-insert
+  "w" 'evil-append
+  "b" 'evil-delete-char
+  "v" 'evil-delete-line
+
+  ;; Newline
+  "s" 'evil-open-below
+  "S" 'evil-open-above
+
+  ;; Hotkeys
+  "[f18]" 'home-file
+  "[f19]" 'projects-file
+
+  "p" 'ivy/refile
+  "y" 'ivy/last
+  ";" 'agenda/super
+  "," 'todo/todo
+  "." 'todo/done
+
+  "k" 'org-capture
+  "c" 'org-deadline
+  "x" 'org-schedule
+
+  )
+
 (general-create-definer my-leader-def
   ;; :prefix my-leader
   :prefix "SPC")
-
-;; Quick access (selection)
-(my-leader-def
-  :keymaps 'normal
-  "a" 'agenda/super
-  "e" 'ivy/refile
-  "r" 'ivy/last
-  "t" 'todo/todo
-  "d" 'org-deadline
-  "s" 'org-schedule
-  "h" 'home-file
-  "j" 'projects-file
-  "c" 'org-capture
-  "x" 'todo/done
-  )
 
 ;; Buffers
 (my-leader-def
