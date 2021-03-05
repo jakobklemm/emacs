@@ -30,6 +30,9 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(use-package quelpa-use-package
+  :ensure t)
+
 ;; Config structure:
 
 ;; Store scripts and snippets in ressource/ directory

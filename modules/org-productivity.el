@@ -49,7 +49,6 @@
     (find-file "~/documents/supervisor/projects.org")
     )
 
-
 (use-package org-super-agenda
   :ensure t
   :init
