@@ -15,7 +15,7 @@
   :config
   ;; Load the theme of your choice:
   (modus-themes-load-vivendi)
-  :bind ("<f5>" . modus-themes-toggle))
+  :bind ("<f4>" . modus-themes-toggle))
 
 (global-prettify-symbols-mode 1)
 

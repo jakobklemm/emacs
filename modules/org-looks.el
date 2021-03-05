@@ -105,3 +105,15 @@
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
+
+;; like org fragtog, but for =, /, []
+(use-package org-appear
+  :ensure t
+  :quelpa (org-appear
+	   :fetcher github
+	   :repo "awth13/org-appear")
+  :hook (org-mode . org-appear-mode)
+  :init (setq org-hide-emphasis-markers t
+	      org-appear-autoemphasis t
+	      org-appear-autolinks t
+	      org-appear-autosubmarkers t))
