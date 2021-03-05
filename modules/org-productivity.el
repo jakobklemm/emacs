@@ -36,6 +36,7 @@
   (interactive)
   (org-todo 'todo)
   (org-priority-up)
+  (org-deadline nil (org-read-date nil nil "+1d"))
   )
 
 (defun home-file ()
