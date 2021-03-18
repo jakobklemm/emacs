@@ -1,21 +1,10 @@
 ;; Design / look & feel of emacs
 
-(use-package modus-themes
-  :ensure
-  :init
-  ;; Add all your customizations prior to loading the themes
-
-  (setq modus-themes-slanted-constructs t
-        modus-themes-bold-constructs nil
-	custom-safe-themes t
-	)
-
-  ;; Load the theme files before enabling a theme
-  (modus-themes-load-themes)
+(use-package kaolin-themes
+  :ensure t
   :config
-  ;; Load the theme of your choice:
-  (modus-themes-load-vivendi)
-  :bind ("<f4>" . modus-themes-toggle))
+  (load-theme 'kaolin-dark t)
+  )
 
 (global-prettify-symbols-mode 1)
 
