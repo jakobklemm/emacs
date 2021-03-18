@@ -3,7 +3,7 @@
 (use-package kaolin-themes
   :ensure t
   :config
-  (load-theme 'kaolin-dark t)
+  (load-theme 'kaolin-aurora t)
   )
 
 (global-prettify-symbols-mode 1)
