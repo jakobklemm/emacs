@@ -75,3 +75,64 @@
 	"bibtex %b"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+;; Custom title page & templating using inserts
+(defun jk/title-title ()
+  (car (org-roam--extract-titles-title))
+  )
+
+(defun jk/title-author ()
+  (cdr (car (org-roam--extract-global-props '("AUTHOR"))))
+  )
+(defun jk/title-image ()
+  (cdr (car (org-roam--extract-global-props '("IMAGE"))))
+  )
+(defun jk/title-subtitle ()
+  (cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
+  )
+
+(defun jk/title-compose ()
+  (interactive)
+  (insert (concat "
+#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
+#+LATEX_HEADER: \\usepackage{tikz}
+#+LATEX_HEADER: \\usepackage[]{babel}
+\\begin{titlepage}
+    \\begin{center}
+        \\begin{tikzpicture}[remember picture,overlay]
+            \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
+            at (current page.north west)
+            {\\includegraphics[scale=1]{~/.tools/"
+		  (jk/title-image)
+		  ".png}};
+\\end{tikzpicture}
+
+        \\vspace{2.2cm}
+
+        \\Huge
+        \\textbf{"
+		  (jk/title-title)
+		  "}
+
+        \\vspace{3.0cm}
+        \\LARGE"
+		  (jk/title-subtitle)
+		  "
+\\vspace{4.2cm}"
+
+		  (jk/title-author)
+
+	"\\
+        \\vfill
+
+        \\Large
+        Baden, Schweiz\\
+        \\today
+    \\end{center}
+\\end{titlepage}
+\\tableofcontents
+\\newpage"
+	   )
+	  )
+  )
