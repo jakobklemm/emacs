@@ -8,6 +8,8 @@
 
 (load-file (concat user-emacs-directory "modules/org-latex.el"))
 
+(load-file (concat user-emacs-directory "modules/org-tools.el"))
+
 (load-file (concat user-emacs-directory "hoth/hoth.el"))
 
 (setq

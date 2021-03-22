@@ -6,6 +6,7 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook 'org-fragtog-mode)
+  (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
   )
 
 (use-package ob-go

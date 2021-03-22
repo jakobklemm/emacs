@@ -7,7 +7,7 @@
   (after-init . org-roam-mode)
   :init
   (setq
-   org-roam-directory (file-truename "~/documents/vaults/database/")
+   org-roam-directory (file-truename "~/documents")
    org-roam-db-location "~/documents/vaults/org-roam.db"
    org-roam-graph-exclude-matcher "supervisor"
    org-roam-db-gc-threshold most-positive-fixnum
