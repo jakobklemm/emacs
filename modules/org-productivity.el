@@ -49,6 +49,27 @@
     (find-file "~/documents/supervisor/projects.org")
     )
 
+;; Project Orion - Journal Template
+(defun jk/orion-template ()
+  (interactive)
+  (insert "
+* " (format-time-string "%d.%m.%Y")
+"
+zsm.
+
+** Erledigt
+-
+
+** Planung & Gedanken
+-
+
+** Aufgaben
+*** TODO
+
+
+")
+  )
+
 (use-package org-super-agenda
   :ensure t
   :init
@@ -169,9 +190,6 @@
 (setq
  org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
                           "* TODO %?\n  %i\n  %a")
-			 ("t" "Table" table-line
-			  (file+headline "~/documents/supervisor/content.org" "Books")
-			  "| %? |  |  |  |")
                          )
  org-tag-alist '(("@NEXT" . ?n) ("@home" . ?h) ("laptop" . ?l))
  )

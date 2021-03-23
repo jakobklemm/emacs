@@ -9,7 +9,7 @@
   (setq
    org-roam-directory (file-truename "~/documents")
    org-roam-db-location "~/documents/vaults/org-roam.db"
-   org-roam-graph-exclude-matcher "supervisor"
+   org-roam-graph-exclude-matcher "database"
    org-roam-db-gc-threshold most-positive-fixnum
    org-roam-graph-exclude-matcher "private"
    org-roam-tag-sources '(prop last-directory)
