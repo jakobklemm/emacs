@@ -67,7 +67,6 @@
     "c" 'org-capture
     "x" 'todo/done
   )
-
   )
 
 ;; Buffers
@@ -173,7 +172,7 @@
   "gp" 'magit-pull
   )
 
-;; Org-roam
+;; Org-roam + Content (drill)
 (my-leader-def
   :keymaps 'normal
   "nl" 'org-roam
@@ -182,6 +181,8 @@
   "nc" 'org-roam-capture
   "nr" 'org-roam-random-note
   "ns" 'org-roam-server-mode
+  "nd" 'org-drill
+  "na" 'jk/drill
   )
 
 ;; Email / Com

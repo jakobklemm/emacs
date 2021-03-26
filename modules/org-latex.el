@@ -2,6 +2,8 @@
 
 (eval-after-load "org" '(require 'ox-odt nil t))
 
+(setq-default org-startup-with-latex-preview t)
+
 (use-package org-fragtog
   :ensure t
   :config
@@ -61,14 +63,13 @@
 	    (LaTeX-math-mode)
 	    (setq TeX-master t)))
 
-(use-package bibtex-completion
+(use-package org-ref
   :ensure t
-  :config
-  (setq bibtex-completion-notes-path "~/documents/supervisor"
-        bibtex-completion-bibliography "~/.tools/references.bib"
-	)
   )
 
+(setq bibtex-completion-bibliography "~/.tools/references.bib"
+      reftex-default-bibliography '("~/.tools/references.bib")
+      )
 (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
       org-latex-pdf-process

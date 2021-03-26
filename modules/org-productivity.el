@@ -175,8 +175,6 @@ zsm
   (ivy/refile-to "~/documents/supervisor/last.org" "Week")
   (org-mark-ring-goto))
 
-
-
 (setq
  org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
 		      ("~/documents/supervisor/last.org" :maxlevel . 1)
@@ -191,5 +189,5 @@ zsm
  org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
                           "* TODO %?\n  %i\n  %a")
                          )
- org-tag-alist '(("@NEXT" . ?n) ("@home" . ?h) ("laptop" . ?l))
+ org-tag-alist '(("drill" . ?d))
  )
