@@ -28,6 +28,18 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
+(use-package org-lang
+  :ensure t
+  :quelpa (org-lang
+	   :repo domse007/org-lang
+	   :fetcher github)
+  :custom ((org-lang-fallback-lang "en_US")
+	   (org-lang-installed-langs
+	    '("de_DE" "en_US"))
+	   (org-lang-prefered-completion 'ivy))
+  :hook ((org-mode . org-lang-mode)
+	 (org-mode . org-lang-get-buffer-lang)))
+
 ;; Snippets
 (use-package yasnippet
   :ensure t

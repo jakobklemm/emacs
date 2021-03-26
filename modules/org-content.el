@@ -38,8 +38,6 @@
         org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
         org-roam-server-network-poll t
         org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
   )
 
@@ -50,5 +48,14 @@
   :config
   (setq org-drill-use-visible-cloze-face-p t)
   (setq org-drill-hide-item-headings-p t)
+  )
 
+;; Project Orion - Journal Template
+(defun jk/drill ()
+  (interactive)
+  (insert "
+* Item       :drill:
+
+** Answer
+")
   )

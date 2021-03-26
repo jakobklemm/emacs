@@ -1,12 +1,9 @@
 ;; Org-mode tools & extras
 
-(add-hook 'org-mode-hook 'org-toggle-inline-images)
+(add-hook 'org-mode 'org-toggle-inline-images)
 (setq org-image-actual-width '(600))
-(setq org-display-inline-images t)
-(setq org-redisplay-inline-images t)
-(setq org-display-remote-inline-images t)
-(setq org-startup-with-inline-images t)
-(setq org-startup-with-inline-images "inlineimages")
+(setq-default org-display-inline-images t)
+(setq-default org-startup-with-inline-images t)
 
 ;; Default apps
 (setq org-file-apps
@@ -20,7 +17,7 @@
   :ensure t
   :config
   (setq alert-default-style 'libnotify
-	org-alert-interval 300
+	org-alert-interval 600
 	org-alert-notification-title "Agenda"
 	)
   (org-alert-enable)
