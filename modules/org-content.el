@@ -7,7 +7,7 @@
   (after-init . org-roam-mode)
   :init
   (setq
-   org-roam-directory (file-truename "~/documents")
+   org-roam-directory (file-truename "~/documents/vaults/database/")
    org-roam-db-location "~/documents/vaults/org-roam.db"
    org-roam-graph-exclude-matcher "database"
    org-roam-db-gc-threshold most-positive-fixnum
@@ -19,12 +19,12 @@
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "${slug}"
-           :head "#+title: ${title}\n"
+           :head "#+TITLE: ${title}\n"
            :immediate-finish t
            :unnarrowed t)
           ("f" "unchanged" plain (function org-roam-capture--get-point)
            "%?"
-           :head "#+title: ${title}\n"
+           :head "#+TITLE: ${title}\n"
            :immediate-finish t
            :unnarrowed t)))
   (use-package org-roam-server
@@ -41,4 +41,14 @@
         org-roam-server-network-label-truncate t
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
+  )
+
+
+;; Spaced repetition
+(use-package org-drill
+  :ensure t
+  :config
+  (setq org-drill-use-visible-cloze-face-p t)
+  (setq org-drill-hide-item-headings-p t)
+
   )

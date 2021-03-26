@@ -55,7 +55,7 @@
   (insert "
 * " (format-time-string "%d.%m.%Y")
 "
-zsm.
+zsm
 
 ** Erledigt
 -
