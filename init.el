@@ -58,7 +58,7 @@
 ;; Binds
 (load-file (concat user-emacs-directory "modules/binds.el"))
 ;; Window manager
-(load-file (concat user-emacs-directory "modules/windows.el"))
+;;(load-file (concat user-emacs-directory "modules/windows.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)

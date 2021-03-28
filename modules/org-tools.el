@@ -22,3 +22,7 @@
 	)
   (org-alert-enable)
   )
+
+(use-package disable-mouse
+  :ensure t
+  :hook (org-mode . disable-mouse-mode))

@@ -26,16 +26,17 @@
 (add-hook 'prog-mode-hook 'add-pretty-lambda)
 (add-hook 'org-mode-hook 'add-pretty-lambda)
 
-(set-frame-font "Iosevka 11" nil t)
+(set-frame-font "Fira Code 11" nil t)
 
 (set-cursor-color "#D069D6")
 
 (use-package beacon
   :ensure t
-  :disabled t
   :custom
   (beacon-color "#D271D8")
-  :hook (after-init . beacon-mode))
+  :config
+  (beacon-mode 1)
+  )
 
 ;; Margins
 (defcustom perfect-margin-ignore-regexps
@@ -74,26 +75,25 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
-(use-package mini-modeline
+(use-package minions
   :ensure t
-  :init
-  (setq
-   mini-modeline-display-gui-line nil
-   mini-modeline-frame nil
-   mini-modeline-truncate-p t
-   mini-modeline-enhance-visual nil
-   mini-modeline-r-format (setq mode-line-format
-				(list "-"
-				      'mode-line-mule-info
-				      'mode-line-modified
-				      ;; Note that this is evaluated while making the list.
-				      ":"
-				      'default-directory
-				      ":"
-				      'mode-name
-				      ":"
-				      '(line-number-mode "L%l")
-				      ))
-   )
   :config
-  (mini-modeline-mode t))
+  (minions-mode 1)
+  )
+
+;; (set-face-attribute 'mode-line nil
+;;                     :background "#14191E"
+;;                     :foreground "#454459"
+;;                     :box '(:line-width 8 :color "#191F26")
+;;                     :overline nil
+;;                     :underline nil)
+
+;; (set-face-attribute 'mode-line-inactive nil
+;;                     :background "#14191E"
+;;                     :foreground "#454459"
+;;                     :box '(:line-width 8 :color "#1F272E")
+;;                     :overline nil
+;;                     :underline nil)
+
+;; (require 'awesome-tray)
+;; (awesome-tray-mode 1)

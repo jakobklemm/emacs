@@ -5,8 +5,8 @@
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
-
-(add-hook 'mu4e-view-mode-hook 'normal-mode)
+(require 'smtpmail)
+;; (add-hook 'mu4e-view-mode-hook 'normal-mode)
 
 (setq mu4e-completing-read-function 'ivy-completing-read)
 (setq mail-user-agent 'mu4e-user-agent)
@@ -23,11 +23,13 @@
       message-send-mail-function 'message-smtpmail-send-it
       starttls-use-gnutls t
 
+      mu4e-sent-messages-behavior 'delete
+
       mu4e-view-show-addresses t
 
       message-kill-buffer-on-exit t
 
-      mu4e-attachment-dir  "~/documents/files/inbox"
+      mu4e-attachment-dir  "~/documents/vaults/ram"
 
       mu4e-sent-folder "/global/Sent"
       mu4e-drafts-folder "/global/Drafts"
@@ -46,6 +48,13 @@
       )
 
 (load-file "~/.tools/mail.el")
+
+(setq smtpmail-starttls-credentilas my-mu4e-account-alist)
+(setq smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      smtpmail-debug-info t)
+
 
 (use-package mu4e-alert
   :ensure t
