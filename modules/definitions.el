@@ -7,48 +7,87 @@
 (global-set-key (kbd "<f5>") 'home-file)
 (global-set-key (kbd "<f6>") 'projects-file)
 
+
+;; Partially copied from https://github.com/jbranso/evil-dvorak/blob/master/evil-dvorak.el
+
+(define-minor-mode dvorak-mode
+  "Evil dvorak mode allows you to use evil using the dvorak keyboard layout.  Contributions are welcome."
+  nil
+  :global t
+  :lighter " ED"
+  :keymap (make-sparse-keymap))
+
+(defun turn-on-dvorak-mode ()
+  "Enable evil-dvorak-mode in the current buffer."
+  (dvorak-mode 1))
+
+(defun turn-off-dvorak-mode ()
+  "Disable evil-dvorak-mode in this buffer."
+  (dvorak-mode -1))
+
+(define-globalized-minor-mode global-dvorak-mode
+  dvorak-mode turn-on-dvorak-mode
+  "Global mode to let you use evil with dvorak friendly keybindings.")
+
+(global-dvorak-mode 1)
+
 (general-create-definer my-leader-def
   ;; :prefix my-leader
   :prefix "SPC")
 
 (when (string-equal system-name "jeykeyarch")
-  (general-def 'normal
-    ;; Movement 1
-    "h" 'evil-next-line
-    "t" 'evil-previous-line
-    "d" 'evil-backward-char
-    "n" 'evil-forward-char
-    "N" 'evil-scroll-page-down
-    "D" 'evil-scroll-page-up
+  (evil-define-key '(visual normal motion) dvorak-mode-map
+    "t" 'evil-next-line
+    "n" 'evil-previous-line
+    "h" 'evil-backward-char
+    "s" 'evil-forward-char
 
-    ;;  Movement 2
-    "l" 'evil-forward-word-begin
-    "L" 'evil-forward-WORD-begin
-    "g" 'evil-backward-word-end
-    "G" 'evil-backward-WORD-end
-    "f" 'evil-first-non-blank
+    "H" 'evil-backward-word-begin
+    "S" 'evil-forward-word-end
+    "T" 'evil-scroll-page-down
+    "N" 'evil-scroll-page-up
+    
+    "l" 'evil-first-non-blank
     "r" 'evil-end-of-line
+    "g" 'backward-paragraph
+    "q" 'forward-paragraph
 
-    ;; Editing
     "m" 'evil-insert
-    "w" 'evil-append
-    "b" 'evil-delete-char
-    "v" 'evil-delete-line
+    "z" 'evil-open-below
+    "v" 'evil-delete-char
+    "w" 'kill-line
 
-    ;; Newline
-    "s" 'evil-open-below
-    "S" 'evil-open-above
+    "M" 'evil-append
+    "Z" 'evil-open-above
+    "V" 'kill-word
+    "W" 'kill-comment
+    
+    "f" 'yank
+    "d" 'undo
+    "b" 'kill-ring-save
 
     "p" 'ivy/refile
     "y" 'ivy/last
+
     ";" 'agenda/super
-    "," 'todo/todo
+    "," 'todo/done
     "." 'todo/done
 
-    "k" 'org-capture
-    "c" 'org-deadline
-    "x" 'org-schedule
+    ;; "c" 'org-capture
+    ;; "k" 'org-schedule
+    ;; "x" 'org-deadline
+    )
 
+  (evil-define-key 'insert dvorak-mode-map
+    (kbd "C-z") 'evil-normal-state
+    (kbd "ESC") 'evil-normal-state
+    (kbd "C-d") 'delete-char
+    (kbd "<backspace>") 'delete-backward-char
+    (kbd "<return>") 'newline-and-indent
+    (kbd "C-h") 'evil-next-line
+    (kbd "C-t") 'evil-previous-line
+    (kbd "C-n") 'backward-char
+    (kbd "C-s") 'forward-char
     )
   )
 
@@ -61,7 +100,7 @@
     "r" 'ivy/last
     "t" 'todo/todo
     "d" 'org-deadline
-    "s" 'org-schedule
+    "k" 'org-schedule
     "h" 'home-file
     "j" 'projects-file
     "c" 'org-capture
@@ -70,6 +109,7 @@
   )
 
 ;; Buffers
+;; 1
 (my-leader-def
   :keymaps 'normal
   "bs" 'save-buffer
@@ -77,19 +117,21 @@
   "bj" 'kill-buffer-and-window
   "bb" 'ivy-switch-buffer
   "bf" 'find-file
+  "bF" 'ido-find-file
   "bh" 'previous-buffer
-  "bl" 'next-buffer
+  
   )
 
 ;; Windows & Navigation
+;; 2
 (my-leader-def
   :keymaps 'normal
   "wv" 'evil-window-vsplit
   "wj" 'kill-buffer-and-window
-  "w1" 'delete-other-windows
-  "w2" 'hrs/split-window-below-and-switch
-  "w3" 'hrs/split-window-right-and-switch
-  "w4" 'find-file-other-window
+  "wj" 'delete-other-windows
+  "wk" 'hrs/split-window-below-and-switch
+  "wc" 'hrs/split-window-right-and-switch
+  "wo" 'find-file-other-window
   "wk" 'kill-current-buffer
   "wo" 'ace-window
   "wj" 'kill-buffer-and-window
@@ -100,35 +142,21 @@
   "." 'ivy-switch-buffer
   )
 
-;; Files
-(my-leader-def
-  :keymaps 'normal
-  "ff" 'find-file
-  "fr" 'recentf-open-most-recent-file
-  "fb" 'counsel-bookmark
-  )
-
-;; Editing & Text
-(my-leader-def
-  :keymaps 'normal
-  "ö" 'ivy-immediate-done
-  "p" 'ivy-yank-word
-)
-
 ;; Search
+;; 3
 (my-leader-def
   :keymaps 'normal
-  "ys" 'swiper
-  "yr" 'replace-string
-  "yf" 'org-recoll-search
-  "yu" 'org-recoll-update-index
-  "yeg" 'engine/search-google
-  "yep" 'engine/search-duckduckgo
-  "yed" 'engine/search-github
-  "yee" 'engine/search-prompt
+  "ss" 'swiper
+  "sS" 'swiper-all
+  "sr" 'replace-string
+  "seg" 'engine/search-google
+  "sep" 'engine/search-duckduckgo
+  "sed" 'engine/search-github
+  "see" 'engine/search-prompt
   )
 
 ;; Admin
+;; 4
 (my-leader-def
   :keymaps 'normal
   "qq" 'save-buffers-kill-terminal
@@ -139,6 +167,7 @@
   )
 
 ;; Org-mode
+;; 5
 (my-leader-def
   :keymaps 'normal
   "oi" 'org-cycle
@@ -164,6 +193,7 @@
   )
 
 ;; Magit & VCS
+;; 6
 (my-leader-def
   :keymaps 'normal
   "gg" 'magit-status
@@ -173,6 +203,7 @@
   )
 
 ;; Org-roam + Content (drill)
+;; 7
 (my-leader-def
   :keymaps 'normal
   "nl" 'org-roam
@@ -186,6 +217,7 @@
   )
 
 ;; Email / Com
+;; 8
 (my-leader-def
  :keymaps 'normal
   "mo" 'mu4e
@@ -198,21 +230,3 @@
   "ml" 'mu4e~view-browse-url-from-binding
   "mf" 'mu4e~view-save-attach-from-binding
   )
-
-;; EXWM Navigation
-;;(define-key global-map [?\s] nil)
-(general-define-key
- :prefix "s-SPC"
- ;; bind "C-c a" to 'org-agenda
- "b" 'ido-switch-buffer
- "f" 'ido-find-file
- "w"  'exwm-workspace-switch
- )
-
-(general-define-key
- :prefix "s-M"
- ;; bind "C-c a" to 'org-agenda
- "b" 'ido-switch-buffer
- "f" 'ido-find-file
- "w"  'exwm-workspace-switch
- )

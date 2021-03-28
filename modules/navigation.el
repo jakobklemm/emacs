@@ -38,8 +38,7 @@
     )
   (ivy-mode 1)
 
-  (setq ivy-use-virtual-buffers t
-	enable-recursive-minibuffers t
+  (setq enable-recursive-minibuffers t
 	search-default-mode #'char-fold-to-regexp
 
 	ivy-posframe-height-alist '((swiper . 20)
@@ -94,16 +93,13 @@
   :ensure t
   :init
   (setq aw-scope 'frame ; limit to single frame
-        aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+        aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
   )
 
 ;; Dump jump for context based navigation
 (use-package dumb-jump
   :ensure t
   :config (setq dumb-jump-selector 'ivy))
-
-;; GREP / Multi-File-Search
-(require 'org-recoll)
 
 ;; enhance the completion framework
 (use-package orderless

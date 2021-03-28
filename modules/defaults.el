@@ -7,14 +7,14 @@
 (setq gc-cons-threshold 20000000)
 
 ;; Call DELETE-TRAILING-WHITESPACE every time a buffer is saved.
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Treat CamelCaseSubWords as separate words in every programming
 ;; mode.
 (add-hook 'prog-mode-hook 'subword-mode)
 
 ;; Don't assume that sentences should have two spaces after
-;; periods. This ain't a typewriter.
+;; periods.
 (setq sentence-end-double-space nil)
 
 ;; Turn on transient-mark-mode.
@@ -22,8 +22,6 @@
 
 ;; Auto wrap text
 (auto-fill-mode t)
-
-;; If some text is selected, and you type some text, delete the
 
 ;; selected text and start inserting your typed text.
 (delete-selection-mode t)
