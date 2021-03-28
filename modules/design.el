@@ -81,19 +81,5 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   (minions-mode 1)
   )
 
-;; (set-face-attribute 'mode-line nil
-;;                     :background "#14191E"
-;;                     :foreground "#454459"
-;;                     :box '(:line-width 8 :color "#191F26")
-;;                     :overline nil
-;;                     :underline nil)
-
-;; (set-face-attribute 'mode-line-inactive nil
-;;                     :background "#14191E"
-;;                     :foreground "#454459"
-;;                     :box '(:line-width 8 :color "#1F272E")
-;;                     :overline nil
-;;                     :underline nil)
-
-;; (require 'awesome-tray)
-;; (awesome-tray-mode 1)
+(require 'awesome-tray)
+(awesome-tray-mode 1)

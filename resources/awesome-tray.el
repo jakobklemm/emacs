@@ -352,7 +352,7 @@ Maybe you need set this option with bigger value to speedup on Windows platform.
   (format "%s" last-command))
 
 (defun awesome-tray-module-buffer-name-info ()
-  "")
+  (format "%s" (buffer-name)))
 
 (defun awesome-tray-module-parent-dir-info ()
   (if (derived-mode-p 'dired-mode)
@@ -366,7 +366,9 @@ Maybe you need set this option with bigger value to speedup on Windows platform.
 
 (defun awesome-tray-flush-info ()
   (let* ((tray-info (awesome-tray-build-info)))
-    (insert (concat (make-string (max 0 (- (frame-width) (length tray-info) awesome-tray-info-padding-right)) ?\ ) tray-info))))
+    (with-current-buffer " *Minibuf-0*"
+      (erase-buffer)
+      (insert (concat (make-string (max 0 (- (frame-width) (length tray-info) awesome-tray-info-padding-right)) ?\ ) tray-info)))))
 
 (defun awesome-tray-get-echo-format-string (message-string)
   (let* ((tray-info (awesome-tray-build-info))
@@ -400,7 +402,7 @@ Maybe you need set this option with bigger value to speedup on Windows platform.
 (defun awesome-tray-update-git-command-cache ()
   (let* ((git-info (awesome-tray-process-exit-code-and-output "git" "symbolic-ref" "--short" "HEAD"))
          (status (nth 0 git-info))
-         (result (format "%s" (nth 1 git-info))))
+         (result (format "git:%s" (nth 1 git-info))))
     (setq awesome-tray-git-command-cache
           (if (equal status 0)
               (replace-regexp-in-string "\n" "" result)
