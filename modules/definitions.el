@@ -73,24 +73,17 @@
     "," 'todo/done
     "." 'todo/done
 
+    ;; "Temporary quick binds.
+    "j" 'kill-buffer-and-window
+    "'" 'mu4e-headers-search-bookmark
+    "a" 'find-file
+
     ;; "c" 'org-capture
     ;; "k" 'org-schedule
     ;; "x" 'org-deadline
     )
-
-  (evil-define-key 'insert dvorak-mode-map
-    (kbd "C-z") 'evil-normal-state
-    (kbd "ESC") 'evil-normal-state
-    (kbd "C-d") 'delete-char
-    (kbd "<backspace>") 'delete-backward-char
-    (kbd "<return>") 'newline-and-indent
-    (kbd "C-h") 'evil-next-line
-    (kbd "C-t") 'evil-previous-line
-    (kbd "C-n") 'backward-char
-    (kbd "C-s") 'forward-char
-    )
-  )
-
+   )
+  
 (when (string-equal system-name "86d38172")
   ;; Quick access (selection)
   (my-leader-def
@@ -127,8 +120,6 @@
 (my-leader-def
   :keymaps 'normal
   "wv" 'evil-window-vsplit
-  "wj" 'kill-buffer-and-window
-  "wj" 'delete-other-windows
   "wk" 'hrs/split-window-below-and-switch
   "wc" 'hrs/split-window-right-and-switch
   "wo" 'find-file-other-window

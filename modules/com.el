@@ -6,7 +6,6 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 (require 'smtpmail)
-;; (add-hook 'mu4e-view-mode-hook 'normal-mode)
 
 (setq mu4e-completing-read-function 'ivy-completing-read)
 (setq mail-user-agent 'mu4e-user-agent)
@@ -54,7 +53,6 @@
       smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587
       smtpmail-debug-info t)
-
 
 (use-package mu4e-alert
   :ensure t

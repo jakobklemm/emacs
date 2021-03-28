@@ -48,6 +48,18 @@
 ;;(evil-set-initial-state 'pdf-view-mode 'normal)
 ;;(evil-set-initial-state 'image-mode 'normal)
 
+(setq evil-emacs-state-modes nil)
+(setq evil-insert-state-modes nil)
+(setq evil-motion-state-modes nil)
+
+(setq evil-normal-state-modes
+      (append evil-emacs-state-modes
+              evil-insert-state-modes
+              evil-normal-state-modes
+              evil-motion-state-modes))
+
+(evil-make-overriding-map doc-view-mode-map 'normal)
+
 ;; Definitions: define keys and functions
 ;; Undefinitions: remove common emacs binds for easier learning.
 
