@@ -7,6 +7,9 @@
 (global-set-key (kbd "<f5>") 'home-file)
 (global-set-key (kbd "<f6>") 'projects-file)
 
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
 
 ;; Partially copied from https://github.com/jbranso/evil-dvorak/blob/master/evil-dvorak.el
 

@@ -39,10 +39,6 @@
     )
   (yas-global-mode 1)
   (setq yas-indent-line 'auto)
-  ;; TODO: Move to definitions.
-  (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-  (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)
   )
 
 (add-to-list 'exec-path "~/.tools/elixir-ls")
