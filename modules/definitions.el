@@ -35,6 +35,14 @@
   ;; :prefix my-leader
   :prefix "SPC")
 
+(evil-define-key 'motion org-agenda-mode-map
+  "h" 'org-agenda-earlier
+  "l" 'org-agenda-later
+  "j" 'org-agenda-next-line
+  "k" 'org-agenda-previous-line
+  "ö" 'org-agenda-goto-today
+  ) 
+
 (when (string-equal system-name "jeykeyarch")
   (evil-define-key '(visual normal motion) dvorak-mode-map
     "t" 'evil-next-line
