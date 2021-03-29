@@ -110,32 +110,42 @@ zsm
            ((agenda "" ((org-agenda-span 'day)
                         (org-super-agenda-groups
                          '((:name "Today"
-                            :time-grid t
-                            :date today
-                            :scheduled today
+				  :time-grid t
+				  :date today
+				  :scheduled today
                             :order 1)))))
             (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
                          (org-agenda-files '("~/documents/supervisor/gsd.org"))
                          (org-super-agenda-groups
                           '((:name ""
-                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+				   :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
                              :order 2)
                             (:discard (:anything))
                             ))))
             (alltodo "" ((org-agenda-overriding-header "Next tasks")
                          (org-super-agenda-groups
                           '((:name ""
-                             :todo "NEXT"
-                             :order 4)
+				   :todo "NEXT"
+				   :order 4)
                             (:discard (:anything))
                             ))))
-            (alltodo "" ((org-agenda-overriding-header "All items")
+	    (alltodo "" ((org-agenda-overriding-header "Projects")
+			 (org-agenda-files '("~/documents/supervisor/projects.org"))
                          (org-super-agenda-groups
                           '((:name ""
-                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
-                             :order 5)
+				   :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+				   :order 2)
                             (:discard (:anything))
-                            ))))
+                            )
+                            )))
+
+            (alltodo "" ((org-agenda-overriding-header "Other")
+                         (org-super-agenda-groups
+                          '((:name ""
+				   :file-path "inbox"
+				   :order 5)
+                            (:discard (:anything t)))
+                            )))
             )
            )
           )

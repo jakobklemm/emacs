@@ -30,14 +30,6 @@
 
 (set-cursor-color "#D069D6")
 
-(use-package beacon
-  :ensure t
-  :custom
-  (beacon-color "#D271D8")
-  :config
-  (beacon-mode 1)
-  )
-
 ;; Margins
 (defcustom perfect-margin-ignore-regexps
   '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
