@@ -55,13 +55,13 @@
 
     "H" 'evil-backward-word-begin
     "S" 'evil-forward-word-end
-    "T" 'evil-scroll-page-down
-    "N" 'evil-scroll-page-up
+    "T" 'evil-backward-paragraph
+    "N" 'evil-forward-paragraph
     
-    "l" 'evil-first-non-blank
-    "r" 'evil-end-of-line
-    "g" 'backward-paragraph
-    "q" 'forward-paragraph
+    "l" 'evil-backward-word-begin
+    "r" 'evil-forward-word-end
+    "g" 'evil-first-non-blank
+    "q" 'evil-end-of-line
 
     "m" 'evil-insert
     "z" 'evil-open-below

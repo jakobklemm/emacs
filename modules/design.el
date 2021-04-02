@@ -1,9 +1,9 @@
 ;; Design / look & feel of emacs
 
-(use-package kaolin-themes
+(use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'kaolin-aurora t)
+  (load-theme 'dracula t)
   )
 
 (global-prettify-symbols-mode 1)
