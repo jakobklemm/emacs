@@ -53,8 +53,8 @@
     "h" 'evil-backward-char
     "s" 'evil-forward-char
 
-    "H" 'evil-backward-word-begin
-    "S" 'evil-forward-word-end
+    "H" 'evil-scroll-page-up
+    "S" 'evil-scroll-page-down
     "T" 'evil-backward-paragraph
     "N" 'evil-forward-paragraph
     
@@ -87,11 +87,7 @@
     ;; "Temporary quick binds.
     "j" 'kill-buffer-and-window
     "'" 'mu4e-headers-search-bookmark
-    "a" 'find-file
-
-    ;; "c" 'org-capture
-    ;; "k" 'org-schedule
-    ;; "x" 'org-deadline
+    
     )
    )
   

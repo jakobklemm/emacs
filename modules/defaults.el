@@ -6,9 +6,6 @@
 ;; operations.
 (setq gc-cons-threshold 20000000)
 
-;; Call DELETE-TRAILING-WHITESPACE every time a buffer is saved.
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 ;; Treat CamelCaseSubWords as separate words in every programming
 ;; mode.
 (add-hook 'prog-mode-hook 'subword-mode)
@@ -88,7 +85,7 @@
 (global-hl-line-mode)
 
 ;; Hide the modeline
-;; (setq mode-line-format nil)
+(setq mode-line-format nil)
 
 ;; Error handling
 (setq warning-minimum-level :emergency)
@@ -100,7 +97,6 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'gfm-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
-
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))

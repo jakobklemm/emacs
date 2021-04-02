@@ -40,10 +40,6 @@
       org-confirm-babel-evaluate nil
       org-use-speed-commands t
       org-catch-invisible-edits 'show
-
-      ;; Inline images
-      org-startup-with-inline-images t
-      org-image-actual-width '(600)
       )
 
 (require 'org-pretty-table)

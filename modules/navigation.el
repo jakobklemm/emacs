@@ -96,11 +96,6 @@
         aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
   )
 
-;; Dump jump for context based navigation
-(use-package dumb-jump
-  :ensure t
-  :config (setq dumb-jump-selector 'ivy))
-
 ;; enhance the completion framework
 (use-package orderless
   :ensure t
