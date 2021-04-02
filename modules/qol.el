@@ -32,22 +32,6 @@
   (interactive)
   (kill-buffer (current-buffer)))
 
-;; Google search
-(use-package engine-mode
-  :ensure t
-  :config
-  (engine-mode t)
-  (defengine duckduckgo
-    "https://duckduckgo.com/?q=%s"
-    :keybinding "p")
-  (defengine google
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
-    :keybinding "g")
-  (defengine github
-    "https://github.com/search?ref=simplesearch&q=%s"
-    :keybinding "d")
-  )
-
 ;; For highly serious work
 (use-package malyon
   :ensure t

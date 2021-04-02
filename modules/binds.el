@@ -53,9 +53,6 @@
   :ensure t
   )
 
-;;(evil-set-initial-state 'pdf-view-mode 'normal)
-;;(evil-set-initial-state 'image-mode 'normal)
-
 (setq evil-emacs-state-modes nil)
 (setq evil-insert-state-modes nil)
 (setq evil-motion-state-modes nil)

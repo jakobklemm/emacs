@@ -1,4 +1,4 @@
-;; Org-mode productivity
+
 ;; Agenda, Tasks, Refile, Capture
 
 (setq
@@ -19,14 +19,8 @@
   (interactive "P")
   (org-agenda arg "d"))
 
-;; Make agenda a global keybind.
-(global-set-key (kbd "C-c  a") 'org-agenda)
 ;; Direct access to super-agenda
 (global-set-key [f1] 'agenda/super)
-
-(define-key org-mode-map (kbd "C-c d") 'org-deadline)
-(define-key org-mode-map (kbd "C-c s") 'org-schedule)
-(define-key org-mode-map (kbd "C-c e") 'org-set-effort)
 
 (defun todo/done ()
   (interactive)

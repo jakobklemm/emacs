@@ -31,6 +31,14 @@
     )
   )
 
+(use-package elixir-mode
+  :ensure t
+  )
+
+(use-package rust-mode
+  :ensure t
+  )
+
 (use-package markdown-mode
   :custom
   (markdown-hide-markup nil)
