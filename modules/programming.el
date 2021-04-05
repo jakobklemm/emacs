@@ -1,10 +1,5 @@
 ;; Programming
 
-;; Dedicated setups
-(load-file (concat user-emacs-directory "modules/elixir.el"))
-(load-file (concat user-emacs-directory "modules/rust.el"))
-
-
 ;; General modes
 
 ;; General major modes
