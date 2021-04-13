@@ -2,12 +2,13 @@
 #+AUTHOR: Jakob Klemm
 #+DATE: 17.12.2020
 
-nothing special here, just my personal emacs config. it has a lot of external dependencies and no guide or tutorial.
-use at own risk and don't expect help, this isn't tech support.
-* Installation
+nothing special here, just my personal emacs config. it has a lot of
+external dependencies and no guide or tutorial. use at own risk and
+don't expect help, this isn't tech support.
+* Requirements
 - Recoll
 - SQLite
-- .tools (private repository)
+- ~/.tools (private repository)
 - Fira Code Pro
 - GPG-Keys
 - Gnuplot (https://plantuml.com/de/emacs)

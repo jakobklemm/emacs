@@ -2,6 +2,12 @@
 
 (setq scroll-margin 8)
 
+(use-package good-scroll
+  :ensure t
+  :config
+  (good-scroll-mode 1)
+  )
+
 (use-package smartparens
   :ensure t
   :hook
