@@ -118,8 +118,8 @@
   "bb" 'ivy-switch-buffer
   "bf" 'find-file
   "bF" 'ido-find-file
+  "br" 'org-recoll-search
   "bh" 'previous-buffer
-  
   )
 
 ;; Windows & Navigation
