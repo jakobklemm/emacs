@@ -13,16 +13,19 @@
      ("\\.x?html?\\'" . default)
      ("\\.pdf\\'" . emacs)))
 
-(use-package org-alert
-  :ensure t
-  :config
-  (setq alert-default-style 'libnotify
-	org-alert-interval 600
-	org-alert-notification-title "Agenda"
-	)
-  (org-alert-enable)
-  )
+;; (use-package org-alert
+;;   :ensure t
+;;   :config
+;;   (setq alert-default-style 'libnotify
+;; 	org-alert-interval 600
+;; 	org-alert-notification-title "Agenda"
+;; 	)
+;;   (org-alert-enable)
+;;   )
 
 (use-package disable-mouse
   :ensure t
   :hook (org-mode . disable-mouse-mode))
+
+(load "org-recoll")
+
