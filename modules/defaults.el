@@ -4,7 +4,7 @@
 ;; Allow 20MB of memory (instead of 0.76MB) before calling garbage
 ;; collection. This means GC runs less often, which speeds up some
 ;; operations.
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold 2000000000)
 
 ;; Treat CamelCaseSubWords as separate words in every programming
 ;; mode.

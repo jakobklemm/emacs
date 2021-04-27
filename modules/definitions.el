@@ -1,8 +1,6 @@
 ;; Definitions
 
 (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
-(global-set-key (kbd "C-x C-f") 'ido-find-file)
-(global-set-key (kbd "C-x b") 'ido-switch-buffer)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "<f5>") 'home-file)
 (global-set-key (kbd "<f6>") 'projects-file)
@@ -115,9 +113,8 @@
   "bs" 'save-buffer
   "bk" 'kill-current-buffer
   "bj" 'kill-buffer-and-window
-  "bb" 'ivy-switch-buffer
-  "bf" 'find-file
-  "bF" 'ido-find-file
+  "bb" 'helm-mini
+  "bf" 'helm-find-files
   "br" 'org-recoll-search
   "bh" 'previous-buffer
   )
