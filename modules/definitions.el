@@ -5,6 +5,8 @@
 (global-set-key (kbd "<f5>") 'home-file)
 (global-set-key (kbd "<f6>") 'projects-file)
 
+(global-set-key (kbd "§") 'helm-resume)
+
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand)

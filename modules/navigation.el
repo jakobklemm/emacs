@@ -18,5 +18,6 @@
   (global-set-key (kbd "C-s") 'helm-occur)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-l") 'helm-find-files-up-one-level)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   )

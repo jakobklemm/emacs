@@ -1,8 +1,5 @@
 ;; Programming
 
-;; General modes
-
-;; General major modes
 (use-package web-mode
   :ensure t
   :config
