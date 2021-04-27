@@ -13,7 +13,16 @@
         ("PAL" . (:foreground "#30bb03" :weight bold))
         ("STATIC" . (:foreground "#eaa222" :weight bold))
         ("DONE" . (:foreground "#ffffff" :weight bold))
-        ))
+        )
+      org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
+                               "* TODO %?\n  %i\n  %a")
+                              )
+      org-tag-alist '(("drill" . ?d))
+      org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
+			   ("~/documents/supervisor/last.org" :maxlevel . 1)
+			   ("~/documents/supervisor/gsd.org" :maxlevel . 1)
+			   )
+      )
 
 (defun agenda/super (&optional arg)
   (interactive "P")
@@ -43,64 +52,11 @@
     (find-file "~/documents/supervisor/projects.org")
     )
 
-;; Project Orion - Journal Template
-(defun jk/orion-template ()
-  (interactive)
-  (insert "
-* " (format-time-string "%d.%m.%Y")
-"
-zsm
-
-** Erledigt
--
-
-** Planung & Gedanken
--
-
-** Aufgaben
-*** TODO
-
-
-")
-  )
-
 (use-package org-super-agenda
   :ensure t
   :init
   (setq org-agenda-custom-commands
-        '(("s" "Super Agenda - Week"
-           ((agenda "" ((org-agenda-span 'week)
-                        (org-super-agenda-groups
-                         '((:name "Today"
-                            :time-grid t
-                            :date today
-                            :scheduled today
-                            :order 1)))))
-            (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
-                         (org-agenda-files '("~/documents/supervisor/gsd.org"))
-                         (org-super-agenda-groups
-                          '((:name ""
-                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
-                             :order 2)
-                            (:discard (:anything))
-                            ))))
-            (alltodo "" ((org-agenda-overriding-header "Next tasks")
-                         (org-super-agenda-groups
-                          '((:name ""
-                             :todo "NEXT"
-                             :order 4)
-                            (:discard (:anything))
-                            ))))
-            (alltodo "" ((org-agenda-overriding-header "All items")
-                         (org-super-agenda-groups
-                          '((:name ""
-                             :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
-                             :order 5)
-                            (:discard (:anything))
-                            ))))
-            )
-           )
-          ("d" "Super Agenda - Day"
+        '(("d" "Super Agenda - Day"
            ((agenda "" ((org-agenda-span 'day)
                         (org-super-agenda-groups
                          '((:name "Today"
@@ -132,7 +88,6 @@ zsm
                             (:discard (:anything))
                             )
                             )))
-
             (alltodo "" ((org-agenda-overriding-header "Other")
                          (org-super-agenda-groups
                           '((:name ""
@@ -178,20 +133,3 @@ zsm
   (org-mark-ring-push)
   (ivy/refile-to "~/documents/supervisor/last.org" "Week")
   (org-mark-ring-goto))
-
-(setq
- org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
-		      ("~/documents/supervisor/last.org" :maxlevel . 1)
-		      ;;("~/documents/supervisor/inbox.org" :maxlevel . 3)
-		      ;;("~/documents/supervisor/areas.org" :maxlevel . 3)
-		      ;;("~/documents/supervisor/events.org" :maxlevel . 1)
-		      ("~/documents/supervisor/gsd.org" :maxlevel . 1)
-		      )
- )
-
-(setq
- org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
-                          "* TODO %?\n  %i\n  %a")
-                         )
- org-tag-alist '(("drill" . ?d))
- )

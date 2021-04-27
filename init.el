@@ -4,7 +4,6 @@
 
 (require 'package) ;; Emacs builtin
 
-
 ;; set package.el repositories
 (setq package-archives
 '(
@@ -48,7 +47,7 @@
 ;; Editor
 (load-file (concat user-emacs-directory "modules/editor.el"))
 ;; Projects
-(load-file (concat user-emacs-directory "modules/projects.el"))
+(load-file (concat user-emacs-directory "modules/vcs.el"))
 ;; Org-mode
 (load-file (concat user-emacs-directory "modules/org.el"))
 ;; Programming
@@ -57,10 +56,6 @@
 (load-file (concat user-emacs-directory "modules/com.el"))
 ;; Binds
 (load-file (concat user-emacs-directory "modules/binds.el"))
-;; Window manager
-;;(load-file (concat user-emacs-directory "modules/windows.el"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
-
-(message "Loading completed!")
