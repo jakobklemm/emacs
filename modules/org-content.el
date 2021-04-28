@@ -10,8 +10,6 @@
    org-roam-directory (file-truename "~/documents/vaults/database/")
    org-roam-db-location "~/documents/vaults/org-roam.db"
    org-roam-db-gc-threshold most-positive-fixnum
-   org-roam-graph-exclude-matcher "private"
-   org-roam-tag-sources '(prop last-directory)
    )
   :config
   (setq org-roam-capture-templates
@@ -21,11 +19,7 @@
            :head "#+TITLE: ${title}\n"
            :immediate-finish t
            :unnarrowed t)
-          ("f" "unchanged" plain (function org-roam-capture--get-point)
-           "%?"
-           :head "#+TITLE: ${title}\n"
-           :immediate-finish t
-           :unnarrowed t)))
+           ))
   (use-package org-roam-server
     :ensure t
     :config
@@ -40,21 +34,10 @@
         org-roam-server-network-label-wrap-length 20))
   )
 
-
 ;; Spaced repetition
 (use-package org-drill
   :ensure t
   :config
   (setq org-drill-use-visible-cloze-face-p t)
   (setq org-drill-hide-item-headings-p t)
-  )
-
-;; Project Orion - Journal Template
-(defun jk/drill ()
-  (interactive)
-  (insert "
-* Item       :drill:
-
-** Answer
-")
   )

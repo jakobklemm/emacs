@@ -1,11 +1,11 @@
 ;; Definitions
 
 (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
-(global-set-key (kbd "C-x C-f") 'ido-find-file)
-(global-set-key (kbd "C-x b") 'ido-switch-buffer)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "<f5>") 'home-file)
 (global-set-key (kbd "<f6>") 'projects-file)
+
+(global-set-key (kbd "§") 'helm-resume)
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
@@ -87,7 +87,6 @@
     ;; "Temporary quick binds.
     "j" 'kill-buffer-and-window
     "'" 'mu4e-headers-search-bookmark
-    
     )
    )
   
@@ -104,7 +103,8 @@
     "h" 'home-file
     "j" 'projects-file
     "c" 'org-capture
-    "x" 'todo/done
+    "c" 'todo/done
+    "x" 'helm-M-x
   )
   )
 
@@ -115,9 +115,8 @@
   "bs" 'save-buffer
   "bk" 'kill-current-buffer
   "bj" 'kill-buffer-and-window
-  "bb" 'ivy-switch-buffer
-  "bf" 'find-file
-  "bF" 'ido-find-file
+  "bb" 'helm-mini
+  "bf" 'helm-find-files
   "br" 'org-recoll-search
   "bh" 'previous-buffer
   )
@@ -144,7 +143,7 @@
 ;; 3
 (my-leader-def
   :keymaps 'normal
-  "ss" 'swiper
+  "ss" 'helm-occur
   "sS" 'swiper-all
   "sr" 'replace-string
   "seg" 'engine/search-google

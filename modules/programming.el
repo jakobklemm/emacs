@@ -1,13 +1,5 @@
 ;; Programming
 
-;; General modes
-
-;; General major modes
-(use-package js2-mode
-  :ensure t
-  :mode ("\\.js\\'" . js2-mode)
-  )
-
 (use-package web-mode
   :ensure t
   :config
@@ -16,14 +8,6 @@
 	      (rainbow-mode)
 	      (rspec-mode)
 	      (setq web-mode-markup-indent-offset 2)))
-  )
-
-(use-package go-mode
-  :ensure t
-  :config
-  (use-package go-errcheck
-    :ensure t
-    )
   )
 
 (use-package elixir-mode
@@ -52,15 +36,6 @@
   (markdown-list-face ((t (:foreground "mediumpurple"))))
   (markdown-pre-face ((t (:foreground "#bd98fe"))))
   :mode "\\.md\\'")
-
-(use-package markdown-toc
-  :ensure t
-  )
-
-(use-package logview
-  :defer t
-  :ensure t
-  )
 
 (use-package systemd
   :ensure t

@@ -19,13 +19,6 @@
   (sp-pair "<" ">" :actions '(wrap))
   (sp-pair "$" "$" :actions '(wrap)))
 
-(use-package undo-tree
-  :ensure t
-  :bind
-  ("M-/" . undo-tree-redo)
-  :config
-  (global-undo-tree-mode))
-
 (setq ispell-program-name "hunspell")
 
 (setq ispell-local-dictionary "en_US")
@@ -57,24 +50,6 @@
       lsp-ui-doc-show-with-cursor t
       )
 
-;; company stuff
-(use-package company
-  :ensure t
-  :init
-  (setq company-idle-delay 0.2)
-  :config
-  (progn
-    (add-hook 'after-init-hook 'global-company-mode)))
-
-(use-package company-posframe
-  :ensure t
-  :config
-  (company-posframe-mode 1))
-
-(use-package company-box
-  :ensure t
-  :hook (company-mode . company-box-mode))
-
 (use-package lsp-mode
   :ensure t
   :commands lsp
@@ -97,9 +72,4 @@
 	lsp-ui-doc-show-with-mouse t
 	lsp-ui-doc-show-with-cursor t
       )
-  )
-
-(use-package lsp-ivy
-  :ensure t
-  :commands lsp-ivy-workspace-symbol
   )

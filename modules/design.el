@@ -8,25 +8,7 @@
 
 (global-prettify-symbols-mode 1)
 
-(defun add-pretty-lambda ()
-  "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
-  (setq prettify-symbols-alist
-        '(
-          ("lambda" . 955)
-          ("->" . 8594)
-          ("<-" . 8592)
-          ("<=" . 8804)
-          (">=" . 8805)
-          ("=~" . 8771)
-          ("!=" . 8800)
-          )
-        )
-  )
-
-(add-hook 'prog-mode-hook 'add-pretty-lambda)
-(add-hook 'org-mode-hook 'add-pretty-lambda)
-
-(set-frame-font "Fira Code 11" nil t)
+(set-frame-font "Iosevka 11" nil t)
 
 (set-cursor-color "#D069D6")
 
@@ -49,11 +31,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   (perfect-margin-mode 1)
   )
 
-(defun current-buffer ()
-  (interactive)
-  (message (buffer-name))
-  )
-
 (use-package rainbow-delimiters
   :ensure t
   :config
@@ -66,12 +43,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   )
 
 (add-hook 'prog-mode-hook #'hl-todo-mode)
-
-(use-package minions
-  :ensure t
-  :config
-  (minions-mode 1)
-  )
 
 (use-package    feebleline
   :ensure       t
