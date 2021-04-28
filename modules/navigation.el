@@ -8,6 +8,8 @@
 	helm-move-to-line-cycle-in-source  t
 	helm-ff-file-name-history-use-recentf t
 	helm-M-x-fuzzy-match t
+	helm-buffers-fuzzy-matching t
+	helm-recentf-fuzzy-match    t
 	)
   :config
   (helm-mode 1)
@@ -21,3 +23,8 @@
   (global-set-key (kbd "C-l") 'helm-find-files-up-one-level)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   )
+
+(setq helm-posframe-width 200)
+
+(require 'helm-posframe)
+(helm-posframe-enable)

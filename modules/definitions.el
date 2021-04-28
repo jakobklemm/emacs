@@ -87,7 +87,6 @@
     ;; "Temporary quick binds.
     "j" 'kill-buffer-and-window
     "'" 'mu4e-headers-search-bookmark
-    
     )
    )
   
@@ -104,7 +103,8 @@
     "h" 'home-file
     "j" 'projects-file
     "c" 'org-capture
-    "x" 'todo/done
+    "c" 'todo/done
+    "x" 'helm-M-x
   )
   )
 
@@ -143,7 +143,7 @@
 ;; 3
 (my-leader-def
   :keymaps 'normal
-  "ss" 'swiper
+  "ss" 'helm-occur
   "sS" 'swiper-all
   "sr" 'replace-string
   "seg" 'engine/search-google
