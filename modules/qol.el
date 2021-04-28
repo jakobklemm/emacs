@@ -16,7 +16,6 @@
   (split-window-below)
   (balance-windows)
   (other-window 1)
-  ;;(ivy-switch-buffer)
   (helm-mini)
   )
 
@@ -26,7 +25,6 @@
   (split-window-right)
   (balance-windows)
   (other-window 1)
-  ;;(ivy-switch-buffer)
   (helm-mini)
   )
 
@@ -37,4 +35,13 @@
 ;; For highly serious work
 (use-package malyon
   :ensure t
+  )
+
+(use-package which-key-posframe
+  :ensure t
+  :init
+  (setq which-key-posframe-poshandler 'posframe-poshandler-frame-top-center)
+  (setq which-key-posframe-width 20)
+  :config
+  (which-key-posframe-mode)
   )
