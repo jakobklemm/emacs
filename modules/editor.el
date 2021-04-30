@@ -29,6 +29,8 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
+(add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
+
 ;; Snippets
 (use-package yasnippet
   :ensure t
