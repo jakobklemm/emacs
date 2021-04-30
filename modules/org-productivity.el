@@ -14,13 +14,15 @@
         ("STATIC" . (:foreground "#eaa222" :weight bold))
         ("DONE" . (:foreground "#ffffff" :weight bold))
         )
-      org-capture-templates '(("c" "Inbox TODO" entry (file "~/documents/supervisor/inbox.org")
+      org-capture-templates '(("x" "Inbox TODO" entry (file "~/documents/aggregation.org")
                                "* TODO %?\n  %i\n  %a")
+			      ("c" "Common" entry (file+headline "~/documents/active.org" "Common")
+			       "* TODO %?\n%U\n   %c" :empty-lines 1)
                               )
+
       org-tag-alist '(("drill" . ?d))
-      org-refile-targets '(("~/documents/supervisor/projects.org" :maxlevel . 3)
-			   ("~/documents/supervisor/last.org" :maxlevel . 1)
-			   ("~/documents/supervisor/gsd.org" :maxlevel . 1)
+      org-refile-targets '(("~/documents/active.org" :maxlevel . 1)
+			   ("~/documents/completed.org" :maxlevel . 1)
 			   )
       )
 
@@ -37,19 +39,22 @@
 
 (defun todo/todo  ()
   (interactive)
-  (org-todo 'todo)
-  (org-priority-up)
-  (org-deadline nil (org-read-date nil nil "+1d"))
+  (org-todo "NEXT")
+  (org-mark-ring-push)
+  (ivy/refile-to "~/documents/active.org" "Today")
+  (org-mark-ring-goto)
+  ;;(org-priority-up)
+  ;;(org-deadline nil (org-read-date nil nil "+1d"))
   )
 
 (defun home-file ()
     (interactive)
-    (find-file "~/documents/supervisor/gsd.org")
+    (find-file "~/documents/active.org")
     )
 
 (defun projects-file ()
     (interactive)
-    (find-file "~/documents/supervisor/projects.org")
+    (find-file "~/documents/aggregation.org")
     )
 
 (use-package org-super-agenda
@@ -64,26 +69,19 @@
 				  :date today
 				  :scheduled today
                             :order 1)))))
-            (alltodo "" ((org-agenda-overriding-header "Ivy-Lee")
-                         (org-agenda-files '("~/documents/supervisor/gsd.org"))
-                         (org-super-agenda-groups
-                          '((:name ""
-				   :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
-                             :order 2)
-                            (:discard (:anything))
-                            ))))
-            (alltodo "" ((org-agenda-overriding-header "Next tasks")
+            (alltodo "" ((org-agenda-overriding-header "Next")
+			 (org-agenda-files '("~/documents/active.org"))
                          (org-super-agenda-groups
                           '((:name ""
 				   :todo "NEXT"
-				   :order 4)
+				   :order 1)
                             (:discard (:anything))
                             ))))
 	    (alltodo "" ((org-agenda-overriding-header "Projects")
-			 (org-agenda-files '("~/documents/supervisor/projects.org"))
+			 (org-agenda-files '("~/documents/active.org"))
                          (org-super-agenda-groups
                           '((:name ""
-				   :todo ("TODO" "NEXT" "STATIC" "BLOCKED")
+				   :todo ("TODO" "STATIC" "BLOCKED")
 				   :order 2)
                             (:discard (:anything))
                             )
@@ -91,7 +89,7 @@
             (alltodo "" ((org-agenda-overriding-header "Other")
                          (org-super-agenda-groups
                           '((:name ""
-				   :file-path "inbox"
+				   :file-path "aggregation"
 				   :order 5)
                             (:discard (:anything t)))
                             )))
@@ -124,12 +122,12 @@
   "Move current headline to bookmarks"
   (interactive)
   (org-mark-ring-push)
-  (ivy/refile-to "~/documents/supervisor/gsd.org" "gsd.org")
+  (ivy/refile-to "~/documents/active.org" "Today")
   (org-mark-ring-goto))
 
 (defun ivy/last ()
   "Move current headline to bookmarks"
   (interactive)
   (org-mark-ring-push)
-  (ivy/refile-to "~/documents/supervisor/last.org" "Week")
+  (ivy/refile-to "~/documents/completed.org" "Week")
   (org-mark-ring-goto))

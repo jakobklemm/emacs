@@ -28,3 +28,11 @@
 
 (require 'helm-posframe)
 (helm-posframe-enable)
+
+;; Ace window for easy window navigation
+(use-package ace-window
+  :ensure t
+  :init
+  (setq aw-scope 'frame ; limit to single frame
+        aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+  )
