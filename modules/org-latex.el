@@ -18,6 +18,9 @@
   :ensure t
   )
 
+(require 'ox-hugo)
+(setq org-hugo-auto-set-lastmod t)
+
 (use-package plantuml-mode
   :ensure t
   :config

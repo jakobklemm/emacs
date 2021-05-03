@@ -90,7 +90,7 @@
     )
    )
   
-(when (string-equal system-name "86d38172")
+(when (string-equal system-name "hunter")
   ;; Quick access (selection)
   (my-leader-def
     :keymaps 'normal
@@ -103,8 +103,8 @@
     "h" 'home-file
     "j" 'projects-file
     "c" 'org-capture
-    "c" 'todo/done
     "x" 'helm-M-x
+    "l" (lambda () ((interactive) (evil-forward-char 1 t t)))
   )
   )
 

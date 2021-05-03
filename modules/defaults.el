@@ -88,7 +88,7 @@
 (setq mode-line-format nil)
 
 ;; Error handling
-(setq warning-minimum-level :emergency)
+;; (setq warning-minimum-level :emergency)
 
 ;; Make it affect all buffers.
 (setq-default mode-line-format nil)
@@ -102,3 +102,5 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+(setq byte-compile-warnings '(cl-functions))
