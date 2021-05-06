@@ -1,0 +1,22 @@
+;;; -*- coding: utf-8; mode: lisp-data -*-
+(("/home/jeykey/.emacs.d/README.org" . 7446)
+ ("/home/jeykey/.emacs.d/"
+  (dired-filename . "/home/jeykey/.emacs.d/README.org"))
+ ("/home/jeykey/"
+  (dired-filename . "/home/jeykey/.emacs.d"))
+ ("/home/jeykey/.emacs.d/init.el" . 594)
+ ("/home/jeykey/.emacs.d/elpa/disk-usage-1.3.3/disk-usage-autoloads.el" . 862)
+ ("/home/jeykey/.emacs.d/elpa/ace-window-20200606.1259/ace-window-autoloads.el" . 2456)
+ ("/home/jeykey/.emacs.d/elpa/avy-20201226.1734/avy-autoloads.el" . 8806)
+ ("/home/jeykey/.emacs.d/elpa/helm-posframe-20210412.1147/helm-posframe-autoloads.el" . 505)
+ ("/home/jeykey/.emacs.d/elpa/posframe-20210423.220/posframe-autoloads.el" . 7297)
+ ("/home/jeykey/.emacs.d/elpa/helm-20210504.540/helm-autoloads.el" . 35397)
+ ("/home/jeykey/.emacs.d/elpa/popup-20210317.138/popup-autoloads.el" . 375)
+ ("/home/jeykey/.emacs.d/elpa/helm-core-20210504.1723/helm-core-autoloads.el" . 6720)
+ ("/home/jeykey/.emacs.d/elpa/async-20210501.1527/async-autoloads.el" . 5980)
+ ("/home/jeykey/.emacs.d/elpa/hl-todo-20210504.1406/hl-todo-autoloads.el" . 2785)
+ ("/home/jeykey/.emacs.d/elpa/all-the-icons-20210425.1035/all-the-icons-autoloads.el" . 2226)
+ ("/home/jeykey/.emacs.d/elpa/feebleline-20190822.1401/feebleline-autoloads.el" . 1276)
+ ("/home/jeykey/.emacs.d/elpa/perfect-margin-20190722.126/perfect-margin-autoloads.el" . 1326)
+ ("/home/jeykey/.emacs.d/elpa/dracula-theme-20210502.1743/dracula-theme-autoloads.el" . 638)
+ ("/home/jeykey/.emacs.d/.gitignore" . 586))

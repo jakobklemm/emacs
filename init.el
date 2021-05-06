@@ -1,61 +1,35 @@
-;; Entry point for the emacs config.
-;; Most config is not happening in this file, but managed by "setup.el"
-;; This file simply installs use-package, which is used in the entire config.
+;; Entry point for emacs config.
 
-(require 'package) ;; Emacs builtin
+(require 'package)
 
-;; set package.el repositories
-(setq package-archives
-'(
-   ("org" . "https://orgmode.org/elpa/")
-   ("gnu" . "https://elpa.gnu.org/packages/")
-   ("melpa" . "https://melpa.org/packages/")
-))
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http:///orgmode.org/elpa/") t)
 
-;; initialize built-in package management
-(package-initialize)
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package)
+  )
 
-;; update packages list if we are on a new install
-(unless package-archive-contents
-  (package-refresh-contents))
+(setq use-package-always-ensure t
+      use-package-expand-minimally t
+      use-package-compute-statistics t
+      use-package-enable-imenu-support t
+      )
 
-;; a list of pkgs to programmatically install
-;; ensure installed via package.el
-(setq my-package-list '(use-package))
 
-;; programmatically install/ensure installed
-;; pkgs in your personal list
-(dolist (package my-package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(use-package quelpa-use-package
-  :ensure t)
-
-;; Config structure:
-
-;; Store scripts and snippets in ressource/ directory
-(add-to-list 'load-path "~/.emacs.d/resources/")
-;; Initial settings, disable some emacs features.
-(load-file (concat user-emacs-directory "modules/defaults.el"))
-;; Quality of life changes
-(load-file (concat user-emacs-directory "modules/qol.el"))
-;; Design
-(load-file (concat user-emacs-directory "modules/design.el"))
-;; Navigation
-(load-file (concat user-emacs-directory "modules/navigation.el"))
-;; Editor
-(load-file (concat user-emacs-directory "modules/editor.el"))
-;; Projects
-(load-file (concat user-emacs-directory "modules/vcs.el"))
-;; Org-mode
-(load-file (concat user-emacs-directory "modules/org.el"))
-;; Programming
-(load-file (concat user-emacs-directory "modules/programming.el"))
-;; Communication
-(load-file (concat user-emacs-directory "modules/com.el"))
-;; Binds
-(load-file (concat user-emacs-directory "modules/binds.el"))
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+(org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(perfect-margin use-package dracula-theme auto-package-update)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

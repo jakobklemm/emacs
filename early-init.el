@@ -1,7 +1,8 @@
-;;; init.el --- -*- lexical-binding: t -*-
-;; DeferGC
-(setq gc-cons-threshold 10000000000)
-;; -DeferGC
+;; Early init file for easier startup
+
+(setq gc-cons-threshold 1000000000)
+
+(menu-bar-mode -1)
 
 (set-window-scroll-bars (minibuffer-window) nil nil)
 

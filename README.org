@@ -5,15 +5,323 @@
 nothing special here, just my personal emacs config. it has a lot of
 external dependencies and no guide or tutorial. use at own risk and
 don't expect help, this isn't tech support.
-* Requirements
-- Recoll
-- SQLite
-- ~/.tools (private repository)
-- Fira Code Pro
-- GPG-Keys
-- Gnuplot (https://plantuml.com/de/emacs)
 
-* Important
-- Just a personal config, not written to be used by other people.
-- Designed for personal workflow.
-- Keybinds for Ergodox Ez + Custom dvorak (https://configure.ergodox-ez.com/ergodox-ez/layouts/RQBaW/latest/0)
+All config is in this file and evaluated using org-babel.
+
+* Setup
+** Packages
+   Init & Refresh
+   #+begin_src emacs-lisp
+       (unless package-archive-contents
+	 (package-refresh-contents)
+       )
+       (package-initialize)
+   #+end_src
+   Setup
+   #+begin_src emacs-lisp
+     (setq my-package-list '(use-package))
+
+     (dolist (package my-package-list)
+     (unless (package-installed-p package)
+     (package-install package)))
+   #+end_src
+** User infos
+   #+begin_src emacs-lisp
+   (setq user-full-name "Jakob Klemm")
+   (setq user-mail-address "github@jeykey.net")
+   #+end_src
+   
+** Load path
+   Add the =lisp= directory to the load path, placing more packages
+   there.
+   #+begin_src emacs-lisp
+   (add-to-list 'load-path "~/.emacs.d/lisp/")
+   #+end_src
+** Defaults
+   Some defaults & minor settings adjusted all at once.
+   #+begin_src emacs-lisp
+     ;; Camel case everywhere
+     (add-hook 'prog-mode-hook 'subword-mode)
+     ;; Single space after sentences.
+     (setq sentence-end-double-space nil)
+     (transient-mark-mode t)
+     (setq-default fill-column 80)
+     (auto-fill-mode t)
+     (show-paren-mode t)
+     (setq show-paren-delay 0.0)
+     ;; Disable audible bell
+     (setq ring-bell-function 'ignore)
+     (setq visible-bell nil)
+     ;; y/n instead of yes/no
+     (fset 'yes-or-o-p 'y-or-n-p)
+     (setq confirm-kill-emacs 'y-or-n-p)
+     (setq inhibit-startup-message t)
+     (setq initial-scratch-message nil)
+     (global-auto-revert-mode t)
+     ;; Move to trash
+     (setq delete-by-moving-to-trash t)
+     (setq indent-tabs-mode t)
+     (setq indent-line-functions 'insert-tab)
+     (setq indent-line-function 'insert-tab)
+     ;; Location in a file
+     (save-place-mode t)
+     ;; UTF-8 for everything
+     (set-language-environment "UTF-8")
+     ;; Smoth scrolling
+     (setq scroll-conservatively 100)
+     ;; Highlight current line
+     (setq mode-line-format nil)
+     (setq-default mode-line-format nil)
+     ;; Line wrap mode
+     (add-hook 'text-mode-hook 'auto-fill-mode)
+     (add-hook 'gfm-mode-hook 'auto-fill-mode)
+     (add-hook 'org-mode-hook 'auto-fill-mode)
+     (setq backup-directory-alist
+	   `((".*" . ,temporary-file-directory)))
+     (setq auto-save-file-name-transforms
+	   `((".*" ,temporary-file-directory t)))
+   #+end_src
+* Interface
+** Disable
+   Turn off most UI elements.
+   #+begin_src emacs-lisp
+     (tool-bar-mode 0)
+     (menu-bar-mode 0)
+     (scroll-bar-mode -1)
+   #+end_src
+** Font & Theme
+   #+begin_src emacs-lisp
+     ;; Font
+     (set-frame-font "Fira Code 11" nil t)
+
+     ;; Color
+     (set-cursor-color "#D069D6")
+
+     ;; Theme
+     (use-package dracula-theme
+       :config
+       (load-theme 'dracula t)
+       )
+   #+end_src
+** Symbols
+   #+begin_src emacs-lisp
+     (global-prettify-symbols-mode 1)
+
+     ;; Special names / items
+     (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+					    ("#+END_SRC" . "λ")
+					    ("#+begin_src" . "λ")
+					    ("#+end_src" . "λ")
+					    ("#+TITLE:" . "𝙏")
+					    ("#+title:" . "𝙏")
+					    ("#+SUBTITLE:" . "𝙩")
+					    ("#+subtitle:" . "𝙩")
+					    ("#+DATE:" . "𝘿")
+					    ("#+date:" . "𝘿")
+					    ("#+PROPERTY:" . "☸")
+					    ("#+property:" . "☸")
+					    ("#+OPTIONS:" . "⌥")
+					    ("#+options:" . "⌥")
+					    ("#+LATEX_HEADER:" . "⇾")
+					    ("#+latex_header:" . "⇾")
+					    ("#+LATEX_CLASS:" . "⇥")
+					    ("#+latexx_class:" . "⇥")
+					    ("#+ATTR_LATEX:" . "🄛")
+					    ("#+attr_latex:" . "🄛")
+					    ("#+LATEX:" . "ℓ")
+					    ("#+latex:" . "ℓ")
+					    ("#+ATTR_HTML:" . "🄗")
+					    ("#+attr_html:" . "🄗")
+					    ("#+BEGIN_QUOTE:" . "❮")
+					    ("#+begin_quote:" . "❮")
+					    ("#+END_QUOTE:" . "❯")
+					    ("#+end_quote:" . "❯")
+					    ("#+CAPTION:" . "☰")
+					    ("#+caption:" . "☰")
+					    (":PROPERTIES:" . "⚙")
+					    (":properties:" . "⚙")
+					    ("#+AUTHOR:" . "A")
+					    ("#+author:" . "A")
+					    ("#+IMAGE:" . "I")
+					    ("#+image:" . "I")
+					    ("#+LANGUAGE:" . "L")
+					    ("#+language:" . "L")
+					    ))
+
+     (setq prettify-symbols-unprettify-at-point 'right-edge)
+     (add-hook 'org-mode-hook 'prettify-symbols-mode)
+   #+end_src
+** Margins
+   Regex & settings for =perfect-margins=.
+   #+begin_src emacs-lisp
+     (defcustom perfect-margin-ignore-regexps
+       '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
+       "List of strings to determine if window is ignored.
+     Each string is used as regular expression to match the window buffer name."
+       :group 'perfect-margin)
+
+     (defcustom perfect-margin-ignore-filters
+       '(window-minibuffer-p)
+       "List of functions to determine if window is ignored.
+     Each function is called with window as its sole arguemnt, returning a non-nil value indicate to ignore the window."
+       :group 'perfect-margin)
+   #+end_src
+   Perfect margin package.
+   #+begin_src emacs-lisp
+     (use-package perfect-margin
+       :config
+       (perfect-margin-mode 1)
+       )
+   #+end_src
+** Modeline
+   Setup feebleline "/modeline/".
+   #+begin_src emacs-lisp
+     (use-package    feebleline
+       :config       (setq feebleline-msg-functions
+			   '((feebleline-line-number         :post "" :fmt "%5s")
+			     (feebleline-column-number       :pre ":" :fmt "%-2s")
+			     (feebleline-file-directory      :face feebleline-dir-face :post "")
+			     (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+			     (feebleline-file-modified-star  :face font-lock-warning-face :post "")
+			     (feebleline-git-branch          :face feebleline-git-face :pre " ")
+			     (feebleline-project-name        :align right)
+			     ((lambda () (format-time-string "%H:%M")) :align right)
+			     )
+			   )
+       (feebleline-mode 1))
+   #+end_src
+** Icons & Misc.
+   #+begin_src emacs-lisp
+     (use-package all-the-icons)
+   #+end_src
+   Highlight TODO's in code.
+   #+begin_src emacs-lisp
+     (use-package hl-todo
+       :config
+       (setq hl-todo-keyword-faces
+	     '(("TODO"   . "#FF0000")
+	       ("ISSUE"  . "#FF0F00")
+	       ))
+       )
+     (add-hook 'prog-mode-hook #'hl-todo-mode)
+   #+end_src
+* Navigation
+** Helm
+   Basic helm setup.
+   #+begin_src emacs-lisp
+     (use-package helm
+       :config 
+
+       (require 'helm-config)
+
+       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+       (define-key helm-map (kbd "C-z")  'helm-select-action)
+       (define-key helm-map (kbd "C-l") 'helm-dfind-files-up-one-level)
+
+       (global-set-key (kbd "C-x C-f") 'helm-find-files)
+       (global-set-key (kbd "C-x b") 'helm-mini)
+       (global-set-key (kbd "M-x") 'helm-M-x)
+       (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+       )
+  #+end_src
+  Helm-posframe.
+  #+begin_src emacs-lisp
+    (use-package helm-posframe
+      :config
+      (setq helm-posframe-width 200)
+      (helm-posframe-enable)
+      )
+  #+end_src
+** Kill-Ring & Undo
+   #+begin_src emacs-lisp
+     (use-package popup-kill-ring
+       :bind ("M-y" . popup-kill-ring)
+       )
+   #+end_src
+   Undo-Tree for visualization of history.
+   #+begin_src emacs-lisp
+     (use-package undo-tree
+       :ensure t
+       :init (global-undo-tree-mode)
+       :custom
+       (undo-tree-visualizer-diff t)
+       (undo-tree-visualizer-timestamps t)
+       :bind ("C-x u" . undo-tree)
+       )
+   #+end_src
+** Windows
+   Ace-Window Setup
+   #+begin_src emacs-lisp
+     (use-package ace-window
+       :ensure t
+       :init
+       (setq aw-scope 'frame
+	     aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+      :bind ("C-x o" . ace-window)
+       )
+  #+end_src
+  Winner-Mode - Restore previous window layout.
+  #+begin_src emacs-lisp
+    (use-package winner
+      :ensure nil
+      :custom
+      (winner-boring-buffers
+       '("*Completions*"
+	 "*Compile-Log*"
+	 "*inferior-lisp*"
+	 "*Fuzzy Completions*"
+	 "*Apropos*"
+	 "*Help*"
+	 "*cvs*"
+	 "*Buffer List*"
+	 "*Ibuffer*"
+	 "*esh command on file*"))
+      :config
+      (winner-mode 1))
+  #+end_src
+** Dired
+   #+begin_src emacs-lisp
+     (use-package dired
+       :ensure nil
+       :bind
+       (("C-x C-j" . dired-jump)
+	("C-x j" . dired-jump-other-window))
+       :custom
+       (dired-listing-switches "-lah")
+       (dired-recursive-deletes 'always)
+       (dired-recursive-copies 'always)
+
+       (global-auto-revert-non-file-buffers t)
+       (auto-revert-verbose nil)
+
+       (dired-dwim-target t)
+
+       (delete-by-moving-to-trash t)
+
+       (load-prefer-newer t)
+
+       (auto-revert-use-notify nil)
+       (auto-revert-interval 3)
+       :config
+
+       (global-auto-revert-mode t)
+
+       (put 'dired-find-alternate-file 'disabled nil)
+       )
+   #+end_src
+** Binds
+   TODO evil-setup
+* Programming
+
+* Org-mode
+
+** Base
+
+** Looks
+
+** Productivity
+   
+** Export
+
+* QOL
