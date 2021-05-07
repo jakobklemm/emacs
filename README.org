@@ -1,6 +1,5 @@
 #+TITLE: Personal emacs config
 #+AUTHOR: Jakob Klemm
-#+DATE: 17.12.2020
 
 nothing special here, just my personal emacs config. it has a lot of
 external dependencies and no guide or tutorial. use at own risk and
@@ -116,6 +115,22 @@ All config is in this file and evaluated using org-babel.
 	     (load-theme 'dracula t)
 	   )
    #+end_src
+** Point
+   #+begin_src emacs-lisp
+	 (set-cursor-color "#D069D6")
+	 (use-package beacon
+	   :straight t
+	   :custom
+	   (beacon-color "#D271D8")
+	   :config
+	   (add-to-list 'beacon-dont-blink-major-modes 'eshell-mode)
+	   (beacon-mode 1)
+	   (setq beacon-size 40))
+  #+end_src
+** Zoom & Size
+   #+begin_src emacs-lisp
+
+   #+end_src
 ** Symbols
    #+begin_src emacs-lisp
      (global-prettify-symbols-mode 1)
@@ -165,6 +180,19 @@ All config is in this file and evaluated using org-babel.
      (setq prettify-symbols-unprettify-at-point 'right-edge)
      (add-hook 'org-mode-hook 'prettify-symbols-mode)
    #+end_src
+** Indentation
+   Visualize indentation levels.
+   #+begin_src emacs-lisp
+	 (use-package highlight-indent-guides
+	   :straight t
+	   :if (display-graphic-p)
+	   :commands (highlight-indent-guides-mode)
+	   :custom
+	   (highlight-indent-guides-method 'character)
+	   (highlight-indent-guides-responsive 'top)
+	   (highlight-indent-guides-delay 0)
+	   (highlight-indent-guides-auto-character-face-perc 7))
+  #+end_src
 ** Margins
    Regex & settings for =perfect-margins=.
    #+begin_src emacs-lisp
@@ -372,19 +400,23 @@ All config is in this file and evaluated using org-babel.
 ** Scrolling
    Base emacs settings
    #+begin_src emacs-lisp
-     ;; Vertical Scroll
-     (setq scroll-step 1)
-     (setq scroll-margin 8)
-     (setq scroll-conservatively 101)
-     (setq scroll-up-aggressively 0.01)
-     (setq scroll-down-aggressively 0.01)
-     (setq auto-window-vscroll nil)
-     (setq fast-but-imprecise-scrolling nil)
-     (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-     (setq mouse-wheel-progressive-speed nil)
-     ;; Horizontal Scroll
-     (setq hscroll-step 1)
-     (setq hscroll-margin 1)
+	 ;; Vertical Scroll
+	 (setq scroll-step 1)
+	 (setq scroll-margin 8)
+	 (setq scroll-conservatively 101)
+	 (setq scroll-up-aggressively 0.01)
+	 (setq scroll-down-aggressively 0.01)
+	 (setq auto-window-vscroll nil)
+	 (setq fast-but-imprecise-scrolling nil)
+	 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+	 (setq mouse-wheel-progressive-speed nil)
+	 ;; Horizontal Scroll
+	 (setq hscroll-step 1)
+	 (setq hscroll-margin 1)
+
+	 ;; Better performance
+	 (setq fast-but-imprecise-scrolling 't)
+	 (setq jit-lock-defer-time 0)
    #+end_src
    Good scroll
    #+begin_src emacs-lisp
@@ -423,6 +455,41 @@ All config is in this file and evaluated using org-babel.
 	   :hook (company-mode . company-box-mode)
 	   )
   #+end_src
+  Add all-the-icons to company-box.
+  #+begin_src emacs-lisp
+	(declare-function all-the-icons-faicon 'all-the-icons)
+	(declare-function all-the-icons-material 'all-the-icons)
+	(declare-function all-the-icons-octicon 'all-the-icons)
+	(setq company-box-icons-all-the-icons
+		  `((Unknown . ,(all-the-icons-material "find_in_page" :height 0.8 :v-adjust -0.15))
+			(Text . ,(all-the-icons-faicon "text-width" :height 0.8 :v-adjust -0.02))
+			(Method . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.02 :face 'all-the-icons-purple))
+			(Function . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.02 :face 'all-the-icons-purple))
+			(Constructor . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.02 :face 'all-the-icons-purple))
+			(Field . ,(all-the-icons-octicon "tag" :height 0.85 :v-adjust 0 :face 'all-the-icons-lblue))
+			(Variable . ,(all-the-icons-octicon "tag" :height 0.85 :v-adjust 0 :face 'all-the-icons-lblue))
+			(Class . ,(all-the-icons-material "settings_input_component" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-orange))
+			(Interface . ,(all-the-icons-material "share" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-lblue))
+			(Module . ,(all-the-icons-material "view_module" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-lblue))
+			(Property . ,(all-the-icons-faicon "wrench" :height 0.8 :v-adjust -0.02))
+			(Unit . ,(all-the-icons-material "settings_system_daydream" :height 0.8 :v-adjust -0.15))
+			(Value . ,(all-the-icons-material "format_align_right" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-lblue))
+			(Enum . ,(all-the-icons-material "storage" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-orange))
+			(Keyword . ,(all-the-icons-material "filter_center_focus" :height 0.8 :v-adjust -0.15))
+			(Snippet . ,(all-the-icons-material "format_align_center" :height 0.8 :v-adjust -0.15))
+			(Color . ,(all-the-icons-material "palette" :height 0.8 :v-adjust -0.15))
+			(File . ,(all-the-icons-faicon "file-o" :height 0.8 :v-adjust -0.02))
+			(Reference . ,(all-the-icons-material "collections_bookmark" :height 0.8 :v-adjust -0.15))
+			(Folder . ,(all-the-icons-faicon "folder-open" :height 0.8 :v-adjust -0.02))
+			(EnumMember . ,(all-the-icons-material "format_align_right" :height 0.8 :v-adjust -0.15))
+			(Constant . ,(all-the-icons-faicon "square-o" :height 0.8 :v-adjust -0.1))
+			(Struct . ,(all-the-icons-material "settings_input_component" :height 0.8 :v-adjust -0.15 :face 'all-the-icons-orange))
+			(Event . ,(all-the-icons-octicon "zap" :height 0.8 :v-adjust 0 :face 'all-the-icons-orange))
+			(Operator . ,(all-the-icons-material "control_point" :height 0.8 :v-adjust -0.15))
+			(TypeParameter . ,(all-the-icons-faicon "arrows" :height 0.8 :v-adjust -0.02))
+			(Template . ,(all-the-icons-material "format_align_left" :height 0.8 :v-adjust -0.15)))
+		  company-box-icons-alist 'company-box-icons-all-the-icons)
+  #+end_src
 ** Smartparens
     #+begin_src emacs-lisp
 	  (use-package smartparens
@@ -460,23 +527,84 @@ All config is in this file and evaluated using org-babel.
 		(global-flycheck-mode)
 		)
    #+end_src
-** Indentations
-   Visualize indentation levels.
-   #+begin_src emacs-lisp
-	 (use-package highlight-indent-guides
-	   :straight t
-	   :if (display-graphic-p)
-	   :commands (highlight-indent-guides-mode)
-	   :custom
-	   (highlight-indent-guides-method 'character)
-	   (highlight-indent-guides-responsive 'top)
-	   (highlight-indent-guides-delay 0)
-	   (highlight-indent-guides-auto-character-face-perc 7))
-  #+end_src
 ** Elixir
+   #+begin_src emacs-lisp
+	 (use-package elixir-mode
+	   :straight t
+	   )
+   #+end_src
 ** Rust
+   #+begin_src emacs-lisp
+	 (use-package rust-mode
+	   :straight t
+	   )
+   #+end_src
+** Git
+   Magit setup
+   #+begin_src emacs-lisp
+	 (use-package magit
+	   :straight t
+	   :config
+	   (global-set-key (kbd "C-x g") 'magit-status)
+	   (global-set-key (kbd "C-x p") 'magit-init)
+	   (use-package magit-todos
+		 :straight t
+		 :config
+		 (magit-todos-mode t)
+		 )
+	   (use-package git-messenger
+		 :straight t
+		 )
+	   )
+   #+end_src
+   Highlight diffs
+   #+begin_src emacs-lisp
+	 (use-package diff-hl
+	   :straight t
+	   :config
+	   (global-diff-hl-mode t)
+	   (diff-hl-flydiff-mode t)
+
+	   (set-face-foreground 'diff-hl-insert "diff-nonexistent")
+	   (set-face-background 'diff-hl-insert "green4")
+	   (set-face-foreground 'diff-hl-change "diff-nonexistent")
+	   (set-face-background 'diff-hl-change "yellow3")
+	   (set-face-foreground 'diff-hl-delete "diff-nonexistent")
+	   (set-face-background 'diff-hl-delete "red4"))
+   #+end_src
 ** LSP
-** Magit
+   Add elixir-lsp to path
+   #+begin_src emacs-lisp
+	 (add-to-list 'exec-path "~/.tools/elixir-ls")
+   #+end_src
+   LSP config
+   #+begin_src emacs-lisp
+	 (use-package lsp-mode
+	   :straight t
+	   :commands lsp
+	   :init
+	   (setq lsp-headerline-breadcrumb-enable nil)
+	   (setq lsp-signature-auto-activate nil)
+	   :hook
+	   (elixir-mode . lsp)
+	   )
+   #+end_src
+   LSP UI setup
+   #+begin_src emacs-lisp
+	 (use-package lsp-ui
+	   :straight t
+	   :commands lsp-ui-mode
+	   :config
+	   (lsp-ui-doc-enable t)
+	   (lsp-ui-mode)
+	   (setq lsp-ui-doc-max-height 128
+		 lsp-ui-doc-max-width 64
+		 lsp-ui-doc-position 'top
+		 lsp-ui-doc-show-with-mouse t
+		 lsp-ui-doc-show-with-cursor t
+		   )
+	   )
+   #+end_src
 * Org-mode
 ** Base
 
