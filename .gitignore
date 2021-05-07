@@ -63,3 +63,10 @@ server/
 custom.el
 
 README.el
+straight/
+auto-save-list/
+eln-cache/
+speed-type/
+straight/
+places
+recentf
