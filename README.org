@@ -7,10 +7,12 @@ don't expect help, this isn't tech support.
 
 All config is in this file and evaluated using org-babel.
 
-* Issues
-
-** Snipppets
 * Setup
+** Packages
+   #+begin_src emacs-lisp
+	 (use-package quelpa-use-package
+	   :straight t)
+   #+end_src
 ** User infos
    #+begin_src emacs-lisp
    (setq user-full-name "Jakob Klemm")
@@ -103,7 +105,7 @@ All config is in this file and evaluated using org-babel.
 ** Font & Theme
    #+begin_src emacs-lisp
      ;; Font
-     (set-frame-font "Fira Code 11" nil t)
+     ;; (set-frame-font "Fira Code 11" nil t)
 
      ;; Color
      (set-cursor-color "#D069D6")
@@ -128,8 +130,68 @@ All config is in this file and evaluated using org-babel.
 	   (setq beacon-size 40))
   #+end_src
 ** Zoom & Size
+   https://github.com/hrs/dotfiles/blob/main/emacs/dot-emacs.d/configuration.org
    #+begin_src emacs-lisp
+	 (setq hrs/default-fixed-font "Fira Code")
+	 (setq hrs/default-fixed-font-size 110)
+	 (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+	 (set-face-attribute 'default nil
+						 :family hrs/default-fixed-font
+						 :height hrs/current-fixed-font-size)
+	 (set-face-attribute 'fixed-pitch nil
+						 :family hrs/default-fixed-font
+						 :height hrs/current-fixed-font-size)
 
+	 (setq hrs/default-variable-font "Fira Code")
+	 (setq hrs/default-variable-font-size 100)
+	 (setq hrs/current-variable-font-size hrs/default-variable-font-size)
+	 (set-face-attribute 'variable-pitch nil
+						 :family hrs/default-variable-font
+						 :height hrs/current-variable-font-size)
+
+	 (setq hrs/font-change-increment 1.1)
+
+	 (defun hrs/set-font-size ()
+	   "Change default, fixed-pitch, and variable-pitch font sizes to match respective variables."
+	   (set-face-attribute 'default nil
+						   :height hrs/current-fixed-font-size)
+	   (set-face-attribute 'fixed-pitch nil
+						   :height hrs/current-fixed-font-size)
+	   (set-face-attribute 'variable-pitch nil
+						   :height hrs/current-variable-font-size))
+
+	 (defun hrs/reset-font-size ()
+	   "Revert font sizes back to defaults."
+	   (interactive)
+	   (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+	   (setq hrs/current-variable-font-size hrs/default-variable-font-size)
+	   (hrs/set-font-size))
+
+	 (defun hrs/increase-font-size ()
+	   "Increase current font sizes by a factor of `hrs/font-change-increment'."
+	   (interactive)
+	   (setq hrs/current-fixed-font-size
+			 (ceiling (* hrs/current-fixed-font-size hrs/font-change-increment)))
+	   (setq hrs/current-variable-font-size
+			 (ceiling (* hrs/current-variable-font-size hrs/font-change-increment)))
+	   (hrs/set-font-size))
+
+	 (defun hrs/decrease-font-size ()
+	   "Decrease current font sizes by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+	   (interactive)
+	   (setq hrs/current-fixed-font-size
+			 (max 1
+				  (floor (/ hrs/current-fixed-font-size hrs/font-change-increment))))
+	   (setq hrs/current-variable-font-size
+			 (max 1
+				  (floor (/ hrs/current-variable-font-size hrs/font-change-increment))))
+	   (hrs/set-font-size))
+
+	 (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+	 (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+	 (define-key global-map (kbd "C-=") 'hrs/increase-font-size)
+	 (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+	 (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
    #+end_src
 ** Symbols
    #+begin_src emacs-lisp
@@ -302,63 +364,6 @@ All config is in this file and evaluated using org-babel.
 		 :bind ("C-x u" . undo-tree)
 		 )
    #+end_src
-   Async save history.
-   https://github.com/mpereira/.emacs.d/blob/master/configuration.org
-   #+begin_src emacs-lisp
-	 (defvar async-undo-tree-save-history-cached-load-path
-	   (when-let ((undo-tree-library (locate-library "undo-tree")))
-		 (file-name-directory undo-tree-library)))
-
-	 (defun async-undo-tree-save-history ()
-	   (interactive)
-	   (when async-undo-tree-save-history-cached-load-path
-		 (let ((file-name (buffer-file-name)))
-		   (async-start
-			`(lambda ()
-			   (if (stringp ,file-name)
-				   (list 'ok
-						 (list :output (with-output-to-string
-										 (add-to-list
-										  'load-path
-										  ,async-undo-tree-save-history-cached-load-path)
-										 (require 'undo-tree)
-										 (find-file ,file-name)
-										 (undo-tree-save-history-from-hook))
-							   :messages (with-current-buffer "*Messages*"
-										   (buffer-string))))
-				 (list 'err
-					   (list :output "File name must be string"
-							 :messages (with-current-buffer "*Messages*"
-										 (buffer-string))))))
-			`(lambda (result)
-			   (let ((outcome (car result))
-					 (messages (plist-get (cadr result) :messages))
-					 (output (plist-get (cadr result) :output))
-					 (inhibit-message t))
-				 (message
-				  (cond
-				   ((eq 'ok outcome)
-					"undo-tree history saved asynchronously for %s%s%s")
-				   ((eq 'err outcome)
-					"error saving undo-tree history asynchronously for %s%s%s")
-				   (:else
-					"unexpected result from asynchronous undo-tree history save %s%s%s"))
-				  ,file-name
-				  (if (string= "" output)
-					  ""
-					(format "\noutput:\n%s" output))
-				  (if (string= "" messages)
-					  ""
-					(format "\nmessages:\n%s" messages))))))
-		   nil)))
-
-	 ;; Hooks added to `write-file-functions' need to return non-nil so that the file
-	 ;; is written.
-
-	 (with-eval-after-load "undo-tree"
-	   (remove-hook 'write-file-functions #'undo-tree-save-history-from-hook)
-	   (add-hook 'after-save-hook #'async-undo-tree-save-history))
-   #+end_src
 ** Windows
    Ace-Window Setup
    #+begin_src emacs-lisp
@@ -426,6 +431,15 @@ All config is in this file and evaluated using org-babel.
        (good-scroll-mode 1)
        )
    #+end_src
+** Dired
+   #+begin_src emacs-lisp
+	 (use-package all-the-icons-dired
+	   :straight t
+	   :after (all-the-icons dired)
+	   :commands (all-the-icons-dired-mode)
+	   :config
+	   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
+   #+end_src
 ** Binds
    TODO evil-setup
 * Writing
@@ -443,7 +457,7 @@ All config is in this file and evaluated using org-babel.
 	 (use-package company
 	   :straight t
 	   :config
-	   (setq company-idle-delay 0.1)
+	   (setq company-idle-delay 0.3)
 	   (add-hook 'after-init-hook 'global-company-mode)
 	   )
    #+end_src
@@ -538,6 +552,9 @@ All config is in this file and evaluated using org-babel.
 	 (use-package rust-mode
 	   :straight t
 	   )
+	 (use-package ob-rust
+	   :straight t
+	   )
    #+end_src
 ** Git
    Magit setup
@@ -556,21 +573,6 @@ All config is in this file and evaluated using org-babel.
 		 :straight t
 		 )
 	   )
-   #+end_src
-   Highlight diffs
-   #+begin_src emacs-lisp
-	 (use-package diff-hl
-	   :straight t
-	   :config
-	   (global-diff-hl-mode t)
-	   (diff-hl-flydiff-mode t)
-
-	   (set-face-foreground 'diff-hl-insert "diff-nonexistent")
-	   (set-face-background 'diff-hl-insert "green4")
-	   (set-face-foreground 'diff-hl-change "diff-nonexistent")
-	   (set-face-background 'diff-hl-change "yellow3")
-	   (set-face-foreground 'diff-hl-delete "diff-nonexistent")
-	   (set-face-background 'diff-hl-delete "red4"))
    #+end_src
 ** LSP
    Add elixir-lsp to path
@@ -605,15 +607,409 @@ All config is in this file and evaluated using org-babel.
 		   )
 	   )
    #+end_src
+** Major
+   Collection of other major modes for programming.
+   #+begin_src emacs-lisp
+	 (use-package csharp-mode
+	   :straight t
+	   )
+	 (use-package json-mode
+	   :straight t
+	   )
+	 (use-package scala-mode
+	   :straight t
+	   )
+	 (use-package docker
+	   :straight t
+	   )
+	 (use-package nginx-mode
+	   :straight t
+	   )
+	 (use-package web-mode
+	   :straight t
+	   :config
+	   (setq web-mode-markup-indent-offset 2
+			 web-mode-css-indent-offset 2
+			 web-mode-code-indent-offset 2
+			 web-mode-indent-style 2))
+
+	 (use-package markdown-mode
+	   :straight t
+	   :custom
+	   (markdown-hide-markup nil)
+	   (markdown-bold-underscore t)
+	   (markdown-italic-underscore t)
+	   (markdown-header-scaling t)
+	   (markdown-indent-function t)
+	   (markdown-enable-math t)
+	   (markdown-hide-urls nil)
+	   :custom-face
+	   (markdown-header-delimiter-face ((t (:foreground "mediumpurple"))))
+	   (markdown-header-face-1 ((t (:foreground "violet" :weight bold :height 1.0))))
+	   (markdown-header-face-2 ((t (:foreground "lightslateblue" :weight bold :height 1.0))))
+	   (markdown-header-face-3 ((t (:foreground "mediumpurple1" :weight bold :height 1.0))))
+	   (markdown-link-face ((t (:background "#0e1014" :foreground "#bd93f9"))))
+	   (markdown-list-face ((t (:foreground "mediumpurple"))))
+	   (markdown-pre-face ((t (:foreground "#bd98fe"))))
+	   :mode "\\.md\\'")
+
+	 (use-package systemd
+	   :straight t
+	   :mode
+	   ("\\.service\\'" "\\.timer\\'" "\\.target\\'" "\\.mount\\'"
+		"\\.automount\\'" "\\.slice\\'" "\\.socket\\'" "\\.path\\'"
+		"\\.netdev\\'" "\\.network\\'" "\\.link\\'"))
+
+	 (use-package yaml-mode
+	   :straight t
+	   :mode ("\\.yaml\\'" "\\.yml\\'")
+	   :custom-face
+	   (font-lock-variable-name-face ((t (:foreground "violet")))))
+
+	 (use-package dockerfile-mode
+	   :straight t
+	   :mode "\\Dockerfile\\'")
+   #+end_src
 * Org-mode
 ** Base
+#+begin_src emacs-lisp
+  (setq
+   org-directory "~/documents/"
+   initial-buffer-choice  "~/documents/active.org"
+   org-archive-location "~/documents/archive/2021.org::* From %s"
 
-** Looks
+   org-ellipsis " ▼ "
+   org-adapt-indentation nil
+   org-fontify-quote-and-verse-blocks t
+   org-startup-folded t
+
+   org-src-tab-acts-natively t
+   org-hide-emphasis-markers t
+   org-src-window-setup 'current-window
+   org-return-follows-link t
+   org-confirm-babel-evaluate nil
+   org-use-speed-commands t
+   org-catch-invisible-edits 'show
+   org-agenda-deadline-faces
+   '((1.001 . error)
+	 (1.0 . org-warning)
+	 (0.5 . org-upcoming-deadline)
+	 (0.0 . org-upcoming-distant-deadline))
+   )
+
+  (add-hook 'org-mode-hook 'org-indent-mode)
+
+  (defun home-file ()
+	(interactive)
+	(find-file "~/documents/active.org")
+	)
+
+  (defun projects-file ()
+	(interactive)
+	(find-file "~/documents/aggregation.org")
+	)
+#+end_src
 
 ** Productivity
+*** Settings
+	#+begin_src emacs-lisp
+	  (setq
+	   org-log-done 'time
+	   org-tag-alist '(("drill" . ?d))
+	   org-priority-highest ?A
+	   org-priority-lowest ?C
 
+	   )
+	#+end_src
+*** TODOs
+	#+begin_src emacs-lisp
+	  (setq org-todo-keywords
+			'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+			  (sequence "STATIC(s)" "BLOCKED(b)" "|" "PAL(p)"))
+			)
+
+	  (defun todo/done ()
+		(interactive)
+		(org-todo 'done))
+
+	  (defun todo/active  ()
+		(interactive)
+		(org-todo "NEXT")
+		(org-mark-ring-push)
+		(ivy/refile-to "~/documents/active.org" "Today")
+		(org-mark-ring-goto)
+		;;(org-priority-up)
+		;;(org-deadline nil (org-read-date nil nil "+1d"))
+		)
+	#+end_src
+*** Capture
+	#+begin_src emacs-lisp
+	  (setq org-capture-templates '(("x" "Inbox TODO" entry (file "~/documents/aggregation.org")
+									 "* TODO %?\n  %i\n  %a")
+									("c" "Common" entry (file+headline "~/documents/active.org" "Common")
+									 "* TODO %?\n%U\n   %c" :empty-lines 1)
+									)
+			)
+	#+end_src
+*** Agenda
+	Settings
+	#+begin_src emacs-lisp
+	  (setq
+	   org-agenda-start-on-weekday nil
+	   org-agenda-start-day "0d"
+	   org-agenda-skip-scheduled-if-done t
+	   org-agenda-skip-deadline-if-done t
+	   org-agenda-include-deadlines t
+	   org-agenda-current-time-string "← now"
+	   )
+	#+end_src
+	Super agenda
+	#+begin_src emacs-lisp
+	  (use-package org-super-agenda
+		:straight t
+		:init
+		(setq org-agenda-custom-commands
+			  '(("d" "Super Agenda - Day"
+				 ((agenda "" ((org-agenda-span 'day)
+							  (org-super-agenda-groups
+							   '((:name "Today"
+										:time-grid t
+										:date today
+										:scheduled today
+										:order 1)))))
+				  (alltodo "" ((org-agenda-overriding-header "Next")
+							   (org-agenda-files '("~/documents/active.org"))
+							   (org-super-agenda-groups
+								'((:name ""
+										 :todo "NEXT"
+										 :order 1)
+								  (:discard (:anything))
+								  ))))
+				  (alltodo "" ((org-agenda-overriding-header "Projects")
+							   (org-agenda-files '("~/documents/active.org"))
+							   (org-super-agenda-groups
+								'((:name ""
+										 :todo ("TODO" "STATIC" "BLOCKED")
+										 :order 2)
+								  (:discard (:anything))
+								  )
+								)))
+				  (alltodo "" ((org-agenda-overriding-header "Other")
+							   (org-super-agenda-groups
+								'((:name ""
+										 :file-path "aggregation"
+										 :order 5)
+								  (:discard (:anything t)))
+								)))
+				  )
+				 )
+				)
+			  )
+		:config
+		(org-super-agenda-mode 1)
+		)
+	#+end_src
+*** Refile
+	Normal targets
+	#+begin_src emacs-lisp
+	  (setq org-refile-targets '(("~/documents/active.org" :maxlevel . 1)
+								 ("~/documents/completed.org" :maxlevel . 1)
+								 )
+			)
+	#+end_src
+	Direct targets
+	#+begin_src emacs-lisp
+	  ;; https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
+	  (defun ivy/refile-to (file headline)
+		"Move current headline to specified location"
+		(let ((pos (save-excursion
+					 (find-file file)
+					 (org-find-exact-headline-in-buffer headline))))
+		  (org-refile nil nil (list headline file nil pos))))
+
+	  (defun ivy/refile ()
+		"Move current headline to bookmarks"
+		(interactive)
+		(org-mark-ring-push)
+		(ivy/refile-to "~/documents/active.org" "Today")
+		(org-mark-ring-goto))
+
+	  (defun ivy/last ()
+		"Move current headline to bookmarks"
+		(interactive)
+		(org-mark-ring-push)
+		(ivy/refile-to "~/documents/completed.org" "Week")
+		(org-mark-ring-goto))
+	#+end_src
+** Looks
+*** Images
+	#+begin_src emacs-lisp
+	  (add-hook 'org-mode 'org-toggle-inline-images)
+	  (setq org-image-actual-width '(600))
+	  (setq-default org-display-inline-images t)
+	  (setq-default org-startup-with-inline-images t)
+    #+end_src
+
+*** Stars
+	#+begin_src emacs-lisp
+	  (use-package org-superstar
+		:straight t
+		:config
+		(setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+			  ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+			  org-superstar-prettify-item-bullets t
+			  org-superstar-configure-like-org-bullets t
+			  org-hide-leading-stars nil
+			  org-superstar-leading-bullet ?\s
+			  ;; Enable custom bullets for TODO items
+			  org-superstar-special-todo-items t
+			  org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+												("NEXT" "✒ ")
+												("STATIC" "» ")
+												("BLOCKED" "˧ ")
+												("DONE" "✔ ")
+												("PAL" "✔ ")
+												)
+			  )
+		(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+		)
+	#+end_src
+
+*** Faces
+	#+begin_src emacs-lisp
+	  ;; Heading sizes
+	  (custom-set-faces
+	   '(org-level-1 ((t (:inherit outline-1 :height 1.60))))
+	   '(org-level-2 ((t (:inherit outline-2 :height 1.40))))
+	   '(org-level-3 ((t (:inherit outline-3 :height 1.20))))
+	   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+	   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+	   )
+    #+end_src
+
+*** Appear
+	#+begin_src emacs-lisp
+	  (use-package org-appear
+		:straight t
+		:quelpa (org-appear
+				 :fetcher github
+				 :repo "awth13/org-appear")
+		:hook (org-mode . org-appear-mode)
+		:init (setq org-hide-emphasis-markers t
+				org-appear-autoemphasis t
+				org-appear-autolinks t
+				org-appear-autosubmarkers t))
+	#+end_src
+
+*** TODOs
+	#+begin_src emacs-lisp
+	  (setq org-todo-keyword-faces
+			'(("TODO" . (:foreground "#af1212" :weight bold))
+			  ("NEXT" . (:foreground "#a8fa80" :weight bold))
+			  ("BLOCKED" . (:foreground "#b213c4" :weight bold))
+			  ("PAL" . (:foreground "#30bb03" :weight bold))
+			  ("STATIC" . (:foreground "#eaa222" :weight bold))
+			  ("DONE" . (:foreground "#ffffff" :weight bold))
+			  )
+			)
+	#+end_src
+
+*** Priority
+	#+begin_src emacs-lisp
+	  (setq org-priority-faces
+			'((?A . 'all-the-icons-red)
+			  (?B . 'all-the-icons-orange)
+			  (?C . 'all-the-icons-yellow))
+			)
+	#+end_src
+
+*** Deadline
+	#+begin_src emacs-lisp
+	  (setq org-agenda-deadline-faces
+			'((1.001 . error)
+			  (1.0 . org-warning)
+			  (0.5 . org-upcoming-deadline)
+			  (0.0 . org-upcoming-distant-deadline))
+			)
+	#+end_src
+
+*** LaTeX
+	#+begin_src emacs-lisp
+	  (setq-default org-startup-with-latex-preview t)
+
+	  (use-package org-fragtog
+		:straight t
+		:config
+		(add-hook 'org-mode-hook 'org-fragtog-mode)
+		(setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
+		)
+	#+end_src
+** Content
+*** Roam
+	#+begin_src emacs-lisp
+
+	  (use-package org-roam
+		:straight t
+		:commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+		:hook
+		(after-init . org-roam-mode)
+		:init
+		(setq
+		 org-roam-directory (file-truename "~/documents/vaults/database/")
+		 org-roam-db-location "~/documents/vaults/org-roam.db"
+		 org-roam-db-gc-threshold most-positive-fixnum
+		 )
+		:config
+		(setq org-roam-capture-templates
+			  '(("d" "default" plain (function org-roam--capture-get-point)
+				 "%?"
+				 :file-name "${slug}"
+				 :head "#+TITLE: ${title}\n"
+				 :immediate-finish t
+				 :unnarrowed t)
+				))
+		(use-package org-roam-server
+		  :straight t
+		  :config
+		  (setq org-roam-server-host "127.0.0.1"
+				org-roam-server-port 8080
+				org-roam-server-authenticate nil
+				org-roam-server-export-inline-images t
+				org-roam-server-serve-files nil
+				org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
+				org-roam-server-network-poll t
+				org-roam-server-network-arrows nil
+				org-roam-server-network-label-wrap-length 20))
+		)
+	#+end_src
+*** Drill
+	#+begin_src emacs-lisp
+	  (use-package org-drill
+		:ensure t
+		:config
+		(setq org-drill-use-visible-cloze-face-p t)
+		(setq org-drill-hide-item-headings-p t)
+		)
+	#+end_src
 ** Export
+*** ox
+   #+begin_src emacs-lisp
+	 (eval-after-load "org" '(require 'ox-odt nil t))
+	 (use-package htmlize
+	   :straight t)
 
+	 (use-package ox-pandoc
+	   :straight t
+	   )
+
+	 ;;(require 'ox-hugo)
+
+	 (use-package ox-hugo
+	   :straight t
+	   )
+
+	 (setq org-hugo-auto-set-lastmod t)
+   #+end_src
 * QOL
 ** Fun
    #+begin_src emacs-lisp
