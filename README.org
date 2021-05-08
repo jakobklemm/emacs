@@ -441,7 +441,14 @@ All config is in this file and evaluated using org-babel.
 	   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
    #+end_src
 ** Binds
-   TODO evil-setup
+#+begin_src emacs-lisp
+  (use-package evil
+    :straight t
+    :init
+    (setq evil-want-abbrev-expand-on-insert-exit nil
+          evil-want-keybinding nil)
+    )
+#+end_src
 * Writing
 ** Format
    Format all code.
@@ -673,41 +680,44 @@ All config is in this file and evaluated using org-babel.
 * Org-mode
 ** Base
 #+begin_src emacs-lisp
-  (setq
-   org-directory "~/documents/"
-   initial-buffer-choice  "~/documents/active.org"
-   org-archive-location "~/documents/archive/2021.org::* From %s"
+  (use-package org
+    :config
+    (setq
+     org-directory "~/documents/"
+     initial-buffer-choice  "~/documents/active.org"
+     org-archive-location "~/documents/archive/2021.org::* From %s"
 
-   org-ellipsis " ▼ "
-   org-adapt-indentation nil
-   org-fontify-quote-and-verse-blocks t
-   org-startup-folded t
+     org-ellipsis " ▼ "
+     org-adapt-indentation nil
+     org-fontify-quote-and-verse-blocks t
+     org-startup-folded t
 
-   org-src-tab-acts-natively t
-   org-hide-emphasis-markers t
-   org-src-window-setup 'current-window
-   org-return-follows-link t
-   org-confirm-babel-evaluate nil
-   org-use-speed-commands t
-   org-catch-invisible-edits 'show
-   org-agenda-deadline-faces
-   '((1.001 . error)
-	 (1.0 . org-warning)
-	 (0.5 . org-upcoming-deadline)
-	 (0.0 . org-upcoming-distant-deadline))
-   )
+     org-src-tab-acts-natively t
+     org-hide-emphasis-markers t
+     org-src-window-setup 'current-window
+     org-return-follows-link t
+     org-confirm-babel-evaluate nil
+     org-use-speed-commands t
+     org-catch-invisible-edits 'show
+     org-agenda-deadline-faces
+     '((1.001 . error)
+       (1.0 . org-warning)
+       (0.5 . org-upcoming-deadline)
+       (0.0 . org-upcoming-distant-deadline))
+     )
 
-  (add-hook 'org-mode-hook 'org-indent-mode)
+    (add-hook 'org-mode-hook 'org-indent-mode)
 
-  (defun home-file ()
-	(interactive)
-	(find-file "~/documents/active.org")
-	)
+    (defun home-file ()
+      (interactive)
+      (find-file "~/documents/active.org")
+      )
 
-  (defun projects-file ()
-	(interactive)
-	(find-file "~/documents/aggregation.org")
-	)
+    (defun projects-file ()
+      (interactive)
+      (find-file "~/documents/aggregation.org")
+      )
+    )
 #+end_src
 
 ** Productivity
@@ -852,29 +862,28 @@ All config is in this file and evaluated using org-babel.
 
 *** Stars
 	#+begin_src emacs-lisp
-	  (use-package org-superstar
-		:straight t
-		:config
-		(setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-			  ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
-			  org-superstar-prettify-item-bullets t
-			  org-superstar-configure-like-org-bullets t
-			  org-hide-leading-stars nil
-			  org-superstar-leading-bullet ?\s
-			  ;; Enable custom bullets for TODO items
-			  org-superstar-special-todo-items t
-			  org-superstar-todo-bullet-alist '(("TODO" "☐ ")
-												("NEXT" "✒ ")
-												("STATIC" "» ")
-												("BLOCKED" "˧ ")
-												("DONE" "✔ ")
-												("PAL" "✔ ")
-												)
-			  )
-		(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-		)
+            (use-package org-superstar
+              :straight t
+              :config
+              (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+                    ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+                    org-superstar-prettify-item-bullets t
+                    org-superstar-configure-like-org-bullets t
+                    org-hide-leading-stars nil
+                    org-superstar-leading-bullet ?\s
+                    ;; Enable custom bullets for TODO items
+                    org-superstar-special-todo-items t
+                    org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+                                                      ("NEXT" "✒ ")
+                                                      ("STATIC" "» ")
+                                                      ("BLOCKED" "˧ ")
+                                                      ("DONE" "✔ ")
+                                                      ("PAL" "✔ ")
+                                                      )
+                    )
+              )
+      (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 	#+end_src
-
 *** Faces
 	#+begin_src emacs-lisp
 	  ;; Heading sizes
@@ -985,7 +994,7 @@ All config is in this file and evaluated using org-babel.
 *** Drill
 	#+begin_src emacs-lisp
 	  (use-package org-drill
-		:ensure t
+		:straight t
 		:config
 		(setq org-drill-use-visible-cloze-face-p t)
 		(setq org-drill-hide-item-headings-p t)
@@ -1009,7 +1018,93 @@ All config is in this file and evaluated using org-babel.
 	   )
 
 	 (setq org-hugo-auto-set-lastmod t)
+
+	 (use-package ox-reveal
+	   :straight t
+	   :custom ((org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+				(org-reveal-mathjax t)
+				(org-reveal-ignore-speaker-notes nil)
+				(org-reveal-note-key-char nil)))
+
+	 (use-package plantuml-mode
+	   :straight t
+	   :config
+	   (setq org-plantuml-jar-path (expand-file-name "~/.tools/plantuml.jar"))
+	   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+	   )
    #+end_src
+*** Title page
+	#+begin_src emacs-lisp
+	  ;; Custom title page & templating using inserts
+	  (defun jk/title-title ()
+		(car (org-roam--extract-titles-title))
+		)
+
+	  (defun jk/title-author ()
+		(cdr (car (org-roam--extract-global-props '("AUTHOR"))))
+		)
+	  (defun jk/title-image ()
+		(cdr (car (org-roam--extract-global-props '("IMAGE"))))
+		)
+	  (defun jk/title-subtitle ()
+		(cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
+		)
+
+	  (defun jk/title-compose ()
+		(interactive)
+		(insert (concat "
+	  ,#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
+	  ,#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
+	  ,#+LATEX_HEADER: \\usepackage{tikz}
+	  ,#+LATEX_HEADER: \\usepackage[]{babel}
+	  \\begin{titlepage}
+		  \\begin{center}
+			  \\begin{tikzpicture}[remember picture,overlay]
+				  \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
+				  at (current page.north west)
+				  {\\includegraphics[scale=1]{~/.tools/"
+						(jk/title-image)
+						".png}};
+	  \\end{tikzpicture}
+			  \\vspace{2.2cm}
+			  \\Huge
+			  \\textbf{"
+						(jk/title-title)
+						"}
+			  \\vspace{3.0cm}
+			  \\LARGE"
+						(jk/title-subtitle)
+						"
+	  \\vspace{4.2cm}"
+
+						(jk/title-author)
+
+						"\\
+			  \\vfill
+			  \\Large
+			  Baden, Schweiz\\
+			  \\today
+		  \\end{center}
+	  \\end{titlepage}
+	  \\tableofcontents
+	  \\newpage"
+						)
+				)
+		)
+	#+end_src
+
+*** LaTeX
+	#+begin_src emacs-lisp
+      ;; (setq TeX-parse-self t)
+      ;; (setq TeX-auto-save t)
+
+      ;; (setq TeX-PDF-mode t)
+
+      ;; (add-hook 'LaTeX-mode-hook
+      ;; 		  (lambda ()
+      ;; 			(LaTeX-math-mode)
+      ;; 			(setq TeX-master t)))
+	#+end_src
 * QOL
 ** Fun
    #+begin_src emacs-lisp
@@ -1020,7 +1115,6 @@ All config is in this file and evaluated using org-babel.
 		  (use-package speed-type
 			:straight t
 			)
-
    #+end_src
 ** Trailing whitespaces
    https://github.com/MatthewZMD/.emacs.d
