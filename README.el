@@ -1,10 +1,49 @@
-;; Defaults and setup
-;; Partial credit to https://github.com/hrs/sensible-defaults.el
+(require 'package) ;; Emacs builtin
 
-;; Allow 20MB of memory (instead of 0.76MB) before calling garbage
-;; collection. This means GC runs less often, which speeds up some
-;; operations.
-(setq gc-cons-threshold 2000000000)
+;; set package.el repositories
+(setq package-archives
+      '(
+	("org" . "https://orgmode.org/elpa/")
+	("gnu" . "https://elpa.gnu.org/packages/")
+	("melpa" . "https://melpa.org/packages/")
+	))
+
+;; initialize built-in package management
+(package-initialize)
+
+;; update packages list if we are on a new install
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; a list of pkgs to programmatically install
+;; ensure installed via package.el
+(setq my-package-list '(use-package))
+
+;; programmatically install/ensure installed
+;; pkgs in your personal list
+(dolist (package my-package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(straight-use-package 'use-package)
+
+(use-package async
+  :straight t
+  )
+(use-package aio
+  :straight t
+  )
+(use-package cl-lib
+  :straight t
+  )
+(use-package s
+  :straight t
+  )
+(use-package dash
+  :straight t
+  )
+
+(add-to-list 'load-path "~/.emacs.d/resources/")
 
 ;; Treat CamelCaseSubWords as separate words in every programming
 ;; mode.
@@ -104,3 +143,5 @@
       `((".*" ,temporary-file-directory t)))
 
 (setq byte-compile-warnings '(cl-functions))
+
+(require 'themer-dark-theme)

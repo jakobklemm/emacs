@@ -1,12 +1,11 @@
-;;; init.el --- -*- lexical-binding: t -*-
-;; DeferGC
-(setq gc-cons-threshold 10000000000)
-;; -DeferGC
+(setq package-enable-at-startup nil)
+
+(setq gc-cons-threshold 1000000000)
+
+(menu-bar-mode -1)
 
 (set-window-scroll-bars (minibuffer-window) nil nil)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(setq package-enable-at-startup nil)
 
 (provide 'early-init)

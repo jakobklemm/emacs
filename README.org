@@ -1,19 +1,189 @@
-#+TITLE: Personal emacs config
+#+TITLE: Jakob Klemm - emacs
 #+AUTHOR: Jakob Klemm
-#+DATE: 17.12.2020
 
-nothing special here, just my personal emacs config. it has a lot of
-external dependencies and no guide or tutorial. use at own risk and
-don't expect help, this isn't tech support.
-* Requirements
-- Recoll
-- SQLite
-- ~/.tools (private repository)
-- Fira Code Pro
-- GPG-Keys
-- Gnuplot (https://plantuml.com/de/emacs)
+* Setup
+  Basic setup for the editor, might be overwritten in the future. 
+** Packages
+   Straight is used as the primary package manager, but =use-package=
+   is the macro used for installing packages.
 
-* Important
-- Just a personal config, not written to be used by other people.
-- Designed for personal workflow.
-- Keybinds for Ergodox Ez + Custom dvorak (https://configure.ergodox-ez.com/ergodox-ez/layouts/RQBaW/latest/0)
+   This standard installation is copied from: [[https://www.reddit.com/r/emacs/comments/dfcyy6/how_to_install_and_use_usepackage/][How to install use-package]].
+   #+begin_src emacs-lisp
+     (require 'package) ;; Emacs builtin
+
+     ;; set package.el repositories
+     (setq package-archives
+	   '(
+	     ("org" . "https://orgmode.org/elpa/")
+	     ("gnu" . "https://elpa.gnu.org/packages/")
+	     ("melpa" . "https://melpa.org/packages/")
+	     ))
+
+     ;; initialize built-in package management
+     (package-initialize)
+
+     ;; update packages list if we are on a new install
+     (unless package-archive-contents
+       (package-refresh-contents))
+
+     ;; a list of pkgs to programmatically install
+     ;; ensure installed via package.el
+     (setq my-package-list '(use-package))
+
+     ;; programmatically install/ensure installed
+     ;; pkgs in your personal list
+     (dolist (package my-package-list)
+       (unless (package-installed-p package)
+	 (package-install package)))
+
+     (straight-use-package 'use-package)
+   #+end_src
+   
+** Utilities
+   Basic packages used as general dependencies.
+   #+begin_src emacs-lisp
+     (use-package async
+       :straight t
+       )
+     (use-package aio
+       :straight t
+       )
+     (use-package cl-lib
+       :straight t
+       )
+     (use-package s
+       :straight t
+       )
+     (use-package dash
+       :straight t
+       )
+   #+end_src
+
+** Path
+   Extra utilities & source installations for packages are stored in
+   =.emacs.d/resources/=.
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path "~/.emacs.d/resources/")
+   #+end_src
+   
+** Defaults
+  Collection of common settings. Partially copied but modified from
+  [[https://github.com/hrs/sensible-defaults.el][hrs/sensible-defaults.el]].
+  #+begin_src emacs-lisp
+    ;; Treat CamelCaseSubWords as separate words in every programming
+    ;; mode.
+    (add-hook 'prog-mode-hook 'subword-mode)
+
+    ;; Don't assume that sentences should have two spaces after
+    ;; periods.
+    (setq sentence-end-double-space nil)
+
+    ;; Turn on transient-mark-mode.
+    (transient-mark-mode t)
+
+    ;; Auto wrap text
+    (auto-fill-mode t)
+
+    ;; selected text and start inserting your typed text.
+    (delete-selection-mode t)
+
+    ;; If you save a file that doesn't end with a newline, automatically
+    ;; append one.
+    (setq require-final-newline t)
+
+    ;; Visually indicate matching pairs of parentheses.
+    (show-paren-mode t)
+    (setq show-paren-delay 0.0)
+
+    ;; When you perform a problematic operation, flash the screen instead
+    ;; of ringing the terminal bell.
+    (setq ring-bell-function 'ignore)
+    (setq visible-bell nil)
+
+    ;; Don't ask `yes/no?', ask `y/n?'.
+    (fset 'yes-or-no-p 'y-or-n-p)
+
+    ;; Ask if you're sure that you want to close Emacs.
+    (setq confirm-kill-emacs 'y-or-n-p)
+
+    ;; Don't present the usual startup message, and clear the scratch buffer.
+    (setq inhibit-startup-message t)
+    (setq initial-scratch-message nil)
+
+    ;; When something changes a file, automatically refresh the buffer
+    ;; containing that file so they can't get out of sync.
+    (global-auto-revert-mode t)
+
+    ;; Move everything to trash first
+    (setq delete-by-moving-to-trash t)
+
+    ;; No reason to use any other type. Might be disabled dependant on the
+    ;; current mode.
+    (setq display-line-numbers-type 'relative)
+
+    ;; Use tabs for everything (https://youtu.be/SsoOG6ZeyUI)
+    (setq indent-tabs-mode t)
+    (setq indent-line-function 'insert-tab)
+
+    ;; Launch emacs in fullscreen mode
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+    ;; Save the location within a file.
+    (save-place-mode t)
+
+    ;; Set always to UTF-8, only display in bar if not UTF-8
+    (set-language-environment "UTF-8")
+
+    ;; Menu bar
+    (tool-bar-mode 0)
+    (menu-bar-mode 0)
+    (scroll-bar-mode -1)
+
+    ;; Minibuffer
+    (set-window-scroll-bars (minibuffer-window) nil nil)
+
+    ;; Use smoth scrolling
+    (setq scroll-conservatively 100)
+
+    ;; Highlight the current line
+    (global-hl-line-mode)
+
+    ;; Hide the modeline
+    (setq mode-line-format nil)
+
+    ;; Error handling
+    ;; (setq warning-minimum-level :emergency)
+
+    ;; Make it affect all buffers.
+    (setq-default mode-line-format nil)
+
+    ;; Line wrap mode
+    (add-hook 'text-mode-hook 'auto-fill-mode)
+    (add-hook 'gfm-mode-hook 'auto-fill-mode)
+    (add-hook 'org-mode-hook 'auto-fill-mode)
+
+    (setq backup-directory-alist
+	  `((".*" . ,temporary-file-directory)))
+    (setq auto-save-file-name-transforms
+	  `((".*" ,temporary-file-directory t)))
+
+    (setq byte-compile-warnings '(cl-functions))
+  #+end_src
+* Design
+  Anything related to design is configured here. It sould be tried as
+  much as possible to store all /design-config/ here, instead of with
+  the package setup.
+** Theme
+   https://themer.dev/?colors.dark.shade0=%23221d1c&colors.dark.shade7=%23be1e1e&colors.dark.accent0=%23ff5555&colors.dark.accent1=%23fb9223&colors.dark.accent2=%23dfee3a&colors.dark.accent3=%2347ae61&colors.dark.accent4=%232a7b8d&colors.dark.accent5=%235467a0&colors.dark.accent6=%233e0c83&colors.dark.accent7=%2300ff62&activeColorSet=dark&calculateIntermediaryShades.dark=true&calculateIntermediaryShades.light=true
+   #+begin_src emacs-lisp
+     (require 'themer-dark-theme)
+   #+end_src
+* Navigation
+
+* Writing
+
+* org-mode
+  
+* Programming
+
+* Extras

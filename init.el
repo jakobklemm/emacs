@@ -1,61 +1,45 @@
-;; Entry point for the emacs config.
-;; Most config is not happening in this file, but managed by "setup.el"
-;; This file simply installs use-package, which is used in the entire config.
+;; Copyright 2021 Jakob Klemm
 
-(require 'package) ;; Emacs builtin
+;; Redistribution and use in source and binary forms, with or
+;; without modification, are permitted provided that the following
+;; conditions are met:
 
-;; set package.el repositories
-(setq package-archives
-'(
-   ("org" . "https://orgmode.org/elpa/")
-   ("gnu" . "https://elpa.gnu.org/packages/")
-   ("melpa" . "https://melpa.org/packages/")
-))
+;; 1. Redistributions of source code must retain the above copyright
+;; notice, this list of conditions and the following disclaimer.
 
-;; initialize built-in package management
-(package-initialize)
+;; 2. Redistributions in binary form must reproduce the above
+;; copyright notice, this list of conditions and the following
+;; disclaimer in the documentation and/or other materials provided
+;; with the distribution.
 
-;; update packages list if we are on a new install
-(unless package-archive-contents
-  (package-refresh-contents))
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+;; CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+;; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+;; MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+;; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+;; CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+;; SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+;; LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+;; USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+;; AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+;; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+;; ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
 
-;; a list of pkgs to programmatically install
-;; ensure installed via package.el
-(setq my-package-list '(use-package))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; programmatically install/ensure installed
-;; pkgs in your personal list
-(dolist (package my-package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(use-package quelpa-use-package
-  :ensure t)
-
-;; Config structure:
-
-;; Store scripts and snippets in ressource/ directory
-(add-to-list 'load-path "~/.emacs.d/resources/")
-;; Initial settings, disable some emacs features.
-(load-file (concat user-emacs-directory "modules/defaults.el"))
-;; Quality of life changes
-(load-file (concat user-emacs-directory "modules/qol.el"))
-;; Design
-(load-file (concat user-emacs-directory "modules/design.el"))
-;; Navigation
-(load-file (concat user-emacs-directory "modules/navigation.el"))
-;; Editor
-(load-file (concat user-emacs-directory "modules/editor.el"))
-;; Projects
-(load-file (concat user-emacs-directory "modules/vcs.el"))
-;; Org-mode
-(load-file (concat user-emacs-directory "modules/org.el"))
-;; Programming
-(load-file (concat user-emacs-directory "modules/programming.el"))
-;; Communication
-(load-file (concat user-emacs-directory "modules/com.el"))
-;; Binds
-(load-file (concat user-emacs-directory "modules/binds.el"))
+(org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
