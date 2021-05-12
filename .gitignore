@@ -60,3 +60,6 @@ etc/
 transient/
 server/
 custom.el
+
+straight/repos/
+straight/build/
