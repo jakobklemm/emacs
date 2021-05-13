@@ -3,9 +3,9 @@
 
 "28.0.50"
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("org-elpa" ("2021-05-12 19:19:28" nil (:local-repo nil :package "org-elpa" :type git)) "melpa" ("2021-05-12 19:19:29" nil (:type git :host github :repo "melpa/melpa" :build nil :package "melpa" :local-repo "melpa")) "gnu-elpa-mirror" ("2021-05-12 19:19:29" nil (:type git :host github :repo "emacs-straight/gnu-elpa-mirror" :build nil :package "gnu-elpa-mirror" :local-repo "gnu-elpa-mirror")) "el-get" ("2021-05-12 19:19:29" nil (:type git :host github :repo "dimitri/el-get" :build nil :files ("*.el" ("recipes" "recipes/el-get.rcp") "methods" "el-get-pkg.el") :flavor melpa :package "el-get" :local-repo "el-get")) "emacsmirror-mirror" ("2021-05-12 19:19:29" nil (:type git :host github :repo "emacs-straight/emacsmirror-mirror" :build nil :package "emacsmirror-mirror" :local-repo "emacsmirror-mirror")) "straight" ("2021-05-12 19:19:29" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2021-05-12 19:19:30" ("emacs" "bind-key") (:type git :flavor melpa :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el") "use-package-pkg.el") :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2021-05-12 19:19:30" nil (:flavor melpa :files ("bind-key.el" "bind-key-pkg.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "async" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "aio" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files ("aio.el" "README.md" "UNLICENSE" "aio-pkg.el") :host github :repo "skeeto/emacs-aio" :package "aio" :local-repo "emacs-aio")) "s" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el" :package "s" :local-repo "s.el")) "dash" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files ("dash.el" "dash.texi" "dash-pkg.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "beacon" ("2021-05-12 16:45:05" ("seq") (:type git :flavor melpa :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "perfect-margin" ("2021-05-12 19:19:30" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "mpwang/perfect-margin" :package "perfect-margin" :local-repo "perfect-margin")) "feebleline" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :host github :repo "tautologyclub/feebleline" :package "feebleline" :local-repo "feebleline")) "rainbow-delimiters" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "all-the-icons" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files (:defaults "data" "all-the-icons-pkg.el") :host github :repo "domtronn/all-the-icons.el" :package "all-the-icons" :local-repo "all-the-icons.el")) "helm" ("2021-05-12 19:19:30" ("emacs" "async" "popup" "helm-core") (:type git :flavor melpa :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") "helm-pkg.el") :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "popup" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files ("popup.el" "popup-pkg.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "helm-core" ("2021-05-12 19:19:30" ("emacs" "async") (:flavor melpa :files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "helm-posframe" ("2021-05-12 19:19:30" ("emacs" "posframe" "helm") (:type git :flavor melpa :host github :repo "tumashu/helm-posframe" :package "helm-posframe" :local-repo "helm-posframe")) "posframe" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "tumashu/posframe" :package "posframe" :local-repo "posframe")) "format-all" ("2021-05-12 19:19:30" ("emacs" "inheritenv" "language-id") (:type git :flavor melpa :host github :repo "lassik/emacs-format-all-the-code" :package "format-all" :local-repo "emacs-format-all-the-code")) "inheritenv" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "purcell/inheritenv" :package "inheritenv" :local-repo "inheritenv")) "language-id" ("2021-05-12 19:19:30" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "lassik/emacs-language-id" :package "language-id" :local-repo "emacs-language-id")) "hl-todo" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "tarsius/hl-todo" :package "hl-todo" :local-repo "hl-todo")) "rainbow-mode" ("2021-05-12 19:19:30" nil (:type git :host github :repo "emacs-straight/rainbow-mode" :files ("*" (:exclude ".git")) :package "rainbow-mode" :local-repo "rainbow-mode")) "magit" ("2021-05-12 19:19:30" ("emacs" "dash" "git-commit" "transient" "with-editor") (:type git :flavor melpa :files ("lisp/magit" "lisp/magit*.el" "lisp/git-rebase.el" "Documentation/magit.texi" "Documentation/AUTHORS.md" "LICENSE" (:exclude "lisp/magit-libgit.el") "magit-pkg.el") :host github :repo "magit/magit" :package "magit" :local-repo "magit")) "git-commit" ("2021-05-12 19:19:30" ("emacs" "dash" "transient" "with-editor") (:flavor melpa :files ("lisp/git-commit.el" "git-commit-pkg.el") :package "git-commit" :local-repo "magit" :type git :repo "magit/magit" :host github)) "transient" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files ("lisp/*.el" "docs/transient.texi" "transient-pkg.el") :host github :repo "magit/transient" :package "transient" :local-repo "transient")) "with-editor" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "magit/with-editor" :package "with-editor" :local-repo "with-editor")) "magit-todos" ("2021-05-12 19:19:30" ("emacs" "async" "dash" "f" "hl-todo" "magit" "pcre2el" "s") (:type git :flavor melpa :host github :repo "alphapapa/magit-todos" :package "magit-todos" :local-repo "magit-todos")) "f" ("2021-05-12 19:19:30" ("s" "dash") (:type git :flavor melpa :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el" :package "f" :local-repo "f.el")) "pcre2el" ("2021-05-12 19:19:30" ("emacs" "cl-lib") (:type git :flavor melpa :files ("pcre2el.el" "pcre2el-pkg.el") :host github :repo "joddie/pcre2el" :package "pcre2el" :local-repo "pcre2el")) "git-messenger" ("2021-05-12 19:19:30" ("emacs" "popup") (:type git :flavor melpa :host github :repo "emacsorphanage/git-messenger" :package "git-messenger" :local-repo "git-messenger")) "lsp-mode" ("2021-05-12 19:19:30" ("emacs" "dash" "f" "ht" "spinner" "markdown-mode" "lv") (:type git :flavor melpa :files (:defaults "clients/*.el" "lsp-mode-pkg.el") :host github :repo "emacs-lsp/lsp-mode" :package "lsp-mode" :local-repo "lsp-mode")) "ht" ("2021-05-12 19:19:30" ("dash") (:type git :flavor melpa :files ("ht.el" "ht-pkg.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el")) "spinner" ("2021-05-12 19:19:30" ("emacs") (:type git :host github :repo "emacs-straight/spinner" :files ("*" (:exclude ".git")) :package "spinner" :local-repo "spinner")) "markdown-mode" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "lv" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :files ("lv.el" "lv-pkg.el") :host github :repo "abo-abo/hydra" :package "lv" :local-repo "hydra")) "lsp-ui" ("2021-05-12 19:19:30" ("emacs" "dash" "lsp-mode" "markdown-mode") (:type git :flavor melpa :files (:defaults "lsp-ui-doc.html" "resources" "lsp-ui-pkg.el") :host github :repo "emacs-lsp/lsp-ui" :package "lsp-ui" :local-repo "lsp-ui")) "no-littering" ("2021-05-12 19:19:30" ("cl-lib") (:type git :flavor melpa :host github :repo "emacscollective/no-littering" :package "no-littering" :local-repo "no-littering")) "dtrt-indent" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :host github :repo "jscheid/dtrt-indent" :package "dtrt-indent" :local-repo "dtrt-indent")) "company" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :files (:defaults "icons" "company-pkg.el") :host github :repo "company-mode/company-mode" :package "company" :local-repo "company-mode")) "company-box" ("2021-05-12 19:19:30" ("emacs" "dash" "dash-functional" "company" "frame-local") (:type git :flavor melpa :files (:defaults "images" "company-box-pkg.el") :host github :repo "sebastiencs/company-box" :package "company-box" :local-repo "company-box")) "dash-functional" ("2021-05-12 19:19:30" ("dash") (:flavor melpa :files ("dash-functional.el" "dash-functional-pkg.el") :package "dash-functional" :local-repo "dash.el" :type git :repo "magnars/dash.el" :host github)) "frame-local" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "sebastiencs/frame-local" :package "frame-local" :local-repo "frame-local")) "smartparens" ("2021-05-12 19:19:30" ("dash" "cl-lib") (:type git :flavor melpa :host github :repo "Fuco1/smartparens" :package "smartparens" :local-repo "smartparens")) "popup-kill-ring" ("2021-05-12 19:19:30" ("popup" "pos-tip") (:type git :flavor melpa :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2021-05-12 19:19:30" nil (:type git :flavor melpa :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "evil" ("2021-05-12 19:19:30" ("emacs" "goto-chg" "cl-lib") (:type git :flavor melpa :files (:defaults "doc/build/texinfo/evil.texi" (:exclude "evil-test-helpers.el") "evil-pkg.el") :host github :repo "emacs-evil/evil" :package "evil" :local-repo "evil")) "goto-chg" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "emacs-evil/goto-chg" :package "goto-chg" :local-repo "goto-chg")) "which-key" ("2021-05-12 19:19:30" ("emacs") (:type git :flavor melpa :host github :repo "justbur/emacs-which-key" :package "which-key" :local-repo "emacs-which-key")) "evil-org" ("2021-05-12 19:19:30" ("emacs" "evil") (:type git :flavor melpa :host github :repo "Somelauw/evil-org-mode" :package "evil-org" :local-repo "evil-org-mode")) "which-key-posframe" ("2021-05-12 19:19:30" ("emacs" "posframe" "which-key") (:type git :flavor melpa :host github :repo "yanghaoxie/which-key-posframe" :package "which-key-posframe" :local-repo "which-key-posframe"))))
+#s(hash-table size 97 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("org-elpa" ("2021-05-13 16:37:47" nil (:local-repo nil :package "org-elpa" :type git)) "melpa" ("2021-05-13 16:37:48" nil (:type git :host github :repo "melpa/melpa" :build nil :package "melpa" :local-repo "melpa")) "gnu-elpa-mirror" ("2021-05-13 16:37:48" nil (:type git :host github :repo "emacs-straight/gnu-elpa-mirror" :build nil :package "gnu-elpa-mirror" :local-repo "gnu-elpa-mirror")) "el-get" ("2021-05-13 16:37:48" nil (:type git :host github :repo "dimitri/el-get" :build nil :files ("*.el" ("recipes" "recipes/el-get.rcp") "methods" "el-get-pkg.el") :flavor melpa :package "el-get" :local-repo "el-get")) "emacsmirror-mirror" ("2021-05-13 16:37:48" nil (:type git :host github :repo "emacs-straight/emacsmirror-mirror" :build nil :package "emacsmirror-mirror" :local-repo "emacsmirror-mirror")) "straight" ("2021-05-13 16:37:48" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2021-05-13 16:37:48" ("emacs" "bind-key") (:type git :flavor melpa :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el") "use-package-pkg.el") :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2021-05-13 16:37:48" nil (:flavor melpa :files ("bind-key.el" "bind-key-pkg.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "async" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "aio" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :files ("aio.el" "README.md" "UNLICENSE" "aio-pkg.el") :host github :repo "skeeto/emacs-aio" :package "aio" :local-repo "emacs-aio")) "s" ("2021-05-13 16:37:48" nil (:type git :flavor melpa :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el" :package "s" :local-repo "s.el")) "dash" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :files ("dash.el" "dash.texi" "dash-pkg.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "beacon" ("2021-05-12 16:45:05" ("seq") (:type git :flavor melpa :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "perfect-margin" ("2021-05-13 16:37:48" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "mpwang/perfect-margin" :package "perfect-margin" :local-repo "perfect-margin")) "feebleline" ("2021-05-13 16:37:48" nil (:type git :flavor melpa :host github :repo "tautologyclub/feebleline" :package "feebleline" :local-repo "feebleline")) "rainbow-delimiters" ("2021-05-13 16:37:48" nil (:type git :flavor melpa :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "all-the-icons" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :files (:defaults "data" "all-the-icons-pkg.el") :host github :repo "domtronn/all-the-icons.el" :package "all-the-icons" :local-repo "all-the-icons.el")) "helm" ("2021-05-13 16:37:48" ("emacs" "async" "popup" "helm-core") (:type git :flavor melpa :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") "helm-pkg.el") :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "popup" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :files ("popup.el" "popup-pkg.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "helm-core" ("2021-05-13 16:37:48" ("emacs" "async") (:flavor melpa :files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "helm-posframe" ("2021-05-13 16:37:48" ("emacs" "posframe" "helm") (:type git :flavor melpa :host github :repo "tumashu/helm-posframe" :package "helm-posframe" :local-repo "helm-posframe")) "posframe" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "tumashu/posframe" :package "posframe" :local-repo "posframe")) "format-all" ("2021-05-13 16:37:48" ("emacs" "inheritenv" "language-id") (:type git :flavor melpa :host github :repo "lassik/emacs-format-all-the-code" :package "format-all" :local-repo "emacs-format-all-the-code")) "inheritenv" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "purcell/inheritenv" :package "inheritenv" :local-repo "inheritenv")) "language-id" ("2021-05-13 16:37:48" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "lassik/emacs-language-id" :package "language-id" :local-repo "emacs-language-id")) "hl-todo" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "tarsius/hl-todo" :package "hl-todo" :local-repo "hl-todo")) "rainbow-mode" ("2021-05-13 16:37:48" nil (:type git :host github :repo "emacs-straight/rainbow-mode" :files ("*" (:exclude ".git")) :package "rainbow-mode" :local-repo "rainbow-mode")) "magit" ("2021-05-13 16:37:48" ("emacs" "dash" "git-commit" "transient" "with-editor") (:type git :flavor melpa :files ("lisp/magit" "lisp/magit*.el" "lisp/git-rebase.el" "Documentation/magit.texi" "Documentation/AUTHORS.md" "LICENSE" (:exclude "lisp/magit-libgit.el") "magit-pkg.el") :host github :repo "magit/magit" :package "magit" :local-repo "magit")) "git-commit" ("2021-05-13 16:37:48" ("emacs" "dash" "transient" "with-editor") (:flavor melpa :files ("lisp/git-commit.el" "git-commit-pkg.el") :package "git-commit" :local-repo "magit" :type git :repo "magit/magit" :host github)) "transient" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :files ("lisp/*.el" "docs/transient.texi" "transient-pkg.el") :host github :repo "magit/transient" :package "transient" :local-repo "transient")) "with-editor" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "magit/with-editor" :package "with-editor" :local-repo "with-editor")) "magit-todos" ("2021-05-13 16:37:49" ("emacs" "async" "dash" "f" "hl-todo" "magit" "pcre2el" "s") (:type git :flavor melpa :host github :repo "alphapapa/magit-todos" :package "magit-todos" :local-repo "magit-todos")) "f" ("2021-05-13 16:37:49" ("s" "dash") (:type git :flavor melpa :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el" :package "f" :local-repo "f.el")) "pcre2el" ("2021-05-13 16:37:49" ("emacs" "cl-lib") (:type git :flavor melpa :files ("pcre2el.el" "pcre2el-pkg.el") :host github :repo "joddie/pcre2el" :package "pcre2el" :local-repo "pcre2el")) "git-messenger" ("2021-05-13 16:37:49" ("emacs" "popup") (:type git :flavor melpa :host github :repo "emacsorphanage/git-messenger" :package "git-messenger" :local-repo "git-messenger")) "lsp-mode" ("2021-05-13 16:37:49" ("emacs" "dash" "f" "ht" "spinner" "markdown-mode" "lv") (:type git :flavor melpa :files (:defaults "clients/*.el" "lsp-mode-pkg.el") :host github :repo "emacs-lsp/lsp-mode" :package "lsp-mode" :local-repo "lsp-mode")) "ht" ("2021-05-13 16:37:49" ("dash") (:type git :flavor melpa :files ("ht.el" "ht-pkg.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el")) "spinner" ("2021-05-13 16:37:49" ("emacs") (:type git :host github :repo "emacs-straight/spinner" :files ("*" (:exclude ".git")) :package "spinner" :local-repo "spinner")) "markdown-mode" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "lv" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :files ("lv.el" "lv-pkg.el") :host github :repo "abo-abo/hydra" :package "lv" :local-repo "hydra")) "lsp-ui" ("2021-05-13 16:37:49" ("emacs" "dash" "lsp-mode" "markdown-mode") (:type git :flavor melpa :files (:defaults "lsp-ui-doc.html" "resources" "lsp-ui-pkg.el") :host github :repo "emacs-lsp/lsp-ui" :package "lsp-ui" :local-repo "lsp-ui")) "no-littering" ("2021-05-13 16:37:48" ("cl-lib") (:type git :flavor melpa :host github :repo "emacscollective/no-littering" :package "no-littering" :local-repo "no-littering")) "dtrt-indent" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :host github :repo "jscheid/dtrt-indent" :package "dtrt-indent" :local-repo "dtrt-indent")) "company" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :files (:defaults "icons" "company-pkg.el") :host github :repo "company-mode/company-mode" :package "company" :local-repo "company-mode")) "company-box" ("2021-05-13 16:37:49" ("emacs" "dash" "dash-functional" "company" "frame-local") (:type git :flavor melpa :files (:defaults "images" "company-box-pkg.el") :host github :repo "sebastiencs/company-box" :package "company-box" :local-repo "company-box")) "dash-functional" ("2021-05-13 16:37:49" ("dash") (:flavor melpa :files ("dash-functional.el" "dash-functional-pkg.el") :package "dash-functional" :local-repo "dash.el" :type git :repo "magnars/dash.el" :host github)) "frame-local" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "sebastiencs/frame-local" :package "frame-local" :local-repo "frame-local")) "smartparens" ("2021-05-13 16:37:49" ("dash" "cl-lib") (:type git :flavor melpa :host github :repo "Fuco1/smartparens" :package "smartparens" :local-repo "smartparens")) "popup-kill-ring" ("2021-05-13 16:37:49" ("popup" "pos-tip") (:type git :flavor melpa :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "evil" ("2021-05-13 16:37:48" ("emacs" "goto-chg" "cl-lib") (:type git :flavor melpa :files (:defaults "doc/build/texinfo/evil.texi" (:exclude "evil-test-helpers.el") "evil-pkg.el") :host github :repo "emacs-evil/evil" :package "evil" :local-repo "evil")) "goto-chg" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "emacs-evil/goto-chg" :package "goto-chg" :local-repo "goto-chg")) "which-key" ("2021-05-13 16:37:48" ("emacs") (:type git :flavor melpa :host github :repo "justbur/emacs-which-key" :package "which-key" :local-repo "emacs-which-key")) "evil-org" ("2021-05-13 16:37:48" ("emacs" "evil") (:type git :flavor melpa :host github :repo "Somelauw/evil-org-mode" :package "evil-org" :local-repo "evil-org-mode")) "which-key-posframe" ("2021-05-13 16:37:48" ("emacs" "posframe" "which-key") (:type git :flavor melpa :host github :repo "yanghaoxie/which-key-posframe" :package "which-key-posframe" :local-repo "which-key-posframe")) "evil-leader" ("2021-05-13 16:37:48" ("evil") (:type git :flavor melpa :host github :repo "cofi/evil-leader" :package "evil-leader" :local-repo "evil-leader")) "ace-window" ("2021-05-13 16:37:48" ("avy") (:type git :flavor melpa :host github :repo "abo-abo/ace-window" :package "ace-window" :local-repo "ace-window")) "avy" ("2021-05-13 16:37:48" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "abo-abo/avy" :package "avy" :local-repo "avy")) "csharp-mode" ("2021-05-13 16:37:49" ("emacs" "tree-sitter" "tree-sitter-indent" "tree-sitter-langs") (:type git :flavor melpa :host github :repo "emacs-csharp/csharp-mode" :package "csharp-mode" :local-repo "csharp-mode")) "tree-sitter" ("2021-05-13 16:37:49" ("emacs" "tsc") (:type git :flavor melpa :files ("lisp/*.el" (:exclude "lisp/tree-sitter-tests.el") "tree-sitter-pkg.el") :host github :repo "ubolonton/emacs-tree-sitter" :package "tree-sitter" :local-repo "emacs-tree-sitter")) "tsc" ("2021-05-13 16:37:49" ("emacs") (:flavor melpa :files ("core/*.el" "core/Cargo.toml" "core/Cargo.lock" "core/src" "tsc-pkg.el") :package "tsc" :local-repo "emacs-tree-sitter" :type git :repo "ubolonton/emacs-tree-sitter" :host github)) "tree-sitter-indent" ("2021-05-13 16:37:49" ("emacs" "tree-sitter" "seq") (:type git :flavor melpa :repo "https://codeberg.org/FelipeLema/tree-sitter-indent.el.git" :package "tree-sitter-indent" :local-repo "tree-sitter-indent.el")) "tree-sitter-langs" ("2021-05-13 16:37:49" ("emacs" "tree-sitter") (:type git :flavor melpa :files (:defaults "queries" "tree-sitter-langs-pkg.el") :host github :repo "ubolonton/tree-sitter-langs" :package "tree-sitter-langs" :local-repo "tree-sitter-langs")) "json-mode" ("2021-05-13 16:37:49" ("json-reformat" "json-snatcher") (:type git :flavor melpa :host github :repo "joshwnj/json-mode" :package "json-mode" :local-repo "json-mode")) "json-reformat" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :host github :repo "gongo/json-reformat" :package "json-reformat" :local-repo "json-reformat")) "json-snatcher" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "Sterlingg/json-snatcher" :package "json-snatcher" :local-repo "json-snatcher")) "scala-mode" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :host github :repo "hvesalai/emacs-scala-mode" :package "scala-mode" :local-repo "emacs-scala-mode")) "docker" ("2021-05-13 16:37:49" ("dash" "docker-tramp" "emacs" "json-mode" "s" "tablist" "transient") (:type git :flavor melpa :host github :repo "Silex/docker.el" :package "docker" :local-repo "docker.el")) "docker-tramp" ("2021-05-13 16:37:49" ("emacs" "cl-lib") (:type git :flavor melpa :host github :repo "emacs-pe/docker-tramp.el" :package "docker-tramp" :local-repo "docker-tramp.el")) "tablist" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "politza/tablist" :package "tablist" :local-repo "tablist")) "nginx-mode" ("2021-05-13 16:37:49" nil (:type git :flavor melpa :host github :repo "ajc/nginx-mode" :package "nginx-mode" :local-repo "nginx-mode")) "web-mode" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "systemd" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :files (:defaults "*.txt" "systemd-pkg.el") :host github :repo "holomorph/systemd-mode" :package "systemd" :local-repo "systemd-mode")) "yaml-mode" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "yoshiki/yaml-mode" :package "yaml-mode" :local-repo "yaml-mode")) "dockerfile-mode" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :host github :repo "spotify/dockerfile-mode" :package "dockerfile-mode" :local-repo "dockerfile-mode")) "malyon" ("2021-05-13 16:37:49" ("cl-lib") (:type git :flavor melpa :host github :repo "speedenator/malyon" :package "malyon" :local-repo "malyon")) "org-appear" ("2021-05-13 16:37:49" ("emacs" "org") (:type git :flavor melpa :host github :repo "awth13/org-appear" :package "org-appear" :local-repo "org-appear")) "org" ("2021-05-13 16:37:49" ("emacs") (:type git :repo "https://code.orgmode.org/bzg/org-mode.git" :local-repo "org" :depth full :pre-build ("make" "autoloads" "EMACS=/usr/local/bin/emacs") :build (:not autoloads) :files (:defaults "lisp/*.el" ("etc/styles/" "etc/styles/*")) :package "org")) "org-fragtog" ("2021-05-13 16:37:49" ("emacs" "org") (:type git :flavor melpa :host github :repo "io12/org-fragtog" :package "org-fragtog" :local-repo "org-fragtog")) "org-roam" ("2021-05-13 16:37:49" ("emacs" "dash" "f" "s" "org" "emacsql" "emacsql-sqlite3") (:type git :flavor melpa :host github :repo "org-roam/org-roam" :package "org-roam" :local-repo "org-roam")) "emacsql" ("2021-05-13 16:37:49" ("emacs") (:type git :flavor melpa :files ("emacsql.el" "emacsql-compiler.el" "emacsql-system.el" "README.md" "emacsql-pkg.el") :host github :repo "skeeto/emacsql" :package "emacsql" :local-repo "emacsql")) "emacsql-sqlite3" ("2021-05-13 16:37:49" ("emacs" "emacsql") (:type git :flavor melpa :host github :repo "cireu/emacsql-sqlite3" :package "emacsql-sqlite3" :local-repo "emacsql-sqlite3")) "org-drill" ("2021-05-13 16:37:49" ("emacs" "seq" "org" "persist") (:type git :flavor melpa :host gitlab :repo "phillord/org-drill" :package "org-drill" :local-repo "org-drill")) "persist" ("2021-05-13 16:37:49" nil (:type git :host github :repo "emacs-straight/persist" :files ("*" (:exclude ".git")) :package "persist" :local-repo "persist")) "org-roam-server" ("2021-05-13 16:37:49" ("org-roam" "org" "emacs" "dash" "simple-httpd" "s" "f") (:type git :flavor melpa :files ("*.el" "index.html" "assets" "org-roam-server-pkg.el") :host github :repo "org-roam/org-roam-server" :package "org-roam-server" :local-repo "org-roam-server")) "simple-httpd" ("2021-05-13 16:37:49" ("cl-lib") (:type git :flavor melpa :host github :repo "skeeto/emacs-web-server" :package "simple-httpd" :local-repo "emacs-web-server"))))
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight-autoloads straight straight-x) (autoload 'straight-get-recipe "straight" "Interactively select a recipe from one of the recipe repositories.
+#s(hash-table size 97 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight-autoloads straight straight-x) (autoload 'straight-get-recipe "straight" "Interactively select a recipe from one of the recipe repositories.
 All recipe repositories in `straight-recipe-repositories' will
 first be cloned. After the recipe is selected, it will be copied
 to the kill ring. With a prefix argument, first prompt for a
@@ -3933,10 +3933,694 @@ Disable the mode if ARG is a negative number.
 The mode's hook is called both when the mode is enabled and when
 it is disabled.
 
-(fn &optional ARG)" t nil) (register-definition-prefixes "which-key-posframe" '("which-key-")) (provide 'which-key-posframe-autoloads))))
+(fn &optional ARG)" t nil) (register-definition-prefixes "which-key-posframe" '("which-key-")) (provide 'which-key-posframe-autoloads)) "evil-leader" ((evil-leader-autoloads evil-leader) (autoload 'global-evil-leader-mode "evil-leader" "Global minor mode for <leader> support.
 
-#s(hash-table size 65 test eq rehash-size 1.5 rehash-threshold 0.8125 data (org-elpa #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 7 "melpa" nil "gnu-elpa-mirror" nil "el-get" nil "emacsmirror-mirror" nil "straight" nil "use-package" nil "bind-key" nil "async" nil "aio" nil "cl-lib" nil "s" nil "dash" nil "beacon" nil "seq" nil "perfect-margin" nil "feebleline" nil "rainbow-delimiters" nil "all-the-icons" nil "helm" nil "popup" nil "helm-core" nil "helm-posframe" nil "posframe" nil "format-all" nil "inheritenv" nil "language-id" nil "hl-todo" nil "rainbow-mode" nil "recentf" nil "magit" nil "git-commit" nil "transient" nil "with-editor" nil "magit-todos" nil "f" nil "pcre2el" nil "git-messenger" nil "lsp-mode" nil "ht" nil "spinner" nil "markdown-mode" nil "lv" nil "lsp-ui" nil "no-littering" nil "dtrt-indent" nil "company" nil "company-box" nil "dash-functional" nil "frame-local" nil "smartparens" nil "popup-kill-ring" nil "pos-tip" nil "evil" nil "goto-chg" nil "which-key" nil "evil-org" nil "which-key-posframe" nil)) melpa #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 2 "gnu-elpa-mirror" nil "el-get" (el-get :type git :flavor melpa :files ("*.el" ("recipes" "recipes/el-get.rcp") "methods" "el-get-pkg.el") :host github :repo "dimitri/el-get") "emacsmirror-mirror" nil "straight" nil "use-package" (use-package :type git :flavor melpa :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el") "use-package-pkg.el") :host github :repo "jwiegley/use-package") "bind-key" (bind-key :type git :flavor melpa :files ("bind-key.el" "bind-key-pkg.el") :host github :repo "jwiegley/use-package") "async" (async :type git :flavor melpa :host github :repo "jwiegley/emacs-async") "aio" (aio :type git :flavor melpa :files ("aio.el" "README.md" "UNLICENSE" "aio-pkg.el") :host github :repo "skeeto/emacs-aio") "cl-lib" nil "s" (s :type git :flavor melpa :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el") "dash" (dash :type git :flavor melpa :files ("dash.el" "dash.texi" "dash-pkg.el") :host github :repo "magnars/dash.el") "beacon" (beacon :type git :flavor melpa :host github :repo "Malabarba/beacon") "seq" nil "perfect-margin" (perfect-margin :type git :flavor melpa :host github :repo "mpwang/perfect-margin") "feebleline" (feebleline :type git :flavor melpa :host github :repo "tautologyclub/feebleline") "rainbow-delimiters" (rainbow-delimiters :type git :flavor melpa :host github :repo "Fanael/rainbow-delimiters") "all-the-icons" (all-the-icons :type git :flavor melpa :files (:defaults "data" "all-the-icons-pkg.el") :host github :repo "domtronn/all-the-icons.el") "helm" (helm :type git :flavor melpa :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") "helm-pkg.el") :host github :repo "emacs-helm/helm") "popup" (popup :type git :flavor melpa :files ("popup.el" "popup-pkg.el") :host github :repo "auto-complete/popup-el") "helm-core" (helm-core :type git :flavor melpa :files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") :host github :repo "emacs-helm/helm") "helm-posframe" (helm-posframe :type git :flavor melpa :host github :repo "tumashu/helm-posframe") "posframe" (posframe :type git :flavor melpa :host github :repo "tumashu/posframe") "format-all" (format-all :type git :flavor melpa :host github :repo "lassik/emacs-format-all-the-code") "inheritenv" (inheritenv :type git :flavor melpa :host github :repo "purcell/inheritenv") "language-id" (language-id :type git :flavor melpa :host github :repo "lassik/emacs-language-id") "hl-todo" (hl-todo :type git :flavor melpa :host github :repo "tarsius/hl-todo") "rainbow-mode" nil "recentf" nil "magit" (magit :type git :flavor melpa :files ("lisp/magit" "lisp/magit*.el" "lisp/git-rebase.el" "Documentation/magit.texi" "Documentation/AUTHORS.md" "LICENSE" (:exclude "lisp/magit-libgit.el") "magit-pkg.el") :host github :repo "magit/magit") "git-commit" (git-commit :type git :flavor melpa :files ("lisp/git-commit.el" "git-commit-pkg.el") :host github :repo "magit/magit") "transient" (transient :type git :flavor melpa :files ("lisp/*.el" "docs/transient.texi" "transient-pkg.el") :host github :repo "magit/transient") "with-editor" (with-editor :type git :flavor melpa :host github :repo "magit/with-editor") "magit-todos" (magit-todos :type git :flavor melpa :host github :repo "alphapapa/magit-todos") "f" (f :type git :flavor melpa :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el") "pcre2el" (pcre2el :type git :flavor melpa :files ("pcre2el.el" "pcre2el-pkg.el") :host github :repo "joddie/pcre2el") "git-messenger" (git-messenger :type git :flavor melpa :host github :repo "emacsorphanage/git-messenger") "lsp-mode" (lsp-mode :type git :flavor melpa :files (:defaults "clients/*.el" "lsp-mode-pkg.el") :host github :repo "emacs-lsp/lsp-mode") "ht" (ht :type git :flavor melpa :files ("ht.el" "ht-pkg.el") :host github :repo "Wilfred/ht.el") "spinner" nil "markdown-mode" (markdown-mode :type git :flavor melpa :host github :repo "jrblevin/markdown-mode") "lv" (lv :type git :flavor melpa :files ("lv.el" "lv-pkg.el") :host github :repo "abo-abo/hydra") "lsp-ui" (lsp-ui :type git :flavor melpa :files (:defaults "lsp-ui-doc.html" "resources" "lsp-ui-pkg.el") :host github :repo "emacs-lsp/lsp-ui") "no-littering" (no-littering :type git :flavor melpa :host github :repo "emacscollective/no-littering") "dtrt-indent" (dtrt-indent :type git :flavor melpa :host github :repo "jscheid/dtrt-indent") "company" (company :type git :flavor melpa :files (:defaults "icons" "company-pkg.el") :host github :repo "company-mode/company-mode") "company-box" (company-box :type git :flavor melpa :files (:defaults "images" "company-box-pkg.el") :host github :repo "sebastiencs/company-box") "dash-functional" (dash-functional :type git :flavor melpa :files ("dash-functional.el" "dash-functional-pkg.el") :host github :repo "magnars/dash.el") "frame-local" (frame-local :type git :flavor melpa :host github :repo "sebastiencs/frame-local") "smartparens" (smartparens :type git :flavor melpa :host github :repo "Fuco1/smartparens") "popup-kill-ring" (popup-kill-ring :type git :flavor melpa :host github :repo "waymondo/popup-kill-ring") "pos-tip" (pos-tip :type git :flavor melpa :host github :repo "pitkali/pos-tip") "evil" (evil :type git :flavor melpa :files (:defaults "doc/build/texinfo/evil.texi" (:exclude "evil-test-helpers.el") "evil-pkg.el") :host github :repo "emacs-evil/evil") "goto-chg" (goto-chg :type git :flavor melpa :host github :repo "emacs-evil/goto-chg") "which-key" (which-key :type git :flavor melpa :host github :repo "justbur/emacs-which-key") "evil-org" (evil-org :type git :flavor melpa :host github :repo "Somelauw/evil-org-mode") "which-key-posframe" (which-key-posframe :type git :flavor melpa :host github :repo "yanghaoxie/which-key-posframe"))) gnu-elpa-mirror #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 3 "emacsmirror-mirror" nil "straight" nil "cl-lib" nil "seq" nil "rainbow-mode" (rainbow-mode :type git :host github :repo "emacs-straight/rainbow-mode" :files ("*" (:exclude ".git"))) "recentf" nil "spinner" (spinner :type git :host github :repo "emacs-straight/spinner" :files ("*" (:exclude ".git"))))) el-get #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 1 "emacsmirror-mirror" nil "straight" nil "cl-lib" nil "seq" nil "recentf" nil)) emacsmirror-mirror #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 2 "straight" (straight :type git :host github :repo "emacsmirror/straight") "cl-lib" nil "seq" nil "recentf" nil))))
+If called interactively, toggle `Global Evil-Leader mode'.  If
+the prefix argument is positive, enable the mode, and if it is
+zero or negative, disable the mode.
 
-("org-elpa" "melpa" "gnu-elpa-mirror" "el-get" "emacsmirror-mirror" "straight" "emacs" "use-package" "bind-key" "async" "aio" "cl-lib" "s" "dash" "no-littering" "perfect-margin" "feebleline" "rainbow-delimiters" "all-the-icons" "hl-todo" "rainbow-mode" "helm" "popup" "helm-core" "helm-posframe" "posframe" "recentf" "which-key" "which-key-posframe" "evil" "goto-chg" "evil-org" "format-all" "inheritenv" "language-id" "magit" "git-commit" "transient" "with-editor" "magit-todos" "f" "pcre2el" "git-messenger" "lsp-mode" "ht" "spinner" "markdown-mode" "lv" "lsp-ui" "dtrt-indent" "company" "company-box" "dash-functional" "frame-local" "smartparens" "popup-kill-ring" "pos-tip")
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (autoload 'evil-leader-mode "evil-leader" "Minor mode to enable <leader> support.
+
+If called interactively, toggle `Evil-Leader mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (autoload 'evil-leader/set-key "evil-leader" "Bind `key' to command `def' in `evil-leader/default-map'.
+
+Key has to be readable by `read-kbd-macro' and `def' a command.
+Accepts further `key' `def' pairs.
+
+(fn KEY DEF &rest BINDINGS)" t nil) (autoload 'evil-leader/set-key-for-mode "evil-leader" "Create keybindings for major-mode `mode' with `key' bound to command `def'.
+
+See `evil-leader/set-key'.
+
+(fn MODE KEY DEF &rest BINDINGS)" t nil) (register-definition-prefixes "evil-leader" '("evil-leader")) (provide 'evil-leader-autoloads)) "avy" ((avy avy-autoloads) (autoload 'avy-process "avy" "Select one of CANDIDATES using `avy-read'.
+Use OVERLAY-FN to visualize the decision overlay.
+CLEANUP-FN should take no arguments and remove the effects of
+multiple OVERLAY-FN invocations.
+
+(fn CANDIDATES &optional OVERLAY-FN CLEANUP-FN)" nil nil) (autoload 'avy-goto-char "avy" "Jump to the currently visible CHAR.
+The window scope is determined by `avy-all-windows' (ARG negates it).
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-char-in-line "avy" "Jump to the currently visible CHAR in the current line.
+
+(fn CHAR)" t nil) (autoload 'avy-goto-char-2 "avy" "Jump to the currently visible CHAR1 followed by CHAR2.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+BEG and END narrow the scope where candidates are searched.
+
+(fn CHAR1 CHAR2 &optional ARG BEG END)" t nil) (autoload 'avy-goto-char-2-above "avy" "Jump to the currently visible CHAR1 followed by CHAR2.
+This is a scoped version of `avy-goto-char-2', where the scope is
+the visible part of the current buffer up to point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR1 CHAR2 &optional ARG)" t nil) (autoload 'avy-goto-char-2-below "avy" "Jump to the currently visible CHAR1 followed by CHAR2.
+This is a scoped version of `avy-goto-char-2', where the scope is
+the visible part of the current buffer following point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR1 CHAR2 &optional ARG)" t nil) (autoload 'avy-isearch "avy" "Jump to one of the current isearch candidates." t nil) (autoload 'avy-goto-word-0 "avy" "Jump to a word start.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+BEG and END narrow the scope where candidates are searched.
+
+(fn ARG &optional BEG END)" t nil) (autoload 'avy-goto-whitespace-end "avy" "Jump to the end of a whitespace sequence.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+BEG and END narrow the scope where candidates are searched.
+
+(fn ARG &optional BEG END)" t nil) (autoload 'avy-goto-word-1 "avy" "Jump to the currently visible CHAR at a word start.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+BEG and END narrow the scope where candidates are searched.
+When SYMBOL is non-nil, jump to symbol start instead of word start.
+
+(fn CHAR &optional ARG BEG END SYMBOL)" t nil) (autoload 'avy-goto-word-1-above "avy" "Jump to the currently visible CHAR at a word start.
+This is a scoped version of `avy-goto-word-1', where the scope is
+the visible part of the current buffer up to point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-word-1-below "avy" "Jump to the currently visible CHAR at a word start.
+This is a scoped version of `avy-goto-word-1', where the scope is
+the visible part of the current buffer following point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-symbol-1 "avy" "Jump to the currently visible CHAR at a symbol start.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-symbol-1-above "avy" "Jump to the currently visible CHAR at a symbol start.
+This is a scoped version of `avy-goto-symbol-1', where the scope is
+the visible part of the current buffer up to point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-symbol-1-below "avy" "Jump to the currently visible CHAR at a symbol start.
+This is a scoped version of `avy-goto-symbol-1', where the scope is
+the visible part of the current buffer following point.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-subword-0 "avy" "Jump to a word or subword start.
+The window scope is determined by `avy-all-windows' (ARG negates it).
+
+When PREDICATE is non-nil it's a function of zero parameters that
+should return true.
+
+BEG and END narrow the scope where candidates are searched.
+
+(fn &optional ARG PREDICATE BEG END)" t nil) (autoload 'avy-goto-subword-1 "avy" "Jump to the currently visible CHAR at a subword start.
+The window scope is determined by `avy-all-windows' (ARG negates it).
+The case of CHAR is ignored.
+
+(fn CHAR &optional ARG)" t nil) (autoload 'avy-goto-word-or-subword-1 "avy" "Forward to `avy-goto-subword-1' or `avy-goto-word-1'.
+Which one depends on variable `subword-mode'." t nil) (autoload 'avy-goto-line "avy" "Jump to a line start in current buffer.
+
+When ARG is 1, jump to lines currently visible, with the option
+to cancel to `goto-line' by entering a number.
+
+When ARG is 4, negate the window scope determined by
+`avy-all-windows'.
+
+Otherwise, forward to `goto-line' with ARG.
+
+(fn &optional ARG)" t nil) (autoload 'avy-goto-line-above "avy" "Goto visible line above the cursor.
+OFFSET changes the distance between the closest key to the cursor and
+the cursor
+When BOTTOM-UP is non-nil, display avy candidates from top to bottom
+
+(fn &optional OFFSET BOTTOM-UP)" t nil) (autoload 'avy-goto-line-below "avy" "Goto visible line below the cursor.
+OFFSET changes the distance between the closest key to the cursor and
+the cursor
+When BOTTOM-UP is non-nil, display avy candidates from top to bottom
+
+(fn &optional OFFSET BOTTOM-UP)" t nil) (autoload 'avy-goto-end-of-line "avy" "Call `avy-goto-line' and move to the end of the line.
+
+(fn &optional ARG)" t nil) (autoload 'avy-copy-line "avy" "Copy a selected line above the current line.
+ARG lines can be used.
+
+(fn ARG)" t nil) (autoload 'avy-move-line "avy" "Move a selected line above the current line.
+ARG lines can be used.
+
+(fn ARG)" t nil) (autoload 'avy-copy-region "avy" "Select two lines and copy the text between them to point.
+
+The window scope is determined by `avy-all-windows' or
+`avy-all-windows-alt' when ARG is non-nil.
+
+(fn ARG)" t nil) (autoload 'avy-move-region "avy" "Select two lines and move the text between them above the current line." t nil) (autoload 'avy-kill-region "avy" "Select two lines and kill the region between them.
+
+The window scope is determined by `avy-all-windows' or
+`avy-all-windows-alt' when ARG is non-nil.
+
+(fn ARG)" t nil) (autoload 'avy-kill-ring-save-region "avy" "Select two lines and save the region between them to the kill ring.
+The window scope is determined by `avy-all-windows'.
+When ARG is non-nil, do the opposite of `avy-all-windows'.
+
+(fn ARG)" t nil) (autoload 'avy-kill-whole-line "avy" "Select line and kill the whole selected line.
+
+With a numerical prefix ARG, kill ARG line(s) starting from the
+selected line.  If ARG is negative, kill backward.
+
+If ARG is zero, kill the selected line but exclude the trailing
+newline.
+
+\\[universal-argument] 3 \\[avy-kil-whole-line] kill three lines
+starting from the selected line.  \\[universal-argument] -3
+
+\\[avy-kill-whole-line] kill three lines backward including the
+selected line.
+
+(fn ARG)" t nil) (autoload 'avy-kill-ring-save-whole-line "avy" "Select line and save the whole selected line as if killed, but don\342\200\231t kill it.
+
+This command is similar to `avy-kill-whole-line', except that it
+saves the line(s) as if killed, but does not kill it(them).
+
+With a numerical prefix ARG, kill ARG line(s) starting from the
+selected line.  If ARG is negative, kill backward.
+
+If ARG is zero, kill the selected line but exclude the trailing
+newline.
+
+(fn ARG)" t nil) (autoload 'avy-setup-default "avy" "Setup the default shortcuts." nil nil) (autoload 'avy-goto-char-timer "avy" "Read one or many consecutive chars and jump to the first one.
+The window scope is determined by `avy-all-windows' (ARG negates it).
+
+(fn &optional ARG)" t nil) (autoload 'avy-transpose-lines-in-region "avy" "Transpose lines in the active region." t nil) (register-definition-prefixes "avy" '("avy-")) (provide 'avy-autoloads)) "ace-window" ((ace-window ace-window-autoloads) (autoload 'ace-select-window "ace-window" "Ace select window." t nil) (autoload 'ace-delete-window "ace-window" "Ace delete window." t nil) (autoload 'ace-swap-window "ace-window" "Ace swap window." t nil) (autoload 'ace-delete-other-windows "ace-window" "Ace delete other windows." t nil) (autoload 'ace-display-buffer "ace-window" "Make `display-buffer' and `pop-to-buffer' select using `ace-window'.
+See sample config for `display-buffer-base-action' and `display-buffer-alist':
+https://github.com/abo-abo/ace-window/wiki/display-buffer.
+
+(fn BUFFER ALIST)" nil nil) (autoload 'ace-window "ace-window" "Select a window.
+Perform an action based on ARG described below.
+
+By default, behaves like extended `other-window'.
+See `aw-scope' which extends it to work with frames.
+
+Prefixed with one \\[universal-argument], does a swap between the
+selected window and the current window, so that the selected
+buffer moves to current window (and current buffer moves to
+selected window).
+
+Prefixed with two \\[universal-argument]'s, deletes the selected
+window.
+
+(fn ARG)" t nil) (defvar ace-window-display-mode nil "Non-nil if Ace-Window-Display mode is enabled.
+See the `ace-window-display-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `ace-window-display-mode'.") (custom-autoload 'ace-window-display-mode "ace-window" nil) (autoload 'ace-window-display-mode "ace-window" "Minor mode for showing the ace window key in the mode line.
+
+If called interactively, toggle `Ace-Window-Display mode'.  If
+the prefix argument is positive, enable the mode, and if it is
+zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (register-definition-prefixes "ace-window" '("ace-window-mode" "aw-")) (provide 'ace-window-autoloads)) "tsc" ((tsc-dyn-get tsc tsc-obsolete tsc-autoloads) (register-definition-prefixes "tsc" '("tsc-")) (register-definition-prefixes "tsc-dyn-get" '("tsc-")) (provide 'tsc-autoloads)) "tree-sitter" ((tree-sitter-hl tree-sitter-query tree-sitter-autoloads tree-sitter tree-sitter-extras tree-sitter-debug tree-sitter-cli tree-sitter-load) (autoload 'tree-sitter-mode "tree-sitter" "Minor mode that keeps an up-to-date syntax tree using incremental parsing.
+
+If called interactively, toggle `tree-sitter mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (autoload 'turn-on-tree-sitter-mode "tree-sitter" "Turn on `tree-sitter-mode' in a buffer, if possible." nil nil) (put 'global-tree-sitter-mode 'globalized-minor-mode t) (defvar global-tree-sitter-mode nil "Non-nil if Global Tree-Sitter mode is enabled.
+See the `global-tree-sitter-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-tree-sitter-mode'.") (custom-autoload 'global-tree-sitter-mode "tree-sitter" nil) (autoload 'global-tree-sitter-mode "tree-sitter" "Toggle Tree-Sitter mode in all buffers.
+With prefix ARG, enable Global Tree-Sitter mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if ARG is
+omitted or nil.
+
+Tree-Sitter mode is enabled in all buffers where
+`turn-on-tree-sitter-mode' would do it.
+
+See `tree-sitter-mode' for more information on Tree-Sitter mode.
+
+(fn &optional ARG)" t nil) (autoload 'tree-sitter-node-at-point "tree-sitter" "Return the smallest syntax node at point whose type is NODE-TYPE.
+If NODE-TYPE is nil, return the smallest syntax node at point.
+
+(fn &optional NODE-TYPE)" nil nil) (register-definition-prefixes "tree-sitter" '("tree-sitter-")) (register-definition-prefixes "tree-sitter-cli" '("tree-sitter-cli-")) (autoload 'tree-sitter-debug-mode "tree-sitter-debug" "Toggle syntax tree debugging for the current buffer.
+This mode displays the syntax tree in another buffer, and keeps it up-to-date.
+
+If called interactively, toggle `Tree-Sitter-Debug mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (autoload 'tree-sitter-debug-query "tree-sitter-debug" "Execute query PATTERNS against the current syntax tree and return captures.
+
+If the optional arg MATCHES is non-nil, matches (from `tsc-query-matches') are
+returned instead of captures (from `tsc-query-captures').
+
+If the optional arg TAG-ASSIGNER is non-nil, it is passed to `tsc-make-query' to
+assign custom tags to capture names.
+
+This function is primarily useful for debugging purpose. Other packages should
+build queries and cursors once, then reuse them.
+
+(fn PATTERNS &optional MATCHES TAG-ASSIGNER)" nil nil) (register-definition-prefixes "tree-sitter-debug" '("tree-sitter-debug-")) (autoload 'tree-sitter-save-excursion "tree-sitter-extras" "Save the current location within the syntax tree; execute BODY; restore it.
+
+If the original location cannot be restored due to the syntax tree changing too
+much, this macro behaves like `save-excursion', unless
+`tree-sitter-save-excursion-try-hard' is non-nil, in which case it tries to get
+as close as possible to the original location.
+
+After the location is restored, the buffer text is scrolled so that point stays
+at roughly the same vertical screen position. If `pixel-scroll' is available and
+`tree-sitter-save-excursion-pixelwise' is non-nil, pixelwise scrolling is used
+instead, to make this restoration exact.
+
+(fn &rest BODY)" nil t) (function-put 'tree-sitter-save-excursion 'lisp-indent-function '0) (register-definition-prefixes "tree-sitter-extras" '("tree-sitter-")) (autoload 'tree-sitter-hl-add-patterns "tree-sitter-hl" "Add custom syntax highlighting PATTERNS.
+If LANG-SYMBOL is non-nil, it identifies the language that PATTERNS should be
+applied to. If LANG-SYMBOL is nil, PATTERNS are applied to the current buffer,
+and are prioritized over language-specific patterns. Either way, PATTERNS are
+prioritized over `tree-sitter-hl-default-patterns'.
+
+This function should be used by minor modes and configuration code. Major modes
+should set `tree-sitter-hl-default-patterns' instead.
+
+(fn LANG-SYMBOL PATTERNS)" nil nil) (function-put 'tree-sitter-hl-add-patterns 'lisp-indent-function '1) (autoload 'tree-sitter-hl-mode "tree-sitter-hl" "Toggle syntax highlighting based on Tree-sitter's syntax tree.
+If `tree-sitter-hl-default-patterns' is nil, turning on this mode does nothing,
+and does not interfere with `font-lock-mode'.
+
+If called interactively, toggle `Tree-Sitter-Hl mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+Enabling this automatically enables `tree-sitter-mode' in the buffer.
+
+To enable this automatically whenever `tree-sitter-mode' is enabled:
+
+ (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
+(fn &optional ARG)" t nil) (register-definition-prefixes "tree-sitter-hl" '("tree-sitter-hl-")) (autoload 'tree-sitter-require "tree-sitter-load" "Return the language object loaded and registered under the name LANG-SYMBOL.
+If the language has not been loaded yet, load it with `tree-sitter-load'.
+
+FILE should be the base name (without extension) of the native shared library
+that exports the language as the native symbol NATIVE-SYMBOL-NAME.
+
+If FILE is nil, the base name is assumed to be LANG-SYMBOL's name.
+
+If NATIVE-SYMBOL-NAME is nil, the name of the exported native symbol is assumed
+to be LANG-SYMBOL's name, prefixed with \"tree_sitter_\".
+
+(fn LANG-SYMBOL &optional FILE NATIVE-SYMBOL-NAME)" nil nil) (register-definition-prefixes "tree-sitter-load" '("tree-sitter-l")) (autoload 'tree-sitter-query-builder "tree-sitter-query" "Provide means for developers to write and test tree-sitter queries.
+
+The buffer on focus when the command is called is set as the target buffer." t nil) (register-definition-prefixes "tree-sitter-query" '("tree-sitter-query-")) (provide 'tree-sitter-autoloads)) "tree-sitter-indent" ((tree-sitter-indent tree-sitter-indent-autoloads) (autoload 'tree-sitter-indent-line "tree-sitter-indent" "Use Tree-sitter as backend to indent current line." nil nil) (register-definition-prefixes "tree-sitter-indent" '("tree-sitter-indent-")) (provide 'tree-sitter-indent-autoloads)) "tree-sitter-langs" ((tree-sitter-langs-build tree-sitter-langs-autoloads tree-sitter-langs) (register-definition-prefixes "tree-sitter-langs" '("tree-sitter-langs-")) (autoload 'tree-sitter-langs-install-grammars "tree-sitter-langs-build" "Download and install the specified VERSION of the language grammar bundle.
+If VERSION or OS is not specified, use the default of
+`tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'.
+
+This installs the grammar bundle even if the same version was already installed,
+unless SKIP-IF-INSTALLED is non-nil.
+
+The download bundle file is deleted after installation, unless KEEP-BUNDLE is
+non-nil.
+
+(fn &optional SKIP-IF-INSTALLED VERSION OS KEEP-BUNDLE)" t nil) (register-definition-prefixes "tree-sitter-langs-build" '("tree-sitter-langs-")) (provide 'tree-sitter-langs-autoloads)) "csharp-mode" ((csharp-tree-sitter csharp-mode-autoloads csharp-compilation csharp-mode) (register-definition-prefixes "csharp-compilation" '("csharp-")) (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-mode)) (defvar csharp-mode-hook nil "*Hook called by `csharp-mode'.") (custom-autoload 'csharp-mode-hook "csharp-mode" t) (autoload 'csharp-mode "csharp-mode" "Major mode for editing Csharp code.
+
+Key bindings:
+\\{csharp-mode-map}
+
+(fn)" t nil) (register-definition-prefixes "csharp-mode" '("codedoc-font-lock-" "csharp-")) (autoload 'csharp-tree-sitter-mode "csharp-tree-sitter" "Major mode for editing Csharp code.
+
+Key bindings:
+\\{csharp-tree-sitter-mode-map}
+
+(fn)" t nil) (register-definition-prefixes "csharp-tree-sitter" '("csharp-" "tree-sitter-indent-csharp-tree-sitter-scopes")) (provide 'csharp-mode-autoloads)) "json-reformat" ((json-reformat json-reformat-autoloads) (autoload 'json-reformat-region "json-reformat" "Reformat the JSON in the specified region.
+
+If you want to customize the reformat style,
+please see the documentation of `json-reformat:indent-width'
+and `json-reformat:pretty-string?'.
+
+(fn BEGIN END)" t nil) (register-definition-prefixes "json-reformat" '("json-reformat")) (provide 'json-reformat-autoloads)) "json-snatcher" ((json-snatcher json-snatcher-autoloads) (autoload 'jsons-print-path "json-snatcher" "Print the path to the JSON value under point, and save it in the kill ring." t nil) (register-definition-prefixes "json-snatcher" '("jsons-")) (provide 'json-snatcher-autoloads)) "json-mode" ((json-mode json-mode-autoloads) (defconst json-mode-standard-file-ext '(".json" ".jsonld") "List of JSON file extensions.") (defsubst json-mode--update-auto-mode (filenames) "Update the `json-mode' entry of `auto-mode-alist'.
+
+FILENAMES should be a list of file as string.
+Return the new `auto-mode-alist' entry" (let* ((new-regexp (rx-to-string `(seq (eval (cons 'or (append json-mode-standard-file-ext ',filenames))) eot))) (new-entry (cons new-regexp 'json-mode)) (old-entry (when (boundp 'json-mode--auto-mode-entry) json-mode--auto-mode-entry))) (setq auto-mode-alist (delete old-entry auto-mode-alist)) (add-to-list 'auto-mode-alist new-entry) new-entry)) (defvar json-mode-auto-mode-list '(".babelrc" ".bowerrc" "composer.lock") "List of filename as string to pass for the JSON entry of
+`auto-mode-alist'.
+
+Note however that custom `json-mode' entries in `auto-mode-alist'
+won\342\200\231t be affected.") (custom-autoload 'json-mode-auto-mode-list "json-mode" nil) (defvar json-mode--auto-mode-entry (json-mode--update-auto-mode json-mode-auto-mode-list) "Regexp generated from the `json-mode-auto-mode-list'.") (autoload 'json-mode "json-mode" "Major mode for editing JSON files
+
+(fn)" t nil) (add-to-list 'magic-fallback-mode-alist '("^[{[]$" . json-mode)) (autoload 'json-mode-show-path "json-mode" "Print the path to the node at point to the minibuffer, and yank to the kill ring." t nil) (autoload 'json-mode-kill-path "json-mode" nil t nil) (autoload 'json-mode-beautify "json-mode" "Beautify / pretty-print the active region (or the entire buffer if no active region)." t nil) (register-definition-prefixes "json-mode" '("json-")) (provide 'json-mode-autoloads)) "scala-mode" ((scala-mode-prettify-symbols scala-mode-syntax scala-mode-autoloads scala-mode-imenu scala-mode scala-mode-indent scala-mode-paragraph scala-compile scala-mode-lib scala-mode-fontlock scala-mode-map) (autoload 'scala-compile "scala-compile" "`compile' specialised to Scala.
+
+First use in a buffer or calling with a prefix will prompt for a
+command, otherwise the last command is used.
+
+The command history is global.
+
+A universal argument will invoke `scala-compile-alt', which
+will cause the subsequent call to prompt.
+
+A prefix argument will ensure that the user is prompted to
+confirm the selection.
+
+A string argument will run the command (for scripting).
+
+(fn &optional EDIT-COMMAND)" t nil) (register-definition-prefixes "scala-compile" '("scala-")) (autoload 'scala-mode:set-scala-syntax-mode "scala-mode" "Sets the syntax-table and other related variables for the current buffer to those of scala-mode. Can be used to make some other major mode (such as sbt-mode) use scala syntax-table." nil nil) (autoload 'scala-mode:goto-start-of-code "scala-mode" "Go to the start of the real code in the file: object, class or trait." t nil) (autoload 'scala-mode "scala-mode" "Major mode for editing scala code.
+
+When started, runs `scala-mode-hook'.
+
+\\{scala-mode-map}
+
+(fn)" t nil) (add-to-list 'auto-mode-alist '("\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" . scala-mode)) (modify-coding-system-alist 'file "\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" 'utf-8) (register-definition-prefixes "scala-mode" '("scala-mode:")) (register-definition-prefixes "scala-mode-fontlock" '("scala-font-lock:")) (register-definition-prefixes "scala-mode-imenu" '("scala-imenu:")) (register-definition-prefixes "scala-mode-indent" '("scala-")) (register-definition-prefixes "scala-mode-lib" '("scala-")) (register-definition-prefixes "scala-mode-map" '("scala-mode-map")) (register-definition-prefixes "scala-mode-paragraph" '("scala-paragraph:")) (register-definition-prefixes "scala-mode-syntax" '("scala-syntax:")) (provide 'scala-mode-autoloads)) "docker-tramp" ((docker-tramp-autoloads docker-tramp docker-tramp-compat) (defvar docker-tramp-docker-options nil "List of docker options.") (custom-autoload 'docker-tramp-docker-options "docker-tramp" t) (defconst docker-tramp-completion-function-alist '((docker-tramp--parse-running-containers "")) "Default list of (FUNCTION FILE) pairs to be examined for docker method.") (defconst docker-tramp-method "docker" "Method to connect docker containers.") (autoload 'docker-tramp-cleanup "docker-tramp" "Cleanup TRAMP cache for docker method." t nil) (autoload 'docker-tramp-add-method "docker-tramp" "Add docker tramp method." nil nil) (eval-after-load 'tramp '(progn (docker-tramp-add-method) (tramp-set-completion-function docker-tramp-method docker-tramp-completion-function-alist))) (register-definition-prefixes "docker-tramp" '("docker-tramp-")) (provide 'docker-tramp-autoloads)) "tablist" ((tablist-filter tablist tablist-autoloads) (autoload 'tablist-minor-mode "tablist" "Toggle Tablist minor mode on or off.
+
+If called interactively, toggle `Tablist minor mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+\\{tablist-minor-mode-map}
+
+(fn &optional ARG)" t nil) (autoload 'tablist-mode "tablist" "
+
+(fn)" t nil) (register-definition-prefixes "tablist" '("tablist-")) (register-definition-prefixes "tablist-filter" '("tablist-filter-")) (provide 'tablist-autoloads)) "docker" ((docker docker-image docker-faces docker-compose docker-volume docker-network docker-container docker-core docker-machine docker-autoloads docker-utils) (autoload 'docker "docker" nil t) (register-definition-prefixes "docker" '("docker-read-")) (autoload 'docker-compose "docker-compose" nil t) (register-definition-prefixes "docker-compose" '("docker-compose-")) (autoload 'docker-container-eshell "docker-container" "Open `eshell' in CONTAINER.
+
+(fn CONTAINER)" t nil) (autoload 'docker-container-find-directory "docker-container" "Inside CONTAINER open DIRECTORY.
+
+(fn CONTAINER DIRECTORY)" t nil) (autoload 'docker-container-find-file "docker-container" "Open FILE inside CONTAINER.
+
+(fn CONTAINER FILE)" t nil) (autoload 'docker-container-shell "docker-container" "Open `shell' in CONTAINER.  When READ-SHELL is not nil, ask the user for it.
+
+(fn CONTAINER &optional READ-SHELL)" t nil) (autoload 'docker-container-shell-env "docker-container" "Open `shell' in CONTAINER with the environment variable set
+and default directory set to workdir. When READ-SHELL is not
+nil, ask the user for it.
+
+(fn CONTAINER &optional READ-SHELL)" t nil) (autoload 'docker-containers "docker-container" "List docker containers." t nil) (register-definition-prefixes "docker-container" '("docker-container-")) (register-definition-prefixes "docker-core" '("docker-")) (autoload 'docker-image-pull-one "docker-image" "Pull the image named NAME.  If ALL is set, use \"-a\".
+
+(fn NAME &optional ALL)" t nil) (autoload 'docker-images "docker-image" "List docker images." t nil) (register-definition-prefixes "docker-image" '("docker-")) (autoload 'docker-machine-create "docker-machine" "Create a machine NAME using DRIVER.
+
+(fn NAME DRIVER)" t nil) (autoload 'docker-machine-env-one "docker-machine" "Parse and set environment variables from \"docker-machine env NAME\" output.
+
+(fn NAME)" t nil) (autoload 'docker-machines "docker-machine" "List docker machines." t nil) (register-definition-prefixes "docker-machine" '("docker-machine-")) (autoload 'docker-networks "docker-network" "List docker networks." t nil) (register-definition-prefixes "docker-network" '("docker-network-")) (register-definition-prefixes "docker-utils" '("docker-utils-")) (autoload 'docker-volume-dired "docker-volume" "Enter `dired' in the volume named NAME.
+
+(fn NAME)" t nil) (autoload 'docker-volumes "docker-volume" "List docker volumes." t nil) (register-definition-prefixes "docker-volume" '("docker-volume-")) (provide 'docker-autoloads)) "nginx-mode" ((nginx-mode-autoloads nginx-mode) (autoload 'nginx-mode "nginx-mode" "Major mode for highlighting nginx config files.
+
+The variable nginx-indent-level controls the amount of indentation.
+\\{nginx-mode-map}
+
+(fn)" t nil) (add-to-list 'auto-mode-alist '("nginx\\.conf\\'" . nginx-mode)) (add-to-list 'auto-mode-alist '("/nginx/.+\\.conf\\'" . nginx-mode)) (add-to-list 'magic-fallback-mode-alist '("\\(?:.*
+\\)*\\(?:http\\|server\\|location .+\\|upstream .+\\)[ 
+	]+{" . nginx-mode)) (register-definition-prefixes "nginx-mode" '("nginx-")) (provide 'nginx-mode-autoloads)) "web-mode" ((web-mode web-mode-autoloads) (autoload 'web-mode "web-mode" "Major mode for editing web templates.
+
+(fn)" t nil) (register-definition-prefixes "web-mode" '("web-mode-")) (provide 'web-mode-autoloads)) "systemd" ((systemd systemd-autoloads) (defconst systemd-autoload-regexp (rx (+\? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network") string-end) "Regexp for file buffers in which to autoload `systemd-mode'.") (defconst systemd-tempfn-autoload-regexp (rx ".#" (or (and (+\? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network")) "override.conf") (= 16 (char hex-digit)) string-end) "Regexp for temp file buffers in which to autoload `systemd-mode'.") (defconst systemd-dropin-autoload-regexp (rx "/systemd/" (+\? anything) ".d/" (+\? (not (any 47))) ".conf" string-end) "Regexp for dropin config file buffers in which to autoload `systemd-mode'.") (add-to-list 'auto-mode-alist '("\\.nspawn\\'" . systemd-mode)) (add-to-list 'auto-mode-alist `(,systemd-autoload-regexp . systemd-mode)) (add-to-list 'auto-mode-alist `(,systemd-tempfn-autoload-regexp . systemd-mode)) (add-to-list 'auto-mode-alist `(,systemd-dropin-autoload-regexp . systemd-mode)) (autoload 'systemd-mode "systemd" "Major mode for editing systemd unit files.
+See https://www.freedesktop.org/wiki/Software/systemd/ for more
+information about systemd.
+
+In addition to any hooks its parent mode might have run, this
+mode runs the hook `systemd-mode-hook' at mode initialization.
+
+Key bindings:
+\\{systemd-mode-map}
+
+(fn)" t nil) (register-definition-prefixes "systemd" '("define-systemd-matcher" "systemd-")) (provide 'systemd-autoloads)) "yaml-mode" ((yaml-mode yaml-mode-autoloads) (let ((loads (get 'yaml 'custom-loads))) (if (member '"yaml-mode" loads) nil (put 'yaml 'custom-loads (cons '"yaml-mode" loads)))) (autoload 'yaml-mode "yaml-mode" "Simple mode to edit YAML.
+
+\\{yaml-mode-map}
+
+(fn)" t nil) (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) (register-definition-prefixes "yaml-mode" '("yaml-")) (provide 'yaml-mode-autoloads)) "dockerfile-mode" ((dockerfile-mode-autoloads dockerfile-mode) (autoload 'dockerfile-build-buffer "dockerfile-mode" "Build an image called IMAGE-NAME based upon the buffer.
+
+If prefix arg NO-CACHE is set, don't cache the image.
+The build string will be of the format:
+`sudo docker build --no-cache --tag IMAGE-NAME --build-args arg1.. -f filename directory`
+
+(fn IMAGE-NAME &optional NO-CACHE)" t nil) (autoload 'dockerfile-build-no-cache-buffer "dockerfile-mode" "Build an image called IMAGE-NAME based upon the buffer without cache.
+
+(fn IMAGE-NAME)" t nil) (autoload 'dockerfile-mode "dockerfile-mode" "A major mode to edit Dockerfiles.
+\\{dockerfile-mode-map}
+
+(fn)" t nil) (add-to-list 'auto-mode-alist '("/Dockerfile\\(?:\\.[^/\\]*\\)?\\'" . dockerfile-mode)) (add-to-list 'auto-mode-alist '("\\.dockerfile\\'" . dockerfile-mode)) (register-definition-prefixes "dockerfile-mode" '("dockerfile-")) (provide 'dockerfile-mode-autoloads)) "malyon" ((malyon malyon-autoloads) (autoload 'malyon "malyon" "Play a Z-machine interactive fiction game.
+If a game is in progress, restores the game's window configuration.
+Otherwise, you are prompted for a story file to load, which may be
+either a raw Z-code file or one packaged in a Blorb file.
+Z-code versions 3, 5, and 8 are supported.
+
+(fn FILE-NAME)" t nil) (autoload 'malyon-mode "malyon" "This mode provides a basic interpreter for version 3, 5, 8 Z-code
+story files as generated by Inform (C) Graham Nelson and Infocom.
+
+Note that this package is by no means complete and bug free.
+If you encounter a bug please send a report to Peter Ilberg at
+peter.ilberg@natinst.com. Thank you!
+
+To play a story file simple type M-x malyon and enter the path to the
+story file. If anything goes wrong and you want to manually clean
+up type M-x malyon-quit. In addition, you can switch back to a game in
+progress by typing M-x malyon-restore.
+
+The author would like to thank the following people for reporting
+bugs, testing, suggesting and/or contributing improvements:
+    Bernhard Barde, Jonathan Craven, Alberto Petrofsky, Alan Shutko" nil nil) (register-definition-prefixes "malyon" '("malyon-")) (provide 'malyon-autoloads)) "org" ((org-goto org-pcomplete ob-lua org-macro org-keys org-agenda org-protocol org-ctags ob-mscgen ob-table ol-eshell ob-org ob-gnuplot ob-io org-refile ob-shen ob-sql ob-sqlite org-loaddefs ox-latex org-capture ol-docview ox-ascii ob-coq ob-forth ob-hledger org-indent ox-odt ol-info ob-J org-habit ox-publish org-lint ob-sed ox-md ol-gnus ol-eww ob-ruby ol-bbdb ob-tangle ob-lob org-install ob-dot ob-js org-mouse ob-stan ob-scheme ob-maxima ox-icalendar org-element ob-R org-macs ob-emacs-lisp ol-mhe org-footnote ox-org ob-abc org-crypt ob-asymptote ob-vala org-compat ob-clojure ob-haskell org-id org-tempo org ob-picolisp org-list ox-beamer ob-awk ob-eshell ox-texinfo org-version org-plot ob-python ob-latex ob-fortran ob-ebnf ob-ledger ol-w3m ob-comint ob-ocaml ob-processing org-entities ob-perl ob-eval ox-man ol org-timer org-colview org-duration org-attach-git ol-rmail ob-calc ox org-table org-src org-clock org-faces org-attach org-num ob-C ol-bibtex ob-sass ob-ref ob-groovy ob org-feed ox-html ob-lilypond ob-shell ob-plantuml ob-core ob-octave org-inlinetask org-mobile ob-exp ob-ditaa ob-makefile ob-matlab org-datetree ob-css org-archive ob-lisp ob-screen ol-irc ol-doi ob-java)) "org-appear" ((org-appear org-appear-autoloads) (autoload 'org-appear-mode "org-appear" "A minor mode that automatically toggles elements in Org mode.
+
+If called interactively, toggle `Org-Appear mode'.  If the prefix
+argument is positive, enable the mode, and if it is zero or
+negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (register-definition-prefixes "org-appear" '("org-appear-")) (provide 'org-appear-autoloads)) "org-fragtog" ((org-fragtog-autoloads org-fragtog) (autoload 'org-fragtog-mode "org-fragtog" "A minor mode that automatically toggles Org mode LaTeX fragment previews.
+Fragment previews are disabled for editing when your cursor steps onto them,
+and re-enabled when the cursor leaves.
+
+If called interactively, toggle `Org-Fragtog mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (register-definition-prefixes "org-fragtog" '("org-fragtog-")) (provide 'org-fragtog-autoloads)) "emacsql" ((emacsql-compiler emacsql emacsql-autoloads) (autoload 'emacsql-show-last-sql "emacsql" "Display the compiled SQL of the s-expression SQL expression before point.
+A prefix argument causes the SQL to be printed into the current buffer.
+
+(fn &optional PREFIX)" t nil) (register-definition-prefixes "emacsql" '("emacsql-")) (register-definition-prefixes "emacsql-compiler" '("emacsql-")) (provide 'emacsql-autoloads)) "emacsql-sqlite3" ((emacsql-sqlite3 emacsql-sqlite3-autoloads) (register-definition-prefixes "emacsql-sqlite3" '("emacsql-sqlite3-")) (provide 'emacsql-sqlite3-autoloads)) "org-roam" ((org-roam-dailies org-roam-db org-roam-compat org-roam-protocol org-roam-autoloads org-roam-macs org-roam-capture org-roam-dev org-roam-graph org-roam-faces org-roam org-roam-buffer org-roam-doctor org-roam-completion org-roam-link) (defvar org-roam-mode nil "Non-nil if Org-roam mode is enabled.
+See the `org-roam-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `org-roam-mode'.") (custom-autoload 'org-roam-mode "org-roam" nil) (autoload 'org-roam-mode "org-roam" "Minor mode for Org-roam.
+
+This mode sets up several hooks, to ensure that the cache is updated on file
+changes, renames and deletes. It is also in charge of graceful termination of
+the database connection.
+
+When called interactively, toggle `org-roam-mode'. with prefix
+ARG, enable `org-roam-mode' if ARG is positive, otherwise disable
+it.
+
+When called from Lisp, enable `org-roam-mode' if ARG is omitted,
+nil, or positive. If ARG is `toggle', toggle `org-roam-mode'.
+Otherwise, behave as if called interactively.
+
+(fn &optional ARG)" t nil) (defalias 'org-roam 'org-roam-buffer-toggle-display) (autoload 'org-roam-diagnostics "org-roam" "Collect and print info for `org-roam' issues." t nil) (autoload 'org-roam-find-file "org-roam" "Find and open an Org-roam file.
+INITIAL-PROMPT is the initial title prompt.
+COMPLETIONS is a list of completions to be used instead of
+`org-roam--get-title-path-completions`.
+FILTER-FN is the name of a function to apply on the candidates
+which takes as its argument an alist of path-completions.  See
+`org-roam--get-title-path-completions' for details.
+If NO-CONFIRM, assume that the user does not want to modify the initial prompt.
+
+(fn &optional INITIAL-PROMPT COMPLETIONS FILTER-FN NO-CONFIRM)" t nil) (autoload 'org-roam-find-directory "org-roam" "Find and open `org-roam-directory'." t nil) (autoload 'org-roam-find-ref "org-roam" "Find and open an Org-roam file from a ref.
+ARG is used to forward interactive calls to
+`org-roam--get-ref-path-completions'
+FILTER can either be a string or a function:
+- If it is a string, it should be the type of refs to include as
+candidates (e.g. \"cite\" ,\"website\" ,etc.)
+- If it is a function, it should be the name of a function that
+takes three arguments: the type, the ref, and the file of the
+current candidate.  It should return t if that candidate is to be
+included as a candidate.
+
+(fn ARG &optional FILTER)" t nil) (autoload 'org-roam-random-note "org-roam" "Find a random Org-roam file." t nil) (autoload 'org-roam-insert "org-roam" "Find an Org-roam file, and insert a relative org link to it at point.
+Return selected file if it exists.
+If LOWERCASE is non-nil, downcase the link description.
+LINK-TYPE is the type of link to be created. It defaults to \"file\".
+COMPLETIONS is a list of completions to be used instead of
+`org-roam--get-title-path-completions`.
+FILTER-FN is the name of a function to apply on the candidates
+which takes as its argument an alist of path-completions.
+If DESCRIPTION is provided, use this as the link label.  See
+`org-roam--get-title-path-completions' for details.
+
+(fn &optional LOWERCASE COMPLETIONS FILTER-FN DESCRIPTION LINK-TYPE)" t nil) (autoload 'org-roam-insert-immediate "org-roam" "Find an Org-roam file, and insert a relative org link to it at point.
+This variant of `org-roam-insert' inserts the link immediately by
+using the template in `org-roam-capture-immediate-template'. The
+interactive ARG and ARGS are passed to `org-roam-insert'.
+See `org-roam-insert' for details.
+
+(fn ARG &rest ARGS)" t nil) (autoload 'org-roam-find-file-immediate "org-roam" "Find and open an Org-roam file.
+This variant of `org-roam-find-file' uses the template in
+`org-roam-capture-immediate-template', avoiding the capture
+process. The interactive ARG and ARGS are passed to
+`org-roam-find-file'. See `org-roam-find-file' for details.
+
+(fn ARG &rest ARGS)" t nil) (autoload 'org-roam-jump-to-index "org-roam" "Find the index file in `org-roam-directory'.
+The path to the index can be defined in `org-roam-index-file'.
+Otherwise, the function will look in your `org-roam-directory'
+for a note whose title is 'Index'.  If it does not exist, the
+command will offer you to create one." t nil) (autoload 'org-roam-alias-add "org-roam" "Add an alias to Org-roam file.
+
+Return added alias." t nil) (autoload 'org-roam-alias-delete "org-roam" "Delete an alias from Org-roam file." t nil) (autoload 'org-roam-switch-to-buffer "org-roam" "Switch to an existing Org-roam buffer." t nil) (autoload 'org-roam-version "org-roam" "Return `org-roam' version.
+Interactively, or when MESSAGE is non-nil, show in the echo area.
+
+(fn &optional MESSAGE)" t nil) (register-definition-prefixes "org-roam" '("org-roam-")) (register-definition-prefixes "org-roam-buffer" '("org-roam-buffer")) (autoload 'org-roam-capture "org-roam-capture" "Launches an `org-capture' process for a new or existing note.
+This uses the templates defined at `org-roam-capture-templates'.
+Arguments GOTO and KEYS see `org-capture'.
+
+(fn &optional GOTO KEYS)" t nil) (register-definition-prefixes "org-roam-capture" '("org-roam-capture-")) (register-definition-prefixes "org-roam-completion" '("org-roam-completion-")) (register-definition-prefixes "org-roam-dailies" '("org-roam-dailies-")) (register-definition-prefixes "org-roam-db" '("org-roam-db")) (autoload 'org-roam-dev-mode "org-roam-dev" "Minor mode for setting the dev environment of Org-roam.
+
+If called interactively, toggle `Org-Roam-Dev mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (autoload 'org-roam-doctor "org-roam-doctor" "Perform a check on the current buffer to ensure cleanliness.
+If CHECKALL, run the check for all Org-roam files.
+
+(fn &optional CHECKALL)" t nil) (register-definition-prefixes "org-roam-doctor" '("org-roam-doctor-")) (autoload 'org-roam-graph "org-roam-graph" "Build and possibly display a graph for FILE from NODE-QUERY.
+If FILE is nil, default to current buffer's file name.
+ARG may be any of the following values:
+  - nil       show the graph.
+  - `\\[universal-argument]'     show the graph for FILE.
+  - `\\[universal-argument]' N   show the graph for FILE limiting nodes to N steps.
+  - `\\[universal-argument] \\[universal-argument]' build the graph.
+  - `\\[universal-argument]' -   build the graph for FILE.
+  - `\\[universal-argument]' -N  build the graph for FILE limiting nodes to N steps.
+
+(fn &optional ARG FILE NODE-QUERY)" t nil) (register-definition-prefixes "org-roam-graph" '("org-roam-graph-")) (register-definition-prefixes "org-roam-link" '("org-roam-link-")) (register-definition-prefixes "org-roam-macs" '("org-roam-")) (register-definition-prefixes "org-roam-protocol" '("org-roam-protocol-")) (provide 'org-roam-autoloads)) "persist" ((persist-autoloads persist) (register-definition-prefixes "persist" '("persist-")) (provide 'persist-autoloads)) "org-drill" ((org-drill org-drill-autoloads) (autoload 'org-drill "org-drill" "Begin an interactive 'drill session'. The user is asked to
+review a series of topics (headers). Each topic is initially
+presented as a 'question', often with part of the topic content
+hidden. The user attempts to recall the hidden information or
+answer the question, then presses a key to reveal the answer. The
+user then rates his or her recall or performance on that
+topic. This rating information is used to reschedule the topic
+for future review.
+
+Org-drill proceeds by:
+
+- Finding all topics (headings) in SCOPE which have either been
+  used and rescheduled before, or which have a tag that matches
+  `org-drill-question-tag'.
+
+- All matching topics which are either unscheduled, or are
+  scheduled for the current date or a date in the past, are
+  considered to be candidates for the drill session.
+
+- If `org-drill-maximum-items-per-session' is set, a random
+  subset of these topics is presented. Otherwise, all of the
+  eligible topics will be presented.
+
+SCOPE determines the scope in which to search for
+questions.  It accepts the same values as `org-drill-scope',
+which see.
+
+DRILL-MATCH, if supplied, is a string specifying a tags/property/
+todo query. Only items matching the query will be considered.
+It accepts the same values as `org-drill-match', which see.
+
+If RESUME-P is non-nil, resume a suspended drill session rather
+than starting a new one.
+
+CRAM, if non-nil, will start a new session in cram mode. If
+resuming a suspended session, this parameter is ignored.
+
+(fn &optional SCOPE DRILL-MATCH RESUME-P CRAM)" t nil) (autoload 'org-drill-cram "org-drill" "Run an interactive drill session in 'cram mode'. In cram mode,
+all drill items are considered to be due for review, unless they
+have been reviewed within the last `org-drill-cram-hours'
+hours.
+
+(fn &optional SCOPE DRILL-MATCH)" t nil) (autoload 'org-drill-again "org-drill" "Run a new drill session, but try to use leftover due items that
+were not reviewed during the last session, rather than scanning for
+unreviewed items. If there are no leftover items in memory, a full
+scan will be performed.
+
+(fn &optional SCOPE DRILL-MATCH)" t nil) (register-definition-prefixes "org-drill" '("org-drill-")) (provide 'org-drill-autoloads)) "simple-httpd" ((simple-httpd-autoloads simple-httpd) (autoload 'httpd-start "simple-httpd" "Start the web server process. If the server is already
+running, this will restart the server. There is only one server
+instance per Emacs instance." t nil) (autoload 'httpd-stop "simple-httpd" "Stop the web server if it is currently running, otherwise do nothing." t nil) (autoload 'httpd-running-p "simple-httpd" "Return non-nil if the simple-httpd server is running." nil nil) (autoload 'httpd-serve-directory "simple-httpd" "Start the web server with given `directory' as `httpd-root'.
+
+(fn DIRECTORY)" t nil) (register-definition-prefixes "simple-httpd" '("defservlet" "httpd" "with-httpd-buffer")) (provide 'simple-httpd-autoloads)) "org-roam-server" ((org-roam-server org-roam-server-autoloads) (defvar org-roam-server-mode nil "Non-nil if Org-Roam-Server mode is enabled.
+See the `org-roam-server-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `org-roam-server-mode'.") (custom-autoload 'org-roam-server-mode "org-roam-server" nil) (autoload 'org-roam-server-mode "org-roam-server" "Start the http server and serve org-roam files.
+
+If called interactively, toggle `Org-Roam-Server mode'.  If the
+prefix argument is positive, enable the mode, and if it is zero
+or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t nil) (register-definition-prefixes "org-roam-server" '("current-buffer-data" "default-filters" "network-vis-options" "org-roam-" "roam-data" "server-css")) (provide 'org-roam-server-autoloads))))
+
+#s(hash-table size 65 test eq rehash-size 1.5 rehash-threshold 0.8125 data (org-elpa #s(hash-table size 97 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 7 "melpa" nil "gnu-elpa-mirror" nil "el-get" nil "emacsmirror-mirror" nil "straight" nil "use-package" nil "bind-key" nil "async" nil "aio" nil "cl-lib" nil "s" nil "dash" nil "beacon" nil "seq" nil "perfect-margin" nil "feebleline" nil "rainbow-delimiters" nil "all-the-icons" nil "helm" nil "popup" nil "helm-core" nil "helm-posframe" nil "posframe" nil "format-all" nil "inheritenv" nil "language-id" nil "hl-todo" nil "rainbow-mode" nil "recentf" nil "magit" nil "git-commit" nil "transient" nil "with-editor" nil "magit-todos" nil "f" nil "pcre2el" nil "git-messenger" nil "lsp-mode" nil "ht" nil "spinner" nil "markdown-mode" nil "lv" nil "lsp-ui" nil "no-littering" nil "dtrt-indent" nil "company" nil "company-box" nil "dash-functional" nil "frame-local" nil "smartparens" nil "popup-kill-ring" nil "pos-tip" nil "evil" nil "goto-chg" nil "which-key" nil "evil-org" nil "which-key-posframe" nil "evil-leader" nil "ace-window" nil "avy" nil "csharp-mode" nil "tree-sitter" nil "tsc" nil "tree-sitter-indent" nil "tree-sitter-langs" nil "json-mode" nil "json-reformat" nil "json-snatcher" nil "scala-mode" nil "docker" nil "docker-tramp" nil "tablist" nil "nginx-mode" nil "web-mode" nil "systemd" nil "yaml-mode" nil "dockerfile-mode" nil "malyon" nil "org-appear" nil "org" `(org :type git :repo "https://code.orgmode.org/bzg/org-mode.git" :local-repo "org" :depth full :pre-build ,(list (concat (when (eq system-type 'berkeley-unix) "g") "make") "autoloads" (concat "EMACS=" invocation-directory invocation-name)) :build (:not autoloads) :files (:defaults "lisp/*.el" ("etc/styles/" "etc/styles/*"))) "org-fragtog" nil "org-roam" nil "emacsql" nil "emacsql-sqlite3" nil "org-drill" nil "persist" nil "org-roam-server" nil "simple-httpd" nil)) melpa #s(hash-table size 97 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 2 "gnu-elpa-mirror" nil "el-get" (el-get :type git :flavor melpa :files ("*.el" ("recipes" "recipes/el-get.rcp") "methods" "el-get-pkg.el") :host github :repo "dimitri/el-get") "emacsmirror-mirror" nil "straight" nil "use-package" (use-package :type git :flavor melpa :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el") "use-package-pkg.el") :host github :repo "jwiegley/use-package") "bind-key" (bind-key :type git :flavor melpa :files ("bind-key.el" "bind-key-pkg.el") :host github :repo "jwiegley/use-package") "async" (async :type git :flavor melpa :host github :repo "jwiegley/emacs-async") "aio" (aio :type git :flavor melpa :files ("aio.el" "README.md" "UNLICENSE" "aio-pkg.el") :host github :repo "skeeto/emacs-aio") "cl-lib" nil "s" (s :type git :flavor melpa :files ("s.el" "s-pkg.el") :host github :repo "magnars/s.el") "dash" (dash :type git :flavor melpa :files ("dash.el" "dash.texi" "dash-pkg.el") :host github :repo "magnars/dash.el") "beacon" (beacon :type git :flavor melpa :host github :repo "Malabarba/beacon") "seq" nil "perfect-margin" (perfect-margin :type git :flavor melpa :host github :repo "mpwang/perfect-margin") "feebleline" (feebleline :type git :flavor melpa :host github :repo "tautologyclub/feebleline") "rainbow-delimiters" (rainbow-delimiters :type git :flavor melpa :host github :repo "Fanael/rainbow-delimiters") "all-the-icons" (all-the-icons :type git :flavor melpa :files (:defaults "data" "all-the-icons-pkg.el") :host github :repo "domtronn/all-the-icons.el") "helm" (helm :type git :flavor melpa :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") "helm-pkg.el") :host github :repo "emacs-helm/helm") "popup" (popup :type git :flavor melpa :files ("popup.el" "popup-pkg.el") :host github :repo "auto-complete/popup-el") "helm-core" (helm-core :type git :flavor melpa :files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el") :host github :repo "emacs-helm/helm") "helm-posframe" (helm-posframe :type git :flavor melpa :host github :repo "tumashu/helm-posframe") "posframe" (posframe :type git :flavor melpa :host github :repo "tumashu/posframe") "format-all" (format-all :type git :flavor melpa :host github :repo "lassik/emacs-format-all-the-code") "inheritenv" (inheritenv :type git :flavor melpa :host github :repo "purcell/inheritenv") "language-id" (language-id :type git :flavor melpa :host github :repo "lassik/emacs-language-id") "hl-todo" (hl-todo :type git :flavor melpa :host github :repo "tarsius/hl-todo") "rainbow-mode" nil "recentf" nil "magit" (magit :type git :flavor melpa :files ("lisp/magit" "lisp/magit*.el" "lisp/git-rebase.el" "Documentation/magit.texi" "Documentation/AUTHORS.md" "LICENSE" (:exclude "lisp/magit-libgit.el") "magit-pkg.el") :host github :repo "magit/magit") "git-commit" (git-commit :type git :flavor melpa :files ("lisp/git-commit.el" "git-commit-pkg.el") :host github :repo "magit/magit") "transient" (transient :type git :flavor melpa :files ("lisp/*.el" "docs/transient.texi" "transient-pkg.el") :host github :repo "magit/transient") "with-editor" (with-editor :type git :flavor melpa :host github :repo "magit/with-editor") "magit-todos" (magit-todos :type git :flavor melpa :host github :repo "alphapapa/magit-todos") "f" (f :type git :flavor melpa :files ("f.el" "f-pkg.el") :host github :repo "rejeep/f.el") "pcre2el" (pcre2el :type git :flavor melpa :files ("pcre2el.el" "pcre2el-pkg.el") :host github :repo "joddie/pcre2el") "git-messenger" (git-messenger :type git :flavor melpa :host github :repo "emacsorphanage/git-messenger") "lsp-mode" (lsp-mode :type git :flavor melpa :files (:defaults "clients/*.el" "lsp-mode-pkg.el") :host github :repo "emacs-lsp/lsp-mode") "ht" (ht :type git :flavor melpa :files ("ht.el" "ht-pkg.el") :host github :repo "Wilfred/ht.el") "spinner" nil "markdown-mode" (markdown-mode :type git :flavor melpa :host github :repo "jrblevin/markdown-mode") "lv" (lv :type git :flavor melpa :files ("lv.el" "lv-pkg.el") :host github :repo "abo-abo/hydra") "lsp-ui" (lsp-ui :type git :flavor melpa :files (:defaults "lsp-ui-doc.html" "resources" "lsp-ui-pkg.el") :host github :repo "emacs-lsp/lsp-ui") "no-littering" (no-littering :type git :flavor melpa :host github :repo "emacscollective/no-littering") "dtrt-indent" (dtrt-indent :type git :flavor melpa :host github :repo "jscheid/dtrt-indent") "company" (company :type git :flavor melpa :files (:defaults "icons" "company-pkg.el") :host github :repo "company-mode/company-mode") "company-box" (company-box :type git :flavor melpa :files (:defaults "images" "company-box-pkg.el") :host github :repo "sebastiencs/company-box") "dash-functional" (dash-functional :type git :flavor melpa :files ("dash-functional.el" "dash-functional-pkg.el") :host github :repo "magnars/dash.el") "frame-local" (frame-local :type git :flavor melpa :host github :repo "sebastiencs/frame-local") "smartparens" (smartparens :type git :flavor melpa :host github :repo "Fuco1/smartparens") "popup-kill-ring" (popup-kill-ring :type git :flavor melpa :host github :repo "waymondo/popup-kill-ring") "pos-tip" (pos-tip :type git :flavor melpa :host github :repo "pitkali/pos-tip") "evil" (evil :type git :flavor melpa :files (:defaults "doc/build/texinfo/evil.texi" (:exclude "evil-test-helpers.el") "evil-pkg.el") :host github :repo "emacs-evil/evil") "goto-chg" (goto-chg :type git :flavor melpa :host github :repo "emacs-evil/goto-chg") "which-key" (which-key :type git :flavor melpa :host github :repo "justbur/emacs-which-key") "evil-org" (evil-org :type git :flavor melpa :host github :repo "Somelauw/evil-org-mode") "which-key-posframe" (which-key-posframe :type git :flavor melpa :host github :repo "yanghaoxie/which-key-posframe") "evil-leader" (evil-leader :type git :flavor melpa :host github :repo "cofi/evil-leader") "ace-window" (ace-window :type git :flavor melpa :host github :repo "abo-abo/ace-window") "avy" (avy :type git :flavor melpa :host github :repo "abo-abo/avy") "csharp-mode" (csharp-mode :type git :flavor melpa :host github :repo "emacs-csharp/csharp-mode") "tree-sitter" (tree-sitter :type git :flavor melpa :files ("lisp/*.el" (:exclude "lisp/tree-sitter-tests.el") "tree-sitter-pkg.el") :host github :repo "ubolonton/emacs-tree-sitter") "tsc" (tsc :type git :flavor melpa :files ("core/*.el" "core/Cargo.toml" "core/Cargo.lock" "core/src" "tsc-pkg.el") :host github :repo "ubolonton/emacs-tree-sitter") "tree-sitter-indent" (tree-sitter-indent :type git :flavor melpa :repo "https://codeberg.org/FelipeLema/tree-sitter-indent.el.git") "tree-sitter-langs" (tree-sitter-langs :type git :flavor melpa :files (:defaults "queries" "tree-sitter-langs-pkg.el") :host github :repo "ubolonton/tree-sitter-langs") "json-mode" (json-mode :type git :flavor melpa :host github :repo "joshwnj/json-mode") "json-reformat" (json-reformat :type git :flavor melpa :host github :repo "gongo/json-reformat") "json-snatcher" (json-snatcher :type git :flavor melpa :host github :repo "Sterlingg/json-snatcher") "scala-mode" (scala-mode :type git :flavor melpa :host github :repo "hvesalai/emacs-scala-mode") "docker" (docker :type git :flavor melpa :host github :repo "Silex/docker.el") "docker-tramp" (docker-tramp :type git :flavor melpa :host github :repo "emacs-pe/docker-tramp.el") "tablist" (tablist :type git :flavor melpa :host github :repo "politza/tablist") "nginx-mode" (nginx-mode :type git :flavor melpa :host github :repo "ajc/nginx-mode") "web-mode" (web-mode :type git :flavor melpa :host github :repo "fxbois/web-mode") "systemd" (systemd :type git :flavor melpa :files (:defaults "*.txt" "systemd-pkg.el") :host github :repo "holomorph/systemd-mode") "yaml-mode" (yaml-mode :type git :flavor melpa :host github :repo "yoshiki/yaml-mode") "dockerfile-mode" (dockerfile-mode :type git :flavor melpa :host github :repo "spotify/dockerfile-mode") "malyon" (malyon :type git :flavor melpa :host github :repo "speedenator/malyon") "org-appear" (org-appear :type git :flavor melpa :host github :repo "awth13/org-appear") "org-fragtog" (org-fragtog :type git :flavor melpa :host github :repo "io12/org-fragtog") "org-roam" (org-roam :type git :flavor melpa :host github :repo "org-roam/org-roam") "emacsql" (emacsql :type git :flavor melpa :files ("emacsql.el" "emacsql-compiler.el" "emacsql-system.el" "README.md" "emacsql-pkg.el") :host github :repo "skeeto/emacsql") "emacsql-sqlite3" (emacsql-sqlite3 :type git :flavor melpa :host github :repo "cireu/emacsql-sqlite3") "org-drill" (org-drill :type git :flavor melpa :host gitlab :repo "phillord/org-drill") "persist" nil "org-roam-server" (org-roam-server :type git :flavor melpa :files ("*.el" "index.html" "assets" "org-roam-server-pkg.el") :host github :repo "org-roam/org-roam-server") "simple-httpd" (simple-httpd :type git :flavor melpa :host github :repo "skeeto/emacs-web-server"))) gnu-elpa-mirror #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 3 "emacsmirror-mirror" nil "straight" nil "cl-lib" nil "seq" nil "rainbow-mode" (rainbow-mode :type git :host github :repo "emacs-straight/rainbow-mode" :files ("*" (:exclude ".git"))) "recentf" nil "spinner" (spinner :type git :host github :repo "emacs-straight/spinner" :files ("*" (:exclude ".git"))) "persist" (persist :type git :host github :repo "emacs-straight/persist" :files ("*" (:exclude ".git"))))) el-get #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 1 "emacsmirror-mirror" nil "straight" nil "cl-lib" nil "seq" nil "recentf" nil)) emacsmirror-mirror #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data (version 2 "straight" (straight :type git :host github :repo "emacsmirror/straight") "cl-lib" nil "seq" nil "recentf" nil))))
+
+("org-elpa" "melpa" "gnu-elpa-mirror" "el-get" "emacsmirror-mirror" "straight" "emacs" "use-package" "bind-key" "async" "aio" "cl-lib" "s" "dash" "no-littering" "perfect-margin" "feebleline" "rainbow-delimiters" "all-the-icons" "hl-todo" "rainbow-mode" "helm" "popup" "helm-core" "helm-posframe" "posframe" "recentf" "ace-window" "avy" "which-key" "which-key-posframe" "evil-leader" "evil" "goto-chg" "evil-org" "format-all" "inheritenv" "language-id" "magit" "git-commit" "transient" "with-editor" "magit-todos" "f" "pcre2el" "git-messenger" "lsp-mode" "ht" "spinner" "markdown-mode" "lv" "lsp-ui" "dtrt-indent" "company" "company-box" "dash-functional" "frame-local" "smartparens" "popup-kill-ring" "pos-tip" "csharp-mode" "tree-sitter" "tsc" "tree-sitter-indent" "seq" "tree-sitter-langs" "json-mode" "json-reformat" "json-snatcher" "scala-mode" "docker" "docker-tramp" "tablist" "nginx-mode" "web-mode" "systemd" "yaml-mode" "dockerfile-mode" "org-appear" "org" "org-fragtog" "org-roam" "emacsql" "emacsql-sqlite3" "org-drill" "persist" "malyon" "org-roam-server" "simple-httpd")
 
 t

@@ -63,3 +63,5 @@ custom.el
 
 straight/repos/
 straight/build/
+
+README.el

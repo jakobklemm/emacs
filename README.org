@@ -1,6 +1,9 @@
 #+TITLE: Jakob Klemm - emacs
 #+AUTHOR: Jakob Klemm
 
+* Missing
+  - Snippets
+  - Com
 * Setup
   Basic setup for the editor, might be overwritten in the future.
 ** Packages
@@ -63,7 +66,7 @@
    Extra utilities & source installations for packages are stored in
    =.emacs.d/resources/=.
    #+begin_src emacs-lisp
-     (add-to-list 'load-path "~/.emacs.d/reesources/")
+     (add-to-list 'load-path "~/.emacs.d/resources/")
    #+end_src
 ** Defaults
   Collection of common settings. Partially copied but modified from
@@ -71,7 +74,7 @@
   #+begin_src emacs-lisp
     ;; Treat CamelCaseSubWords as separate words in every programming
     ;; mode.
-    (add-hook 'prog-mode-hook 'subword-mode)
+    (global-subword-mode)
 
     ;; Don't assume that sentences should have two spaces after
     ;; periods.
@@ -375,7 +378,16 @@
        :config
        (pixel-scroll-mode))
    #+end_src
-
+** Windows
+   Use =ace-window= to switch between multiple windows.
+   #+begin_src emacs-lisp
+     (use-package ace-window
+       :straight t
+       :init
+       (setq aw-scope 'frame ; limit to single frame
+	     aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+       )
+   #+end_src
 ** Window helpers
    Directly switch to new windows.
    Credit: https://github.com/hrs
@@ -418,6 +430,12 @@
    #+end_src
 ** Evil
    #+begin_src emacs-lisp
+     (setq evil-want-keybinding nil)
+     (setq evil-want-integration t)
+
+     (setq evil-move-beyond-eol t)
+     (setq evil-ex-complete-emacs-commands nil)
+
      ;; For some reason this needs to be initialized before evil...
      (use-package evil-leader
        :straight t
@@ -427,9 +445,6 @@
 
      (use-package evil
        :straight t
-       :init
-       (setq evil-want-integration t)
-       (setq evil-want-keybinding nil)
        :config
        (evil-mode 1)
        )
@@ -451,7 +466,11 @@
        )
    #+end_src
 ** Binds
-
+   Defines all binds, configured in multiple parts for different devices.
+   #+begin_src emacs-lisp
+     (define-key evil-normal-state-map "a" 'hrs/split-window-below-and-switch)
+     (define-key evil-normal-state-map "s" 'hrs/split-window-right-and-switch)
+   #+end_src
 * Programming
 
 ** Format code
@@ -586,6 +605,362 @@
        :bind ("M-y" . popup-kill-ring)
        )
    #+end_src
-* org-mode
 
+** Languages
+   Collection of different major modes for programming, without
+   special config.
+   #+begin_src emacs-lisp
+     (use-package csharp-mode
+       :straight t
+       )
+     (use-package json-mode
+       :straight t
+       )
+     (use-package scala-mode
+       :straight t
+       )
+     (use-package docker
+       :straight t
+       )
+     (use-package nginx-mode
+       :straight t
+       )
+     (use-package web-mode
+       :straight t
+       :config
+       (setq web-mode-markup-indent-offset 2
+	     web-mode-css-indent-offset 2
+	     web-mode-code-indent-offset 2
+	     web-mode-indent-style 2))
+
+     (use-package markdown-mode
+       :straight t
+       :custom
+       (markdown-hide-markup nil)
+       (markdown-bold-underscore t)
+       (markdown-italic-underscore t)
+       (markdown-header-scaling t)
+       (markdown-indent-function t)
+       (markdown-enable-math t)
+       (markdown-hide-urls nil)
+       :custom-face
+       (markdown-header-delimiter-face ((t (:foreground "mediumpurple"))))
+       (markdown-header-face-1 ((t (:foreground "violet" :weight bold :height 1.0))))
+       (markdown-header-face-2 ((t (:foreground "lightslateblue" :weight bold :height 1.0))))
+       (markdown-header-face-3 ((t (:foreground "mediumpurple1" :weight bold :height 1.0))))
+       (markdown-link-face ((t (:background "#0e1014" :foreground "#bd93f9"))))
+       (markdown-list-face ((t (:foreground "mediumpurple"))))
+       (markdown-pre-face ((t (:foreground "#bd98fe"))))
+       :mode "\\.md\\'")
+
+     (use-package systemd
+       :straight t
+       :mode
+       ("\\.service\\'" "\\.timer\\'" "\\.target\\'" "\\.mount\\'"
+	"\\.automount\\'" "\\.slice\\'" "\\.socket\\'" "\\.path\\'"
+	"\\.netdev\\'" "\\.network\\'" "\\.link\\'"))
+
+     (use-package yaml-mode
+       :straight t
+       :mode ("\\.yaml\\'" "\\.yml\\'")
+       :custom-face
+       (font-lock-variable-name-face ((t (:foreground "violet")))))
+
+     (use-package dockerfile-mode
+       :straight t
+       :mode "\\Dockerfile\\'")
+   #+end_src
+* org-mode
+** Base
+   #+begin_src emacs-lisp
+     (setq
+      org-directory "~/documents/"
+      org-archive-location "~/documents/archive/2021.org::* From %s"
+      )
+
+     (add-hook 'org-mode 'org-toggle-inline-images)
+     (setq org-image-actual-width '(600))
+     (setq-default org-display-inline-images t)
+     (setq-default org-startup-with-inline-images t)
+
+     ;; Default apps
+     (setq org-file-apps
+	   '((auto-mode . emacs)
+	     (directory . emacs)
+	     ("\\.mm\\'" . default)
+	     ("\\.x?html?\\'" . default)
+	     ("\\.pdf\\'" . emacs)))
+
+     (setq org-ellipsis " ▼ "
+	   org-adapt-indentation nil
+	   org-fontify-quote-and-verse-blocks t
+	   org-startup-folded t
+	   org-priority-highest ?A
+	   org-priority-lowest ?C
+	   org-src-tab-acts-natively t
+	   org-hide-emphasis-markers t
+	   org-src-window-setup 'current-window
+	   org-return-follows-link t
+	   org-confirm-babel-evaluate nil
+	   org-use-speed-commands t
+	   org-catch-invisible-edits 'show
+	   )
+
+     (require 'org-pretty-table)
+     (add-hook 'org-mode-hook 'org-pretty-table-mode)
+
+     (add-hook 'org-mode-hook 'org-indent-mode)
+
+     ;; Heading sizes
+     (custom-set-faces
+      '(org-level-1 ((t (:inherit outline-1 :height 1.60))))
+      '(org-level-2 ((t (:inherit outline-2 :height 1.40))))
+      '(org-level-3 ((t (:inherit outline-3 :height 1.20))))
+      '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+      '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+      )
+   #+end_src
+** Spelllcheck
+   Use hunspell for all =org-mode= files to check spelling with german
+   & english dicts.
+   #+begin_src emacs-lisp
+     (setq ispell-program-name "hunspell")
+
+     (setq ispell-local-dictionary "en_US")
+     (setq ispell-local-dictionary-alist
+	   '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+	     ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+
+     (add-hook 'text-mode-hook #'flyspell-mode)
+     (add-hook 'org-mode-hook #'flyspell-mode)
+
+     (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
+   #+end_src
+** Superstar
+   #+begin_src emacs-lisp
+     (use-package org-superstar
+       :ensure t
+       :config
+       (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+	     ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+	     org-superstar-prettify-item-bullets t
+	     org-superstar-configure-like-org-bullets t
+	     org-hide-leading-stars nil
+	     org-superstar-leading-bullet ?\s
+	     ;; Enable custom bullets for TODO items
+	     org-superstar-special-todo-items t
+	     org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+					       ("NEXT" "✒ ")
+					       ("STATIC" "» ")
+					       ("BLOCKED" "˧ ")
+					       ("DONE" "✔ ")
+					       ("PAL" "✔ ")
+					       )
+	     )
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+       )
+   #+end_src
+** Color
+   Settings for general color (warnings, priority, etc.)
+   #+begin_src emacs-lisp
+     (setq org-priority-faces
+	   '((?A . 'all-the-icons-red)
+	     (?B . 'all-the-icons-orange)
+	     (?C . 'all-the-icons-yellow)
+	     )
+	   )
+   #+end_src
+** Symbols
+   #+begin_src emacs-lisp
+     (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+					    ("#+END_SRC" . "λ")
+					    ("#+begin_src" . "λ")
+					    ("#+end_src" . "λ")
+					    ("#+TITLE:" . "𝙏")
+					    ("#+title:" . "𝙏")
+					    ("#+SUBTITLE:" . "𝙩")
+					    ("#+subtitle:" . "𝙩")
+					    ("#+DATE:" . "𝘿")
+					    ("#+date:" . "𝘿")
+					    ("#+PROPERTY:" . "☸")
+					    ("#+property:" . "☸")
+					    ("#+OPTIONS:" . "⌥")
+					    ("#+options:" . "⌥")
+					    ("#+LATEX_HEADER:" . "⇾")
+					    ("#+latex_header:" . "⇾")
+					    ("#+LATEX_CLASS:" . "⇥")
+					    ("#+latexx_class:" . "⇥")
+					    ("#+ATTR_LATEX:" . "🄛")
+					    ("#+attr_latex:" . "🄛")
+					    ("#+LATEX:" . "ℓ")
+					    ("#+latex:" . "ℓ")
+					    ("#+ATTR_HTML:" . "🄗")
+					    ("#+attr_html:" . "🄗")
+					    ("#+BEGIN_QUOTE:" . "❮")
+					    ("#+begin_quote:" . "❮")
+					    ("#+END_QUOTE:" . "❯")
+					    ("#+end_quote:" . "❯")
+					    ("#+CAPTION:" . "☰")
+					    ("#+caption:" . "☰")
+					    (":PROPERTIES:" . "⚙")
+					    (":properties:" . "⚙")
+					    ("#+AUTHOR:" . "A")
+					    ("#+author:" . "A")
+					    ("#+IMAGE:" . "I")
+					    ("#+image:" . "I")
+					    ("#+LANGUAGE:" . "L")
+					    ("#+language:" . "L")
+					    ))
+
+     (setq prettify-symbols-unprettify-at-point 'right-edge)
+     (add-hook 'org-mode-hook 'prettify-symbols-mode)
+   #+end_src
+** Appear
+   Toggle visibility for special formatting symbols.
+   #+begin_src emacs-lisp
+     (use-package org-appear
+       :straight t
+       :hook (org-mode . org-appear-mode)
+       :init (setq org-hide-emphasis-markers t
+		   org-appear-autoemphasis t
+		   org-appear-autolinks t
+		   org-appear-autosubmarkers t))
+   #+end_src
+** Inline LaTeX
+   Display LaTeX inline using =org-fragtog=
+   #+begin_src emacs-lisp
+     (use-package org-fragtog
+       :straight t
+       :config
+       (add-hook 'org-mode-hook 'org-fragtog-mode)
+       (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
+       )
+   #+end_src
+** Roam
+   #+begin_src emacs-lisp
+     (use-package org-roam
+       :straight t
+       :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+       :hook
+       (after-init . org-roam-mode)
+       :init
+       (setq
+	org-roam-directory (file-truename "~/documents/vaults/database/")
+	org-roam-db-location "~/documents/vaults/org-roam.db"
+	org-roam-db-gc-threshold most-positive-fixnum
+	)
+       :config
+       (setq org-roam-capture-templates
+	     '(("d" "default" plain (function org-roam--capture-get-point)
+		"%?"
+		:file-name "${slug}"
+		:head "#+TITLE: ${title}\n"
+		:immediate-finish t
+		:unnarrowed t)
+	       ))
+       (use-package org-roam-server
+	 :straight t
+	 :config
+	 (setq org-roam-server-host "127.0.0.1"
+	       org-roam-server-port 8080
+	       org-roam-server-authenticate nil
+	       org-roam-server-export-inline-images t
+	       org-roam-server-serve-files nil
+	       org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
+	       org-roam-server-network-poll t
+	       org-roam-server-network-arrows nil
+	       org-roam-server-network-label-wrap-length 20))
+       )
+   #+end_src
+** Spaced repetition
+   #+begin_src emacs-lisp
+     (use-package org-drill
+       :straight t
+       :config
+       (setq org-drill-use-visible-cloze-face-p t)
+       (setq org-drill-hide-item-headings-p t)
+       )
+   #+end_src
+** Export
+   Basic latex settings.
+   #+begin_src emacs-lisp
+     (setq TeX-parse-self t)
+     (setq TeX-auto-save t)
+
+     (setq TeX-PDF-mode t)
+
+     (add-hook 'LaTeX-mode-hook
+	       (lambda ()
+		 (LaTeX-math-mode)
+		 (setq TeX-master t)))
+   #+end_src
+** Title page
+   Custom title page template using insert commands & roam.
+   #+begin_src emacs-lisp
+     (defun jk/title-title ()
+       (car (org-roam--extract-titles-title))
+       )
+
+     (defun jk/title-author ()
+       (cdr (car (org-roam--extract-global-props '("AUTHOR"))))
+       )
+     (defun jk/title-image ()
+       (cdr (car (org-roam--extract-global-props '("IMAGE"))))
+       )
+     (defun jk/title-subtitle ()
+       (cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
+       )
+
+     (defun jk/title-compose ()
+       (interactive)
+       (insert (concat "
+     ,#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
+     ,#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
+     ,#+LATEX_HEADER: \\usepackage{tikz}
+     ,#+LATEX_HEADER: \\usepackage[]{babel}
+     \\begin{titlepage}
+	 \\begin{center}
+	     \\begin{tikzpicture}[remember picture,overlay]
+		 \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
+		 at (current page.north west)
+		 {\\includegraphics[scale=1]{~/.tools/"
+		       (jk/title-image)
+		       ".png}};
+     \\end{tikzpicture}
+	     \\vspace{2.2cm}
+	     \\Huge
+	     \\textbf{"
+		       (jk/title-title)
+		       "}
+	     \\vspace{3.0cm}
+	     \\LARGE"
+		       (jk/title-subtitle)
+		       "
+     \\vspace{4.2cm}"
+
+		       (jk/title-author)
+
+		       "\\
+	     \\vfill
+	     \\Large
+	     Baden, Schweiz\\
+	     \\today
+	 \\end{center}
+     \\end{titlepage}
+     \\tableofcontents
+     \\newpage"
+		       )
+	       )
+       )
+   #+end_src
+* Communication
+** mu4e
 * Extras
+
+** Fun
+   Malyon for text games.
+   #+begin_src emacs-lisp
+     (use-package malyon
+       :straight t
+       )
+   #+end_src
