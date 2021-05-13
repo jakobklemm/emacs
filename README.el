@@ -540,10 +540,10 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 ;; Default apps
 (setq org-file-apps
       '((auto-mode . emacs)
-	(directory . emacs)
-	("\\.mm\\'" . default)
-	("\\.x?html?\\'" . default)
-	("\\.pdf\\'" . emacs)))
+        (directory . emacs)
+        ("\\.mm\\'" . default)
+        ("\\.x?html?\\'" . default)
+        ("\\.pdf\\'" . default)))
 
 (setq org-ellipsis " ▼ "
       org-adapt-indentation nil

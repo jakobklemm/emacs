@@ -687,26 +687,26 @@
 
      ;; Default apps
      (setq org-file-apps
-	   '((auto-mode . emacs)
-	     (directory . emacs)
-	     ("\\.mm\\'" . default)
-	     ("\\.x?html?\\'" . default)
-	     ("\\.pdf\\'" . emacs)))
+           '((auto-mode . emacs)
+             (directory . emacs)
+             ("\\.mm\\'" . default)
+             ("\\.x?html?\\'" . default)
+             ("\\.pdf\\'" . default)))
 
      (setq org-ellipsis " ▼ "
-	   org-adapt-indentation nil
-	   org-fontify-quote-and-verse-blocks t
-	   org-startup-folded t
-	   org-priority-highest ?A
-	   org-priority-lowest ?C
-	   org-src-tab-acts-natively t
-	   org-hide-emphasis-markers t
-	   org-src-window-setup 'current-window
-	   org-return-follows-link t
-	   org-confirm-babel-evaluate nil
-	   org-use-speed-commands t
-	   org-catch-invisible-edits 'show
-	   )
+           org-adapt-indentation nil
+           org-fontify-quote-and-verse-blocks t
+           org-startup-folded t
+           org-priority-highest ?A
+           org-priority-lowest ?C
+           org-src-tab-acts-natively t
+           org-hide-emphasis-markers t
+           org-src-window-setup 'current-window
+           org-return-follows-link t
+           org-confirm-babel-evaluate nil
+           org-use-speed-commands t
+           org-catch-invisible-edits 'show
+           )
 
      (require 'org-pretty-table)
      (add-hook 'org-mode-hook 'org-pretty-table-mode)
@@ -722,7 +722,7 @@
       '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
       )
    #+end_src
-** Spelllcheck
+** Spellcheck
    Use hunspell for all =org-mode= files to check spelling with german
    & english dicts.
    #+begin_src emacs-lisp
@@ -793,72 +793,6 @@
      (setq prettify-symbols-unprettify-at-point 'right-edge)
      (add-hook 'org-mode-hook 'prettify-symbols-mode)
    #+end_src
-** Appear
-   Toggle visibility for special formatting symbols.
-   #+begin_src emacs-lisp
-     (use-package org-appear
-       :straight t
-       :hook (org-mode . org-appear-mode)
-       :init (setq org-hide-emphasis-markers t
-		   org-appear-autoemphasis t
-		   org-appear-autolinks t
-		   org-appear-autosubmarkers t))
-   #+end_src
-** Inline LaTeX
-   Display LaTeX inline using =org-fragtog=
-   #+begin_src emacs-lisp
-     (use-package org-fragtog
-       :straight t
-       :config
-       (add-hook 'org-mode-hook 'org-fragtog-mode)
-       (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
-       )
-   #+end_src
-** Roam
-   #+begin_src emacs-lisp
-     (use-package org-roam
-       :straight t
-       :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
-       :hook
-       (after-init . org-roam-mode)
-       :init
-       (setq
-	org-roam-directory (file-truename "~/documents/vaults/database/")
-	org-roam-db-location "~/documents/vaults/org-roam.db"
-	org-roam-db-gc-threshold most-positive-fixnum
-	)
-       :config
-       (setq org-roam-capture-templates
-	     '(("d" "default" plain (function org-roam--capture-get-point)
-		"%?"
-		:file-name "${slug}"
-		:head "#+TITLE: ${title}\n"
-		:immediate-finish t
-		:unnarrowed t)
-	       ))
-       (use-package org-roam-server
-	 :straight t
-	 :config
-	 (setq org-roam-server-host "127.0.0.1"
-	       org-roam-server-port 8080
-	       org-roam-server-authenticate nil
-	       org-roam-server-export-inline-images t
-	       org-roam-server-serve-files nil
-	       org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
-	       org-roam-server-network-poll t
-	       org-roam-server-network-arrows nil
-	       org-roam-server-network-label-wrap-length 20))
-       )
-   #+end_src
-** Spaced repetition
-   #+begin_src emacs-lisp
-     (use-package org-drill
-       :straight t
-       :config
-       (setq org-drill-use-visible-cloze-face-p t)
-       (setq org-drill-hide-item-headings-p t)
-       )
-   #+end_src
 ** Export
    Basic latex settings.
    #+begin_src emacs-lisp
@@ -871,65 +805,6 @@
 	       (lambda ()
 		 (LaTeX-math-mode)
 		 (setq TeX-master t)))
-   #+end_src
-** Title page
-   Custom title page template using insert commands & roam.
-   #+begin_src emacs-lisp
-     (defun jk/title-title ()
-       (car (org-roam--extract-titles-title))
-       )
-
-     (defun jk/title-author ()
-       (cdr (car (org-roam--extract-global-props '("AUTHOR"))))
-       )
-     (defun jk/title-image ()
-       (cdr (car (org-roam--extract-global-props '("IMAGE"))))
-       )
-     (defun jk/title-subtitle ()
-       (cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
-       )
-
-     (defun jk/title-compose ()
-       (interactive)
-       (insert (concat "
-     ,#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
-     ,#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
-     ,#+LATEX_HEADER: \\usepackage{tikz}
-     ,#+LATEX_HEADER: \\usepackage[]{babel}
-     \\begin{titlepage}
-	 \\begin{center}
-	     \\begin{tikzpicture}[remember picture,overlay]
-		 \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
-		 at (current page.north west)
-		 {\\includegraphics[scale=1]{~/.tools/"
-		       (jk/title-image)
-		       ".png}};
-     \\end{tikzpicture}
-	     \\vspace{2.2cm}
-	     \\Huge
-	     \\textbf{"
-		       (jk/title-title)
-		       "}
-	     \\vspace{3.0cm}
-	     \\LARGE"
-		       (jk/title-subtitle)
-		       "
-     \\vspace{4.2cm}"
-
-		       (jk/title-author)
-
-		       "\\
-	     \\vfill
-	     \\Large
-	     Baden, Schweiz\\
-	     \\today
-	 \\end{center}
-     \\end{titlepage}
-     \\tableofcontents
-     \\newpage"
-		       )
-	       )
-       )
    #+end_src
 * Communication
 ** mu4e
