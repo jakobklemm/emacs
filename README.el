@@ -586,28 +586,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 
 (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
 
-(use-package org-superstar
-  :ensure t
-  :config
-  (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-	;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
-	org-superstar-prettify-item-bullets t
-	org-superstar-configure-like-org-bullets t
-	org-hide-leading-stars nil
-	org-superstar-leading-bullet ?\s
-	;; Enable custom bullets for TODO items
-	org-superstar-special-todo-items t
-	org-superstar-todo-bullet-alist '(("TODO" "☐ ")
-					  ("NEXT" "✒ ")
-					  ("STATIC" "» ")
-					  ("BLOCKED" "˧ ")
-					  ("DONE" "✔ ")
-					  ("PAL" "✔ ")
-					  )
-	)
-  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-  )
-
 (setq org-priority-faces
       '((?A . 'all-the-icons-red)
 	(?B . 'all-the-icons-orange)
@@ -658,62 +636,6 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
 
-(use-package org-appear
-  :straight t
-  :hook (org-mode . org-appear-mode)
-  :init (setq org-hide-emphasis-markers t
-	      org-appear-autoemphasis t
-	      org-appear-autolinks t
-	      org-appear-autosubmarkers t))
-
-(use-package org-fragtog
-  :straight t
-  :config
-  (add-hook 'org-mode-hook 'org-fragtog-mode)
-  (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
-  )
-
-(use-package org-roam
-  :straight t
-  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
-  :hook
-  (after-init . org-roam-mode)
-  :init
-  (setq
-   org-roam-directory (file-truename "~/documents/vaults/database/")
-   org-roam-db-location "~/documents/vaults/org-roam.db"
-   org-roam-db-gc-threshold most-positive-fixnum
-   )
-  :config
-  (setq org-roam-capture-templates
-	'(("d" "default" plain (function org-roam--capture-get-point)
-	   "%?"
-	   :file-name "${slug}"
-	   :head "#+TITLE: ${title}\n"
-	   :immediate-finish t
-	   :unnarrowed t)
-	  ))
-  (use-package org-roam-server
-    :straight t
-    :config
-    (setq org-roam-server-host "127.0.0.1"
-	  org-roam-server-port 8080
-	  org-roam-server-authenticate nil
-	  org-roam-server-export-inline-images t
-	  org-roam-server-serve-files nil
-	  org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
-	  org-roam-server-network-poll t
-	  org-roam-server-network-arrows nil
-	  org-roam-server-network-label-wrap-length 20))
-  )
-
-(use-package org-drill
-  :straight t
-  :config
-  (setq org-drill-use-visible-cloze-face-p t)
-  (setq org-drill-hide-item-headings-p t)
-  )
-
 (setq TeX-parse-self t)
 (setq TeX-auto-save t)
 
@@ -724,61 +646,88 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 	    (LaTeX-math-mode)
 	    (setq TeX-master t)))
 
-(defun jk/title-title ()
-  (car (org-roam--extract-titles-title))
+(setq mu4e-maildir (expand-file-name "~/.mail"))
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(require 'smtpmail)
+
+(setq mu4e-completing-read-function 'ivy-completing-read)
+(setq mail-user-agent 'mu4e-user-agent)
+
+(setq user-mail-address "jakob@jeykey.net"
+      user-full-name  "Jakob Klemm"
+
+      mu4e-get-mail-command "mbsync -c ~/.tools/.mbsyncrc -a"
+      mu4e-update-interval  300
+      mu4e-index-update-in-background t
+      mu4e-main-buffer-hide-personal-addresses t
+
+      send-mail-function 'smtpmail-send-it
+      message-send-mail-function 'message-smtpmail-send-it
+      starttls-use-gnutls t
+
+      mu4e-sent-messages-behavior 'delete
+
+      mu4e-view-show-addresses t
+
+      message-kill-buffer-on-exit t
+
+      mu4e-attachment-dir  "~/documents/vaults/ram"
+
+      mu4e-sent-folder "/global/Sent"
+      mu4e-drafts-folder "/global/Drafts"
+      mu4e-trash-folder "/global/Trash"
+      message-signature
+      (concat
+       "Jakob Klemm\n"
+       "https://github.com/jakobklemm"
+       "https://jeykey.net\n")
+      mml-secure-openpgp-sign-with-sender t
+      mml-secure-openpgp-encrypt-to-self t
+      mml-secure-smime-sign-with-sender "jakob@jeykey.net"
+
+      mu4e-view-prefer-html t
+
+      )
+
+(load-file "~/.tools/mail.el")
+
+(setq smtpmail-starttls-credentilas my-mu4e-account-alist)
+(setq smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      smtpmail-debug-info t)
+
+(use-package mu4e-alert
+  :straight t
+  :config
+  (mu4e-alert-set-default-style 'libnotify)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
   )
 
-(defun jk/title-author ()
-  (cdr (car (org-roam--extract-global-props '("AUTHOR"))))
-  )
-(defun jk/title-image ()
-  (cdr (car (org-roam--extract-global-props '("IMAGE"))))
-  )
-(defun jk/title-subtitle ()
-  (cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
-  )
+(defun my-mu4e-set-account ()
+  "Set the account for composing a message."
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var))
+                                                my-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                             nil t nil nil (caar my-mu4e-account-alist))))
+         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars)
+      (error "No email account found"))))
 
-(defun jk/title-compose ()
-  (interactive)
-  (insert (concat "
-#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
-#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
-#+LATEX_HEADER: \\usepackage{tikz}
-#+LATEX_HEADER: \\usepackage[]{babel}
-\\begin{titlepage}
-    \\begin{center}
-	\\begin{tikzpicture}[remember picture,overlay]
-	    \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
-	    at (current page.north west)
-	    {\\includegraphics[scale=1]{~/.tools/"
-		  (jk/title-image)
-		  ".png}};
-\\end{tikzpicture}
-	\\vspace{2.2cm}
-	\\Huge
-	\\textbf{"
-		  (jk/title-title)
-		  "}
-	\\vspace{3.0cm}
-	\\LARGE"
-		  (jk/title-subtitle)
-		  "
-\\vspace{4.2cm}"
-
-		  (jk/title-author)
-
-		  "\\
-	\\vfill
-	\\Large
-	Baden, Schweiz\\
-	\\today
-    \\end{center}
-\\end{titlepage}
-\\tableofcontents
-\\newpage"
-		  )
-	  )
-  )
+(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+(add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+(add-hook 'mu4e-compose-mode-hook 'visual-line-mode)
 
 (use-package malyon
   :straight t
