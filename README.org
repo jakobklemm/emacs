@@ -3,7 +3,6 @@
 
 * Missing
   - Snippets
-  - Helm-mu4e
   - Binds
 * Setup
   Basic setup for the editor, might be overwritten in the future.
@@ -318,41 +317,8 @@
     #+end_src
 * Navigation
   Anything related to navigating files or buffers.
-** Helm
-  #+begin_Src emacs-lisp
-    (use-package helm
-      :straight t
-      :config
-
-      (require 'helm-config)
-
-      (setq helm-M-x-always-save-history t)
-
-      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-      (define-key helm-map (kbd "C-z")  'helm-select-action)
-      (define-key helm-map (kbd "C-l") 'helm-dfind-files-up-one-level)
-
-      (global-set-key (kbd "C-x C-f") 'helm-find-files)
-      (global-set-key (kbd "C-x b") 'helm-mini)
-      (global-set-key (kbd "M-x") 'helm-M-x)
-      (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-      )
-  #+end_src
-** Helm-Posframe
-   Enable the helm-posframe everywhere in the center of the
-   screen.
-
-   The posframe is stored locally, since some modifications were done.
-   #+begin_src emacs-lisp
-     (use-package helm-posframe
-       :straight t
-       :init
-       (setq helm-posframe-width 200)
-       :config
-       (helm-posframe-enable)
-       )
-   #+end_src
+** Vertico
+Trying out =Vertico= instead of helm / ivy.
 ** Recentf
    Save buffer & file locations.
    #+begin_src emacs-lisp
@@ -728,7 +694,7 @@
    #+begin_src emacs-lisp
      (setq ispell-program-name "hunspell")
 
-     (setq ispell-local-dictionary "en_US")
+     (setq ispell-local-dictionary "de_DE")
      (setq ispell-local-dictionary-alist
 	   '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
 	     ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
@@ -738,6 +704,29 @@
 
      (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
    #+end_src
+** Superstar
+   #+begin_src emacs-lisp
+     (use-package org-superstar
+       :ensure t
+       :config
+       (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+	     ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+	     org-superstar-prettify-item-bullets t
+	     org-superstar-configure-like-org-bullets t
+	     org-hide-leading-stars nil
+	     org-superstar-leading-bullet ?\s
+	     ;; Enable custom bullets for TODO items
+	     org-superstar-special-todo-items t
+	     org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+					       ("NEXT" "✒ ")
+					       ("STATIC" "» ")
+					       ("BLOCKED" "˧ ")
+					       ("DONE" "✔ ")
+					       ("PAL" "✔ ")
+					       )
+	     )
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+       )
 ** Color
    Settings for general color (warnings, priority, etc.)
    #+begin_src emacs-lisp
@@ -747,6 +736,36 @@
 	     (?C . 'all-the-icons-yellow)
 	     )
 	   )
+   #+end_src
+** Appear
+   Toggle visibility for special formatting symbols.
+   #+begin_src emacs-lisp
+     (use-package org-appear
+       :straight t
+       :hook (org-mode . org-appear-mode)
+       :init (setq org-hide-emphasis-markers t
+		   org-appear-autoemphasis t
+		   org-appear-autolinks t
+		   org-appear-autosubmarkers t))
+   #+end_src
+** Inline LaTeX
+   Display LaTeX inline using =org-fragtog=
+   #+begin_src emacs-lisp
+     (use-package org-fragtog
+       :straight t
+       :config
+       (add-hook 'org-mode-hook 'org-fragtog-mode)
+       (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
+       )
+   #+end_src
+** Spaced repetition
+   #+begin_src emacs-lisp
+     (use-package org-drill
+       :straight t
+       :config
+       (setq org-drill-use-visible-cloze-face-p t)
+       (setq org-drill-hide-item-headings-p t)
+       )
    #+end_src
 ** Symbols
    #+begin_src emacs-lisp
