@@ -1,0 +1,308 @@
+(use-package async
+  :straight t
+  )
+(use-package aio
+  :straight t
+  )
+(use-package cl-lib
+  :straight t
+  )
+(use-package s
+  :straight t
+  )
+(use-package dash
+  :straight t
+  )
+
+(add-to-list 'load-path "~/.emacs.d/resources/")
+
+(use-package no-littering
+  :straight t
+  )
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/resources/")
+(load-theme 'jeykey-dark t)
+
+(defun dw/minibuffer-backward-kill (arg)
+  "When minibuffer is completing a file name delete up to parent
+			    folder, otherwise delete a word"
+  (interactive "p")
+  (if minibuffer-completing-file-name
+      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+      (if (string-match-p "/." (minibuffer-contents))
+	  (zap-up-to-char (- arg) ?/)
+	(delete-minibuffer-contents))
+    (backward-kill-word arg)))
+
+(use-package vertico
+  :straight t
+  :custom-face
+  (vertico-current ((t (:background "#3a3f5a"))))
+  :bind (:map vertico-map
+	      ("C-j" . vertico-next)
+	      ("C-k" . vertico-previous)
+	      ("C-f" . vertico-exit)
+	      :map minibuffer-local-map
+	      ("C-l" . dw/minibuffer-backward-kill))
+  :init
+  (vertico-mode)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  (setq vertico-cycle t)
+  )
+
+(use-package corfu
+  :straight '(corfu :host github
+		    :repo "minad/corfu")
+  :bind (:map corfu-map
+	      ("C-j" . corfu-next)
+	      ("C-k" . corfu-previous)
+	      ("C-f" . corfu-insert))
+  :custom
+  (corfu-cycle t)
+  :config
+  (corfu-global-mode))
+
+;; Use the `orderless' completion style.
+;; Enable `partial-completion' for files to allow path expansion.
+;; You may prefer to use `initials' instead of `partial-completion'.
+(use-package orderless
+  :straight t
+  :init
+  (setq completion-styles '(orderless)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :straight t
+  :init
+  (savehist-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :straight t
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  (defun crm-indicator (args)
+    (cons (concat "[CRM] " (car args)) (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Grow and shrink minibuffer
+  ;;(setq resize-mini-windows t)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+	'(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
+(defun dw/get-project-root ()
+  (when (fboundp 'projectile-project-root)
+    (projectile-project-root)))
+
+(use-package consult
+  :straight t
+  :demand t
+  :bind (("C-s" . consult-line)
+	 ("M-s" . consult-imenu)
+	 :map minibuffer-local-map
+	 ("C-r" . consult-history))
+  :custom
+  (consult-project-root-function #'dw/get-project-root)
+  (completion-in-region-function #'consult-completion-in-region)
+  :config
+  (consult-preview-at-point-mode))
+
+(use-package marginalia
+  :after vertico
+  :straight t
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
+
+(use-package embark
+  :straight t
+  :bind (
+	 :map minibuffer-local-map
+	 ("C-d" . embark-act))
+  :config
+
+  ;; Show Embark actions via which-key
+  (setq embark-action-indicator
+	(lambda (map) (which-key--show-keymap "Embark" map nil nil 'no-paging)
+	  #'which-key--hide-popup-ignore-command)
+	embark-become-indicator embark-action-indicator))
+
+(use-package mini-frame
+  :straight t
+  :config
+  (custom-set-variables
+   '(mini-frame-show-parameters
+     '((top . 0.4)
+       (width . 0.5)
+       (left . 0.5))))
+  (mini-frame-mode t)
+  )
+
+(use-package which-key
+  :straight t
+  :config
+  (use-package which-key-posframe
+    :straight t
+    :config
+    (setq which-key-posframe-poshandler 'posframe-poshandler-frame-top-cnter)
+    (which-key-posframe-mode t)
+    )
+  (which-key-mode t)
+  )
+
+(use-package bufler
+  :straight t
+  :config
+  (bufler-mode)
+  )
+
+(use-package good-scroll
+  :straight t
+  :config
+  (good-scroll-mode))
+
+(setq evil-want-keybinding nil)
+(setq evil-want-integration t)
+
+(setq evil-move-beyond-eol t)
+(setq evil-ex-complete-emacs-commands nil)
+
+;; For some reason this needs to be initialized before evil...
+(use-package evil-leader
+  :straight t
+  :config
+  (evil-leader/set-leader "<SPC>")
+  (global-evil-leader-mode))
+
+(use-package evil
+  :straight t
+  :config
+  (evil-mode 1)
+  )
+
+(use-package evil-collection
+  :after evil
+  :straight t
+  :config
+  (evil-collection-init)
+  )
+
+(use-package evil-org
+  :straight t
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
+  )
+
+(use-package format-all
+  :straight t
+  :bind ("C-c C-f" . format-all-buffer)
+  )
+
+(use-package magit
+     :straight t
+     :config
+     (global-set-key (kbd "C-x g") 'magit-status)
+     (global-set-key (kbd "C-x p") 'magit-init)
+     (use-package magit-todos
+	 :straight t
+	 :config
+	 (magit-todos-mode t)
+	 )
+     (use-package git-messenger
+	 :straight t
+	 )
+     )
+
+(add-to-list 'exec-path "~/.tools/elixir-ls")
+
+(use-package lsp-mode
+  :straight t
+  :commands lsp
+  :init
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-signature-auto-activate nil)
+  :hook
+  (elixir-mode . lsp)
+  )
+
+(use-package lsp-ui
+  :straight t
+  :commands lsp-ui-mode
+  :config
+  (lsp-ui-doc-enable t)
+  (lsp-ui-mode)
+  (setq lsp-ui-doc-max-height 128
+	     lsp-ui-doc-max-width 64
+	     lsp-ui-doc-position 'top
+	     lsp-ui-doc-show-with-mouse t
+	     lsp-ui-doc-show-with-cursor t
+	     )
+  )
+
+(use-package company
+  :straight t
+  :config
+  (setq company-idle-delay 0.3)
+  (add-hook 'after-init-hook 'global-company-mode)
+  )
+
+(use-package company-box
+  :straight t
+  :custom (company-box-icons-alist 'company-box-icons-all-the-icons)
+  :hook (company-mode . company-box-mode)
+  )
+
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+				       ("#+END_SRC" . "λ")
+				       ("#+begin_src" . "λ")
+				       ("#+end_src" . "λ")
+				       ("#+TITLE:" . "𝙏")
+				       ("#+title:" . "𝙏")
+				       ("#+SUBTITLE:" . "𝙩")
+				       ("#+subtitle:" . "𝙩")
+				       ("#+DATE:" . "𝘿")
+				       ("#+date:" . "𝘿")
+				       ("#+PROPERTY:" . "☸")
+				       ("#+property:" . "☸")
+				       ("#+OPTIONS:" . "⌥")
+				       ("#+options:" . "⌥")
+				       ("#+LATEX_HEADER:" . "⇾")
+				       ("#+latex_header:" . "⇾")
+				       ("#+LATEX_CLASS:" . "⇥")
+				       ("#+latexx_class:" . "⇥")
+				       ("#+ATTR_LATEX:" . "🄛")
+				       ("#+attr_latex:" . "🄛")
+				       ("#+LATEX:" . "ℓ")
+				       ("#+latex:" . "ℓ")
+				       ("#+ATTR_HTML:" . "🄗")
+				       ("#+attr_html:" . "🄗")
+				       ("#+BEGIN_QUOTE:" . "❮")
+				       ("#+begin_quote:" . "❮")
+				       ("#+END_QUOTE:" . "❯")
+				       ("#+end_quote:" . "❯")
+				       ("#+CAPTION:" . "☰")
+				       ("#+caption:" . "☰")
+				       (":PROPERTIES:" . "⚙")
+				       (":properties:" . "⚙")
+				       ("#+AUTHOR:" . "A")
+				       ("#+author:" . "A")
+				       ("#+IMAGE:" . "I")
+				       ("#+image:" . "I")
+				       ("#+LANGUAGE:" . "L")
+				       ("#+language:" . "L")
+				       ))
+
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(add-hook 'org-mode-hook 'prettify-symbols-mode)

@@ -1,0 +1,6 @@
+#+TITLE: Jakob Klemm - emacs config
+#+AUTHOR: Jakob Klemm
+
+nothing special here, just my personal emacs config. it has a lot of
+external dependencies and no guide or tutorial. use at own risk and
+don’t expect help, this isn’t tech support.
