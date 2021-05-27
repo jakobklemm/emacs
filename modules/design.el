@@ -1,14 +1,57 @@
 ;; Design / look & feel of emacs
 
-(use-package dracula-theme
-  :ensure t
-  :config
-  (load-theme 'dracula t)
-  )
+(load-theme 'jeykey-dark t)
 
 (global-prettify-symbols-mode 1)
 
-(set-frame-font "Iosevka 11" nil t)
+ (setq hrs/default-fixed-font "Iosevka")
+ (setq hrs/default-fixed-font-size 90)
+ (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+ (set-face-attribute 'default nil
+			 :family hrs/default-fixed-font
+			 :height hrs/current-fixed-font-size)
+ (set-face-attribute 'fixed-pitch nil
+			 :family hrs/default-fixed-font
+			 :height hrs/current-fixed-font-size)
+
+ (setq hrs/font-change-increment 1.1)
+
+ (defun hrs/set-font-size ()
+   "Change default, fixed-pitch, and variable-pitch font sizes to match respective variables."
+   (set-face-attribute 'default nil
+			   :height hrs/current-fixed-font-size)
+   (set-face-attribute 'fixed-pitch nil
+			   :height hrs/current-fixed-font-size)
+   )
+
+ (defun hrs/reset-font-size ()
+   "Revert font sizes back to defaults."
+   (interactive)
+   (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+   (hrs/set-font-size))
+
+ (defun hrs/increase-font-size ()
+   "Increase current font sizes by a factor of `hrs/font-change-increment'."
+   (interactive)
+   (setq hrs/current-fixed-font-size
+	     (ceiling (* hrs/current-fixed-font-size hrs/font-change-increment)))
+   (hrs/set-font-size))
+
+ (defun hrs/decrease-font-size ()
+   "Decrease current font sizes by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+   (interactive)
+   (setq hrs/current-fixed-font-size
+	     (max 1
+		  (floor (/ hrs/current-fixed-font-size hrs/font-change-increment))))
+   (hrs/set-font-size))
+
+ (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+ (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+ (define-key global-map (kbd "C-=") 'hrs/increase-font-size)
+ (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+ (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
+
+ (hrs/reset-font-size)
 
 (set-cursor-color "#D069D6")
 
@@ -26,26 +69,26 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   :group 'perfect-margin)
 
 (use-package perfect-margin
-  :ensure t
+  :straight t
   :config
   (perfect-margin-mode 1)
   )
 
 (use-package rainbow-delimiters
-  :ensure t
+  :straight t
   :config
   (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 
 (use-package all-the-icons
-  :ensure t
+  :straight t
   )
 
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
 (use-package    feebleline
-  :ensure       t
+  :straight t
   :config       (setq feebleline-msg-functions
                       '((feebleline-line-number         :post "" :fmt "%5s")
                         (feebleline-column-number       :pre ":" :fmt "%-2s")
@@ -57,4 +100,5 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
 			((lambda () (format-time-string "%H:%M")) :align right)
 			)
 		      )
-                (feebleline-mode 1))
+  (feebleline-mode 1)
+  )

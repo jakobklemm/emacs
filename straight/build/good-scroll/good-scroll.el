@@ -1,0 +1,1 @@
+/home/jeykey/.emacs.d/straight/repos/good-scroll.el/good-scroll.el

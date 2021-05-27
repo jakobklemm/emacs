@@ -1,0 +1,1 @@
+/home/jeykey/.emacs.d/straight/repos/yasnippet/yasnippet.el

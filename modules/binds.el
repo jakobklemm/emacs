@@ -1,14 +1,8 @@
 ;; Evil binds & navigation
 ;; http://evgeni.io/posts/quick-start-evil-mode/
 
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode)
-  )
-
 (use-package evil
-  :ensure t
+  :straight t
   :init
   (setq evil-move-beyond-eol t)
   (setq evil-want-keybinding nil)
@@ -23,24 +17,24 @@
   (evil-mode)
 
   (use-package evil-commentary
-    :ensure t
+    :straight t
     :bind (:map evil-normal-state-map
                 ("gc" . evil-commentary)))
 
   (use-package evil-leader
-    :ensure t
+    :straight t
     :config
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")
     )
 
   (use-package evil-collection
-    :ensure t
+    :straight t
     :config
     (evil-collection-init)
     )
   (use-package evil-org
-    :ensure t
+    :straight t
     :after org
     :hook (org-mode . (lambda () evil-org-mode))
     :config
@@ -50,7 +44,7 @@
   )
 
 (use-package general
-  :ensure t
+  :straight t
   )
 
 (setq evil-emacs-state-modes nil)

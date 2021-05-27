@@ -1,7 +1,7 @@
 ;; Org-mode / looks & feel
 
 (use-package org-superstar
-  :ensure t
+  :straight t
   :config
   (setq ;;org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
 	org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
@@ -108,10 +108,7 @@
 
 ;; like org fragtog, but for =, /, []
 (use-package org-appear
-  :ensure t
-  :quelpa (org-appear
-	   :fetcher github
-	   :repo "awth13/org-appear")
+  :straight t
   :hook (org-mode . org-appear-mode)
   :init (setq org-hide-emphasis-markers t
 	      org-appear-autoemphasis t

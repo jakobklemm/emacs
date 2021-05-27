@@ -5,31 +5,32 @@
 (setq-default org-startup-with-latex-preview t)
 
 (use-package org-fragtog
-  :ensure t
+  :straight t
   :config
   (add-hook 'org-mode-hook 'org-fragtog-mode)
   (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
   )
 
 (use-package htmlize
-  :ensure t)
+  :straight t)
 
 (use-package ox-pandoc
-  :ensure t
+  :straight t
   )
 
-(require 'ox-hugo)
-(setq org-hugo-auto-set-lastmod t)
+(use-package ox-hugo
+  :straight t
+  )
 
 (use-package plantuml-mode
-  :ensure t
+  :straight t
   :config
   (setq org-plantuml-jar-path (expand-file-name "~/.tools/plantuml.jar"))
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   )
 
 (use-package ox-reveal
-  :ensure t
+  :straight t
   :custom ((org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
 	   (org-reveal-mathjax t)
 	   (org-reveal-ignore-speaker-notes nil)

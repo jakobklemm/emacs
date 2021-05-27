@@ -1,7 +1,7 @@
 ;;  Org-mode content
 
 (use-package org-roam
-  :ensure t
+  :straight t
   :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
   :hook
   (after-init . org-roam-mode)
@@ -21,7 +21,7 @@
            :unnarrowed t)
            ))
   (use-package org-roam-server
-    :ensure t
+    :straight t
     :config
     (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 8080
@@ -36,7 +36,7 @@
 
 ;; Spaced repetition
 (use-package org-drill
-  :ensure t
+  :straight t
   :config
   (setq org-drill-use-visible-cloze-face-p t)
   (setq org-drill-hide-item-headings-p t)

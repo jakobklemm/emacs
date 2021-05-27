@@ -58,7 +58,7 @@
     )
 
 (use-package org-super-agenda
-  :ensure t
+  :straight t
   :init
   (setq org-agenda-custom-commands
         '(("d" "Super Agenda - Day"

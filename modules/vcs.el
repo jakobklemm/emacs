@@ -1,17 +1,19 @@
 ;; Version control system
 
 (use-package magit
-  :ensure t
+  :straight t
   :config
   (global-set-key (kbd "C-x g") 'magit-status)
   (global-set-key (kbd "C-x p") 'magit-init)
   (use-package magit-todos
-    :ensure t
+    :straight t
     :config
     (magit-todos-mode t)
     )
   (use-package git-messenger
-    :ensure t
+    :straight t
+    :config
+    (global-set-key (kbd "C-x m") 'git-messenger)
     )
   )
 

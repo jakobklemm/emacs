@@ -2,7 +2,23 @@
 ;; Most config is not happening in this file, but managed by "setup.el"
 ;; This file simply installs use-package, which is used in the entire config.
 
-(require 'package) ;; Emacs builtin
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(setq package-enable-at-startup nil)
+
+;; Install use-package for easier install macros
+(straight-use-package 'use-package)
 
 ;; set package.el repositories
 (setq package-archives
@@ -12,33 +28,13 @@
    ("melpa" . "https://melpa.org/packages/")
 ))
 
-;; initialize built-in package management
-(package-initialize)
-
-;; update packages list if we are on a new install
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; a list of pkgs to programmatically install
-;; ensure installed via package.el
-(setq my-package-list '(use-package))
-
-;; programmatically install/ensure installed
-;; pkgs in your personal list
-(dolist (package my-package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(use-package quelpa-use-package
-  :ensure t)
-
-;; Config structure:
-
 ;; Store scripts and snippets in ressource/ directory
 (add-to-list 'load-path "~/.emacs.d/resources/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/resources/")
 ;; Initial settings, disable some emacs features.
 (load-file (concat user-emacs-directory "modules/defaults.el"))
 ;; Quality of life changes
+;; TODO: Bufler 
 (load-file (concat user-emacs-directory "modules/qol.el"))
 ;; Design
 (load-file (concat user-emacs-directory "modules/design.el"))

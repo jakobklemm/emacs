@@ -1,7 +1,41 @@
 ;; Programming
 
+(add-to-list 'exec-path "~/.tools/elixir-ls")
+
+(setq lsp-ui-doc-max-height 52
+      lsp-ui-doc-max-width 64
+      lsp-ui-doc-position 'at-point
+      lsp-ui-doc-position 'bottom
+      lsp-ui-doc-show-with-mouse t
+      lsp-ui-doc-show-with-cursor t
+      )
+
+(use-package lsp-mode
+  :straight t
+  :commands lsp
+  :init
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-signature-auto-activate nil)
+  :hook
+  (elixir-mode . lsp)
+  )
+
+(use-package lsp-ui
+  :straight t
+  :commands lsp-ui-mode
+  :config
+  (lsp-ui-doc-enable t)
+  (lsp-ui-mode)
+  (setq lsp-ui-doc-max-height 128
+	lsp-ui-doc-max-width 64
+	lsp-ui-doc-position 'top
+	lsp-ui-doc-show-with-mouse t
+	lsp-ui-doc-show-with-cursor t
+      )
+  )
+
 (use-package web-mode
-  :ensure t
+  :straight t
   :config
   (add-hook 'web-mode-hook
 	    (lambda ()
@@ -11,31 +45,21 @@
   )
 
 (use-package elixir-mode
-  :ensure t
+  :straight t
   )
 
 (use-package rust-mode
-  :ensure t
+  :straight t
   )
 
 (use-package markdown-mode
-  :custom
-  (markdown-hide-markup nil)
-  (markdown-bold-underscore t)
-  (markdown-italic-underscore t)
-  (markdown-header-scaling t)
-  (markdown-indent-function t)
-  (markdown-enable-math t)
-  (markdown-hide-urls nil)
-  :custom-face
-  (markdown-header-delimiter-face ((t (:foreground "mediumpurple"))))
-  (markdown-header-face-1 ((t (:foreground "violet" :weight bold :height 1.0))))
-  (markdown-header-face-2 ((t (:foreground "lightslateblue" :weight bold :height 1.0))))
-  (markdown-header-face-3 ((t (:foreground "mediumpurple1" :weight bold :height 1.0))))
-  (markdown-link-face ((t (:background "#0e1014" :foreground "#bd93f9"))))
-  (markdown-list-face ((t (:foreground "mediumpurple"))))
-  (markdown-pre-face ((t (:foreground "#bd98fe"))))
-  :mode "\\.md\\'")
+  :straight t
+  )
+
+(use-package format-all
+  :straight t
+  :bind ("C-c C-f" . format-all-buffer)
+  )
 
 (use-package systemd
   :ensure t
