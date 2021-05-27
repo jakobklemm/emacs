@@ -38,11 +38,110 @@
 * Design
   Anything related to design and looks is configured here, as well as
   some helper functions.
+** Font & Size
+   Somewhat copied from [[https://github.com/hrs/dotfiles/blob/main/emacs/dot-emacs.d/configuration.org][hrs/dotfiles]]
+   #+begin_src emacs-lisp
+     (setq hrs/default-fixed-font "Fira Code")
+     (setq hrs/default-fixed-font-size 90)
+     (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+     (set-face-attribute 'default nil
+			 :family hrs/default-fixed-font
+			 :height hrs/current-fixed-font-size)
+     (set-face-attribute 'fixed-pitch nil
+			 :family hrs/default-fixed-font
+			 :height hrs/current-fixed-font-size)
+
+     (setq hrs/font-change-increment 1.1)
+
+     (defun hrs/set-font-size ()
+       "Change default, fixed-pitch, and variable-pitch font sizes to match respective variables."
+       (set-face-attribute 'default nil
+			   :height hrs/current-fixed-font-size)
+       (set-face-attribute 'fixed-pitch nil
+			   :height hrs/current-fixed-font-size)
+       )
+
+     (defun hrs/reset-font-size ()
+       "Revert font sizes back to defaults."
+       (interactive)
+       (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+       (hrs/set-font-size))
+
+     (defun hrs/increase-font-size ()
+       "Increase current font sizes by a factor of `hrs/font-change-increment'."
+       (interactive)
+       (setq hrs/current-fixed-font-size
+	     (ceiling (* hrs/current-fixed-font-size hrs/font-change-increment)))
+       (hrs/set-font-size))
+
+     (defun hrs/decrease-font-size ()
+       "Decrease current font sizes by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+       (interactive)
+       (setq hrs/current-fixed-font-size
+	     (max 1
+		  (floor (/ hrs/current-fixed-font-size hrs/font-change-increment))))
+       (hrs/set-font-size))
+
+     (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+     (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+     (define-key global-map (kbd "C-=") 'hrs/increase-font-size)
+     (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+     (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
+
+     (hrs/reset-font-size)
+   #+end_src
 ** Theme
     #+begin_src emacs-lisp
       (add-to-list 'custom-theme-load-path "~/.emacs.d/resources/")
       (load-theme 'jeykey-dark t)
     #+end_src
+** Margins
+   Center in all buffers, including custom regex to exclude some
+   buffers.
+   #+begin_src emacs-lisp
+     (defcustom perfect-margin-ignore-regexps
+       '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
+       "List of strings to determine if window is ignored.
+     Each string is used as regular expression to match the window buffer name."
+       :group 'perfect-margin)
+
+     (defcustom perfect-margin-ignore-filters
+       '(window-minibuffer-p)
+       "List of functions to determine if window is ignored.
+     Each function is called with window as its sole arguemnt, returning a non-nil value indicate to ignore the window."
+       :group 'perfect-margin)
+
+     (use-package perfect-margin
+       :straight t
+       :config
+       (perfect-margin-mode 1)
+       )
+   #+end_src
+** Modeline
+   Use feebeline as a minibuffer modeline.
+   #+begin_src emacs-lisp
+     (use-package    feebleline
+       :straight       t
+       :config       (setq feebleline-msg-functions
+			   '((feebleline-line-number         :post "" :fmt "%5s")
+			     (feebleline-column-number       :pre ":" :fmt "%-2s")
+			     (feebleline-file-directory      :face feebleline-dir-face :post "")
+			     (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+			     (feebleline-file-modified-star  :face font-lock-warning-face :post "")
+			     (feebleline-git-branch          :face feebleline-git-face :pre " ")
+			     (feebleline-project-name        :align right)
+			     ((lambda () (format-time-string "%H:%M")) :align right)
+			     )
+			   )
+       (feebleline-mode 1))
+   #+end_src
+** Icons
+   #+begin_src emacs-lisp
+     (use-package all-the-icons
+       :straight t
+       )
+
+   #+end_src
 * Navigation
   Anything related to navigating files, buffers or anything else.
   Instead of mayor frameworks like =ivy= or =helm= the current setup
@@ -194,6 +293,39 @@
        (which-key-mode t)
        )
    #+end_src
+** Windows
+   #+begin_src emacs-lisp
+     (use-package ace-window
+       :straight t
+       :init
+       (setq aw-scope 'frame ; limit to single frame
+	     aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+       )
+   #+end_src
+** Switching
+   #+begin_src emacs-lisp
+     (defun hrs/split-window-below-and-switch ()
+       "Split the window horizontally, then switch to the new pane."
+       (interactive)
+       (split-window-below)
+       (balance-windows)
+       (other-window 1)
+       (bufler-switch-buffer)
+       )
+
+     (defun hrs/split-window-right-and-switch ()
+       "Split the window vertically, then switch to the new pane."
+       (interactive)
+       (split-window-right)
+       (balance-windows)
+       (other-window 1)
+       (bufler-switch-buffer)
+       )
+
+     (defun kill-current-buffer ()
+       (interactive)
+       (kill-buffer (current-buffer)))
+   #+end_src
 ** Bufler
    #+begin_src emacs-lisp
 	(use-package bufler
@@ -248,6 +380,14 @@
        (require 'evil-org-agenda)
        (evil-org-agenda-set-keys)
        )
+   #+end_src
+** Binds
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+     (global-set-key (kbd "C-x o") 'ace-window)
+     (global-set-key (kbd "C-x b") 'bufler-switch-buffer)
+     (global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
+     (global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
    #+end_src
 * Programming
 ** Format code
@@ -332,6 +472,43 @@
    #+end_src
 * Writing
   Setup for writing, mostly in =org-mode=.
+** Superstar
+   #+begin_src emacs-lisp
+     (use-package org-superstar
+       :ensure t
+       :config
+       (setq ;;org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+	org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+	org-superstar-prettify-item-bullets t
+	org-superstar-configure-like-org-bullets t
+	org-hide-leading-stars nil
+	org-superstar-leading-bullet ?\s
+	;; Enable custom bullets for TODO items
+	org-superstar-special-todo-items t
+	org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+					  ("NEXT" "✒ ")
+					  ("STATIC" "» ")
+					  ("BLOCKED" "˧ ")
+					  ("DONE" "✔ ")
+					  ("PAL" "✔ ")
+					  )
+	)
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+       )
+   #+end_src
+** Spellcheck
+   #+begin_src emacs-lisp
+     (setq ispell-program-name "hunspell")
+
+     (setq ispell-local-dictionary "de_DE")
+     (setq ispell-local-dictionary-alist
+	   '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+	     ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+
+     (add-hook 'org-mode-hook #'flyspell-mode)
+
+     (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
+   #+end_src
 ** Symbols
    Use pretty symbols to overwrite symbol display in org-mode. The
    symbols will expand to plain-text if the point is over.
@@ -378,6 +555,42 @@
 
      (setq prettify-symbols-unprettify-at-point 'right-edge)
      (add-hook 'org-mode-hook 'prettify-symbols-mode)
+   #+end_src
+** Roam
+   #+begin_src emacs-lisp
+     (use-package org-roam
+       :straight t
+       :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+       :hook
+       (after-init . org-roam-mode)
+       :init
+       (setq
+	org-roam-directory (file-truename "~/documents/vaults/database/")
+	org-roam-db-location "~/documents/vaults/org-roam.db"
+	org-roam-db-gc-threshold most-positive-fixnum
+	)
+       :config
+       (setq org-roam-capture-templates
+	     '(("d" "default" plain (function org-roam--capture-get-point)
+		"%?"
+		:file-name "${slug}"
+		:head "#+TITLE: ${title}\n"
+		:immediate-finish t
+		:unnarrowed t)
+	       ))
+       (use-package org-roam-server
+	 :ensure t
+	 :config
+	 (setq org-roam-server-host "127.0.0.1"
+	       org-roam-server-port 8080
+	       org-roam-server-authenticate nil
+	       org-roam-server-export-inline-images t
+	       org-roam-server-serve-files nil
+	       org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
+	       org-roam-server-network-poll t
+	       org-roam-server-network-arrows nil
+	       org-roam-server-network-label-wrap-length 20))
+       )
    #+end_src
 * Communication
 * Extras

@@ -1,0 +1,8 @@
+;;; -*- coding: utf-8 -*-
+(("/home/jeykey/.emacs.d/straight/build/dash/dash-autoloads.el" . 2292)
+ ("/home/jeykey/.emacs.d/straight/build/s/s-autoloads.el" . 249)
+ ("/home/jeykey/.emacs.d/straight/build/aio/aio-autoloads.el" . 261)
+ ("/home/jeykey/.emacs.d/straight/build/async/async-autoloads.el" . 5622)
+ ("/home/jeykey/.emacs.d/straight/build/use-package/use-package-autoloads.el" . 8353)
+ ("/home/jeykey/.emacs.d/straight/build/bind-key/bind-key-autoloads.el" . 2494)
+ ("/home/jeykey/.emacs.d/straight/build/straight/straight-autoloads.el" . 15546))

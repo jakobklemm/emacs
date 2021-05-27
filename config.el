@@ -20,8 +20,94 @@
   :straight t
   )
 
+(setq hrs/default-fixed-font "Fira Code")
+(setq hrs/default-fixed-font-size 90)
+(setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+(set-face-attribute 'default nil
+		    :family hrs/default-fixed-font
+		    :height hrs/current-fixed-font-size)
+(set-face-attribute 'fixed-pitch nil
+		    :family hrs/default-fixed-font
+		    :height hrs/current-fixed-font-size)
+
+(setq hrs/font-change-increment 1.1)
+
+(defun hrs/set-font-size ()
+  "Change default, fixed-pitch, and variable-pitch font sizes to match respective variables."
+  (set-face-attribute 'default nil
+		      :height hrs/current-fixed-font-size)
+  (set-face-attribute 'fixed-pitch nil
+		      :height hrs/current-fixed-font-size)
+  )
+
+(defun hrs/reset-font-size ()
+  "Revert font sizes back to defaults."
+  (interactive)
+  (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+  (hrs/set-font-size))
+
+(defun hrs/increase-font-size ()
+  "Increase current font sizes by a factor of `hrs/font-change-increment'."
+  (interactive)
+  (setq hrs/current-fixed-font-size
+	(ceiling (* hrs/current-fixed-font-size hrs/font-change-increment)))
+  (hrs/set-font-size))
+
+(defun hrs/decrease-font-size ()
+  "Decrease current font sizes by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+  (interactive)
+  (setq hrs/current-fixed-font-size
+	(max 1
+	     (floor (/ hrs/current-fixed-font-size hrs/font-change-increment))))
+  (hrs/set-font-size))
+
+(define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+(define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+(define-key global-map (kbd "C-=") 'hrs/increase-font-size)
+(define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+(define-key global-map (kbd "C--") 'hrs/decrease-font-size)
+
+(hrs/reset-font-size)
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/resources/")
 (load-theme 'jeykey-dark t)
+
+(defcustom perfect-margin-ignore-regexps
+  '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
+  "List of strings to determine if window is ignored.
+Each string is used as regular expression to match the window buffer name."
+  :group 'perfect-margin)
+
+(defcustom perfect-margin-ignore-filters
+  '(window-minibuffer-p)
+  "List of functions to determine if window is ignored.
+Each function is called with window as its sole arguemnt, returning a non-nil value indicate to ignore the window."
+  :group 'perfect-margin)
+
+(use-package perfect-margin
+  :straight t
+  :config
+  (perfect-margin-mode 1)
+  )
+
+(use-package    feebleline
+  :straight       t
+  :config       (setq feebleline-msg-functions
+		      '((feebleline-line-number         :post "" :fmt "%5s")
+			(feebleline-column-number       :pre ":" :fmt "%-2s")
+			(feebleline-file-directory      :face feebleline-dir-face :post "")
+			(feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+			(feebleline-file-modified-star  :face font-lock-warning-face :post "")
+			(feebleline-git-branch          :face feebleline-git-face :pre " ")
+			(feebleline-project-name        :align right)
+			((lambda () (format-time-string "%H:%M")) :align right)
+			)
+		      )
+  (feebleline-mode 1))
+
+(use-package all-the-icons
+  :straight t
+  )
 
 (defun dw/minibuffer-backward-kill (arg)
   "When minibuffer is completing a file name delete up to parent
@@ -159,6 +245,35 @@
   (which-key-mode t)
   )
 
+(use-package ace-window
+  :straight t
+  :init
+  (setq aw-scope 'frame ; limit to single frame
+	aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+  )
+
+(defun hrs/split-window-below-and-switch ()
+  "Split the window horizontally, then switch to the new pane."
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1)
+  (bufler-switch-buffer)
+  )
+
+(defun hrs/split-window-right-and-switch ()
+  "Split the window vertically, then switch to the new pane."
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1)
+  (bufler-switch-buffer)
+  )
+
+(defun kill-current-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
 (use-package bufler
   :straight t
   :config
@@ -204,6 +319,12 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
   )
+
+(global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-x b") 'bufler-switch-buffer)
+(global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
+(global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
 
 (use-package format-all
   :straight t
@@ -264,6 +385,39 @@
   :hook (company-mode . company-box-mode)
   )
 
+(use-package org-superstar
+  :ensure t
+  :config
+  (setq ;;org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+   org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+   org-superstar-prettify-item-bullets t
+   org-superstar-configure-like-org-bullets t
+   org-hide-leading-stars nil
+   org-superstar-leading-bullet ?\s
+   ;; Enable custom bullets for TODO items
+   org-superstar-special-todo-items t
+   org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+				     ("NEXT" "✒ ")
+				     ("STATIC" "» ")
+				     ("BLOCKED" "˧ ")
+				     ("DONE" "✔ ")
+				     ("PAL" "✔ ")
+				     )
+   )
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+  )
+
+(setq ispell-program-name "hunspell")
+
+(setq ispell-local-dictionary "de_DE")
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+	("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+
+(add-hook 'org-mode-hook #'flyspell-mode)
+
+(add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
+
 (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
 				       ("#+END_SRC" . "λ")
 				       ("#+begin_src" . "λ")
@@ -306,3 +460,37 @@
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
+
+(use-package org-roam
+  :straight t
+  :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+  :hook
+  (after-init . org-roam-mode)
+  :init
+  (setq
+   org-roam-directory (file-truename "~/documents/vaults/database/")
+   org-roam-db-location "~/documents/vaults/org-roam.db"
+   org-roam-db-gc-threshold most-positive-fixnum
+   )
+  :config
+  (setq org-roam-capture-templates
+	'(("d" "default" plain (function org-roam--capture-get-point)
+	   "%?"
+	   :file-name "${slug}"
+	   :head "#+TITLE: ${title}\n"
+	   :immediate-finish t
+	   :unnarrowed t)
+	  ))
+  (use-package org-roam-server
+    :ensure t
+    :config
+    (setq org-roam-server-host "127.0.0.1"
+	  org-roam-server-port 8080
+	  org-roam-server-authenticate nil
+	  org-roam-server-export-inline-images t
+	  org-roam-server-serve-files nil
+	  org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
+	  org-roam-server-network-poll t
+	  org-roam-server-network-arrows nil
+	  org-roam-server-network-label-wrap-length 20))
+  )

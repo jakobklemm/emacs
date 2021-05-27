@@ -19,6 +19,17 @@
 ;; Install use-package for easier install macros
 (straight-use-package 'use-package)
 
+;; set package.el repositories
+(setq package-archives
+'(
+   ("org" . "https://orgmode.org/elpa/")
+   ("gnu" . "https://elpa.gnu.org/packages/")
+   ("melpa" . "https://melpa.org/packages/")
+))
+
+;; initialize built-in package management
+(package-initialize)
+
 (org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))

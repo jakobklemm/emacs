@@ -23,6 +23,8 @@
 ;; Disable native comp warnings.
 (setq comp-async-report-warnings-errors nil)
 
+(setq warning-minimum-level 'error)
+
 ;; Auto wrap text
 (auto-fill-mode t)
 
