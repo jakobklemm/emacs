@@ -2,7 +2,7 @@
 ;; http://evgeni.io/posts/quick-start-evil-mode/
 
 (use-package evil
-  :straight t
+  :ensure t
   :init
   (setq evil-move-beyond-eol t)
   (setq evil-want-keybinding nil)
@@ -17,24 +17,24 @@
   (evil-mode)
 
   (use-package evil-commentary
-    :straight t
+    :ensure t
     :bind (:map evil-normal-state-map
                 ("gc" . evil-commentary)))
 
   (use-package evil-leader
-    :straight t
+    :ensure t
     :config
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")
     )
 
   (use-package evil-collection
-    :straight t
+    :ensure t
     :config
     (evil-collection-init)
     )
   (use-package evil-org
-    :straight t
+    :ensure t
     :after org
     :hook (org-mode . (lambda () evil-org-mode))
     :config
@@ -44,7 +44,7 @@
   )
 
 (use-package general
-  :straight t
+  :ensure t
   )
 
 (setq evil-emacs-state-modes nil)

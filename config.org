@@ -1,0 +1,571 @@
+#+TITLE: Jakob Klemm - Emacs
+#+AUTHOR: Jakob Klemm
+* Setup
+Base settings & setup.
+** Packages
+Setup =use-package= and quelpa, since =straight= is most likely still
+broken.
+#+begin_src emacs-lisp
+  (require 'package) ;; Emacs builtin
+
+  ;; set package.el repositories
+  (setq package-archives
+        '(
+          ("org" . "https://orgmode.org/elpa/")
+          ("gnu" . "https://elpa.gnu.org/packages/")
+          ("melpa" . "https://melpa.org/packages/")
+          ))
+
+  ;; initialize built-in package management
+  (package-initialize)
+
+  ;; update packages list if we are on a new install
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  ;; a list of pkgs to programmatically install
+  ;; ensure installed via package.el
+  (setq my-package-list '(use-package))
+
+  ;; programmatically install/ensure installed
+  ;; pkgs in your personal list
+  (dolist (package my-package-list)
+    (unless (package-installed-p package)
+      (package-install package)))
+
+  (use-package quelpa-use-package
+    :ensure t
+    )
+#+end_src
+** Defaults
+Some default settings, partially copied from Harry R. Schwartz.
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold 2000000000000)
+
+  ;; Treat CamelCaseSubWords as separate words in every programming
+  ;; mode.
+  (add-hook 'prog-mode-hook 'subword-mode)
+
+  ;; Don't assume that sentences should have two spaces after
+  ;; periods.
+  (setq sentence-end-double-space nil)
+
+  ;; Turn on transient-mark-mode.
+  (transient-mark-mode t)
+
+  ;; Auto wrap text
+  (auto-fill-mode t)
+
+  ;; selected text and start inserting your typed text.
+  (delete-selection-mode t)
+
+  ;; If you save a file that doesn't end with a newline, automatically
+  ;; append one.
+  (setq require-final-newline t)
+
+  ;; Visually indicate matching pairs of parentheses.
+  (show-paren-mode t)
+  (setq show-paren-delay 0.0)
+
+  ;; When you perform a problematic operation, flash the screen instead
+  ;; of ringing the terminal bell.
+  (setq ring-bell-function 'ignore)
+  (setq visible-bell nil)
+
+  ;; Don't ask `yes/no?', ask `y/n?'.
+  (fset 'yes-or-no-p 'y-or-n-p)
+
+  ;; Ask if you're sure that you want to close Emacs.
+  (setq confirm-kill-emacs 'y-or-n-p)
+
+  ;; Don't present the usual startup message, and clear the scratch buffer.
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message nil)
+
+  ;; When something changes a file, automatically refresh the buffer
+  ;; containing that file so they can't get out of sync.
+  (global-auto-revert-mode t)
+
+  ;; Move everything to trash first
+  (setq delete-by-moving-to-trash t)
+
+  ;; No reason to use any other type. Might be disabled dependant on the
+  ;; current mode.
+  (setq display-line-numbers-type 'relative)
+
+  ;; Use tabs for everything (https://youtu.be/SsoOG6ZeyUI)
+  (setq indent-tabs-mode t)
+  (setq indent-line-function 'insert-tab)
+
+  ;; Launch emacs in fullscreen mode
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+  ;; Save the location within a file.
+  (save-place-mode t)
+
+  ;; Set always to UTF-8, only display in bar if not UTF-8
+  (set-language-environment "UTF-8")
+
+  ;; Menu bar
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+  (scroll-bar-mode -1)
+
+  ;; Minibuffer
+  (set-window-scroll-bars (minibuffer-window) nil nil)
+
+  ;; Use smoth scrolling
+  (setq scroll-conservatively 100)
+
+  ;; Highlight the current line
+  (global-hl-line-mode)
+
+  ;; Hide the modeline
+  (setq mode-line-format nil)
+
+  ;; Error handling
+  ;; (setq warning-minimum-level :emergency)
+
+  ;; Make it affect all buffers.
+  (setq-default mode-line-format nil)
+
+  ;; Line wrap mode
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+  (add-hook 'gfm-mode-hook 'auto-fill-mode)
+  (add-hook 'org-mode-hook 'auto-fill-mode)
+
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t)))
+
+  (setq byte-compile-warnings '(cl-functions))
+#+end_src
+** Common
+Some common libraries as general dependencies. 
+#+begin_src emacs-lisp
+(use-package async
+  :ensure t
+  )
+(use-package aio
+  :ensure t
+  )
+(use-package cl-lib
+  :ensure t
+  )
+(use-package s
+  :ensure t
+  )
+(use-package dash
+  :ensure t
+  )
+#+end_src
+** Extras
+Add =resources/= to the path. Add it both to the load-path as well as
+custom-theme-load-path.
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/resources/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/resources/")
+#+end_src
+** Files
+Install =no-littering= to handle all temp files.
+#+begin_src emacs-lisp
+(use-package no-littering
+  :ensure t
+  )
+#+end_src
+* Design
+Anything related to design and looks.
+** Theme
+Use the =jeykey-dark= theme, which was generated using themer. Also
+highlight the current line & set the point color.
+#+begin_src emacs-lisp
+  (load-theme 'jeykey-dark t)
+  (add-hook 'prog-mode-hook #'hl-todo-mode)
+  (set-cursor-color "#D069D6")
+#+end_src
+** Font
+Set the default font & functions for changing the font size.
+#+begin_src emacs-lisp
+  (setq hrs/default-fixed-font "Iosevka")
+  (setq hrs/default-fixed-font-size 90)
+  (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+  (set-face-attribute 'default nil
+                      :family hrs/default-fixed-font
+                      :height hrs/current-fixed-font-size)
+  (set-face-attribute 'fixed-pitch nil
+                      :family hrs/default-fixed-font
+                      :height hrs/current-fixed-font-size)
+
+  (setq hrs/font-change-increment 1.1)
+
+  (defun hrs/set-font-size ()
+    "Change default, fixed-pitch, and variable-pitch font sizes to match respective variables."
+    (set-face-attribute 'default nil
+                        :height hrs/current-fixed-font-size)
+    (set-face-attribute 'fixed-pitch nil
+                        :height hrs/current-fixed-font-size)
+    )
+
+  (defun hrs/reset-font-size ()
+    "Revert font sizes back to defaults."
+    (interactive)
+    (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
+    (hrs/set-font-size))
+
+  (defun hrs/increase-font-size ()
+    "Increase current font sizes by a factor of `hrs/font-change-increment'."
+    (interactive)
+    (setq hrs/current-fixed-font-size
+          (ceiling (* hrs/current-fixed-font-size hrs/font-change-increment)))
+    (hrs/set-font-size))
+
+  (defun hrs/decrease-font-size ()
+    "Decrease current font sizes by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+    (interactive)
+    (setq hrs/current-fixed-font-size
+          (max 1
+               (floor (/ hrs/current-fixed-font-size hrs/font-change-increment))))
+    (hrs/set-font-size))
+
+  (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+  (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+  (define-key global-map (kbd "C-=") 'hrs/increase-font-size)
+  (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+  (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
+
+  (hrs/reset-font-size)
+#+end_src
+** Margins
+Use centered text everywhere, except for excluded buffers.
+#+begin_src emacs-lisp
+  (defcustom perfect-margin-ignore-regexps
+    '("^minibuf" "^[*]" "Minibuf" "[*]" "magit" "mu4e")
+    "List of strings to determine if window is ignored.
+  Each string is used as regular expression to match the window buffer name."
+    :group 'perfect-margin)
+
+  (defcustom perfect-margin-ignore-filters
+    '(window-minibuffer-p)
+    "List of functions to determine if window is ignored.
+  Each function is called with window as its sole arguemnt, returning a non-nil value indicate to ignore the window."
+    :group 'perfect-margin)
+
+  (use-package perfect-margin
+    :ensure t
+    :config
+    (perfect-margin-mode 1)
+    )
+#+end_src
+** Modeline
+Use feebeline as a /in-minibuffer-modeline/.
+#+begin_src emacs-lisp
+  (use-package    feebleline
+    :ensure t
+    :config       (setq feebleline-msg-functions
+                        '((feebleline-line-number         :post "" :fmt "%5s")
+                          (feebleline-column-number       :pre ":" :fmt "%-2s")
+                          (feebleline-file-directory      :face feebleline-dir-face :post "")
+                          (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+                          (feebleline-file-modified-star  :face font-lock-warning-face :post "")
+                          (feebleline-git-branch          :face feebleline-git-face :pre " ")
+                          (feebleline-project-name        :align right)
+                          ((lambda () (format-time-string "%H:%M")) :align right)
+                          )
+                        )
+    (feebleline-mode 1)
+    )
+#+end_src
+** Rainbow
+Install rainbow-delimiters & enable it for programming & org-mode.
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  )
+#+end_src
+** Icons
+Install icons using =all-the-icons-install-fonts=
+#+begin_src emacs-lisp
+(use-package perfect-margin
+  :ensure t
+  :config
+  (perfect-margin-mode 1)
+  )
+#+end_src
+** Symbols
+Enable prettify-symbols mode & set custom symbols for =org-mode=.
+#+begin_src emacs-lisp
+  (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "λ")
+                                         ("#+END_SRC" . "λ")
+                                         ("#+begin_src" . "λ")
+                                         ("#+end_src" . "λ")
+                                         ("#+TITLE:" . "𝙏")
+                                         ("#+title:" . "𝙏")
+                                         ("#+SUBTITLE:" . "𝙩")
+                                         ("#+subtitle:" . "𝙩")
+                                         ("#+DATE:" . "𝘿")
+                                         ("#+date:" . "𝘿")
+                                         ("#+PROPERTY:" . "☸")
+                                         ("#+property:" . "☸")
+                                         ("#+OPTIONS:" . "⌥")
+                                         ("#+options:" . "⌥")
+                                         ("#+LATEX_HEADER:" . "⇾")
+                                         ("#+latex_header:" . "⇾")
+                                         ("#+LATEX_CLASS:" . "⇥")
+                                         ("#+latexx_class:" . "⇥")
+                                         ("#+ATTR_LATEX:" . "🄛")
+                                         ("#+attr_latex:" . "🄛")
+                                         ("#+LATEX:" . "ℓ")
+                                         ("#+latex:" . "ℓ")
+                                         ("#+ATTR_HTML:" . "🄗")
+                                         ("#+attr_html:" . "🄗")
+                                         ("#+BEGIN_QUOTE:" . "❮")
+                                         ("#+begin_quote:" . "❮")
+                                         ("#+END_QUOTE:" . "❯")
+                                         ("#+end_quote:" . "❯")
+                                         ("#+CAPTION:" . "☰")
+                                         ("#+caption:" . "☰")
+                                         (":PROPERTIES:" . "⚙")
+                                         (":properties:" . "⚙")
+                                         ("#+AUTHOR:" . "A")
+                                         ("#+author:" . "A")
+                                         ("#+IMAGE:" . "I")
+                                         ("#+image:" . "I")
+                                         ("#+LANGUAGE:" . "L")
+                                         ("#+language:" . "L")
+                                         ))
+
+  (setq prettify-symbols-unprettify-at-point 'right-edge)
+  (add-hook 'org-mode-hook 'prettify-symbols-mode)
+  (global-prettify-symbols-mode 1)
+#+end_src
+* Navigation
+General settings & packages for navigating buffers and files.
+** Vertico
+Partially copied from =SystemCrafters=.
+#+begin_src emacs-lisp
+  (defun dw/minibuffer-backward-kill (arg)
+    "When minibuffer is completing a file name delete up to parent
+                                folder, otherwise delete a word"
+    (interactive "p")
+    (if minibuffer-completing-file-name
+        (if (string-match-p "/." (minibuffer-contents))
+            (zap-up-to-char (- arg) ?/)
+          (delete-minibuffer-contents))
+      (backward-kill-word arg)))
+
+  (use-package vertico
+    :ensure t
+    :custom-face
+    (vertico-current ((t (:background "#3a3f5a"))))
+    :bind (:map vertico-map
+                ("C-j" . vertico-next)
+                ("C-k" . vertico-previous)
+                ("C-f" . vertico-exit)
+                :map minibuffer-local-map
+                ("C-l" . dw/minibuffer-backward-kill))
+    :init
+    (vertico-mode)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    (setq vertico-cycle t)
+    )
+#+end_src    
+** Improved completion
+Corf & Orderless for improved completion in region.
+#+begin_src emacs-lisp
+  (use-package corfu
+    :ensure t
+    :bind (:map corfu-map
+                ("C-j" . corfu-next)
+                ("C-k" . corfu-previous)
+                ("C-f" . corfu-insert))
+    :custom
+    (corfu-cycle t)
+    :config
+    (corfu-global-mode))
+
+  (use-package orderless
+    :ensure t
+    :init
+    (setq completion-styles '(orderless)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles . (partial-completion))))))
+** History
+Save commands between restarts.
+#+begin_src emacs-lisp
+  ;; Persist history over Emacs restarts. Vertico sorts by history position.
+  (use-package savehist
+    :init
+    (savehist-mode)
+    )
+#+end_src
+** Search
+Use consult for improved search.
+#+begin_src emacs-lisp
+  (use-package consult
+    :ensure t
+    :demand t
+    :bind (("C-s" . consult-line)
+           ("M-s" . consult-imenu)
+           :map minibuffer-local-map
+           ("C-r" . consult-history))
+    :custom
+    (consult-project-root-function #'dw/get-project-root)
+    (completion-in-region-function #'consult-completion-in-region)
+    :config
+    (consult-preview-at-point-mode)
+    )
+#+end_src
+** Annotations
+Add /margin notes/ in vertico buffers.
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :after vertico
+    :ensure t
+    :custom
+    (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+    :init
+    (marginalia-mode)
+    )
+#+end_src
+** Actions
+Execute actions in the minibuffer.
+#+begin_src emacs-lisp
+  (use-package embark
+    :ensure t
+    :bind (
+           :map minibuffer-local-map
+           ("C-d" . embark-act))
+    :config
+    ;; Show Embark actions via which-key
+    (setq embark-action-indicator
+          (lambda (map) (which-key--show-keymap "Embark" map nil nil 'no-paging)
+            #'which-key--hide-popup-ignore-command)
+          embark-become-indicator embark-action-indicator)
+    )
+#+end_src
+** Buffers
+Use =bufler= to manage buffers.
+#+begin_src emacs-lisp
+  (use-package bufler
+    :ensure t
+    :config
+    (bufler-mode)
+    )
+#+end_src
+** Keys
+Use =which-key= for =embark= suggestions.
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode t)
+    )
+#+end_src
+** Miniframe
+Instead of a complete posframe use =mini-frame= to display the
+minibuffer in the center of the screen.
+#+begin_src emacs-lisp
+  (use-package mini-frame
+    :ensure t
+    :config
+    (custom-set-variables
+     '(mini-frame-show-parameters
+       '((top . 0.4)
+         (width . 0.5)
+         (left . 0.5))))
+    (mini-frame-mode t)
+    )
+#+end_src
+** Helpers
+Easy helper functions for quickly opening new buffers.
+#+begin_src emacs-lisp
+  (defun hrs/split-window-below-and-switch ()
+    "Split the window horizontally, then switch to the new pane."
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1)
+    (bufler-switch-buffer)
+    )
+
+  (defun hrs/split-window-right-and-switch ()
+    "Split the window vertically, then switch to the new pane."
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1)
+    (bufler-switch-buffer)
+    )
+#+end_src
+* Programming
+General settings & packages for programming, including all programming
+major-modes.
+** Flycheck
+Global syntax checking.
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :config
+    (global-flycheck-mode)
+    )
+#+end_src
+** LSP
+Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
+#+begin_src emacs-lisp
+  (add-to-list 'exec-path "~/.tools/elixir-ls")
+
+  (setq lsp-ui-doc-max-height 52
+        lsp-ui-doc-max-width 64
+        lsp-ui-doc-position 'at-point
+        lsp-ui-doc-position 'bottom
+        lsp-ui-doc-show-with-mouse t
+        lsp-ui-doc-show-with-cursor t
+        )
+
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp
+    :init
+    (setq lsp-headerline-breadcrumb-enable nil)
+    (setq lsp-signature-auto-activate nil)
+    :hook
+    (elixir-mode . lsp)
+    )
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode
+    :config
+    (lsp-ui-doc-enable t)
+    (lsp-ui-mode)
+    (setq lsp-ui-doc-max-height 128
+          lsp-ui-doc-max-width 64
+          lsp-ui-doc-position 'top
+          lsp-ui-doc-show-with-mouse t
+          lsp-ui-doc-show-with-cursor t
+          )
+    )
+#+end_src
+* Writing
+** Spellcheck
+Enable =hunspell= & =flyspell= for all =org-mode= buffers.
+#+begin_src emacs-lisp
+  (setq ispell-program-name "hunspell")
+
+  (setq ispell-local-dictionary "en_US")
+  (setq ispell-local-dictionary-alist
+        '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+          ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
+
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'org-mode-hook #'flyspell-mode)
+
+  (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
+#+end_src
+* Communication
+

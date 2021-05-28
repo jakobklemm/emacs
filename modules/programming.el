@@ -11,7 +11,7 @@
       )
 
 (use-package lsp-mode
-  :straight t
+  :ensure t
   :commands lsp
   :init
   (setq lsp-headerline-breadcrumb-enable nil)
@@ -21,7 +21,7 @@
   )
 
 (use-package lsp-ui
-  :straight t
+  :ensure t
   :commands lsp-ui-mode
   :config
   (lsp-ui-doc-enable t)
@@ -35,7 +35,7 @@
   )
 
 (use-package web-mode
-  :straight t
+  :ensure t
   :config
   (add-hook 'web-mode-hook
 	    (lambda ()
@@ -45,19 +45,19 @@
   )
 
 (use-package elixir-mode
-  :straight t
+  :ensure t
   )
 
 (use-package rust-mode
-  :straight t
+  :ensure t
   )
 
 (use-package markdown-mode
-  :straight t
+  :ensure t
   )
 
 (use-package format-all
-  :straight t
+  :ensure t
   :bind ("C-c C-f" . format-all-buffer)
   )
 

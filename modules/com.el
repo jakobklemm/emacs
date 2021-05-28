@@ -54,7 +54,7 @@
       smtpmail-debug-info t)
 
 (use-package mu4e-alert
-  :straight t
+  :ensure t
   :config
   (mu4e-alert-set-default-style 'libnotify)
   (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)

@@ -69,26 +69,26 @@ Each function is called with window as its sole arguemnt, returning a non-nil va
   :group 'perfect-margin)
 
 (use-package perfect-margin
-  :straight t
+  :ensure t
   :config
   (perfect-margin-mode 1)
   )
 
 (use-package rainbow-delimiters
-  :straight t
+  :ensure t
   :config
   (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 
 (use-package all-the-icons
-  :straight t
+  :ensure t
   )
 
 (add-hook 'prog-mode-hook #'hl-todo-mode)
 
 (use-package    feebleline
-  :straight t
+  :ensure t
   :config       (setq feebleline-msg-functions
                       '((feebleline-line-number         :post "" :fmt "%5s")
                         (feebleline-column-number       :pre ":" :fmt "%-2s")

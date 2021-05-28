@@ -1,1 +1,0 @@
-/home/jeykey/.emacs.d/straight/repos/ox-hugo/ox-hugo.el

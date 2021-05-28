@@ -1,1 +1,0 @@
-/home/jeykey/.emacs.d/straight/repos/org-appear/org-appear.el

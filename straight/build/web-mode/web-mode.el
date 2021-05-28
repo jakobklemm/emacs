@@ -1,1 +1,0 @@
-/home/jeykey/.emacs.d/straight/repos/web-mode/web-mode.el

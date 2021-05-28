@@ -3,13 +3,13 @@
 (setq scroll-margin 8)
 
 (use-package good-scroll
-  :straight t
+  :ensure t
   :config
   (good-scroll-mode 1)
   )
 
 (use-package smartparens
-  :straight t
+  :ensure t
   :hook
   (after-init . smartparens-global-mode)
   :config
@@ -33,24 +33,24 @@
 (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
 
 (use-package company
-  :straight t
+  :ensure t
   :config
   (setq company-idle-delay 0.3)
   (add-hook 'after-init-hook 'global-company-mode)
   )
 
 (use-package company-box
-  :straight t
+  :ensure t
   :custom (company-box-icons-alist 'company-box-icons-all-the-icons)
   :hook (company-mode . company-box-mode)
   )
 
 ;; Snippets
 (use-package yasnippet
-  :straight t
+  :ensure t
   :config
   (use-package yasnippet-snippets
-    :straight t
+    :ensure t
     )
   (yas-global-mode 1)
   (setq yas-indent-line 'auto)

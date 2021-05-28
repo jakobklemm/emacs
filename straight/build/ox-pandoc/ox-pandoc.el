@@ -1,1 +1,0 @@
-/home/jeykey/.emacs.d/straight/repos/ox-pandoc/ox-pandoc.el

@@ -2,7 +2,7 @@
 
 ;; Install no-littering to handle all temporary and backup files.
 (use-package no-littering
-  :straight t
+  :ensure t
   )
 
 ;; Better window switch functionality
@@ -15,21 +15,21 @@
 
 ;; For highly serious work
 (use-package malyon
-  :straight t
+  :ensure t
   )
 
 (use-package async
-  :straight t
+  :ensure t
   )
 (use-package aio
-  :straight t
+  :ensure t
   )
 (use-package cl-lib
-  :straight t
+  :ensure t
   )
 (use-package s
-  :straight t
+  :ensure t
   )
 (use-package dash
-  :straight t
+  :ensure t
   )

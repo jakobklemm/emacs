@@ -1,1 +1,0 @@
-/home/jeykey/.emacs.d/straight/repos/ox-hugo/org-hugo-auto-export-mode.el

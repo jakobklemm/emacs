@@ -12,7 +12,7 @@
 	 (backward-kill-word arg)))
 
    (use-package vertico
-     :straight t
+     :ensure t
      :custom-face
      (vertico-current ((t (:background "#3a3f5a"))))
      :bind (:map vertico-map
@@ -29,8 +29,7 @@
      )
 
    (use-package corfu
-     :straight '(corfu :host github
-			 :repo "minad/corfu")
+     :ensure t
      :bind (:map corfu-map
 		   ("C-j" . corfu-next)
 		   ("C-k" . corfu-previous)
@@ -44,7 +43,7 @@
    ;; Enable `partial-completion' for files to allow path expansion.
    ;; You may prefer to use `initials' instead of `partial-completion'.
    (use-package orderless
-     :straight t
+     :ensure t
      :init
      (setq completion-styles '(orderless)
 	     completion-category-defaults nil
@@ -52,13 +51,11 @@
 
    ;; Persist history over Emacs restarts. Vertico sorts by history position.
    (use-package savehist
-     :straight t
      :init
      (savehist-mode))
 
    ;; A few more useful configurations...
    (use-package emacs
-     :straight t
      :init
      ;; Add prompt indicator to `completing-read-multiple'.
      (defun crm-indicator (args)
@@ -80,7 +77,7 @@
 	 (projectile-project-root)))
 
    (use-package consult
-     :straight t
+     :ensure t
      :demand t
      :bind (("C-s" . consult-line)
 	      ("M-s" . consult-imenu)
@@ -94,19 +91,18 @@
 
    (use-package marginalia
      :after vertico
-     :straight t
+     :ensure t
      :custom
      (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
      :init
      (marginalia-mode))
 
    (use-package embark
-     :straight t
+     :ensure t
      :bind (
 	      :map minibuffer-local-map
 	      ("C-d" . embark-act))
      :config
-
      ;; Show Embark actions via which-key
      (setq embark-action-indicator
 	     (lambda (map) (which-key--show-keymap "Embark" map nil nil 'no-paging)
@@ -114,7 +110,7 @@
 	     embark-become-indicator embark-action-indicator))
 
     (use-package mini-frame
-      :straight t
+      :ensure t
       :config
       (custom-set-variables
 	'(mini-frame-show-parameters
@@ -125,10 +121,10 @@
       )
 
    (use-package which-key
-     :straight t
+     :ensure t
      :config
      (use-package which-key-posframe
-	 :straight t
+	 :ensure t
 	 :config
 	 (setq which-key-posframe-poshandler 'posframe-poshandler-frame-top-cnter)
 	 (which-key-posframe-mode t)
@@ -138,14 +134,14 @@
 
 ;; Ace window for easy window navigation
 (use-package ace-window
-  :straight t
+  :ensure t
   :init
   (setq aw-scope 'frame ; limit to single frame
         aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
   )
 
 	(use-package bufler
-	  :straight t
+	  :ensure t
 	  :config
 	  (bufler-mode)
 	  )
