@@ -530,6 +530,9 @@ Easy helper functions for quickly opening new buffers.
     (other-window 1)
     (bufler-switch-buffer)
     )
+
+(global-set-key (kbd "C-x 2") 'hrs/split-window-below-and-switch)
+(global-set-key (kbd "C-x 3") 'hrs/split-window-right-and-switch)
 #+end_src
 ** Evil
    Setup =evil= and all extra packages. Most binds are stored in the
@@ -980,43 +983,45 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
 ** Base
    General settings & config.
    #+begin_src emacs-lisp
-	  (setq
-	   org-directory "~/documents/"
-	   org-archive-location "~/documents/archive/2021.org::* From %s"
-	   )
+     (setq
+      org-directory "~/documents/"
+      org-archive-location "~/documents/archive/2021.org::* From %s"
+      )
 
-	  (add-hook 'org-mode 'org-toggle-inline-images)
-	  (setq org-image-actual-width '(600))
-	  (setq-default org-display-inline-images t)
-	  (setq-default org-startup-with-inline-images t)
+     (add-hook 'org-mode 'org-toggle-inline-images)
+     (setq org-image-actual-width '(600))
+     (setq-default org-display-inline-images t)
+     (setq-default org-startup-with-inline-images t)
 
-	  (setq org-file-apps
-		'((auto-mode . emacs)
-		  (directory . emacs)
-		  ("\\.mm\\'" . default)
-		  ("\\.x?html?\\'" . default)
-		  ("\\.pdf\\'" . default)) 
-		;;("\\.pdf\\'" . emacs))
-		)
-	  (setq org-ellipsis " ▼ "
-		org-adapt-indentation nil
-		org-fontify-quote-and-verse-blocks t
-		org-startup-folded t
-		org-priority-highest ?A
-		org-priority-lowest ?C
-		org-priority-faces
-		'((?A . 'all-the-icons-red)
-		  (?B . 'all-the-icons-orange)
-		  (?C . 'all-the-icons-yellow))
-		org-src-tab-acts-natively t
-		org-hide-emphasis-markers t
-		org-src-window-setup 'current-window
-		org-return-follows-link t
-		org-confirm-babel-evaluate nil
-		org-use-speed-commands t
-		org-catch-invisible-edits 'show
-		)
+     (setq org-file-apps
+           '((auto-mode . emacs)
+             (directory . emacs)
+             ("\\.mm\\'" . default)
+             ("\\.x?html?\\'" . default)
+             ("\\.pdf\\'" . default))
+           ;;("\\.pdf\\'" . emacs))
+           )
+     (setq org-ellipsis " ▼ "
+           org-adapt-indentation nil
+           org-fontify-quote-and-verse-blocks t
+           org-startup-folded t
+           org-priority-highest ?A
+           org-priority-lowest ?C
+           org-priority-faces
+           '((?A . 'all-the-icons-red)
+             (?B . 'all-the-icons-orange)
+             (?C . 'all-the-icons-yellow))
+           org-src-tab-acts-natively t
+           org-hide-emphasis-markers t
+           org-src-window-setup 'current-window
+           org-return-follows-link t
+           org-confirm-babel-evaluate nil
+           org-use-speed-commands t
+           org-catch-invisible-edits 'show
+           )
      (add-hook 'org-mode-hook 'org-indent-mode)
+
+     (use-package org-tempo)
    #+end_src
 ** Tables
    Use prettier tables.

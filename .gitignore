@@ -60,3 +60,12 @@ etc/
 transient/
 server/
 custom.el
+
+*.pdf
+elpa/
+_minted-config/
+config.pyg
+config.tex
+config.el
+etc/
+var/
