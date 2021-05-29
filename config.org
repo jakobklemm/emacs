@@ -1,5 +1,6 @@
 #+TITLE: Jakob Klemm - Emacs
 #+AUTHOR: Jakob Klemm
+
 * Setup
 Base settings & setup.
 ** Packages
@@ -140,6 +141,11 @@ Some default settings, partially copied from Harry R. Schwartz.
         `((".*" ,temporary-file-directory t)))
 
   (setq byte-compile-warnings '(cl-functions))
+
+  ;; Reopen files after restart
+  (desktop-save-mode 1)
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'kill-ring)
 #+end_src
 ** Common
 Some common libraries as general dependencies. 
@@ -181,7 +187,6 @@ Use the =jeykey-dark= theme, which was generated using themer. Also
 highlight the current line & set the point color.
 #+begin_src emacs-lisp
   (load-theme 'jeykey-dark t)
-  (add-hook 'prog-mode-hook #'hl-todo-mode)
   (set-cursor-color "#D069D6")
 #+end_src
 ** Font
@@ -289,10 +294,8 @@ Install rainbow-delimiters & enable it for programming & org-mode.
 ** Icons
 Install icons using =all-the-icons-install-fonts=
 #+begin_src emacs-lisp
-(use-package perfect-margin
+(use-package all-the-icons
   :ensure t
-  :config
-  (perfect-margin-mode 1)
   )
 #+end_src
 ** Symbols
@@ -342,6 +345,7 @@ Enable prettify-symbols mode & set custom symbols for =org-mode=.
   (add-hook 'org-mode-hook 'prettify-symbols-mode)
   (global-prettify-symbols-mode 1)
 #+end_src
+
 * Navigation
 General settings & packages for navigating buffers and files.
 ** Vertico
@@ -393,7 +397,10 @@ Corf & Orderless for improved completion in region.
     :init
     (setq completion-styles '(orderless)
           completion-category-defaults nil
-          completion-category-overrides '((file (styles . (partial-completion))))))
+          completion-category-overrides '((file (styles .
+    (partial-completion))))))
+#+end_src
+
 ** History
 Save commands between restarts.
 #+begin_src emacs-lisp
@@ -408,7 +415,6 @@ Use consult for improved search.
 #+begin_src emacs-lisp
   (use-package consult
     :ensure t
-    :demand t
     :bind (("C-s" . consult-line)
            ("M-s" . consult-imenu)
            :map minibuffer-local-map
@@ -432,6 +438,7 @@ Add /margin notes/ in vertico buffers.
     (marginalia-mode)
     )
 #+end_src
+
 ** Actions
 Execute actions in the minibuffer.
 #+begin_src emacs-lisp
@@ -466,6 +473,17 @@ Use =which-key= for =embark= suggestions.
     (which-key-mode t)
     )
 #+end_src
+** Windows
+Use =ace-windows= for quickly switching between multiple windows.
+#+begin_src emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :init
+    (setq aw-scope 'frame ; limit to single frame
+	  aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)
+	  )
+    )
+#+end_src
 ** Miniframe
 Instead of a complete posframe use =mini-frame= to display the
 minibuffer in the center of the screen.
@@ -481,6 +499,17 @@ minibuffer in the center of the screen.
     (mini-frame-mode t)
     )
 #+end_src
+** Scrolling
+   Use =good-scroll= to move more easily through files.
+   #+begin_src emacs-lisp
+     (setq scroll-margin 8)
+
+     (use-package good-scroll
+       :ensure t
+       :config
+       (good-scroll-mode 1)
+       )
+   #+end_src
 ** Helpers
 Easy helper functions for quickly opening new buffers.
 #+begin_src emacs-lisp
@@ -502,6 +531,289 @@ Easy helper functions for quickly opening new buffers.
     (bufler-switch-buffer)
     )
 #+end_src
+** Evil
+   Setup =evil= and all extra packages. Most binds are stored in the
+   next section.
+   #+begin_src emacs-lisp
+
+     (use-package evil
+       :ensure t
+       :init
+       (setq evil-move-beyond-eol t)
+       (setq evil-want-keybinding nil)
+       ;; (setq evil-want-integration t) ;; required by evil-collection
+       ;; (setq evil-search-module 'evil-search)
+       (setq evil-ex-complete-emacs-commands nil)
+       (setq evil-vsplit-window-right t) ;; like vim's 'splitright'
+       (setq evil-split-window-below t) ;; like vim's 'splitbelow'
+       ;; (setq evil-shift-round nil)
+       ;; (setq evil-want-C-u-scroll t)
+       :config
+       (evil-mode)
+
+       (use-package evil-commentary
+	 :ensure t
+	 :bind (:map evil-normal-state-map
+		     ("gc" . evil-commentary)))
+
+       (use-package evil-leader
+	 :ensure t
+	 :config
+	 (global-evil-leader-mode)
+	 (evil-leader/set-leader "<SPC>")
+	 )
+
+       (use-package evil-collection
+	 :ensure t
+	 :config
+	 (evil-collection-init)
+	 )
+       (use-package evil-org
+	 :ensure t
+	 :after org
+	 :hook (org-mode . (lambda () evil-org-mode))
+	 :config
+	 (require 'evil-org-agenda)
+	 (evil-org-agenda-set-keys)
+	 )
+       )
+
+     (use-package general
+       :ensure t
+       )
+
+     (setq evil-emacs-state-modes nil)
+     (setq evil-insert-state-modes nil)
+     (setq evil-motion-state-modes nil)
+
+     (setq evil-normal-state-modes
+	   (append evil-emacs-state-modes
+		   evil-insert-state-modes
+		   evil-normal-state-modes
+		   evil-motion-state-modes)
+	   )
+
+   #+end_src
+** Binds
+   Define all binds in a custom mini-mode.
+   #+begin_src emacs-lisp
+
+     (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
+     (global-set-key (kbd "C-x o") 'ace-window)
+     (global-set-key (kbd "<f5>") 'home-file)
+     (global-set-key (kbd "<f6>") 'projects-file)
+
+     (global-set-key (kbd "§") 'helm-resume)
+
+     ;; Partially copied from https://github.com/jbranso/evil-dvorak/blob/master/evil-dvorak.el
+
+     (define-minor-mode dvorak-mode
+       "Evil dvorak mode allows you to use evil using the dvorak keyboard layout.  Contributions are welcome."
+       nil
+       :global t
+       :lighter " ED"
+       :keymap (make-sparse-keymap))
+
+     (defun turn-on-dvorak-mode ()
+       "Enable evil-dvorak-mode in the current buffer."
+       (dvorak-mode 1))
+
+     (defun turn-off-dvorak-mode ()
+       "Disable evil-dvorak-mode in this buffer."
+       (dvorak-mode -1))
+
+     (define-globalized-minor-mode global-dvorak-mode
+       dvorak-mode turn-on-dvorak-mode
+       "Global mode to let you use evil with dvorak friendly keybindings.")
+
+     (global-dvorak-mode 1)
+
+     (general-create-definer my-leader-def
+       ;; :prefix my-leader
+       :prefix "SPC")
+
+     (evil-define-key 'motion org-agenda-mode-map
+       "h" 'org-agenda-earlier
+       "l" 'org-agenda-later
+       "j" 'org-agenda-next-line
+       "k" 'org-agenda-previous-line
+       "ö" 'org-agenda-goto-today
+       )
+
+     (when (string-equal system-name "jeykeyarch")
+       (evil-define-key '(visual normal motion) dvorak-mode-map
+         "t" 'evil-next-line
+         "n" 'evil-previous-line
+         "h" 'evil-backward-char
+         "s" 'evil-forward-char
+
+         "H" 'evil-scroll-page-up
+         "S" 'evil-scroll-page-down
+         "T" 'evil-backward-paragraph
+         "N" 'evil-forward-paragraph
+
+         "l" 'evil-backward-word-begin
+         "r" 'evil-forward-word-end
+         "g" 'evil-first-non-blank
+         "q" 'evil-end-of-line
+
+         "m" 'evil-insert
+         "z" 'evil-open-below
+         "v" 'evil-delete-char
+         "w" 'kill-line
+
+         "M" 'evil-append
+         "Z" 'evil-open-above
+         "V" 'kill-word
+         "W" 'kill-comment
+
+         "f" 'yank
+         "d" 'undo
+         "b" 'kill-ring-save
+
+         "p" 'ivy/refile
+         "y" 'ivy/last
+
+         ";" 'agenda/super
+         "," 'todo/done
+         "." 'todo/done
+
+         ;; "Temporary quick binds.
+         "j" 'kill-buffer-and-window
+         "'" 'mu4e-headers-search-bookmark
+         )
+       )
+
+     (when (string-equal system-name "hunter")
+       ;; Quick access (selection)
+       (my-leader-def
+         :keymaps 'normal
+         "a" 'agenda/super
+         "e" 'ivy/refile
+         "r" 'ivy/last
+         "t" 'todo/todo
+         "d" 'org-deadline
+         "k" 'org-schedule
+         "h" 'home-file
+         "j" 'projects-file
+         "c" 'org-capture
+         "x" 'bufler-switch-buffer
+         )
+       )
+
+     ;; Buffers
+     ;; 1
+     (my-leader-def
+       :keymaps 'normal
+       "bs" 'save-buffer
+       "bk" 'kill-current-buffer
+       "bj" 'kill-buffer-and-window
+       "bb" 'bufler-switch-buffer
+       "bf" 'find-file
+       "br" 'org-recoll-search
+       "bh" 'previous-buffer
+       )
+
+     ;; Windows & Navigation
+     ;; 2
+     (my-leader-def
+       :keymaps 'normal
+       "wv" 'evil-window-vsplit
+       "wk" 'hrs/split-window-below-and-switch
+       "wc" 'hrs/split-window-right-and-switch
+       "wo" 'find-file-other-window
+       "wk" 'kill-current-buffer
+       "wo" 'ace-window
+       "wj" 'kill-buffer-and-window
+       "wg" 'dumb-jump-go-other-window
+       "wh" 'dump-jump-go
+       "wb" 'dumb-jump-back
+       )
+
+     ;; Search
+     ;; 3
+     (my-leader-def
+       :keymaps 'normal
+       "ss" 'consult-line
+       "sS" 'consult-imenu
+       "sr" 'replace-string
+       )
+
+     ;; Admin
+     ;; 4
+     (my-leader-def
+       :keymaps 'normal
+       "qq" 'save-buffers-kill-terminal
+       "qv" 'emacs-version
+       "qi" 'emacs-init-time
+       "qu" 'emacs-uptime
+       "qe" 'eshell
+       )
+
+     ;; Org-mode
+     ;; 5
+     (my-leader-def
+       :keymaps 'normal
+       "oi" 'org-cycle
+       "oa" 'org-agenda
+       "oc" 'org-capture
+       "od" 'org-deadline
+       "os" 'org-schedule
+       "ot" 'org-todo
+       "oz" 'org-set-tags-command
+       "oe" 'org-set-effort
+       "ox" 'todo/done
+       "or" 'org-refile
+       "og" 'ivy/refile
+       "ob" 'ivy/last
+       "ol" 'org-insert-link
+       "oö" 'org-store-link
+       "oo" 'org-open-at-point
+       "op" 'org-link-open-as-file
+       "of" 'org-agenda-file-to-front
+       "ow" 'org-export-dispatch
+       "oh" 'hoth-total
+       "oy" 'org-archive-subtree
+       )
+
+     ;; Magit & VCS
+     ;; 6
+     (my-leader-def
+       :keymaps 'normal
+       "gg" 'magit-status
+       "gi" 'magit-init
+       "gm" 'git-messenger:popup-message
+       "gp" 'magit-pull
+       )
+
+     ;; Org-roam + Content (drill)
+     ;; 7
+     (my-leader-def
+       :keymaps 'normal
+       "nl" 'org-roam
+       "ni" 'org-roam-insert
+       "nf" 'org-roam-find-file
+       "nc" 'org-roam-capture
+       "nr" 'org-roam-random-note
+       "ns" 'org-roam-server-mode
+       "nd" 'org-drill
+       )
+
+     ;; Email / Com
+     ;; 8
+     (my-leader-def
+       :keymaps 'normal
+       "mo" 'mu4e
+       "mc" 'mu4e-compose-new
+       "mm" 'message-send-and-exit
+       "ma" 'mail-add-attachment
+       "ms" 'mml-secure-message-sign-pgp
+       "me" 'mml-secure-message-encrypt-pgp
+       "mj" 'mu4e~headers-jump-to-maildir
+       "ml" 'mu4e~view-browse-url-from-binding
+       "mf" 'mu4e~view-save-attach-from-binding
+       )
+   #+end_src
 * Programming
 General settings & packages for programming, including all programming
 major-modes.
@@ -514,6 +826,26 @@ Global syntax checking.
     (global-flycheck-mode)
     )
 #+end_src
+** Magit
+   Use =magit= with some additional packages.
+   #+begin_src emacs-lisp
+     (use-package magit
+       :ensure t
+       :config
+       (global-set-key (kbd "C-x g") 'magit-status)
+       (global-set-key (kbd "C-x p") 'magit-init)
+       (use-package magit-todos
+	 :ensure t
+	 :config
+	 (magit-todos-mode t)
+	 )
+       (use-package git-messenger
+	 :ensure t
+	 :config
+	 (global-set-key (kbd "C-x m") 'git-messenger)
+	 )
+       )
+   #+end_src
 ** LSP
 Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
 #+begin_src emacs-lisp
@@ -551,7 +883,176 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
           )
     )
 #+end_src
+** Smartparens
+   Automatically insert following parens.
+   #+begin_src emacs-lisp
+     (use-package smartparens
+       :ensure t
+       :hook
+       (after-init . smartparens-global-mode)
+       :config
+       (require 'smartparens-config)
+       (sp-pair "=" "=" :actions '(wrap))
+       (sp-pair "+" "+" :actions '(wrap))
+       (sp-pair "<" ">" :actions '(wrap))
+       (sp-pair "$" "$" :actions '(wrap))
+       )
+
+   #+end_src
+** Company
+   Used not just for programming, but easier to configure here.
+   #+begin_src emacs-lisp
+     (use-package company
+       :ensure t
+       :config
+       (setq company-idle-delay 0.3)
+       (add-hook 'after-init-hook 'global-company-mode)
+       )
+
+     (use-package company-box
+       :ensure t
+       ;;:custom (company-box-icons-alist 'company-box-icons-all-the-icons)
+       :hook (company-mode . company-box-mode)
+       )
+   #+end_src
+** Snippets
+   Use yasnippets and the snippets for that.
+   #+begin_src emacs-lisp
+     (use-package yasnippet
+       :ensure t
+       :config
+       (use-package yasnippet-snippets
+	 :ensure t
+	 )
+       (yas-global-mode 1)
+       (setq yas-indent-line 'auto)
+       )
+   #+end_src
+** Format
+   Use =format-all= to language specific formatting.
+   #+begin_src emacs-lisp
+     (use-package format-all
+       :ensure t
+       :bind ("C-c C-f" . format-all-buffer)
+       )
+   #+end_src
+** Modes
+   Collection of programming major modes.
+   #+begin_src emacs-lisp
+     (use-package web-mode
+       :ensure t
+       :config
+       (add-hook 'web-mode-hook
+		 (lambda ()
+		   (rainbow-mode)
+		   (rspec-mode)
+		   (setq web-mode-markup-indent-offset 2)))
+       )
+
+     (use-package elixir-mode
+       :ensure t
+       )
+
+     (use-package rust-mode
+       :ensure t
+       )
+
+     (use-package markdown-mode
+       :ensure t
+       )
+
+     (use-package systemd
+       :ensure t
+       :mode
+       ("\\.service\\'" "\\.timer\\'" "\\.target\\'" "\\.mount\\'"
+	"\\.automount\\'" "\\.slice\\'" "\\.socket\\'" "\\.path\\'"
+	"\\.netdev\\'" "\\.network\\'" "\\.link\\'"))
+
+     (use-package yaml-mode
+       :ensure t
+       :mode ("\\.yaml\\'" "\\.yml\\'")
+       :custom-face
+       (font-lock-variable-name-face ((t (:foreground "violet"))))
+       )
+   #+end_src
 * Writing
+=org-mode= config for writing & productivity.
+** Base
+   General settings & config.
+   #+begin_src emacs-lisp
+	  (setq
+	   org-directory "~/documents/"
+	   org-archive-location "~/documents/archive/2021.org::* From %s"
+	   )
+
+	  (add-hook 'org-mode 'org-toggle-inline-images)
+	  (setq org-image-actual-width '(600))
+	  (setq-default org-display-inline-images t)
+	  (setq-default org-startup-with-inline-images t)
+
+	  (setq org-file-apps
+		'((auto-mode . emacs)
+		  (directory . emacs)
+		  ("\\.mm\\'" . default)
+		  ("\\.x?html?\\'" . default)
+		  ("\\.pdf\\'" . default)) 
+		;;("\\.pdf\\'" . emacs))
+		)
+	  (setq org-ellipsis " ▼ "
+		org-adapt-indentation nil
+		org-fontify-quote-and-verse-blocks t
+		org-startup-folded t
+		org-priority-highest ?A
+		org-priority-lowest ?C
+		org-priority-faces
+		'((?A . 'all-the-icons-red)
+		  (?B . 'all-the-icons-orange)
+		  (?C . 'all-the-icons-yellow))
+		org-src-tab-acts-natively t
+		org-hide-emphasis-markers t
+		org-src-window-setup 'current-window
+		org-return-follows-link t
+		org-confirm-babel-evaluate nil
+		org-use-speed-commands t
+		org-catch-invisible-edits 'show
+		)
+     (add-hook 'org-mode-hook 'org-indent-mode)
+   #+end_src
+** Tables
+   Use prettier tables.
+   #+begin_src emacs-lisp
+     (require 'org-pretty-table)
+     (add-hook 'org-mode-hook 'org-pretty-table-mode)
+   #+end_src
+** Looks
+   Use nicer faces for headings & deadlines.
+   #+begin_src emacs-lisp
+     (setq org-agenda-deadline-faces
+	   '((1.001 . error)
+	     (1.0 . org-warning)
+	     (0.5 . org-upcoming-deadline)
+	     (0.0 . org-upcoming-distant-deadline)))
+
+     (custom-set-faces
+       '(org-level-1 ((t (:inherit outline-1 :height 1.60))))
+       '(org-level-2 ((t (:inherit outline-2 :height 1.40))))
+       '(org-level-3 ((t (:inherit outline-3 :height 1.20))))
+       '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+       '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+     )
+   #+end_src
+** Appear
+   Use =org-appear= for nicer symbols in text.
+   #+begin_src emacs-lisp
+     (use-package org-appear
+       :ensure t
+       :hook (org-mode . org-appear-mode)
+       :init (setq org-hide-emphasis-markers t
+		   org-appear-autoemphasis t
+		   org-appear-autolinks t
+		   org-appear-autosubmarkers t)
+       )
+   #+end_src
 ** Spellcheck
 Enable =hunspell= & =flyspell= for all =org-mode= buffers.
 #+begin_src emacs-lisp
@@ -567,5 +1068,445 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
 
   (add-hook 'ispell-change-dictionary-hook #'flyspell-buffer)
 #+end_src
-* Communication
+** Superstar
+   Use better stars for headings and for TODOs.
+   #+begin_src emacs-lisp
+     (use-package org-superstar
+       :ensure t
+       :config
+       (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+	     ;;org-superstar-headline-bullets-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ")
+	     org-superstar-prettify-item-bullets t
+	     org-superstar-configure-like-org-bullets t
+	     org-hide-leading-stars nil
+	     org-superstar-leading-bullet ?\s
+	     ;; Enable custom bullets for TODO items
+	     org-superstar-special-todo-items t
+	     org-superstar-todo-bullet-alist '(("TODO" "☐ ")
+					       ("NEXT" "✒ ")
+					       ("STATIC" "» ")
+					       ("BLOCKED" "˧ ")
+					       ("DONE" "✔ ")
+					       ("PAL" "✔ ")
+					       )
+	     )
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+       )
 
+   #+end_src
+** Productivity
+   General productivity settings & capture templates.
+   #+begin_src emacs-lisp
+     (setq
+      org-log-done 'time
+      org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+	(sequence "STATIC(s)" "BLOCKED(b)" "|" "PAL(p)"))
+      org-todo-keyword-faces
+	   '(("TODO" . (:foreground "#af1212" :weight bold))
+	     ("NEXT" . (:foreground "#a8fa80" :weight bold))
+	     ("BLOCKED" . (:foreground "#b213c4" :weight bold))
+	     ("PAL" . (:foreground "#30bb03" :weight bold))
+	     ("STATIC" . (:foreground "#eaa222" :weight bold))
+	     ("DONE" . (:foreground "#ffffff" :weight bold))
+	     )
+	   org-capture-templates '(("x" "Inbox TODO" entry (file "~/documents/aggregation.org")
+				    "* TODO %?\n  %i\n  %a")
+				   ("c" "Common" entry (file+headline "~/documents/active.org" "Common")
+				    "* TODO %?\n%U\n   %c" :empty-lines 1)
+				   )
+
+	   org-tag-alist '(("drill" . ?d))
+	   org-refile-targets '(("~/documents/active.org" :maxlevel . 1)
+				("~/documents/completed.org" :maxlevel . 1)
+				)
+	   )
+   #+end_src
+** Files
+   Quick jump to common files in =GPS=.
+   #+begin_src emacs-lisp
+     (global-set-key [f1] 'agenda/super)
+
+     (defun todo/done ()
+       (interactive)
+       (org-todo 'done))
+
+     (defun todo/todo  ()
+       (interactive)
+       (org-todo "NEXT")
+       (org-mark-ring-push)
+       (ivy/refile-to "~/documents/active.org" "Today")
+       (org-mark-ring-goto)
+       ;;(org-priority-up)
+       ;;(org-deadline nil (org-read-date nil nil "+1d"))
+       )
+
+     (defun home-file ()
+	 (interactive)
+	 (find-file "~/documents/active.org")
+	 )
+
+     (defun projects-file ()
+	 (interactive)
+	 (find-file "~/documents/aggregation.org")
+	 )
+
+   #+end_src
+** Agenda
+   Agenda & superagenda setup + helpers.
+   #+begin_src emacs-lisp
+     (defun agenda/super (&optional arg)
+       (interactive "P")
+       (org-agenda arg "d"))
+   #+end_src
+   Just use a single agenda for everything.
+   #+begin_src emacs-lisp
+     (use-package org-super-agenda
+       :ensure t
+       :init
+       (setq org-agenda-custom-commands
+	     '(("d" "Super Agenda - Day"
+		((agenda "" ((org-agenda-span 'day)
+			     (org-super-agenda-groups
+			      '((:name "Today"
+				       :time-grid t
+				       :date today
+				       :scheduled today
+				 :order 1)))))
+		 (alltodo "" ((org-agenda-overriding-header "Next")
+			      (org-agenda-files '("~/documents/active.org"))
+			      (org-super-agenda-groups
+			       '((:name ""
+					:todo "NEXT"
+					:order 1)
+				 (:discard (:anything))
+				 ))))
+		 (alltodo "" ((org-agenda-overriding-header "Projects")
+			      (org-agenda-files '("~/documents/active.org"))
+			      (org-super-agenda-groups
+			       '((:name ""
+					:todo ("TODO" "STATIC" "BLOCKED")
+					:order 2)
+				 (:discard (:anything))
+				 )
+				 )))
+		 (alltodo "" ((org-agenda-overriding-header "Other")
+			      (org-super-agenda-groups
+			       '((:name ""
+					:file-path "aggregation"
+					:order 5)
+				 (:discard (:anything t)))
+				 )))
+		 )
+		)
+	       )
+	     )
+       :config
+       (org-super-agenda-mode 1)
+       )
+
+     (setq
+      org-agenda-start-on-weekday nil
+      org-agenda-start-day "0d"
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-include-deadlines t
+      org-agenda-current-time-string "← now"
+      )
+   #+end_src
+** Refile
+   Use quick refile helpers for current =GPS= implementation.
+   #+begin_src emacs-lisp
+     ;; https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
+     (defun ivy/refile-to (file headline)
+       "Move current headline to specified location"
+       (let ((pos (save-excursion
+		    (find-file file)
+		    (org-find-exact-headline-in-buffer headline))))
+	 (org-refile nil nil (list headline file nil pos))))
+
+     (defun ivy/refile ()
+       "Move current headline to bookmarks"
+       (interactive)
+       (org-mark-ring-push)
+       (ivy/refile-to "~/documents/active.org" "Today")
+       (org-mark-ring-goto))
+
+     (defun ivy/last ()
+       "Move current headline to bookmarks"
+       (interactive)
+       (org-mark-ring-push)
+       (ivy/refile-to "~/documents/completed.org" "Week")
+       (org-mark-ring-goto))
+
+   #+end_src
+** Roam
+   Use =org-roam= for the personal knowledge base.
+   #+begin_src emacs-lisp
+     (use-package org-roam
+       :ensure t
+       :commands (org-roam-insert org-roam-find-file org-roam-switch-to-buffer org-roam)
+       :hook
+       (after-init . org-roam-mode)
+       :init
+       (setq
+	org-roam-directory (file-truename "~/documents/vaults/database/")
+	org-roam-db-location "~/documents/vaults/org-roam.db"
+	org-roam-db-gc-threshold most-positive-fixnum
+	)
+       :config
+       (setq org-roam-capture-templates
+	     '(("d" "default" plain (function org-roam--capture-get-point)
+		"%?"
+		:file-name "${slug}"
+		:head "#+TITLE: ${title}\n"
+		:immediate-finish t
+		:unnarrowed t)
+		))
+       (use-package org-roam-server
+	 :ensure t
+	 :config
+	 (setq org-roam-server-host "127.0.0.1"
+	     org-roam-server-port 8080
+	     org-roam-server-authenticate nil
+	     org-roam-server-export-inline-images t
+	     org-roam-server-serve-files nil
+	     org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "jpg" "png")
+	     org-roam-server-network-poll t
+	     org-roam-server-network-arrows nil
+	     org-roam-server-network-label-wrap-length 20))
+       )
+   #+end_src
+** Repetition
+   =org-drill= for spaced repetition.
+   #+begin_src emacs-lisp
+     (use-package org-drill
+       :ensure t
+       :config
+       (setq org-drill-use-visible-cloze-face-p t)
+       (setq org-drill-hide-item-headings-p t)
+       )
+   #+end_src
+** LaTeX
+   Inline LaTeX using =org-fragtog=.
+   #+begin_src emacs-lisp
+     (setq-default org-startup-with-latex-preview t)
+
+     (use-package org-fragtog
+       :ensure t
+       :config
+       (add-hook 'org-mode-hook 'org-fragtog-mode)
+       (setq org-latex-preview-ltxpng-directory "~/.ltxpng/")
+       )
+   #+end_src
+** Export
+   All export targets in =ox=.
+   #+begin_src emacs-lisp
+     (eval-after-load "org" '(require 'ox-odt nil t))
+
+     (use-package htmlize
+       :ensure t)
+
+     (use-package ox-pandoc
+       :ensure t
+       )
+
+     (use-package ox-hugo
+       :ensure t
+       )
+
+     (use-package plantuml-mode
+       :ensure t
+       :config
+       (setq org-plantuml-jar-path (expand-file-name "~/.tools/plantuml.jar"))
+       (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+       )
+
+     (use-package ox-reveal
+       :ensure t
+       :custom ((org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+                (org-reveal-mathjax t)
+                (org-reveal-ignore-speaker-notes nil)
+                (org-reveal-note-key-char nil)))
+
+     (setq TeX-parse-self t)
+     (setq TeX-auto-save t)
+
+     (setq TeX-PDF-mode t)
+
+     (add-hook 'LaTeX-mode-hook
+               (lambda ()
+                 (LaTeX-math-mode)
+                 (setq TeX-master t)))
+   #+end_src
+   Export settings for PDFs
+   #+begin_src emacs-lisp
+     (use-package ob-elixir
+       :ensure t
+       )
+
+     (use-package ob-rust
+       :ensure t
+       )
+
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (elixir . t)
+        (latex . t)
+        ))
+
+     (setq org-src-fontify-natively t)
+
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "brave %s")
+   #+end_src
+** Title 
+   Easy brute force title page.
+   #+begin_src emacs-lisp
+     (defun jk/title-title ()
+       (car (org-roam--extract-titles-title))
+       )
+
+     (defun jk/title-author ()
+       (cdr (car (org-roam--extract-global-props '("AUTHOR"))))
+       )
+     (defun jk/title-image ()
+       (cdr (car (org-roam--extract-global-props '("IMAGE"))))
+       )
+     (defun jk/title-subtitle ()
+       (cdr (car (org-roam--extract-global-props '("SUBTITLE"))))
+       )
+
+     (defun jk/title-compose ()
+       (interactive)
+       (insert (concat "
+     ,#+LATEX_HEADER: \\usepackage[utf8]{inputenc}
+     ,#+LATEX_HEADER: \\usepackage[dvipsnames]{xcolor}
+     ,#+LATEX_HEADER: \\usepackage{tikz}
+     ,#+LATEX_HEADER: \\usepackage[]{babel}
+     \\begin{titlepage}
+	 \\begin{center}
+	     \\begin{tikzpicture}[remember picture,overlay]
+		 \\node[anchor=north west,yshift=-1.5pt,xshift=1pt]%
+		 at (current page.north west)
+		 {\\includegraphics[scale=1]{~/.tools/"
+		       (jk/title-image)
+		       ".png}};
+     \\end{tikzpicture}
+
+	     \\vspace{2.2cm}
+
+	     \\Huge
+	     \\textbf{"
+		       (jk/title-title)
+		       "}
+
+	     \\vspace{3.0cm}
+	     \\LARGE"
+		       (jk/title-subtitle)
+		       "
+     \\vspace{4.2cm}"
+
+		       (jk/title-author)
+
+	     "\\
+	     \\vfill
+
+	     \\Large
+	     Baden, Schweiz\\
+	     \\today
+	 \\end{center}
+     \\end{titlepage}
+     \\tableofcontents
+     \\newpage"
+		)
+	       )
+       )
+   #+end_src
+* Communication
+  =mu4e= and packages collection.
+  #+begin_src emacs-lisp
+
+    (setq mu4e-maildir (expand-file-name "~/.mail"))
+
+    (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+    (require 'mu4e)
+    (require 'smtpmail)
+
+    (setq mu4e-completing-read-function 'ivy-completing-read)
+    (setq mail-user-agent 'mu4e-user-agent)
+
+    (setq user-mail-address "jakob@jeykey.net"
+	  user-full-name  "Jakob Klemm"
+
+	  mu4e-get-mail-command "mbsync -c ~/.tools/.mbsyncrc -a"
+	  mu4e-update-interval  300
+	  mu4e-index-update-in-background t
+	  mu4e-main-buffer-hide-personal-addresses t
+
+	  send-mail-function 'smtpmail-send-it
+	  message-send-mail-function 'message-smtpmail-send-it
+	  starttls-use-gnutls t
+
+	  mu4e-sent-messages-behavior 'delete
+
+	  mu4e-view-show-addresses t
+
+	  message-kill-buffer-on-exit t
+
+	  mu4e-attachment-dir  "~/documents/vaults/ram"
+
+	  mu4e-sent-folder "/global/Sent"
+	  mu4e-drafts-folder "/global/Drafts"
+	  mu4e-trash-folder "/global/Trash"
+	  message-signature
+	  (concat
+	   "Jakob Klemm\n"
+	   "https://github.com/jakobklemm"
+	   "https://jeykey.net\n")
+	  mml-secure-openpgp-sign-with-sender t
+	  mml-secure-openpgp-encrypt-to-self t
+	  mml-secure-smime-sign-with-sender "jakob@jeykey.net"
+
+	  mu4e-view-prefer-html t
+
+	  )
+
+    (load-file "~/.tools/mail.el")
+
+    (setq smtpmail-starttls-credentilas my-mu4e-account-alist)
+    (setq smtpmail-default-smtp-server "smtp.gmail.com"
+	  smtpmail-smtp-server "smtp.gmail.com"
+	  smtpmail-smtp-service 587
+	  smtpmail-debug-info t)
+
+    (use-package mu4e-alert
+      :ensure t
+      :config
+      (mu4e-alert-set-default-style 'libnotify)
+      (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+      )
+
+    (defun my-mu4e-set-account ()
+      "Set the account for composing a message."
+      (let* ((account
+	      (if mu4e-compose-parent-message
+		  (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+		    (string-match "/\\(.*?\\)/" maildir)
+		    (match-string 1 maildir))
+		(completing-read (format "Compose with account: (%s) "
+					 (mapconcat #'(lambda (var) (car var))
+						    my-mu4e-account-alist "/"))
+				 (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+				 nil t nil nil (caar my-mu4e-account-alist))))
+	     (account-vars (cdr (assoc account my-mu4e-account-alist))))
+	(if account-vars
+	    (mapc #'(lambda (var)
+		      (set (car var) (cadr var)))
+		  account-vars)
+	  (error "No email account found"))))
+
+    (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+    (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+    (add-hook 'mu4e-compose-mode-hook 'visual-line-mode)
+  #+end_src

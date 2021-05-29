@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{require} \PYG{l+s+ss}{\PYGZsq{}package}\PYG{p}{)} \PYG{c+c1}{;; Emacs builtin}
+
+\PYG{c+c1}{;; set package.el repositories}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{package\PYGZhy{}archives}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{(}
+	\PYG{p}{(}\PYG{l+s}{\PYGZdq{}org\PYGZdq{}} \PYG{o}{.} \PYG{l+s}{\PYGZdq{}https://orgmode.org/elpa/\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{(}\PYG{l+s}{\PYGZdq{}gnu\PYGZdq{}} \PYG{o}{.} \PYG{l+s}{\PYGZdq{}https://elpa.gnu.org/packages/\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{(}\PYG{l+s}{\PYGZdq{}melpa\PYGZdq{}} \PYG{o}{.} \PYG{l+s}{\PYGZdq{}https://melpa.org/packages/\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{))}
+
+\PYG{c+c1}{;; initialize built\PYGZhy{}in package management}
+\PYG{p}{(}\PYG{n+nv}{package\PYGZhy{}initialize}\PYG{p}{)}
+
+\PYG{c+c1}{;; update packages list if we are on a new install}
+\PYG{p}{(}\PYG{n+nb}{unless} \PYG{n+nv}{package\PYGZhy{}archive\PYGZhy{}contents}
+  \PYG{p}{(}\PYG{n+nv}{package\PYGZhy{}refresh\PYGZhy{}contents}\PYG{p}{))}
+
+\PYG{c+c1}{;; a list of pkgs to programmatically install}
+\PYG{c+c1}{;; ensure installed via package.el}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{my\PYGZhy{}package\PYGZhy{}list} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package}\PYG{p}{))}
+
+\PYG{c+c1}{;; programmatically install/ensure installed}
+\PYG{c+c1}{;; pkgs in your personal list}
+\PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nc}{package} \PYG{n+nv}{my\PYGZhy{}package\PYGZhy{}list}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{unless} \PYG{p}{(}\PYG{n+nv}{package\PYGZhy{}installed\PYGZhy{}p} \PYG{n+nc}{package}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{package\PYGZhy{}install} \PYG{n+nc}{package}\PYG{p}{)))}
+
+\PYG{p}{(}\PYG{n+nb}{use\PYGZhy{}package} \PYG{n+nv}{quelpa\PYGZhy{}use\PYGZhy{}package}
+  \PYG{l+s+ss}{:ensure} \PYG{n+no}{t}
+  \PYG{p}{)}
+\end{Verbatim}
