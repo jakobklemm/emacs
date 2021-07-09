@@ -121,9 +121,6 @@ Some default settings, partially copied from Harry R. Schwartz.
   ;; Highlight the current line
   (global-hl-line-mode)
 
-  ;; Hide the modeline
-  (setq mode-line-format nil)
-
   ;; Error handling
   ;; (setq warning-minimum-level :emergency)
 
@@ -188,11 +185,13 @@ highlight the current line & set the point color.
 #+begin_src emacs-lisp
   (load-theme 'jeykey-dark t)
   (set-cursor-color "#D069D6")
+  (set-face-background 'hl-line "#303440")
+  (custom-set-faces '(org-ellipsis ((t (:foreground "#6483b5" :underline nil)))))
 #+end_src
 ** Font
 Set the default font & functions for changing the font size.
 #+begin_src emacs-lisp
-  (setq hrs/default-fixed-font "Iosevka")
+  (setq hrs/default-fixed-font "Fira Code")
   (setq hrs/default-fixed-font-size 90)
   (setq hrs/current-fixed-font-size hrs/default-fixed-font-size)
   (set-face-attribute 'default nil
@@ -257,29 +256,50 @@ Use centered text everywhere, except for excluded buffers.
     :group 'perfect-margin)
 
   (use-package perfect-margin
+    :disabled t
+    ;;:config
+    ;;(perfect-margin-mode 1)
+    )
+#+end_src
+** Numbers
+#+begin_src emacs-lisp
+  (setq display-line-numbers 'relative)
+  ;;(global-display-line-numbers-mode)
+  ;;(setq-default display-line-numbers-width 20)
+  (use-package nlinum
     :ensure t
     :config
-    (perfect-margin-mode 1)
+    (global-nlinum-mode)
     )
 #+end_src
 ** Modeline
 Use feebeline as a /in-minibuffer-modeline/.
 #+begin_src emacs-lisp
-  (use-package    feebleline
-    :ensure t
-    :config       (setq feebleline-msg-functions
-                        '((feebleline-line-number         :post "" :fmt "%5s")
-                          (feebleline-column-number       :pre ":" :fmt "%-2s")
-                          (feebleline-file-directory      :face feebleline-dir-face :post "")
-                          (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
-                          (feebleline-file-modified-star  :face font-lock-warning-face :post "")
-                          (feebleline-git-branch          :face feebleline-git-face :pre " ")
-                          (feebleline-project-name        :align right)
-                          ((lambda () (format-time-string "%H:%M")) :align right)
-                          )
-                        )
-    (feebleline-mode 1)
-    )
+  (use-package telephone-line
+    :custom
+    (telephone-line-primary-left-separator 'telephone-line-cubed-left)
+    (telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left)
+    (telephone-line-primary-right-separator 'telephone-line-cubed-right)
+    (telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+    (telephone-line-height 24)
+    (telephone-line-evil-use-short-tag t)
+    :config
+    (telephone-line-defsegment telephone-line-pdf-segment ()
+      (if (eq major-mode 'pdf-view-mode)
+          (propertize (pdf-view-page-number)
+                      'face '(:inherit)
+                      'display '(raise 0.0)
+                      'mouse-face '(:box 1)
+                      'local-map (make-mode-line-mouse-map
+                                  'mouse-1 (lambda ()
+                                             (interactive)
+                                             (pdf-view-goto-page))))))
+    (setq telephone-line-lhs '((accent . (telephone-line-pdf-segment
+                                          telephone-line-vc-segment
+                                          telephone-line-erc-modified-channels-segment
+                                          telephone-line-process-segment))
+                               (nil . (telephone-line-projectile-segment telephone-line-buffer-segment))))
+    (telephone-line-mode t))
 #+end_src
 ** Rainbow
 Install rainbow-delimiters & enable it for programming & org-mode.
@@ -419,9 +439,6 @@ Use consult for improved search.
            ("M-s" . consult-imenu)
            :map minibuffer-local-map
            ("C-r" . consult-history))
-    :custom
-    (consult-project-root-function #'dw/get-project-root)
-    (completion-in-region-function #'consult-completion-in-region)
     :config
     (consult-preview-at-point-mode)
     )
@@ -444,16 +461,26 @@ Execute actions in the minibuffer.
 #+begin_src emacs-lisp
   (use-package embark
     :ensure t
-    :bind (
-           :map minibuffer-local-map
-           ("C-d" . embark-act))
+
+    :bind
+    (("C-." . embark-act))         ;; pick some comfortable binding
+
     :config
-    ;; Show Embark actions via which-key
-    (setq embark-action-indicator
-          (lambda (map) (which-key--show-keymap "Embark" map nil nil 'no-paging)
-            #'which-key--hide-popup-ignore-command)
-          embark-become-indicator embark-action-indicator)
-    )
+    ;; Hide the mode line of the Embark live/completions buffers
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none)))))
+
+  ;; Consult users will also want the embark-consult package.
+  (use-package embark-consult
+    :ensure t
+    :after (embark consult)
+    :demand t ; only necessary if you have the hook below
+    ;; if you want to have consult previews as you move around an
+    ;; auto-updating embark collect buffer
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
 #+end_src
 ** Buffers
 Use =bufler= to manage buffers.
@@ -555,30 +582,30 @@ Easy helper functions for quickly opening new buffers.
        (evil-mode)
 
        (use-package evil-commentary
-	 :ensure t
-	 :bind (:map evil-normal-state-map
-		     ("gc" . evil-commentary)))
+         :ensure t
+         :bind (:map evil-normal-state-map
+                     ("gc" . evil-commentary)))
 
        (use-package evil-leader
-	 :ensure t
-	 :config
-	 (global-evil-leader-mode)
-	 (evil-leader/set-leader "<SPC>")
-	 )
+         :ensure t
+         :config
+         (global-evil-leader-mode)
+         (evil-leader/set-leader "<SPC>")
+         )
 
        (use-package evil-collection
-	 :ensure t
-	 :config
-	 (evil-collection-init)
-	 )
+         :ensure t
+         :config
+         (evil-collection-init)
+         )
        (use-package evil-org
-	 :ensure t
-	 :after org
-	 :hook (org-mode . (lambda () evil-org-mode))
-	 :config
-	 (require 'evil-org-agenda)
-	 (evil-org-agenda-set-keys)
-	 )
+         :ensure t
+         :after org
+         :hook (org-mode . (lambda () evil-org-mode))
+         :config
+         (require 'evil-org-agenda)
+         (evil-org-agenda-set-keys)
+         )
        )
 
      (use-package general
@@ -590,12 +617,11 @@ Easy helper functions for quickly opening new buffers.
      (setq evil-motion-state-modes nil)
 
      (setq evil-normal-state-modes
-	   (append evil-emacs-state-modes
-		   evil-insert-state-modes
-		   evil-normal-state-modes
-		   evil-motion-state-modes)
-	   )
-
+           (append evil-emacs-state-modes
+                   evil-insert-state-modes
+                   evil-normal-state-modes
+                   evil-motion-state-modes)
+           )
    #+end_src
 ** Binds
    Define all binds in a custom mini-mode.
@@ -603,10 +629,6 @@ Easy helper functions for quickly opening new buffers.
 
      (global-set-key (kbd "C-x j") 'kill-buffer-and-window)
      (global-set-key (kbd "C-x o") 'ace-window)
-     (global-set-key (kbd "<f5>") 'home-file)
-     (global-set-key (kbd "<f6>") 'projects-file)
-
-     (global-set-key (kbd "§") 'helm-resume)
 
      ;; Partially copied from https://github.com/jbranso/evil-dvorak/blob/master/evil-dvorak.el
 
@@ -627,7 +649,7 @@ Easy helper functions for quickly opening new buffers.
 
      (define-globalized-minor-mode global-dvorak-mode
        dvorak-mode turn-on-dvorak-mode
-       "Global mode to let you use evil with dvorak friendly keybindings.")
+       "Global dvorak mode.")
 
      (global-dvorak-mode 1)
 
@@ -643,7 +665,7 @@ Easy helper functions for quickly opening new buffers.
        "ö" 'org-agenda-goto-today
        )
 
-     (when (string-equal system-name "jeykeyarch")
+     (when (string-equal system-name "kosmos")
        (evil-define-key '(visual normal motion) dvorak-mode-map
          "t" 'evil-next-line
          "n" 'evil-previous-line
@@ -674,16 +696,8 @@ Easy helper functions for quickly opening new buffers.
          "d" 'undo
          "b" 'kill-ring-save
 
-         "p" 'ivy/refile
-         "y" 'ivy/last
-
-         ";" 'agenda/super
-         "," 'todo/done
-         "." 'todo/done
-
-         ;; "Temporary quick binds.
-         "j" 'kill-buffer-and-window
          "'" 'mu4e-headers-search-bookmark
+         "." 'find-file
          )
        )
 
@@ -740,6 +754,7 @@ Easy helper functions for quickly opening new buffers.
        "ss" 'consult-line
        "sS" 'consult-imenu
        "sr" 'replace-string
+       "sg" 'consult-ripgrep
        )
 
      ;; Admin
@@ -828,6 +843,9 @@ Global syntax checking.
     :config
     (global-flycheck-mode)
     )
+  (use-package flycheck-rust
+    :ensure t
+    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
 ** Magit
    Use =magit= with some additional packages.
@@ -868,8 +886,12 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
     :init
     (setq lsp-headerline-breadcrumb-enable nil)
     (setq lsp-signature-auto-activate nil)
+    (setq lsp-idle-delay 0.6)
+    (setq lsp-rust-analyzer-server-display-inlay-hints t)
+    (setq lsp-rust-analyzer-inlay-hints-mode t)
     :hook
     (elixir-mode . lsp)
+    (rustic-mode . lsp)
     )
 
   (use-package lsp-ui
@@ -925,12 +947,27 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
        :ensure t
        :config
        (use-package yasnippet-snippets
-	 :ensure t
-	 )
+         :ensure t
+         )
        (yas-global-mode 1)
        (setq yas-indent-line 'auto)
        )
    #+end_src
+** Comments
+Edit comments like org-source-blocks in org/md.
+#+begin_src emacs-lisp
+  (use-package separedit
+    :ensure t
+    :config
+    (define-key prog-mode-map        (kbd "C-c '") #'separedit)
+    (define-key minibuffer-local-map (kbd "C-c '") #'separedit)
+    (define-key help-mode-map        (kbd "C-c '") #'separedit)
+
+    ;; Default major-mode for edit buffer
+    ;; can also be other mode e.g. ‘org-mode’.
+    (setq separedit-default-mode 'org-mode)
+    )
+#+end_src
 ** Format
    Use =format-all= to language specific formatting.
    #+begin_src emacs-lisp
@@ -939,6 +976,47 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
        :bind ("C-c C-f" . format-all-buffer)
        )
    #+end_src
+** Rust
+Development settings for rust.
+#+begin_src emacs-lisp
+  (use-package rustic
+    :ensure t
+    :bind (:map rustic-mode-map
+                ("M-j" . lsp-ui-imenu)
+                ("M-?" . lsp-find-references)
+                ("C-c r" . rustic-cargo-run)
+                ("C-c C-r" . flycheck-list-errors)
+                ("C-c C-c l" . flycheck-list-errors)
+                ("C-c C-c a" . lsp-execute-code-action)
+                ("C-c C-c r" . lsp-rename)
+                ("C-c C-c q" . lsp-workspace-restart)
+                ("C-c C-c Q" . lsp-workspace-shutdown)
+                ("C-c C-c s" . lsp-rust-analyzer-status))
+    :config
+    ;; uncomment for less flashiness
+    ;; (setq lsp-eldoc-hook nil)
+    ;; (setq lsp-enable-symbol-highlighting nil)
+    ;; (setq lsp-signature-auto-activate nil)
+
+    ;; comment to disable rustfmt on save
+    (setq rustic-format-on-save t)
+    )
+
+  (use-package cargo
+    :ensure t
+    :hook (rust-mode . cargo-minor-mode))
+
+  (use-package toml-mode
+    :ensure t
+    )
+#+end_src
+** Flycheck
+Inline errors
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    )
+#+end_src
 ** Modes
    Collection of programming major modes.
    #+begin_src emacs-lisp
@@ -953,10 +1031,6 @@ Setup =LSP= & =LSP-UI=, mainly for Elixir, later also for Rust.
        )
 
      (use-package elixir-mode
-       :ensure t
-       )
-
-     (use-package rust-mode
        :ensure t
        )
 
@@ -1063,7 +1137,7 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
 #+begin_src emacs-lisp
   (setq ispell-program-name "hunspell")
 
-  (setq ispell-local-dictionary "en_US")
+  (setq ispell-local-dictionary "de_DE")
   (setq ispell-local-dictionary-alist
         '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
           ("de_DE" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_DE" "-a" "-i" "UTF-8") nil utf-8)))
@@ -1255,7 +1329,7 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
        (after-init . org-roam-mode)
        :init
        (setq
-	org-roam-directory (file-truename "~/documents/vaults/database/")
+	org-roam-directory (file-truename "~/workspace/database/org/")
 	org-roam-db-location "~/documents/vaults/org-roam.db"
 	org-roam-db-gc-threshold most-positive-fixnum
 	)
@@ -1297,6 +1371,16 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
    #+begin_src emacs-lisp
      (setq-default org-startup-with-latex-preview t)
 
+     (setq TeX-parse-self t)
+     (setq TeX-auto-save t)
+
+     (setq TeX-PDF-mode t)
+
+     (add-hook 'LaTeX-mode-hook
+               (lambda ()
+                 (LaTeX-math-mode)
+                 (setq TeX-master t)))
+
      (use-package org-fragtog
        :ensure t
        :config
@@ -1318,6 +1402,8 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
 
      (use-package ox-hugo
        :ensure t
+       :config
+       (setq org-hugo-auto-set-lastmod t)
        )
 
      (use-package plantuml-mode
@@ -1333,18 +1419,8 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
                 (org-reveal-mathjax t)
                 (org-reveal-ignore-speaker-notes nil)
                 (org-reveal-note-key-char nil)))
-
-     (setq TeX-parse-self t)
-     (setq TeX-auto-save t)
-
-     (setq TeX-PDF-mode t)
-
-     (add-hook 'LaTeX-mode-hook
-               (lambda ()
-                 (LaTeX-math-mode)
-                 (setq TeX-master t)))
    #+end_src
-   Export settings for PDFs
+   Babel & org-source-blocks.
    #+begin_src emacs-lisp
      (use-package ob-elixir
        :ensure t
@@ -1354,16 +1430,33 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
        :ensure t
        )
 
+     (use-package ob-go
+       :ensure t
+       )
+
      (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
         (elixir . t)
         (latex . t)
+        (rust . t)
         ))
+    #+end_src
+    Latex export command & highlighted code blocks.
+    #+begin_src emacs-lisp
+      (require 'ox-latex)
+      (add-to-list 'org-latex-packages-alist '("" "minted"))
+      (setq org-latex-listings 'minted)
 
-     (setq org-src-fontify-natively t)
+      (setq org-latex-pdf-process
+            '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
-     (setcdr (assoc "\\.pdf\\'" org-file-apps) "brave %s")
+      (setq org-src-fontify-natively t)
+
+      ;; Open directly PDFs in browser.
+      (setcdr (assoc "\\.pdf\\'" org-file-apps) "brave %s")
    #+end_src
 ** Title 
    Easy brute force title page.
@@ -1429,7 +1522,7 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
        )
    #+end_src
 * Communication
-  =mu4e= and packages collection.
+=mu4e= and packages collection.
   #+begin_src emacs-lisp
 
     (setq mu4e-maildir (expand-file-name "~/.mail"))
@@ -1459,7 +1552,7 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
 
 	  message-kill-buffer-on-exit t
 
-	  mu4e-attachment-dir  "~/documents/vaults/ram"
+	  mu4e-attachment-dir  "~/workspace/"
 
 	  mu4e-sent-folder "/global/Sent"
 	  mu4e-drafts-folder "/global/Drafts"
@@ -1515,3 +1608,4 @@ Enable =hunspell= & =flyspell= for all =org-mode= buffers.
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
     (add-hook 'mu4e-compose-mode-hook 'visual-line-mode)
   #+end_src
+

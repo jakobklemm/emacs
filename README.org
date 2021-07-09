@@ -1,19 +1,6 @@
 #+TITLE: Personal emacs config
 #+AUTHOR: Jakob Klemm
-#+DATE: 17.12.2020
 
 nothing special here, just my personal emacs config. it has a lot of
 external dependencies and no guide or tutorial. use at own risk and
 don't expect help, this isn't tech support.
-* Requirements
-- Recoll
-- SQLite
-- ~/.tools (private repository)
-- Fira Code Pro
-- GPG-Keys
-- Gnuplot (https://plantuml.com/de/emacs)
-
-* Important
-- Just a personal config, not written to be used by other people.
-- Designed for personal workflow.
-- Keybinds for Ergodox Ez + Custom dvorak (https://configure.ergodox-ez.com/ergodox-ez/layouts/RQBaW/latest/0)
